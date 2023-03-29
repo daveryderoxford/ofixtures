@@ -1,0 +1,104 @@
+
+<app-toolbar>User details</app-toolbar>
+
+<!-- Put form in middle of page -->
+<div fxLayout="row" fxLayoutAlign="center space-around">
+
+  <!-- layout elements vertically with  10px gaps-->
+  <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap=10px>
+
+    <div class=error>{{error}}</div>
+
+    <mat-card [class]=cardclass>
+
+      <form (ngSubmit)="save()" novalidate fxLayout="column" fxLayoutAlign="space-around" fxLayoutGap=10px
+        [formGroup]="userForm">
+
+        <mat-progress-bar *ngIf="showProgressBar" mode="query"> </mat-progress-bar>
+
+        <div fxFlexLayout=row fxLayoutAlign="space-between" fxLayoutGap=20px>
+
+          <mat-form-field fxFlex="calc(50%-20px)">
+            <input  matInput required formControlName="firstname" placeholder="First Name">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="calc(50%-20px)">
+            <input matInput required formControlName="surname" placeholder="Last Names">
+          </mat-form-field>
+          
+        </div>
+
+        <mat-form-field>
+          <mat-select required formControlName="nationality" placeholder="Nationality">
+            <mat-option *ngFor="let nation of nations" [value]="nation.abrievation">
+              {{ nation.fullname }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput required formControlName="postcode" placeholder="Postcode" oninput="this.value = this.value.toUpperCase()">
+          <mat-hint>For displaying fixture locations (UK)</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput formControlName="club" minlength=2 maxlength=10 placeholder="Club abrievation">
+          <mat-hint align="end">Between 2 and 10 characters</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput formControlName="nationalId" type="number" placeholder="National ID number">
+        </mat-form-field>
+
+        <div fxLayout="row" fxLayoutAlign="start">
+          <b> ECards </b>
+
+          <span fxFlex></span>
+          
+          <button mat-button (click)="addEcard()">
+            ADD
+            <mat-icon [ngStyle]="{'color':'green'}">add_circle</mat-icon>
+          </button>
+        </div>
+
+        <div formArrayName="ecards" *ngFor="let ecard of userForm.get('ecards')['controls']; let i = index;">
+
+          <div fxFlexLayout=row fxLayoutAlign="space-between" fxLayoutGap=20px>
+
+            <div [formGroupName]="i">
+
+              <mat-form-field fxFlex=100px>
+                <input matInput formControlName="id" min=0 placeholder="Number">
+              </mat-form-field>
+
+              <mat-form-field fxFlex=100px>
+                <mat-select formControlName="type" placeholder="Type">
+                  <mat-option *ngFor="let type of ecardTypes" [value]="type">
+                    {{ type }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <span fxFlex></span>
+
+            <button mat-button (click)="removeEcard(i)">
+              <mat-icon [ngStyle]="{'color':'red'}" >remove_circle</mat-icon>
+            </button>
+
+          </div>
+        </div>
+
+        <mat-checkbox formControlName="autoFind"> Automatically add results </mat-checkbox>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <button [disabled]="userForm.invalid || !userForm.dirty" mat-raised-button color=primary type="submit"
+            aria-label="login">Save</button>
+        </div>
+
+      </form>
+    </mat-card>
+
+  </div>
+
+</div>

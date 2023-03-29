@@ -1,0 +1,193 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$my-primary: mat.define-palette(mat.$blue-palette);
+$my-accent: mat.define-palette(mat.$yellow-palette);
+
+$my-theme: mat.define-light-theme((color: (primary: $my-primary, accent: $my-accent,)));
+
+@include mat.all-component-themes($my-theme);
+
+// Theme toggle buttons
+@mixin mix-app-theme($my-theme) {
+
+  .mat-button-toggle-checked {
+     background-color: mat.get-color-from-palette($my-primary, 50);
+  }
+}
+
+// Include the mixin
+@include mix-app-theme($my-theme);
+
+//  Common colors
+$gray-background-color: rgb(209,209,209);
+$gray-text-color: rgb(100,100,100);
+$text-link-color: rgb(20, 20,18000);
+$error-color: red;
+
+// Text Styles 
+html, body {
+ font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  overflow: auto;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  padding: 0;
+}
+
+/**
+* Styles for HTML text elements
+*/
+
+h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+    font-size: 56px;
+     font-weight: 400;
+     line-height: 1.35;
+     letter-spacing: -0.02em;
+     opacity: 0.54;
+
+  font-size: 0.6em;
+}
+
+h1 {
+    font-size: 56px;
+    font-weight: 400;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+h2 {
+    font-size: 45px;
+     font-weight: 400;
+     line-height: 48px;
+
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+h3 {
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 40px;
+
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+h4 {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    -moz-osx-font-smoothing: grayscale;
+
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+h5 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.02em;
+
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+h6 {
+    font-size: 16px;
+   font-weight: 400;
+   line-height: 28px;
+   letter-spacing: 0.04em;
+
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0;
+
+  margin-bottom: 16px;
+}
+
+a {
+  color: $text-link-color;
+  font-weight: 500;
+}
+
+blockquote {
+    position: relative;
+     font-size: 24px;
+     font-weight: 300;
+     font-style: italic;
+     line-height: 1.35;
+     letter-spacing: 0.08em;
+
+     &:before {
+       position: absolute;
+       left: -0.5em;
+       content: '“';
+     }
+
+     &:after {
+       content: '”';
+       margin-left: -0.05em;
+     }
+}
+
+ mark {
+  background-color: #f4ff81;
+}
+
+dt {
+  font-weight: 700;
+}
+
+address {
+    font-size: 12px;
+     font-weight: 400;
+     line-height: 1;
+     letter-spacing: 0;
+
+  font-style: normal;
+}
+
+ul, ol {
+    font-size: 14px;
+     font-weight: 400;
+     line-height: 24px;
+     letter-spacing: 0;
+}
+
+ .error {
+    font-family: 'Roboto';
+
+    color: red;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1;
+    margin-bottom: 20px;
+    margin-top: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.sb-highzorder-dialog .mat-dialog-container {
+  z-index: 10000;
+  padding: 18x;
+}
+
