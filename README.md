@@ -1,30 +1,31 @@
-# Splitsbrowser
+# OFixtures
 
-Angular program for displaying orienteering results.
+Orienteering fixture browsing.  
 
-Data is store on google cloud. 
+## Key features
 
-It was originally written by Dave Ryder as a Java application many years ago and rewritten/emhanced probcipally by
+### Fixture information
+* Maps and grid/list view of events BOF fixtures
+* Event location using grid references, postcode and google search on area
+* OS maps on mobile and desktop 
+* Google maps and directions
+* Routegadget maps for the area 
+* Add event to google calander
 
-## Development 
+### Search/Filtering
+Fixture filtering based on:
+* Distance from postcode/grade
+* Day of week
+* User 'liked' events
 
-## Supported file format
+### User functionality
+* Mark 'liked' events of interest
+* Map reservation/entry for local events  
 
-Splitsbrowser supports the following results file formats
+### Application 
+* Optimised for desktop and mobile
+* Fixture data avalaible offline
 
-* IOF XML version 3  https://orienteering.org/resources/it/data-standard-3-0/
-* IOF XML version 2  https://orienteering.org/resources/it/data-standard-2-0/
-* OE format
-CSV output from OE Results application.
-Variations supporting 44, 46 and 60 columns before the controls data are supported. 
-
-* CSV Format
-Simple, fixed csv format with the following columns
-
-* Alternate CVS format
-Alternative CSV formats, where each row defines a separate competitor, and includes course details such as name, controls and optionally distance and climb.
-There is presently one variation supported: one, distinguished by having three columns per control: control codecumulative time and 'points'.  
-
- * HTML Format
-Attempt to parse 
-
+### In preparation
+* Manually added events (Army league, Mounain marathons and )
+* Support for event series league/multiday. 
