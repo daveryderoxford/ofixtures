@@ -1,5 +1,5 @@
 /**
- * Splitsbrowser Google clould functions exports
+ * OFixtures Google clould functions exports
  */
 import * as admin from "firebase-admin";
 import * as functions from "firebase-functions";

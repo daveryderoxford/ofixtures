@@ -4,30 +4,54 @@
   <mat-accordion fxFlex="0 1 800px">
 
     <app-about-item title="Introduction">
-      <p> This application displays UK Orienteering fixtures.</p>
-      Fixtures are displayed from:
+      <p> Orientering fixture browsing</p>    
+
+      <p><b>Key features</b></p>
+
+      <p>Fixture information</p>
       <ul>
-        <li>British Orienteering fixtures</li>
-        <li>British Army Orienteering Association fixtures</li>
+        <li>Maps and grid/list view of events BOF fixtures</li>
+        <li>Event location from grid references, postcode or google search on area</li>
+        <li>OS maps on mobile and desktop</li>
+        <li>Google maps and directions</li>
+        <li>Routegadget maps for the area</li>
+        <li>Add event to google calander</li>
       </ul>
 
-      <p>The user may logon to allow them to 'like' fixtures. In future there is an intention to allow for the
-        reservation of maps</p>
-      The fixture list may be filtered by:
+      <p>User functionality</p>
       <ul>
-        <li>Day of week (Sat/Sun/Weekday) </li>
-        <li>'Liked' fixtures </li>
-        <li>Distance from home postcode for various grades of event. </li>
+        <li>Mark 'liked' events of interest</li>
+        <li>Map reservation/entry for local events</li>
       </ul>
+
+      <p>Search/Filtering</p>
+      <ul>
+        <li>Distance from home postcode for grades of event.</li>
+        <li>Day of week</li>
+        <li>User 'liked' events</li>
+      </ul>
+      
+      <p>Application</p>
+      <ul>
+        <li>Optimised for desktop and mobile</li>
+        <li>Fixture data avalaible offline</li>
+      </ul>
+
+      <p>In preparation</p>
+      <ul>
+        <li> Manually added events</li>
+        <li> Support for event series league/multiday.</li>
+      </ul>
+
     </app-about-item>
 
     <app-about-item title="Install as Application">
-      <p>Splitsbrowser may be installed as an application on the desktop on both mobile, tablet and desktop devices.
-      Select instrictions below for installation instructions.</p>
+      <p>OFixtures may be installed as an application on the desktop on both mobile, tablet and desktop devices.
+        Select instrictions below for installation instructions.</p>
 
       <mat-accordion>
         <app-about-item title="Laptop/desktop with Chrome">
-          To install as an application on the desktp on either Mac or PC from Chrome select "Install Splitsbrowser
+          To install as an application on the desktp on either Mac or PC from Chrome select "Install OFixtures
           from Chrome's main menu"
         </app-about-item>
 
@@ -56,11 +80,9 @@
 
     </app-about-item>
 
-  
     <app-about-item title="Acknowledgements">
       The fixture map is based on mp by Ollie O'Brien <a href="https://map.oobrien.com/">https://map.oobrien.com/</a>
       <br>
-      British Otrinteering  fixtures
     </app-about-item>
 
     <app-about-item title="Privacy policy">
@@ -68,20 +90,20 @@
     </app-about-item>
 
     <app-about-item title="Contact details">
-      Please mail <a href="support@splitsbrowser.org.uk">support@splitsbrowser.org.uk</a> with any comment problems or
+      Please mail <a href="support@ofixtures.org.uk">support@ofixtures.org.uk</a> with any comment problems or
       issues.
     </app-about-item>
 
-      <app-about-item title="Development">
-        Splitsbrowser source code is located at <a href="https://github.com/daveryderoxford/ngSplitsBrowser">Github</a>
-        It runs on Firebase/Google Cloud.
-        It make use of the following open source packages:
-        <ul>
-          <li>Leaflet is used for charting</li>
-          <li>Angualar is used for </li>
-        </ul>
-        It is written in Typescript.
-      </app-about-item>
+    <app-about-item title="Development">
+      Source code is located at <a href="https://github.com/daveryderoxford/ofixtures">Github</a>
+      It runs on Firebase/Google Cloud.
+      It make use of the following open source packages:
+      <ul>
+        <li>Leaflet is used for map display</li>
+         <li>Angular development framework /li>
+      </ul>
+      It is written in Typescript.
+    </app-about-item>
 
     <app-about-item title="Version">
       Version: {{ver.version}} <br>

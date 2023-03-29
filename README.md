@@ -6,7 +6,7 @@ Orienteering fixture browsing.
 
 ### Fixture information
 * Maps and grid/list view of events BOF fixtures
-* Event location using grid references, postcode and google search on area
+* Event location from  grid references, postcode or google search on area
 * OS maps on mobile and desktop 
 * Google maps and directions
 * Routegadget maps for the area 

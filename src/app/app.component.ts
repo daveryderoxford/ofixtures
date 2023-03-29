@@ -115,7 +115,7 @@ export class AppComponent implements OnInit {
 
    async contact() {
       await this.sidenav.close();
-      window.location.href = "mailto:support@splitsbrowser.org.uk";
+      window.location.href = "mailto:support@ofixtures.co.uk";
    }
 
    async logout() {
