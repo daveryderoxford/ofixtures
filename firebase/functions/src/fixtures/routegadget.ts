@@ -51,7 +51,7 @@ class RGEvent {
    }
 }
 
-const skippedAreaWords = ['forest', 'wood', 'woods', 'common', 'heath', 'moor', 'moors', 'park', 'valley', 'edge', 'country', 'hill', 'hills', 'burrows', 'estate', 'slieve', 'bryn', 'beck', 'crag', 'university', 'town', 'city',
+const skippedAreaWords = ['forest', 'wood', 'woods', 'common', 'heath', 'moor', 'moors', 'park', 'valley', 'edge', 'country', 'hill', 'hills', 'burrows', 'estate', 'slieve', 'bryn', 'beck', 'crag', 'chase', 'fell', 'rigg', 'university', 'town', 'city',
    'school', 'club', 'north', 'south', 'east', 'west', 'northeast', 'northwest', 'southeast', 'southwest', 'tbc', 'tba', 'and', 'the', 'oxford'];
 
 export class Routegadget {
