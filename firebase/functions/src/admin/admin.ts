@@ -9,7 +9,7 @@ async function grantModeratorRole( email: string ) {
    await admin.auth().setCustomUserClaims( user.uid, { admin: true } );
 }
 
-export const grantAdmin = functions.https.onCall( async ( data, context ) => {
+export const grantAdmin = functions.region( 'europe-west1' ).https.onCall( async ( data, context ) => {
 
    // Only alllow super user or admin user
    if ( context.auth.token.admin === true || context.auth.uid === SUPER_USER ) {

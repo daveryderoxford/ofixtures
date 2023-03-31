@@ -49,6 +49,4 @@ export class MapviewerComponent implements OnInit {
     routegadgetURL(index: number) {
         return this.rgData.baseURL + "rg2/#" + this.rgData.maps[index].id;
     }
-
-  
 }

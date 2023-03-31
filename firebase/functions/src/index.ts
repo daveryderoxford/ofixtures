@@ -11,8 +11,8 @@ import * as user from "./user/user";
 
 const firebaseAdmin = admin.initializeApp();
 
-/** Run to perfrom maintenance tasks once/day */
-export const maintenance = functions.pubsub.topic( 'maintenance' ).onPublish( async ( message ) => {
+/** Run to perfrom maintenance tasks once/day at 16:00 */
+export const maintenance = functions.region( 'europe-west1').pubsub.schedule( 'every day 16:00' ).onRun( async ( context ) => {
 
    console.log( "Maintenance task starting");
 
@@ -31,3 +31,6 @@ export const changeEntry = entry.changeClass;
 
 export const createUsder = user.createUser;
 export const deleteUsder = user.deleteUser;
+
+
+

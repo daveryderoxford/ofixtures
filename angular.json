@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "splitsbrowser": {
+    "ofixtures": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -77,10 +77,10 @@
           "options": {},
           "configurations": {
             "production": {
-              "browserTarget": "splitsbrowser:build:production"
+              "browserTarget": "ofixtures:build:production"
             },
             "development": {
-              "browserTarget": "splitsbrowser:build:development"
+              "browserTarget": "ofixtures:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -88,7 +88,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "splitsbrowser:build"
+            "browserTarget": "ofixtures:build"
           }
         },
         "test": {
@@ -124,7 +124,7 @@
         }
       }
     },
-    " splitsbrowser-e2e": {
+    " ofixtures-e2e": {
       "root": "",
       "sourceRoot": "",
       "projectType": "application",
@@ -133,7 +133,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "splitsbrowser:serve"
+            "devServerTarget": "ofixtures:serve"
           },
           "configurations": {}
         }

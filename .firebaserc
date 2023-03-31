@@ -1,13 +1,12 @@
 {
   "projects": {
-    "default": "splitsbrowser-b5948",
-    "splitsbrowsertest": "splitsbrowsertest-94938"
+    "default": "ofixtures-2a7d5"
   },
   "targets": {
-    "splitsbrowser-b5948": {
+    "ofixtures-2a7d5": {
       "hosting": {
-        "splitsbrowser": [
-          "splitsbrowser-b5948"
+        "ofixtures": [
+          "ofixtures-2a7d5"
         ]
       }
     }

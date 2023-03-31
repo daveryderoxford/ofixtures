@@ -43,7 +43,7 @@ export class EntryService {
          );
 
       /** All fixtures that may be entered */
-      this.fixtureEntryDetails$ = this.afs.collection<FixtureEntryDetails>( "entry" ).valueChanges().pipe(
+      this.fixtureEntryDetails$ = this.afs.collection<FixtureEntryDetails>( "fixture_entry_details" ).valueChanges().pipe(
          shareReplay( 1 ),
          startWith([])
       );

@@ -11,7 +11,7 @@ function userFacingMessage(err: Error): string {
    return "An error occurred saving this entry";
 }
 
-export const createEntry = functions.firestore
+export const createEntry = functions.region( 'europe-west1' ).firestore
    .document('entry/{fixtureId}/entries/{id}')
    .onCreate(async (snap, context) => {
       // Increment the number of entries by one for the course in the fixture
@@ -44,7 +44,7 @@ export const createEntry = functions.firestore
    });
 
 /** When a course entry is deleted free up a map.  Do not decrement the last entry number  */
-export const deleteEntry = functions.firestore
+export const deleteEntry = functions.region( 'europe-west1' ).firestore
    .document('entry/{fixtureId}/entries/{id}')
    .onDelete(async (snap, context) => {
       const entry = snap.data() as Entry;
@@ -71,7 +71,7 @@ export const deleteEntry = functions.firestore
       }
    });
 
-export const changeClass = functions.firestore
+export const changeClass = functions.region( 'europe-west1' ).firestore
    .document('entry/{fixtureId}/entries/{id}')
    .onUpdate(async (change, context) => {
       const oldEntry = change.before.data() as Entry;
@@ -121,7 +121,7 @@ export function iofXMLEntryList(fix: FixtureEntryDetails, entries: Entry[]): str
       // "http://www.w3.org/2001/XMLSchema-instance",
       //    'iofVersion': "3.0",
       //    'createTime': new Date().toISOString(),
-      //     'creator': 'Splitsbrowser'
+      //     'creator': 'ofixtures'
       .ele('Event')
       .ele('Name', fix.name).up()
       .ele('StartTime', fix.date)
@@ -154,7 +154,7 @@ export function iofXMLEntryList(fix: FixtureEntryDetails, entries: Entry[]): str
 }
 
 /** Returns entry ist for a specific event in a given format */
-export const exportEntryList = functions.https.onCall(async (data, context: functions.https.CallableContext) => {
+export const exportEntryList = functions.region( 'europe-west1' ).https.onCall(async (data, context: functions.https.CallableContext) => {
 
    const eventId = data.eventId;
    const format = data.format;
