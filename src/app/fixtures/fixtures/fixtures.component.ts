@@ -1,19 +1,18 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import firebase from "firebase/compat/app";
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { EntryService } from 'app/entry/entry.service';
 import { Fixture } from 'app/model';
 import { Entry, FixtureEntryDetails } from 'app/model/entry';
 import { LatLong } from 'app/model/fixture';
 import { FixtureFilter } from 'app/model/fixture-filter';
+import firebase from "firebase/compat/app";
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { FixturesService } from '../fixtures.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @UntilDestroy( { checkProperties: true } )
 @Component( {
@@ -23,12 +22,11 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 } )
 
 export class FixturesComponent implements OnInit {
-   selectedFixture: Fixture;
+   selectedFixture: Fixture = null;
 
    homeLocation$: Observable<LatLong>;
    postcode$: Observable<string>;
    fixtures$: Observable<Fixture[]>;
-   selectedFixture$: Observable<Fixture>;
    entries$: Observable<FixtureEntryDetails[]>;
    userEntries$: Observable<Entry[]>;
 
@@ -48,7 +46,10 @@ export class FixturesComponent implements OnInit {
       public dialog: MatDialog,
       public snackbar: MatSnackBar,
       public route: ActivatedRoute
-   ) { }
+   ) {
+
+      this.fs.getSelectedFixture$().subscribe( fix => this.selectedFixture = fix);
+   }
 
    ngOnInit() {
 
@@ -65,7 +66,6 @@ export class FixturesComponent implements OnInit {
       this.homeLocation$ = this.fs.getHomeLocation();
       this.postcode$ = this.fs.getPostcode();
       this.fixtures$ = this.fs.getFixtures();
-      this.selectedFixture$ = this.fs.getSelectedFixture$();
       this.entries$ = this.es.fixtureEntryDetails$;
       this.userEntries$ = this.es.userEntries$;
 
@@ -81,7 +81,6 @@ export class FixturesComponent implements OnInit {
    }
 
    onFixtureSelected( fixture: Fixture ) {
-      this.selectedFixture = fixture;
       this.fs.updateSelectedFixture( fixture );
    }
 
@@ -100,5 +99,3 @@ export class FixturesComponent implements OnInit {
       this.hideMobleFilter = !this.hideMobleFilter;
    }
 }
-
-

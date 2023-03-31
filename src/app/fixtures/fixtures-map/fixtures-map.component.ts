@@ -1,24 +1,27 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component,
-         EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import {
+   AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component,
+   EventEmitter, HostListener, Input, NgZone, OnDestroy, OnInit, Output, ViewEncapsulation
+} from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { Fixture, LatLong } from 'app/model/fixture';
 import { Canvas, circle, Circle, CircleMarker, CircleMarkerOptions, control, FeatureGroup, Map, tileLayer, TileLayer, Util } from "leaflet";
-import { timer } from 'rxjs';
+import { interval, timer } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @UntilDestroy( { checkProperties: true } )
 @Component( {
    selector: 'app-fixtures-map',
    templateUrl: './fixtures-map.component.html',
-   styleUrls: [ './fixtures-map.component.scss' ],
+   styleUrls: ['./fixtures-map.component.scss'],
    encapsulation: ViewEncapsulation.None,
    changeDetection: ChangeDetectionStrategy.OnPush
 } )
 /** Map of fixtures */
-export class FixturesMapComponent implements OnInit, AfterViewInit {
+export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
 
    private _fixtures: Fixture[] = [];
    private _selectedFixtureMarker: FixtureMarker = null;
-   private _homeLocation: LatLong;
+   private _homeLocation: LatLong = { "lat": 51.43116, "lng": -0.508227, };
 
    private _fixtureMarkers = new FeatureGroup<FixtureMarker>();
    private _homeMarkers = new FeatureGroup<Circle>();
@@ -41,17 +44,15 @@ export class FixturesMapComponent implements OnInit, AfterViewInit {
 
    tileLayer: TileLayer;
 
-   constructor ( private ref: ChangeDetectorRef ) { }
+   constructor ( private ref: ChangeDetectorRef,
+      private zone: NgZone ) { }
 
    ngOnInit() {
+      this._loadMap();
    }
 
-
    ngAfterViewInit() {
-
-      /* Leaflet calculates the map size before angular is full initialise so we need to
-        invalidate it once the view is complete. Short delay is required  see https://medium.com/ngconf/integrating-maps-into-your-angular-application-with-leaflet-b9aedb040735 */
-      this._loadMap();
+      this._delayedResize();
    }
 
    private _loadMap() {
@@ -76,6 +77,34 @@ export class FixturesMapComponent implements OnInit, AfterViewInit {
 
    }
 
+   ngOnDestroy() {
+      if ( this.map ) {
+         this.map.remove();
+      }
+   }
+
+   /**
+    * Resize the map to fit it's parent container
+    */
+   private _doResize() {
+
+      // Run this outside of angular so the map events stay outside of angular
+      this.zone.runOutsideAngular( () => {
+
+         // Invalidate the map size to trigger it to update itself
+         if ( this.map ) {
+            this.map.invalidateSize();
+         }
+      } );
+   }
+
+   /**
+    * Manage a delayed resize of the component
+    */
+   private _delayedResize() {
+      setTimeout( () => this._doResize(), 20 );
+   }
+
    setHomeLocation( latLng: LatLong ) {
 
       this._homeLocation = latLng;
@@ -86,7 +115,7 @@ export class FixturesMapComponent implements OnInit, AfterViewInit {
       if ( !this.map ) {
          return;
       }
-      console.log( "***** setting home locations to: lat: " + latLng.lat + "   long: " + latLng.lng);
+      console.log( "***** setting home locations to: lat: " + latLng.lat + "   long: " + latLng.lng );
 
       this._homeMarkers.clearLayers();
 
@@ -95,7 +124,7 @@ export class FixturesMapComponent implements OnInit, AfterViewInit {
 
       const MileToMeter = 1609.34;
 
-      for ( const radius of [ 20, 40, 60, 80 ] ) {
+      for ( const radius of [20, 40, 60, 80] ) {
          this._homeMarkers.addLayer( circle( latLng, { radius: radius * MileToMeter, pane: 'homemarkers' } ) );
       }
 
@@ -225,7 +254,6 @@ export class FixturesMapComponent implements OnInit, AfterViewInit {
       }
    }
 }
-
 
 // Augment Canvas with LabeledFixture renderer
 
