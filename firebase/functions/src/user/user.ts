@@ -11,6 +11,7 @@ function createUserData(): UserData {
         club: "",
         nationality: "",
         nationalId: "",
+        yearOfBirth: 0,
         fixtures: [],
         ecards: [],
         reminders: [],

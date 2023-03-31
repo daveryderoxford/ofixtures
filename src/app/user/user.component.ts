@@ -42,6 +42,7 @@ export class UserComponent implements OnInit {
       club: ["", [Validators.minLength( 2 ), Validators.maxLength( 10 )]],
       postcode: [""],
       nationalId: [""],
+      yearOfBirth: [""],
       ecards: this.formBuilder.array( [] ) as UntypedFormArray
     } );
   }
@@ -78,6 +79,7 @@ export class UserComponent implements OnInit {
         firstname: userData.firstname,
         surname: userData.surname,
         club: userData.club,
+        yearOfBirth: userData.yearOfBirth,
         postcode: userData.postcode,
         nationalId: userData.nationalId,
         ecards: [],
@@ -122,6 +124,7 @@ export class UserComponent implements OnInit {
 
     this.busy = true;
     try {
+      // nationality id hard coded to GBR to simplify UI for the moment ng serve
       await this.usd.updateDetails( { ...this.userForm.value, nationality: 'GBR' } );
       console.log( 'UserComponnet: User results saved' );
       this.fs.updatePostcode( this.userForm.value.postcode );
