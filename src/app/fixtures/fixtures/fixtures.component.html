@@ -72,13 +72,21 @@
     <!-- Mobile map view-->
     <div *ngIf="mapview" fxFlex fxLayout="column">
 
-      <app-fixtures-map fxFlex [fixtures]="fixtures" [homeLocation]="homeLocation$ | async"
-        [selectedFixture]="selectedFixture" (fixtureSelected)="onFixtureSelected($event)">
-      </app-fixtures-map>
+      <mat-divider></mat-divider>
 
       <app-fixtures-grid fxFlex="96px" *ngIf="selectedFixture" [fixtures]="[selectedFixture]"
         [homeLocation]="homeLocation$ | async" [selectedFixture]="selectedFixture" [handset]='true'
         (fixtureSelected)="onFixtureSelected($event)">
       </app-fixtures-grid>
+
+      <div fxFlex="30px" fxLayoutAlign="center center" *ngIf="!selectedFixture">
+        Select fixture to display its details
+      </div>
+
+      <app-fixtures-map fxFlex [fixtures]="fixtures" [homeLocation]="homeLocation$ | async"
+        [selectedFixture]="selectedFixture" (fixtureSelected)="onFixtureSelected($event)">
+      </app-fixtures-map>
+
+
 
     </div>
