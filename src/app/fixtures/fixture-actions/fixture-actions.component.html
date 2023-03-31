@@ -22,6 +22,10 @@
       <mat-divider></mat-divider>
     </ng-container>
 
+    <button *ngIf="!liked()" (click)="toggleReminder()" mat-menu-item>
+      Like
+    </button>
+
     <button *ngIf="liked()" (click)="toggleReminder()" mat-menu-item>
       UnLike
     </button>
