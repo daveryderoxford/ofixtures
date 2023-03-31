@@ -7,7 +7,7 @@
     <mat-action-list>
       <button mat-list-item (click)='closeSidenav(["/fixtures"])'>Fixtures</button>
 
-      <button *ngIf="handset" mat-list-item (click)='closeSidenav(["/fixtures/mapview"])'>Fixtures
+      <button *ngIf="handset" mat-list-item (click)='closeSidenav(["/fixtures", {mapview: true}])'>Fixtures
         Map</button>
 
       <!-- <button mat-list-item (click)='closeSidenav( "/events")'>Results</button> 

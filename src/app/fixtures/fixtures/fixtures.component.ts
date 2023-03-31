@@ -53,7 +53,12 @@ export class FixturesComponent implements OnInit {
 
    ngOnInit() {
 
-      this.breakpointObserver.observe( ['(min-width: 500px) and (min-height: 400px)'] ).subscribe( state => this.handset = !state.matches );
+      this.breakpointObserver.observe( ['(min-width: 500px) and (min-height: 400px)'] ).subscribe( state => {
+         this.handset = !state.matches;
+         if (this.handset) {
+            this.mapview = false;
+         }
+      });
 
       this.route.paramMap.subscribe( ( params: ParamMap ) => {
          this.mapview = params.has( 'mapview' );
