@@ -15,15 +15,19 @@ import { catchError, map, shareReplay, startWith, switchMap, tap } from 'rxjs/op
 } )
 export class FixturesService {
 
-   private _postcode$ = new BehaviorSubject<string>( "TW18 2AB" );
-   private _homeLocation$ = new BehaviorSubject<LatLong>( { "lat": 51.43116, "lng": -0.508227, } );
-
-   private _filter$ = new BehaviorSubject<FixtureFilter>( {
+   DEFAULT_FILTER = {
       time: { sat: true, sun: true, weekday: true },
       gradesEnabled: true,
       grades: this._makeDefaultGrades(),
       likedOnly: false
-   } );
+   };
+
+   DEFAULT_POSTCODE = 'TW18 2AB';
+   DEFAULT_LATLNG =  { "lat": 51.43116, "lng": -0.508227 };
+
+   private _postcode$: BehaviorSubject<string>;
+   private _homeLocation$: BehaviorSubject<LatLong>;
+   private _filter$: BehaviorSubject<FixtureFilter>; 
 
    private _fileContents$: Observable<Fixture[]> = this.storage.ref( "fixtures/uk" ).getDownloadURL().pipe(
       switchMap( url => this.http.get<Fixture[]>( url ) ),
@@ -41,6 +45,18 @@ export class FixturesService {
       protected fs: AngularFirestore,
       protected http: HttpClient ) {
 
+      const grades = getFromLocalStorage( 'grades') as GradeFilter[];
+      const initialFilter = grades ? { ...this.DEFAULT_FILTER, grades: grades } : this.DEFAULT_FILTER;
+      this._filter$ = new BehaviorSubject<FixtureFilter>( initialFilter );
+
+      const location = getFromLocalStorage( 'location' ) as LocalStorageLocationData;
+
+      const initialPostCode = location ? location.postcode : this.DEFAULT_POSTCODE;
+      this._postcode$ = new BehaviorSubject<string>( initialPostCode );
+
+      const initialLatLng = location ? location.latlng : this.DEFAULT_LATLNG;
+      this._homeLocation$ = new BehaviorSubject<LatLong>( initialLatLng );
+
       /* When user changes - set filters to reflect user details and unset liked only */
       this.usd.user$.subscribe( user => {
          if ( user ) {
@@ -48,14 +64,13 @@ export class FixturesService {
                this.updatePostcode( user.postcode );
             }
             if ( user.fixtureGradeFilters ) {
-               this.updateFilter( { ...this._filter$.value, grades: user.fixtureGradeFilters } ); 
+               this.updateFilter( { ...this._filter$.value, grades: user.fixtureGradeFilters } );
             }
          } else {
             // set likedonly to false on logout
             this.updateFilter( { ...this._filter$.value, likedOnly: false } );
          }
       } );
-
    }
 
    allFixtues(): Observable<Fixture[]> {
@@ -120,7 +135,7 @@ export class FixturesService {
       let isLiked = false;
       const likedOnly = ftr.likedOnly;
       isLiked = userdata?.reminders.includes( fix.id );
-      
+
       // For liked only show all liked events.  Otherwise filter based on time and grade fiilters
       return likedOnly ? isLiked : timeFilterPassed && gradeOFilterPassed;
 
@@ -140,6 +155,7 @@ export class FixturesService {
       if ( latlng ) {
          this._postcode$.next( postcode );
          this._homeLocation$.next( latlng );
+         saveToLocalStorage( 'location', { postcode: postcode, latlng: latlng } );
       } else {
          console.log( `FixturesService: Not updating home location as latlong could not be determined for ${postcode}` );
       }
@@ -154,6 +170,7 @@ export class FixturesService {
 
    updateFilter( f: FixtureFilter ) {
       this._filter$.next( f );
+      saveToLocalStorage( 'grades', f?.grades );
    }
 
    getFilter(): Observable<FixtureFilter> {
@@ -171,7 +188,7 @@ export class FixturesService {
       ];
    }
 
-   /** Calculate lat long from postcode, returning null if lat/long could not be calculated  */
+   /** Calculate lat long from postcode, returning null if lat/long could not be calculated */
    private _calcLatLong( postcode: string ): Observable<LatLong | null> {
       const obs = this.http.get<any>( "https://api.postcodes.io/postcodes/" + postcode ).pipe(
          catchError( this.handleError<LatLong>( 'FixturesService: Postcode location failed', null ) ),
@@ -194,7 +211,7 @@ export class FixturesService {
 
    private _getDistanceFromLatLngInKm( pos1: LatLong, pos2: LatLong ): number {
       const R = 6371; // Radius of the earth in km
-      const dLat = this._deg2rad( pos2.lat - pos1.lat );  
+      const dLat = this._deg2rad( pos2.lat - pos1.lat );
       const dLon = this._deg2rad( pos2.lng - pos1.lng );
       const a =
          Math.sin( dLat / 2 ) * Math.sin( dLat / 2 ) +
@@ -236,5 +253,32 @@ export class FixturesService {
          // Return default result.
          return of( result as T );
       };
+   }
+}
+
+type LocalStorageKey = 'grades' | 'location';
+
+interface LocalStorageLocationData {
+   postcode: string, 
+   latlng: LatLong
+}
+
+function saveToLocalStorage( key: LocalStorageKey, data: LocalStorageLocationData | GradeFilter[] ) {
+   if ( data ) {
+      try {
+         localStorage.setItem( key, JSON.stringify( data ) );
+      } catch ( e ) {
+         console.log( 'FixtureService: Error saving to local storage Key: ' + key + '   ' + e.message );
+      }
+   }
+}
+
+function getFromLocalStorage( key: LocalStorageKey ): LocalStorageLocationData | GradeFilter[] | null {
+   try {
+      const str = localStorage.getItem( key );
+      return JSON.parse( str );
+   } catch ( e ) {
+      console.log( 'FixtureService: Error reading from local storage.  Key: ' + key + '   ' + e.message );
+      return null;
    }
 }
