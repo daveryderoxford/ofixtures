@@ -3,7 +3,6 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { RGData } from 'app/model/fixture';
-import { AngularImageViewerComponent } from './angular-image_viewer/angular-image-viewer.component';
 
 @Component( {
         selector: 'app-mapviewer',

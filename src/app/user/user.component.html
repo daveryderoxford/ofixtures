@@ -29,14 +29,6 @@
         </div>
 
         <mat-form-field>
-          <mat-select required formControlName="nationality" placeholder="Nationality">
-            <mat-option *ngFor="let nation of nations" [value]="nation.abrievation">
-              {{ nation.fullname }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field>
           <input matInput required formControlName="postcode" placeholder="Postcode" oninput="this.value = this.value.toUpperCase()">
           <mat-hint>For displaying fixture locations (UK)</mat-hint>
         </mat-form-field>
@@ -88,8 +80,6 @@
 
           </div>
         </div>
-
-        <mat-checkbox formControlName="autoFind"> Automatically add results </mat-checkbox>
 
         <div fxLayout="row" fxLayoutAlign="space-between center">
           <button [disabled]="userForm.invalid || !userForm.dirty" mat-raised-button color=primary type="submit"

@@ -17,8 +17,6 @@ export interface UserInfo {
     nationality: string;  // short nationality code
     nationalId: string;
     ecards: ECard[];
-    autoFind: boolean;
-    resultsLastupDated: ISODateString;
     postcode: string;
     fixtureGradeFilters?: GradeFilter[];
 }
@@ -26,6 +24,17 @@ export interface UserInfo {
 /** All the user data stored for the user */
 export interface UserData extends UserInfo {
     key: string;  // Matches with the users Firebase reference
+    fixtures: UserFixture[] | UserReservation[];
     reminders: string[];  // array of eventIds
 }
 
+
+export interface UserFixture {
+    eventId: string;
+    date: string;
+    name: string;
+}
+export interface UserReservation extends UserFixture {
+    course: string;
+    waitinglist?: number;
+}

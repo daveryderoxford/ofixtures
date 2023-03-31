@@ -1,8 +1,7 @@
 
 /** data associated with a user */
-import { ControlCardType } from "./oevent";
-import { ISODateString } from "./date";
 import { GradeFilter } from "./fixture-filter";
+import { ControlCardType } from "./oevent";
 
 export interface ECard {
     id: string;
@@ -18,8 +17,6 @@ export interface UserInfo {
     nationality: string;  // short nationality code
     nationalId: string;
     ecards: ECard[];
-    autoFind: boolean;
-    resultsLastupDated: ISODateString;
     postcode: string;
     fixtureGradeFilters?: GradeFilter[];
 }

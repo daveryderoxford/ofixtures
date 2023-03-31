@@ -2,13 +2,10 @@
 import { Component, OnInit } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
-import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FixturesService } from "app/fixtures/fixtures.service";
 import { ControlCardTypes, UserData } from "app/model";
-import { Nations } from "app/model/nations";
-import { DialogsService } from "app/shared";
 import firebase from "firebase/compat/app";
 import { Subscription } from 'rxjs';
 import { UserDataService } from "./user-data.service";
@@ -30,8 +27,6 @@ export class UserComponent implements OnInit {
   showProgressBar = false;
   busy = false;
 
-  nations = Nations.getNations();
-
   cardclass: "mat-card-mobile";
 
   constructor (
@@ -39,30 +34,26 @@ export class UserComponent implements OnInit {
     private afAuth: AngularFireAuth,
     private router: Router,
     private usd: UserDataService,
-    private fs: FixturesService, 
-    private dialog: MatDialog,
-    private dialogService: DialogsService
+    private fs: FixturesService,
   ) {
     this.userForm = this.formBuilder.group( {
       firstname: [""],
       surname: [""],
       club: ["", [Validators.minLength( 2 ), Validators.maxLength( 10 )]],
-      nationality: [""],
       postcode: [""],
       nationalId: [""],
-      autoFind: [""],
       ecards: this.formBuilder.array( [] ) as UntypedFormArray
     } );
   }
 
   ngOnInit() {
     this.afAuth.authState
-         .pipe( untilDestroyed(this))
-         .subscribe( loggedIn => this.loginChanged( loggedIn ) );
+      .pipe( untilDestroyed( this ) )
+      .subscribe( loggedIn => this.loginChanged( loggedIn ) );
 
     this.usd.user$
-          .pipe( untilDestroyed( this ) )
-          .subscribe( userData => this.userChanged( userData ) );
+      .pipe( untilDestroyed( this ) )
+      .subscribe( userData => this.userChanged( userData ) );
   }
 
   private _ecardsControl(): UntypedFormArray {
@@ -87,10 +78,8 @@ export class UserComponent implements OnInit {
         firstname: userData.firstname,
         surname: userData.surname,
         club: userData.club,
-        nationality: userData.nationality,
         postcode: userData.postcode,
         nationalId: userData.nationalId,
-        autoFind: userData.autoFind,
         ecards: [],
       } );
 
@@ -102,7 +91,7 @@ export class UserComponent implements OnInit {
 
   private _createEcard( id: string, type: string ): UntypedFormGroup {
     return this.formBuilder.group( {
-      id: [id, [Validators.required, Validators.pattern( "[0-9]+")]],
+      id: [id, [Validators.required, Validators.pattern( "[0-9]+" )]],
       type: [type, [Validators.required]]
     } );
   }
@@ -127,18 +116,19 @@ export class UserComponent implements OnInit {
     return this.userForm.get( 'ecards' )['controls'];
   }
 
- async save() {
+  async save() {
 
     const updatedUserData: UserData = null;
 
-   this.busy = true;
-   try {
-   await this.usd.updateDetails( this.userForm.value );
-   console.log( 'UserComponnet: User results saved' );
-   this.fs.updatePostcode( this.userForm.value.postcode );
-   } finally {
+    this.busy = true;
+    try {
+      await this.usd.updateDetails( { ...this.userForm.value, nationality: 'GBR' } );
+      console.log( 'UserComponnet: User results saved' );
+      this.fs.updatePostcode( this.userForm.value.postcode );
+    } finally {
       this.busy = false;
-   }
+      this.router.navigate( ["/"] );
+    }
   }
 
   canDeactivate(): boolean {
