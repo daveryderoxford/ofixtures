@@ -59,7 +59,7 @@ export class Fixtures {
             type: "Foot",
             discipline: "Unknown",
             webpage: bof.BOFLink,
-            approxlocation: false
+            locSource: ''
          };
 
          return fixture;
@@ -101,24 +101,29 @@ export class Fixtures {
       const postcodesToCalc: string[] = [];
       const fixtuersToCalc: Partial<Fixture>[] = [];
 
-      // Set latlongs for ones avalible from BOF data and identify ones that need to be calculated using postcode.io or google geolocation
+      // Set latlongs for ones avalible from BOF data and identify ones that need to be calculated using postcode.io or google geolocation.
+      // Default value for club is used if no other exist
       for ( let i = 0; i < fixtures.length; i++ ) {
          const bof = bofFixtures[i];
          const fix = fixtures[i];
 
          if ( bof.gridRefStr !== "" ) {
             fix.latLong = this.osgbToLatLong( bof.gridRefStr );
+            fix.locSource = 'gridref';
          } else if ( bof.postcode !== "" ) {
             postcodesToCalc.push( bof.postcode );
             fixtuersToCalc.push( fix );
+            fix.locSource = 'postcode';
          } else if ( bof.area || bof.nearestTown) {
-            fix.latLong = await convertPlace(bof.area, bof.nearestTown);
-            if (!bof.area) {
-               fix.approxlocation = true;
-            }
-         } else {
-            fixtures[ i ].latLong = null;
+            fix.latLong = await convertPlace(bof.area, bof.nearestTown, bof.club);
+            fix.locSource = 'google';
          }
+
+         // Set default latlong for club if we could not obtain from other sources
+         if ( !fix.latLong ) {
+            fix.latLong = this.latLngForClub(fix.club);
+            fix.locSource = fix.latLong ? 'club' : '';
+         } 
       }
 
       const locations = await this.lookup.postcodeToLocation( postcodesToCalc );
@@ -126,6 +131,11 @@ export class Fixtures {
       for ( let i = 0; i < locations.length; i++ ) {
          fixtuersToCalc[ i ].latLong = locations[ i ];
       }
+   }
+
+   private latLngForClub( club: string): LatLong | null {
+      
+      return 
    }
 
    private osgbToLatLong( gridRefStr: string ): LatLong {

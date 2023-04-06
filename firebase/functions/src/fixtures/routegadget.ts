@@ -75,7 +75,7 @@ export class Routegadget {
     *  Finds ficture area string in routegarget events for the club 
     * The fixture area will match a rg event name if either:
     *  1.  The complete area string in included in the event name OR
-    *  2.  Any word in area string (excluding  common names) is also occurs in the event name
+    *  2.  Any word in area string (excluding  common names and words shorter that 3 characters) is also occurs in the event name
     *  All comparisons are case insensitive. 
     */
    public getRoutegadgetData( area: string, club: string ): RGData {
@@ -94,9 +94,10 @@ export class Routegadget {
 
       const maps = rgSite.events.filter( event => {
          const name = event.name.toLowerCase();
-         // either complete area string matches or filtered area worda occur in event name
-         const ok = name.includes( area ) ||
-            areaWords.some( word => new RegExp( "\\b" + this.escapeRegExp( word ) + "\\b" ).test( name ) );
+         // the area is not empty string and either complete area string matches or filtered area worda occur in event name
+         const ok = area !== "" && 
+            (name.includes( area ) ||
+            areaWords.some( word => this.wordInString( name , word) ));
          return ok;
       } ).sort( ( a, b ) => {
          // Sort to have matches complete area string first followed by sort by event id order.  
@@ -114,6 +115,11 @@ export class Routegadget {
       // console.log( "Routgadget maps:  " + JSON.stringify(maps) );
 
       return { baseURL: rgSite.baseURL, maps: maps };
+   }
+
+   /** Returns if a word if found in a string */
+   wordInString (string: string, word): boolean {
+      return new RegExp( "\\b" + this.escapeRegExp( word ) + "\\b" ).test( string );
    }
 
    escapeRegExp( s: string ): string {

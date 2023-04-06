@@ -135,4 +135,16 @@ describe.only( 'Routegaedget', () => {
 
    } );
 
+   it.only( 'Blank area should not find any maps', async () => {
+
+      const gr = new Routegadget();
+
+      await gr.initialise( [sn] );
+
+      const ret = gr.getRoutegadgetData( '', 'SN' );
+
+      expect( ret.maps.length ).to.equal( 0 );
+
+   } );  
+
 } );

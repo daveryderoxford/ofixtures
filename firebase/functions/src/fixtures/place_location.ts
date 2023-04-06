@@ -29,7 +29,7 @@ function makeAddress( area: string, town: string ): string {
 }
 
 /** Get the geographic location of a place using Google Geoloation service  */
-export async function convertPlace( area: string, town: string ): Promise<LatLong> {
+export async function convertPlace( area: string, town: string, club: string ): Promise<LatLong> {
 
    let ret: LatLong;
 
