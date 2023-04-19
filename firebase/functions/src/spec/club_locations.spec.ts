@@ -19,8 +19,8 @@ describe.only( 'Club Locations', () => {
 
    //  console.log( JSON.stringify( clubLocations ) )
 
-
-   } ).timeout( 20000 );
+ 
+   } ).timeout( 20000 ); 
 
    it.only( 'Should compute the average for location sources postcode and grid ref ',  () => {
 

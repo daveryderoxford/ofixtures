@@ -122,7 +122,7 @@ async function saveToStorage( clubLocations: ClubLocation[] ): Promise<void> {
 
     const storage = admin.storage(); 
 
-   try {
+   try { 
       const file = storage.bucket().file( filename );
    
       const buffer = (await file.download());
