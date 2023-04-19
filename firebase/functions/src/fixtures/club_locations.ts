@@ -1,5 +1,8 @@
 import * as request from "request-promise";
+import * as functions from "firebase-functions";
+
 import { Fixture, LatLong } from "model/fixture";
+import * as admin from "firebase-admin";
 
 export interface ClubLocation {
    shortName: string;
@@ -21,15 +24,56 @@ const groupBy = <T, K extends keyof any>( list: T[], getKey: ( item: T ) => K ) 
       return previous;
    }, {} as Record<K, T[]> );
 
-export function calcClubLocations( fixtures: Fixture[] ): ClubLocation[] {
 
-   const wellKnownLocation = fixtures.filter( fix => fix.locSource === 'gridref' || fix.locSource === 'postcode' );
 
-   const groupByClub = groupBy( wellKnownLocation, fix => fix.club );
+export function getClubLocations() {
+}
+
+const CLUB_LOCATIONS_FILNAME = "fixtures/clublocations";
+
+async function loadClubLocations(): Promise<ClubLocationInternal[]> {
+   let response: string;
+   try {
+      response = await request( this.BOFPDAURL, { method: "get" } );
+   } catch ( e ) {
+      console.error( "Club Locations: Error making HTTP request: " + e );
+      throw e;
+   }
+   return JSON.parse( response );
+}
+
+export function getDistanceFromLatLngInKm( pos1: LatLong, pos2: LatLong ): number {
+   const R = 6371; // Radius of the earth in km
+   const dLat = this._deg2rad( pos2.lat - pos1.lat );
+   const dLon = this._deg2rad( pos2.lng - pos1.lng );
+   const a =
+      Math.sin( dLat / 2 ) * Math.sin( dLat / 2 ) +
+      Math.cos( this._deg2rad( pos1.lat ) ) * Math.cos( this._deg2rad( pos2.lat ) ) *
+      Math.sin( dLon / 2 ) * Math.sin( dLon / 2 );
+   const c = 2 * Math.atan2( Math.sqrt( a ), Math.sqrt( 1 - a ) );
+   const d = R * c; // Distance in km
+   return d;
+}
+
+
+// =============== Club Location calculation ==================
+
+export const determineClubLocatons = functions.https.onRequest( async ( req, res ) => {
+   const fixtures = await readFixtures();
+   const locations = clubLocationFromFixtures( fixtures );
+   await saveToStorage( locations );
+} );
+
+/** Calculate the club's location from the average of current fixtures */
+export function clubLocationFromFixtures( fixtures: Fixture[] ): ClubLocation[] {
+
+   const fixtureWithAccurateLocation = fixtures.filter( fix => fix.locSource === 'gridref' || fix.locSource === 'postcode' );
+
+   const groupedByClub = groupBy( fixtureWithAccurateLocation, fix => fix.club );
 
    const output: ClubLocation[] = [];
 
-   for ( const [name, clubFixtures] of Object.entries( groupByClub ) ) {
+   for ( const [name, clubFixtures] of Object.entries( groupedByClub ) ) {
 
       const sum = clubFixtures.reduce<LatLong>( ( acc, fix ) => {
          acc.lat = acc.lat + fix.latLong.lat;
@@ -42,22 +86,17 @@ export function calcClubLocations( fixtures: Fixture[] ): ClubLocation[] {
 
       output.push( { shortName: name, latLng: sum } );
    }
-   return output.sort( ( a, b ) => a.shortName.localeCompare(b.shortName));
+   return output.sort( ( a, b ) => a.shortName.localeCompare( b.shortName ) );
 }
-
-
-export function getClubLocations() {
-}
-
-
-const CLUB_LOCATIONS_FILNAME = "fixtures/clublocations";
 
 /** Save fixtures JSON file to Google Storage */
 async function saveToStorage( clubLocations: ClubLocation[] ): Promise<void> {
    const filename = "fixtures/clublocations";
 
+     const storage = admin.storage(); 
+
    try {
-      const file = this.storage.bucket().file( CLUB_LOCATIONS_FILNAME );
+      const file = storage.bucket().file( CLUB_LOCATIONS_FILNAME );
       // console.log( "Saving club location file.  Bucket: " + file.bucket.name + "   File name: " +  file.name);
 
       const data = JSON.stringify( clubLocations );
@@ -72,31 +111,26 @@ async function saveToStorage( clubLocations: ClubLocation[] ): Promise<void> {
       await file.save( data, options );
 
    } catch ( e ) {
-      console.error( "Club Locations: Error saving fixtures to clould storage: " + e );
+      console.error( "Club Locations: Error saving fixtures to cloud storage: " + e );
       throw e;
    }
 }
 
-async function loadClubLocations(): Promise<ClubLocationInternal[]> {
-   let response: string;
+/** Read fixtures JSON file from Google Storage */
+ async function readFixtures( ): Promise < Fixture[] > {
+   const filename = "fixtures/uk";
+
+    const storage = admin.storage(); 
+
    try {
-      response = await request( this.BOFPDAURL, { method: "get" } );
-   } catch ( e ) {
-      console.error( "Club Locations: Error making HTTP request: " + e );
+      const file = storage.bucket().file( filename );
+   
+      const buffer = (await file.download());
+      
+      return JSON.parse( buffer.toString()) ;
+
+   } catch( e ) {
+      console.error( "Fixtures: Error read fixtures from clould storage: " + e );
       throw e;
    }
-   return JSON.parse( response );
-}
-
-function getDistanceFromLatLngInKm( pos1: LatLong, pos2: LatLong ): number {
-   const R = 6371; // Radius of the earth in km
-   const dLat = this._deg2rad( pos2.lat - pos1.lat );
-   const dLon = this._deg2rad( pos2.lng - pos1.lng );
-   const a =
-      Math.sin( dLat / 2 ) * Math.sin( dLat / 2 ) +
-      Math.cos( this._deg2rad( pos1.lat ) ) * Math.cos( this._deg2rad( pos2.lat ) ) *
-      Math.sin( dLon / 2 ) * Math.sin( dLon / 2 );
-   const c = 2 * Math.atan2( Math.sqrt( a ), Math.sqrt( 1 - a ) );
-   const d = R * c; // Distance in km
-   return d;
 }
