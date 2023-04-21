@@ -129,6 +129,9 @@ export class GT_OSGB {
 
       let precision: number;
 
+      // ensure that the prefix is upper case
+      landranger = landranger.toUpperCase(); 
+
       for ( precision = 5; precision >= 1; precision-- ) {
          const pattern = new RegExp( "^([A-Z]{2})\\s*(\\d{" + precision + "})\\s*(\\d{" + precision + "})$", "i" );
          const gridRef = landranger.match( pattern );

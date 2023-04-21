@@ -21,7 +21,7 @@ const int = {
    "notes": ""
 };
 
-describe.only( 'Routegaedget', () => {
+describe( 'Routegaedget', () => {
 
    it( 'should read routegadget events for specified clubs', async () => {
 
@@ -47,15 +47,15 @@ describe.only( 'Routegaedget', () => {
       await gr.initialise( [sn] );
 
 
-   });
+   } );
 
    it( 'should read clubs events for routegadget', async () => {
 
-      const gr = new Routegadget();
+      const rg = new Routegadget();
 
-      await gr.initialise( [sn] );
+      await rg.initialise( [sn] );
 
-      const ret = gr.getRoutegadgetData( 'Merrist', 'XXX' );
+      const ret = rg.getRoutegadgetData( 'Merrist', 'XXX' );
 
       expect( ret).to.equal(null);
    } );
@@ -71,51 +71,51 @@ describe.only( 'Routegaedget', () => {
 
       expect( ret.baseURL ).to.equal( sn.baseURL );
       expect( ret.maps.length ).to.equal( 4 );
-      expect( ret.maps[0] ).to.deep.equal( { id: 26, name: "Saturday Series - Merrist Wood", mapfile: "26.jpg"} );
+      expect( ret.maps[0] ).to.deep.equal( { id: 109, name: "Merrist Wood Saturday Series", mapfile: "106.gif"} );
 
    } );
 
    it( 'search should be case insensitive', async () => {
 
-      const gr = new Routegadget();
+      const rg = new Routegadget();
 
-      await gr.initialise( [sn] );
+      await rg.initialise( [sn] );
 
-      const ret = gr.getRoutegadgetData( 'mErrist', 'SN' );
+      const ret = rg.getRoutegadgetData( 'mErrist', 'SN' );
 
       expect( ret.maps.length ).to.equal( 4 );
-      expect( ret.maps[0] ).to.deep.equal( { id: 26, name: "Saturday Series - Merrist Wood", mapfile: "26.jpg" } );
+      expect( ret.maps[0] ).to.deep.equal( { id: 109, name: "Merrist Wood Saturday Series", mapfile: "106.gif" } );
 
    } );
 
    it( 'When finding events for area should ignore common keywords', async () => {
 
-      const gr = new Routegadget();
+      const rg = new Routegadget();
       let ret;
 
-      await gr.initialise( [sn] );
+      await rg.initialise( [sn] );
 
       // Ignore common keywords
       //Note: the whole area string will still match so we specify multipe skipped words
-      expect( gr.getRoutegadgetData( 'Common Woods', 'SN' ).maps.length ).to.equal( 0 );
-      expect( gr.getRoutegadgetData( 'woods and', 'SN' ).maps.length ).to.equal( 0 );
+      expect( rg.getRoutegadgetData( 'Common Woods', 'SN' ).maps.length ).to.equal( 0 );
+      expect( rg.getRoutegadgetData( 'woods and', 'SN' ).maps.length ).to.equal( 0 );
 
       // Southwood is found and country, part are ignored
-      ret = gr.getRoutegadgetData( 'Southwood Country Park', 'SN' )
+      ret = rg.getRoutegadgetData( 'Southwood Country Park', 'SN' )
       expect( ret.maps.length ).to.equal( 2 );
-      expect( ret.maps[1] ).to.deep.equal( { id: 156, name: 'Southwood Country Park', mapfile: "154.gif" } );
+      expect( ret.maps[1] ).to.deep.equal( { id: 140, name: 'Southwood Country Park', mapfile: "138.gif" } );
 
       // Two letter word is ignored.  
-      expect( gr.getRoutegadgetData( 'Common st', 'SN' ).maps.length ).to.equal( 0 );
+      expect( rg.getRoutegadgetData( 'Common st', 'SN' ).maps.length ).to.equal( 0 );
    } );
 
    it( 'and should be excluded (Interlopers test)', async () => {
 
-      const gr = new Routegadget();
+      const rg = new Routegadget();
 
-      await gr.initialise( [int] );
+      await rg.initialise( [int] );
 
-      const ret = gr.getRoutegadgetData( "Holyrood and Craigmillar", 'INT' );
+      const ret = rg.getRoutegadgetData( "Holyrood and Craigmillar", 'INT' );
 
       //  5 events expected for interlopers containg Craigmillar
       expect( ret.maps.length ).to.equal( 5 );
@@ -124,24 +124,24 @@ describe.only( 'Routegaedget', () => {
 
    it( 'Two valid words returns events for both areas', async () => {
 
-      const gr = new Routegadget();
+      const rg = new Routegadget();
 
-      await gr.initialise( [sn] );
+      await rg.initialise( [sn] );
 
-      const ret = gr.getRoutegadgetData( 'Merrist Wisley', 'SN' );
+      const ret = rg.getRoutegadgetData( 'Merrist Wisley', 'SN' );
 
       //  11 events for both wisley and merrist
       expect( ret.maps.length ).to.equal( 11 );
 
    } );
 
-   it.only( 'Blank area should not find any maps', async () => {
+   it( 'Blank area should not find any maps', async () => {
 
-      const gr = new Routegadget();
+      const rg = new Routegadget();
 
-      await gr.initialise( [sn] );
+      await rg.initialise( [sn] );
 
-      const ret = gr.getRoutegadgetData( '', 'SN' );
+      const ret = rg.getRoutegadgetData( '', 'SN' );
 
       expect( ret.maps.length ).to.equal( 0 );
 

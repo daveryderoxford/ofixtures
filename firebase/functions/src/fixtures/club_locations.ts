@@ -58,7 +58,7 @@ export function getDistanceFromLatLngInKm( pos1: LatLong, pos2: LatLong ): numbe
 
 // =============== Club Location calculation ==================
 
-export const determineClubLocatons = functions.https.onRequest( async ( req, res ) => {
+export const determineClubLocatons = functions.region( 'europe-west1' ).https.onRequest( async ( req, res ) => {
    const fixtures = await readFixtures();
    const locations = clubLocationFromFixtures( fixtures );
    await saveToStorage( locations );
@@ -67,9 +67,9 @@ export const determineClubLocatons = functions.https.onRequest( async ( req, res
 /** Calculate the club's location from the average of current fixtures */
 export function clubLocationFromFixtures( fixtures: Fixture[] ): ClubLocation[] {
 
-   const fixtureWithAccurateLocation = fixtures.filter( fix => fix.locSource === 'gridref' || fix.locSource === 'postcode' );
+   const fixturesWithAccurateLocation = fixtures.filter( fix => fix.club !== "" &&(fix.locSource === 'gridref' || fix.locSource === 'postcode') );
 
-   const groupedByClub = groupBy( fixtureWithAccurateLocation, fix => fix.club );
+   const groupedByClub = groupBy( fixturesWithAccurateLocation, fix => fix.club );
 
    const output: ClubLocation[] = [];
 

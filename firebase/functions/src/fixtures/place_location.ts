@@ -17,7 +17,7 @@ function makeAddress( area: string, town: string ): string {
       area = "";
    }
 
-   if ( invalidLocations.includes( town.toUpperCase().trim() ) ) {
+   if ( !town || invalidLocations.includes( town.toUpperCase().trim() ) ) {
       town = "";
    }
 
@@ -29,7 +29,7 @@ function makeAddress( area: string, town: string ): string {
 }
 
 /** Get the geographic location of a place using Google Geoloation service  */
-export async function convertPlace( area: string, town: string, club: string ): Promise<LatLong> {
+export async function convertPlace( area: string, town: string, club: string ): Promise<LatLong | null> {
 
    let ret: LatLong;
 
@@ -52,7 +52,8 @@ export async function convertPlace( area: string, town: string, club: string ): 
          } else if ( response.data.status === Status.ZERO_RESULTS || response.data.status === Status.NOT_FOUND ) {
        //     console.log(
         //       `GeoConversion:  Address not found: ${address}  Status: ${response.data.status}  Message: ${response.data.error_message} ` );
-            ret = null;
+            
+        ret = null;
          } else {
             console.log(
                `GeoConversion: - Error in Geoconversion  Address: ${address}  Status: ${response.data.status}  Message: ${response.data.error_message} ` );

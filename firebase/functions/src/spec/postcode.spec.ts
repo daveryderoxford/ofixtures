@@ -56,7 +56,7 @@ describe( 'Postcode IO', () => {
       expect( results[ 200 ] ).to.deep.equal( locations[0] );
       expect( results[ 201 ] ).to.deep.equal( locations[1] );
 
-   } );
+   } ).timeout( 5000 );
 
    it( 'should handle large request lat long request (over 100)', async () => {
       const largeLocations = Array<LatLong>( 201 ).fill( locations[ 0 ] );

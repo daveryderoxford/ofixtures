@@ -6,12 +6,11 @@ import { Fixtures } from '../fixtures/fixtures';
 import { smalltestBOFPDAFile } from './BOFPDATestData.spec';
 import * as admin from "firebase-admin";
 
-
 const spies = require( 'chai-spies' );
 
 const expectedFixtures: Fixture[] = [
    {
-      id: "72446",
+      id: "bof-72446",
       date: "2019-03-24T00:00:00.000Z",
       name: "SROC Red Rose Classic",
       grade: "National",
@@ -23,10 +22,12 @@ const expectedFixtures: Fixture[] = [
       area: "Hampsfell",
       nearestTown: "Grange over Sands",
       type: "Foot",
-      locSource: 'postcode'
+      discipline: "Unknown",
+      locSource: 'gridref',
+      webpage: "index.php?pg=event&amp;event=72446&bpg="
    },
    {
-      id: "76012",
+      id: "bof-76012",
       date: "2019-03-28T00:00:00.000Z",
       name: "Spring series 4, Whitehaven",
       grade: "Club",
@@ -36,12 +37,17 @@ const expectedFixtures: Fixture[] = [
       area: "",
       nearestTown: "Whitehaven",
       postcode: "",
-      latLong: null,
       type: "Foot",
-      locSource: ''
+      discipline: "Unknown",
+      latLong: {
+         lat: 54.549699,
+         lng: -3.589233
+      },
+      locSource: "google",
+      webpage: "index.php?pg=event&amp;event=76012&bpg="
    },
    {
-      id: "activity-26377",
+      id: "bof-activity26377",
       date: "2019-03-30T00:00:00.000Z",
       name: "Postcode",
       grade: "Local",
@@ -50,10 +56,12 @@ const expectedFixtures: Fixture[] = [
       association: "SWOA",
       postcode: "TA1 2RH",
       latLong: { lat: 51.010333, lng: -3.073797 },
+      locSource: 'postcode',
       area: "Blackbrook and Holway",
       nearestTown: "Taunton",
       type: "Foot",
-      locSource: 'postcode'
+      discipline: "Unknown",
+      webpage: "index.php?pg=event&amp;activity=26377&bpg="
    }
 ];
 
@@ -63,35 +71,30 @@ describe( 'Fxtures', () => {
 
    it( 'should should process known BOF data correctly', async () => {
 
-      const fixtures = new Fixtures(admin.storage());
+      admin.initializeApp( { "projectId": "ofixtures-2a7d5" } );
+
+      const fixtures = new Fixtures( admin.storage() );
 
       const spyLoadBOF = spy.on( fixtures, 'loadBOFPDA', returns => Promise.resolve( smalltestBOFPDAFile ) );
 
       const spySave = spy.on( fixtures, 'saveToStorage', ( fix: Fixture[] ) => {
          expect( fix ).to.deep.equal( expectedFixtures );
-         return Promise.resolve( smalltestBOFPDAFile );
+         return Promise.resolve();
+      } );
+
+      // Stub adding Routegadget maps
+      const spyRG = spy.on( fixtures, 'addRoutegadgetMaps', ( fix: Fixture[] ) => {
+         return Promise.resolve();
       } );
 
       await fixtures.processFixtures();
 
       expect( spyLoadBOF ).to.have.been.called();
+      expect( spyRG ).to.have.been.called();
 
-   } );
 
+   } ).timeout( 20000 );
 
-   xit( 'should should process data from live BOF feed', async () => {
-
-      const fixtures = new Fixtures(admin.storage());
-
-      const spySave = spy.on( fixtures, 'saveToStorage', returns => Promise.resolve() );
-
-      await fixtures.processFixtures();
-
-      // Perform your test
-
-      expect( spySave ).to.have.been.called();
-
-   } );
 } );
 
 
