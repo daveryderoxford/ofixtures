@@ -1,716 +1,5 @@
 [
    {
-      "id": "bof-81546",
-      "date": "2023-04-19T00:00:00.000Z",
-      "name": "SBOC Winter League 15 - MapNav #7 ",
-      "club": "SBOC",
-      "clubURL": "http://www.sboc.org.uk",
-      "area": "Aberavon South",
-      "association": "WOA",
-      "nearestTown": "Port Talbot",
-      "grade": "Club",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;event=81546&bpg=",
-      "locSource": "gridref",
-      "postcode": "SA12 6QN",
-      "latLong": {
-         "lat": 51.587702202497326,
-         "lng": -3.808584573901119
-      },
-      "rg": {
-         "baseURL": "https://www.sboc.routegadget.co.uk/",
-         "maps": []
-      }
-   },
-   {
-      "id": "bof-81686",
-      "date": "2023-04-19T00:00:00.000Z",
-      "name": "SWOC Maprun Street Event 8",
-      "club": "SWOC",
-      "clubURL": "http://www.swoc.org.uk",
-      "area": "Pontcanna",
-      "association": "WOA",
-      "nearestTown": "Cardiff",
-      "grade": "Club",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;event=81686&bpg=",
-      "locSource": "google",
-      "postcode": "",
-      "latLong": {
-         "lat": 51.4865984,
-         "lng": -3.1988373
-      },
-      "rg": {
-         "baseURL": "https://www.swoc.routegadget.co.uk/",
-         "maps": []
-      }
-   },
-   {
-      "id": "bof-82202",
-      "date": "2023-04-19T00:00:00.000Z",
-      "name": "Street-O (4/9)",
-      "club": "PFO",
-      "clubURL": "http://www.pfo.org.uk",
-      "area": "Whalley",
-      "association": "NWOA",
-      "nearestTown": "Whalley",
-      "grade": "Club",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;event=82202&bpg=",
-      "locSource": "google",
-      "postcode": "",
-      "latLong": {
-         "lat": 53.822643,
-         "lng": -2.407684
-      },
-      "rg": {
-         "baseURL": "https://www.pfo.routegadget.co.uk/",
-         "maps": []
-      }
-   },
-   {
-      "id": "bof-82263",
-      "date": "2023-04-19T00:00:00.000Z",
-      "name": "Minewoods WEE",
-      "club": "FVO",
-      "clubURL": "http://www.fvo.org.uk",
-      "area": "Mine Woods",
-      "association": "SOA",
-      "nearestTown": "Bridge of Allan",
-      "grade": "Club",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;event=82263&bpg=",
-      "locSource": "gridref",
-      "postcode": "FK9 4QH",
-      "latLong": {
-         "lat": 56.1592674467703,
-         "lng": -3.9497938873965306
-      },
-      "rg": {
-         "baseURL": "https://routegadget.fvo.org.uk/",
-         "maps": []
-      }
-   },
-   {
-      "id": "bof-82369",
-      "date": "2023-04-19T00:00:00.000Z",
-      "name": "ELO Sprintelope",
-      "club": "ELO",
-      "clubURL": "http://www.elo.org.uk",
-      "area": "Tranent",
-      "association": "SOA",
-      "nearestTown": "Tranent",
-      "grade": "Club",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;event=82369&bpg=",
-      "locSource": "gridref",
-      "postcode": "EH33 1DB",
-      "latLong": {
-         "lat": 55.94456700871684,
-         "lng": -2.951016772641407
-      },
-      "rg": {
-         "baseURL": "https://www.elo.routegadget.co.uk/",
-         "maps": [
-            {
-               "id": 56,
-               "name": "bto SOUL5 Tranent",
-               "mapfile": "56.gif"
-            }
-         ]
-      }
-   },
-   {
-      "id": "bof-82835",
-      "date": "2023-04-19T00:00:00.000Z",
-      "name": "East Garforth Short Urban *New Area* ",
-      "club": "AIRE",
-      "clubURL": "http://www.aire.org.uk",
-      "area": "Firthfields Community Centre",
-      "association": "YHOA",
-      "nearestTown": "Garforth",
-      "grade": "Club",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;event=82835&bpg=",
-      "locSource": "google",
-      "postcode": "",
-      "latLong": {
-         "lat": 53.7961559,
-         "lng": -1.3713269
-      },
-      "rg": {
-         "baseURL": "https://www.aire.routegadget.co.uk/",
-         "maps": [
-            {
-               "id": 243,
-               "name": "Leeds City Centre WNSL 8",
-               "mapfile": "233.gif"
-            },
-            {
-               "id": 146,
-               "name": "Leeds City Centre Night 2018",
-               "mapfile": "133.gif"
-            }
-         ]
-      }
-   },
-   {
-      "id": "bof-82840",
-      "date": "2023-04-19T00:00:00.000Z",
-      "name": "Spring Series 1",
-      "club": "LOC",
-      "clubURL": "http://lakeland-orienteering.org.uk",
-      "area": "Cunswick Scar",
-      "association": "NWOA",
-      "nearestTown": "Kendal",
-      "grade": "Club",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;event=82840&bpg=",
-      "locSource": "google",
-      "postcode": "",
-      "latLong": {
-         "lat": 54.3237,
-         "lng": -2.78716
-      },
-      "rg": {
-         "baseURL": "https://www.loc.routegadget.co.uk/",
-         "maps": [
-            {
-               "id": 160,
-               "name": "Turkey Race 1 - Cunswick Scar",
-               "mapfile": "165.gif"
-            },
-            {
-               "id": 140,
-               "name": "NT2 - Cunswick Scar",
-               "mapfile": "144.gif"
-            }
-         ]
-      }
-   },
-   {
-      "id": "bof-82864",
-      "date": "2023-04-19T00:00:00.000Z",
-      "name": "MAROC Spring Series Tilquillie",
-      "club": "MAROC",
-      "clubURL": "http://www.marocscotland.org.uk",
-      "area": "Tilquillie",
-      "association": "SOA",
-      "nearestTown": "Banchory",
-      "grade": "Club",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;event=82864&bpg=",
-      "locSource": "gridref",
-      "postcode": "AB31 6LH",
-      "latLong": {
-         "lat": 57.045107392704296,
-         "lng": -2.4927646883721937
-      },
-      "rg": {
-         "baseURL": "https://www.maroc.routegadget.co.uk/",
-         "maps": [
-            {
-               "id": 304,
-               "name": "Tilquillie DNC",
-               "mapfile": "363.jpg"
-            },
-            {
-               "id": 196,
-               "name": "Tilquillie Sprint",
-               "mapfile": "292.jpg"
-            },
-            {
-               "id": 19,
-               "name": "Tilquillie Night-O",
-               "mapfile": "27.jpg"
-            }
-         ]
-      }
-   },
-   {
-      "id": "bof-82880",
-      "date": "2023-04-19T00:00:00.000Z",
-      "name": "Lincs Poacher 2 - Normanby South",
-      "club": "HALO",
-      "clubURL": "http://halo-orienteering.org.uk",
-      "area": "Normanby South",
-      "association": "YHOA",
-      "nearestTown": "Scunthorpe",
-      "grade": "Club",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;event=82880&bpg=",
-      "locSource": "gridref",
-      "postcode": "DN15 9BG",
-      "latLong": {
-         "lat": 53.633781132000145,
-         "lng": -0.6479498674345129
-      },
-      "rg": {
-         "baseURL": "https://www.halo.routegadget.co.uk/",
-         "maps": [
-            {
-               "id": 358,
-               "name": "P5 Normanby Hall South",
-               "mapfile": "301.gif"
-            },
-            {
-               "id": 278,
-               "name": "Poacher 8 Normanby",
-               "mapfile": "238.gif"
-            },
-            {
-               "id": 251,
-               "name": "2016 Poacher 3 Normanby-le-Wold",
-               "mapfile": "216.gif"
-            },
-            {
-               "id": 221,
-               "name": "Normanby Hall S Poacher 11",
-               "mapfile": "188.jpg"
-            },
-            {
-               "id": 217,
-               "name": "Normanby-le-Wold Paocher 8",
-               "mapfile": "185.jpg"
-            },
-            {
-               "id": 206,
-               "name": "Normanby Technical",
-               "mapfile": "176.jpg"
-            },
-            {
-               "id": 159,
-               "name": "Normanby Hall 'Orange'",
-               "mapfile": "143.jpg"
-            },
-            {
-               "id": 158,
-               "name": "Normanby Hall 'Technical'",
-               "mapfile": "143.jpg"
-            },
-            {
-               "id": 153,
-               "name": "Normanby Hall Country Park",
-               "mapfile": "138.jpg"
-            },
-            {
-               "id": 95,
-               "name": "Normanby District event",
-               "mapfile": "86.jpg"
-            },
-            {
-               "id": 94,
-               "name": "Normanby Night",
-               "mapfile": "86.jpg"
-            },
-            {
-               "id": 22,
-               "name": "Normanby Night",
-               "mapfile": "24.jpg"
-            },
-            {
-               "id": 11,
-               "name": "Poacher Normanby",
-               "mapfile": "14.jpg"
-            },
-            {
-               "id": 345,
-               "name": "Poacher 6 Normanby South",
-               "mapfile": "288.jpg"
-            }
-         ]
-      }
-   },
-   {
-      "id": "bof-82895",
-      "date": "2023-04-19T00:00:00.000Z",
-      "name": "Evening event",
-      "club": "SYO",
-      "clubURL": "http://southyorkshireorienteers.org.uk",
-      "area": "Wharncliffe Woods",
-      "association": "YHOA",
-      "nearestTown": "Sheffield",
-      "grade": "Club",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;event=82895&bpg=",
-      "locSource": "gridref",
-      "postcode": "S35 8RS",
-      "latLong": {
-         "lat": 53.45076438118104,
-         "lng": -1.51209071012896
-      },
-      "rg": {
-         "baseURL": "https://www.syo.routegadget.co.uk/",
-         "maps": [
-            {
-               "id": 233,
-               "name": "Wharncliffe 50th Anniversary National",
-               "mapfile": "227.jpg"
-            },
-            {
-               "id": 180,
-               "name": "Northern Champs: Wharncliffe",
-               "mapfile": "171.gif"
-            },
-            {
-               "id": 142,
-               "name": "BUCS Individual Wharncliffe",
-               "mapfile": "132.jpg"
-            },
-            {
-               "id": 120,
-               "name": "Wharncliffe",
-               "mapfile": "113.jpg"
-            },
-            {
-               "id": 85,
-               "name": "Wharncliffe level B 7500",
-               "mapfile": "83.jpg"
-            },
-            {
-               "id": 84,
-               "name": "Wharncliffe level B",
-               "mapfile": "82.jpg"
-            },
-            {
-               "id": 38,
-               "name": "Sheffield MBO Wharncliffe",
-               "mapfile": "43.jpg"
-            }
-         ]
-      }
-   },
-   {
-      "id": "bof-82899",
-      "date": "2023-04-19T00:00:00.000Z",
-      "name": "AYROC schools training evening",
-      "club": "AYROC",
-      "clubURL": "http://www.ayroc.co.uk",
-      "area": "Rozelle Park",
-      "association": "SOA",
-      "nearestTown": "Ayr",
-      "grade": "Club",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;event=82899&bpg=",
-      "locSource": "google",
-      "postcode": "",
-      "latLong": {
-         "lat": 55.4318898,
-         "lng": -4.6128434
-      },
-      "rg": {
-         "baseURL": "https://www.ayroc.routegadget.co.uk/",
-         "maps": []
-      }
-   },
-   {
-      "id": "bof-83104",
-      "date": "2023-04-19T00:00:00.000Z",
-      "name": "Street-O No.3",
-      "club": "NN",
-      "clubURL": "http://www.northern-navigators.org.uk",
-      "area": "Riverside Park",
-      "association": "NEOA",
-      "nearestTown": "Chester-le-Street",
-      "grade": "Club",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;event=83104&bpg=",
-      "locSource": "google",
-      "postcode": "",
-      "latLong": {
-         "lat": 54.85373019999999,
-         "lng": -1.5620971
-      },
-      "rg": {
-         "baseURL": "https://www.nn.routegadget.co.uk/",
-         "maps": []
-      }
-   },
-   {
-      "id": "bof-activity33899",
-      "date": "2023-04-19T00:00:00.000Z",
-      "name": "INVOC Junior Training",
-      "club": "INVOC",
-      "clubURL": "http://www.invoc.org.uk",
-      "area": "tbc",
-      "association": "SOA",
-      "nearestTown": "Inverness",
-      "grade": "Local",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;activity=33899&bpg=",
-      "locSource": "google",
-      "postcode": "",
-      "latLong": {
-         "lat": 57.477773,
-         "lng": -4.224721
-      },
-      "rg": {
-         "baseURL": "https://www.invoc.routegadget.co.uk/",
-         "maps": []
-      }
-   },
-   {
-      "id": "bof-activity33997",
-      "date": "2023-04-19T00:00:00.000Z",
-      "name": "STAG Spring 2",
-      "club": "STAG",
-      "clubURL": "http://www.stag-orienteering.co.uk",
-      "area": "The Hurlet",
-      "association": "SOA",
-      "nearestTown": "Glasgow",
-      "grade": "Local",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;activity=33997&bpg=",
-      "locSource": "google",
-      "postcode": "",
-      "latLong": {
-         "lat": 55.818476,
-         "lng": -4.3728191
-      },
-      "rg": {
-         "baseURL": "https://www.stag.routegadget.co.uk/",
-         "maps": []
-      }
-   },
-   {
-      "id": "bof-activity34227",
-      "date": "2023-04-19T00:00:00.000Z",
-      "name": "Bassetlaw District Club Activity",
-      "club": "NOC",
-      "clubURL": "http://www.noc-uk.org",
-      "area": "Bevercotes Pit Wood",
-      "association": "EMOA",
-      "nearestTown": "Retford",
-      "grade": "Local",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;activity=34227&bpg=",
-      "locSource": "google",
-      "postcode": "",
-      "latLong": {
-         "lat": 53.2530306,
-         "lng": -0.9573568000000001
-      },
-      "rg": {
-         "baseURL": "http://www.noc-uk.org/gadget/",
-         "maps": [
-            {
-               "id": 77,
-               "name": "Ollerton Pit Wood",
-               "mapfile": "65.jpg"
-            },
-            {
-               "id": 75,
-               "name": "Bevercotes Winter League",
-               "mapfile": "63.jpg"
-            },
-            {
-               "id": 71,
-               "name": "Ollerton Pit Wood Night",
-               "mapfile": "60.jpg"
-            },
-            {
-               "id": 44,
-               "name": "Bevercotes Winter League",
-               "mapfile": "39.jpg"
-            }
-         ]
-      }
-   },
-   {
-      "id": "bof-81805",
-      "date": "2023-04-20T00:00:00.000Z",
-      "name": "MV Winter Series",
-      "club": "MV",
-      "clubURL": "http://www.mvoc.org",
-      "area": "North Holmwood",
-      "association": "SEOA",
-      "nearestTown": "North Holmwood",
-      "grade": "Club",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;event=81805&bpg=",
-      "locSource": "google",
-      "postcode": "",
-      "latLong": {
-         "lat": 51.21184299999999,
-         "lng": -0.3252760000000001
-      },
-      "rg": {
-         "baseURL": "https://www.mvoc.routegadget.co.uk/",
-         "maps": []
-      }
-   },
-   {
-      "id": "bof-82681",
-      "date": "2023-04-20T00:00:00.000Z",
-      "name": "Spring Series",
-      "club": "LOG",
-      "clubURL": "http://www.logonline.org.uk",
-      "area": "Stourton Estates",
-      "association": "EMOA",
-      "nearestTown": "LIncoln",
-      "grade": "Club",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;event=82681&bpg=",
-      "locSource": "gridref",
-      "postcode": "LN9 5NL",
-      "latLong": {
-         "lat": 53.263628764475655,
-         "lng": -0.18885766764635525
-      },
-      "rg": {
-         "baseURL": "https://www.log.routegadget.co.uk/",
-         "maps": []
-      }
-   },
-   {
-      "id": "bof-82818",
-      "date": "2023-04-20T00:00:00.000Z",
-      "name": "Spring series 6",
-      "club": "WCOC",
-      "clubURL": "http://www.wcoc.co.uk",
-      "area": "Maryport",
-      "association": "NWOA",
-      "nearestTown": "Maryport",
-      "grade": "Club",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;event=82818&bpg=",
-      "locSource": "google",
-      "postcode": "",
-      "latLong": {
-         "lat": 54.714441,
-         "lng": -3.49494
-      },
-      "rg": {
-         "baseURL": "https://www.wcoc.routegadget.co.uk/",
-         "maps": []
-      }
-   },
-   {
-      "id": "bof-82960",
-      "date": "2023-04-20T00:00:00.000Z",
-      "name": "RR Spring Sprints 1 (incl RR Club Champs)",
-      "club": "RR",
-      "clubURL": "http://roxburghreivers.org.uk",
-      "area": "St Boswells village",
-      "association": "SOA",
-      "nearestTown": "St Boswells",
-      "grade": "Club",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;event=82960&bpg=",
-      "locSource": "google",
-      "postcode": "",
-      "latLong": {
-         "lat": 55.570844,
-         "lng": -2.6475399
-      },
-      "rg": {
-         "baseURL": "https://www.roxburghreivers.routegadget.co.uk/",
-         "maps": []
-      }
-   },
-   {
-      "id": "bof-activity33607",
-      "date": "2023-04-20T00:00:00.000Z",
-      "name": "CLYDE Terrain Hill Run                              ",
-      "club": "CLYDE",
-      "clubURL": "http://www.clydesideorienteers.org.uk/",
-      "area": "Carneddans Road, Milngavie",
-      "association": "SOA",
-      "nearestTown": "Glasgow",
-      "grade": "Local",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;activity=33607&bpg=",
-      "locSource": "google",
-      "postcode": "",
-      "latLong": {
-         "lat": 55.9519215,
-         "lng": -4.3496539
-      },
-      "rg": {
-         "baseURL": "https://www.clyde.routegadget.co.uk/",
-         "maps": [
-            {
-               "id": 20,
-               "name": "Milngavie Sprint Race",
-               "mapfile": "23.jpg"
-            },
-            {
-               "id": 14,
-               "name": "Milngavie Sprint",
-               "mapfile": "17.jpg"
-            }
-         ]
-      }
-   },
-   {
-      "id": "bof-activity34120",
-      "date": "2023-04-20T00:00:00.000Z",
-      "name": "INT Off-Road Training",
-      "club": "INT",
-      "clubURL": "http://www.interlopers.org.uk/",
-      "area": "Harlaw and Bavelaw",
-      "association": "SOA",
-      "nearestTown": "Edinburgh",
-      "grade": "Local",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;activity=34120&bpg=",
-      "locSource": "google",
-      "postcode": "",
-      "latLong": {
-         "lat": 55.8816319,
-         "lng": -3.3393851
-      },
-      "rg": {
-         "baseURL": "https://www.interlopers.routegadget.co.uk/",
-         "maps": []
-      }
-   },
-   {
-      "id": "bof-activity34155",
-      "date": "2023-04-20T00:00:00.000Z",
-      "name": "SOC Up and Running Maprun activity",
-      "club": "SOC",
-      "clubURL": "http://southampton-orienteers.org.uk",
-      "area": "Up and Running Shop",
-      "association": "SCOA",
-      "nearestTown": "Chandlers Ford",
-      "grade": "Local",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;activity=34155&bpg=",
-      "locSource": "google",
-      "postcode": "",
-      "latLong": {
-         "lat": 50.9827303,
-         "lng": -1.382353
-      },
-      "rg": {
-         "baseURL": "https://www.soc.routegadget.co.uk/",
-         "maps": []
-      }
-   },
-   {
       "id": "bof-83102",
       "date": "2023-04-21T00:00:00.000Z",
       "name": "Street-O No. 2",
@@ -947,6 +236,30 @@
       },
       "rg": {
          "baseURL": "https://www.ayroc.routegadget.co.uk/",
+         "maps": []
+      }
+   },
+   {
+      "id": "bof-83107",
+      "date": "2023-04-22T00:00:00.000Z",
+      "name": "EBOR Local Event",
+      "club": "EBOR",
+      "clubURL": "http://www.eborienteers.org.uk",
+      "area": "West Bank Park and Holgate",
+      "association": "YHOA",
+      "nearestTown": "York",
+      "grade": "Club",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;event=83107&bpg=",
+      "locSource": "gridref",
+      "postcode": "YO24 4PE",
+      "latLong": {
+         "lat": 53.95273140663671,
+         "lng": -1.1146295382037845
+      },
+      "rg": {
+         "baseURL": "https://www.ebor.routegadget.co.uk/",
          "maps": []
       }
    },
@@ -1564,6 +877,30 @@
       },
       "rg": {
          "baseURL": "https://www.esoc.routegadget.co.uk/",
+         "maps": []
+      }
+   },
+   {
+      "id": "bof-activity34239",
+      "date": "2023-04-24T00:00:00.000Z",
+      "name": "EBOR Club Night",
+      "club": "EBOR",
+      "clubURL": "http://www.eborienteers.org.uk",
+      "area": "Millthorpe School",
+      "association": "YHOA",
+      "nearestTown": "York",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34239&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 53.9488438,
+         "lng": -1.0905151
+      },
+      "rg": {
+         "baseURL": "https://www.ebor.routegadget.co.uk/",
          "maps": []
       }
    },
@@ -2232,6 +1569,36 @@
       }
    },
    {
+      "id": "bof-83108",
+      "date": "2023-04-26T00:00:00.000Z",
+      "name": "EBOR Summer Series ",
+      "club": "EBOR",
+      "clubURL": "http://www.eborienteers.org.uk",
+      "area": "Hollicarrs, Escrick",
+      "association": "YHOA",
+      "nearestTown": "York",
+      "grade": "Club",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;event=83108&bpg=",
+      "locSource": "gridref",
+      "postcode": "YO19 6EJ",
+      "latLong": {
+         "lat": 53.86301977592586,
+         "lng": -1.0207269715518363
+      },
+      "rg": {
+         "baseURL": "https://www.ebor.routegadget.co.uk/",
+         "maps": [
+            {
+               "id": 141,
+               "name": "Escrick Regional and Club Champs 2019",
+               "mapfile": "178.jpg"
+            }
+         ]
+      }
+   },
+   {
       "id": "bof-activity33900",
       "date": "2023-04-26T00:00:00.000Z",
       "name": "INVOC Junior Training",
@@ -2273,6 +1640,30 @@
       "latLong": {
          "lat": 51.6144639,
          "lng": -4.2070279
+      },
+      "rg": {
+         "baseURL": "https://www.sboc.routegadget.co.uk/",
+         "maps": []
+      }
+   },
+   {
+      "id": "bof-activity34254",
+      "date": "2023-04-26T00:00:00.000Z",
+      "name": "Club Training Run",
+      "club": "SBOC",
+      "clubURL": "http://www.sboc.org.uk",
+      "area": "RSPB Cwm Clydach",
+      "association": "WOA",
+      "nearestTown": "Swansea",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34254&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 51.7066031,
+         "lng": -3.9070638
       },
       "rg": {
          "baseURL": "https://www.sboc.routegadget.co.uk/",
@@ -2358,30 +1749,6 @@
       }
    },
    {
-      "id": "bof-activity33914",
-      "date": "2023-04-27T00:00:00.000Z",
-      "name": "Edinburgh Map Run #1",
-      "club": "ESOC",
-      "clubURL": "http://www.esoc.org.uk/home",
-      "area": "The Exchange District",
-      "association": "SOA",
-      "nearestTown": "Edinburgh",
-      "grade": "Local",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;activity=33914&bpg=",
-      "locSource": "google",
-      "postcode": "",
-      "latLong": {
-         "lat": 55.953252,
-         "lng": -3.188267
-      },
-      "rg": {
-         "baseURL": "https://www.esoc.routegadget.co.uk/",
-         "maps": []
-      }
-   },
-   {
       "id": "bof-activity34121",
       "date": "2023-04-27T00:00:00.000Z",
       "name": "INT Off-Road Training",
@@ -2397,8 +1764,8 @@
       "locSource": "google",
       "postcode": "",
       "latLong": {
-         "lat": 55.9004237,
-         "lng": -3.2332573
+         "lat": 55.9003098,
+         "lng": -3.2122592
       },
       "rg": {
          "baseURL": "https://www.interlopers.routegadget.co.uk/",
@@ -2426,6 +1793,30 @@
       },
       "rg": {
          "baseURL": "https://www.wcoc.routegadget.co.uk/",
+         "maps": []
+      }
+   },
+   {
+      "id": "bof-activity34281",
+      "date": "2023-04-27T00:00:00.000Z",
+      "name": "Chailey Trail Run",
+      "club": "SO",
+      "clubURL": "http://www.southdowns-orienteers.org.uk",
+      "area": "Redhouse Common",
+      "association": "SEOA",
+      "nearestTown": "Chailey",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34281&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 50.9786848,
+         "lng": -0.0188035
+      },
+      "rg": {
+         "baseURL": "https://www.so.routegadget.co.uk/",
          "maps": []
       }
    },
@@ -2773,6 +2164,27 @@
       }
    },
    {
+      "id": "bof-83116",
+      "date": "2023-04-29T00:00:00.000Z",
+      "name": "Mabie Knoll Bagging",
+      "club": "SOLWAY",
+      "clubURL": "http://www.solwayorienteers.co.uk",
+      "area": "Mabie forest",
+      "association": "SOA",
+      "nearestTown": "Dumfries",
+      "grade": "Club",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;event=83116&bpg=",
+      "locSource": "gridref",
+      "postcode": "DG2 8HA",
+      "latLong": {
+         "lat": 55.0232931396149,
+         "lng": -3.6455104180467055
+      },
+      "rg": null
+   },
+   {
       "id": "bof-activity33487",
       "date": "2023-04-29T00:00:00.000Z",
       "name": "TAY Club Coaching",
@@ -2787,6 +2199,7 @@
       "webpage": "index.php?pg=event&amp;activity=33487&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.tay.routegadget.co.uk/",
          "maps": []
@@ -3686,12 +3099,8 @@
       "type": "Foot",
       "discipline": "Unknown",
       "webpage": "index.php?pg=event&amp;event=82870&bpg=",
-      "locSource": "gridref",
-      "postcode": "",
-      "latLong": {
-         "lat": 49.76680881527482,
-         "lng": -7.557159802041799
-      },
+      "locSource": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -3768,10 +3177,10 @@
       "discipline": "Unknown",
       "webpage": "index.php?pg=event&amp;event=82919&bpg=",
       "locSource": "gridref",
-      "postcode": "",
+      "postcode": "LA23 3NZ",
       "latLong": {
-         "lat": 49.76680881527482,
-         "lng": -7.557159802041799
+         "lat": 54.30941833126236,
+         "lng": -2.9021605719317956
       },
       "rg": {
          "baseURL": "https://www.waroc.routegadget.co.uk/",
@@ -3847,6 +3256,30 @@
       },
       "rg": {
          "baseURL": "https://www.nn.routegadget.co.uk/",
+         "maps": []
+      }
+   },
+   {
+      "id": "bof-83109",
+      "date": "2023-05-03T00:00:00.000Z",
+      "name": "EBOR Summer Series  ",
+      "club": "EBOR",
+      "clubURL": "http://www.eborienteers.org.uk",
+      "area": "Hob Moor",
+      "association": "YHOA",
+      "nearestTown": "York",
+      "grade": "Club",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;event=83109&bpg=",
+      "locSource": "gridref",
+      "postcode": "YO24 2PG",
+      "latLong": {
+         "lat": 53.943789483638064,
+         "lng": -1.1209129449109314
+      },
+      "rg": {
+         "baseURL": "https://www.ebor.routegadget.co.uk/",
          "maps": []
       }
    },
@@ -3933,6 +3366,46 @@
       "rg": {
          "baseURL": "https://www.sos.routegadget.co.uk/",
          "maps": []
+      }
+   },
+   {
+      "id": "bof-activity34267",
+      "date": "2023-05-03T00:00:00.000Z",
+      "name": "Prior Park St Neots",
+      "club": "WAOC",
+      "clubURL": "http://www.waoc.org.uk",
+      "area": "Priory Park",
+      "association": "EAOA",
+      "nearestTown": "St Neots",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34267&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 52.23621929999999,
+         "lng": -0.2567369
+      },
+      "rg": {
+         "baseURL": "https://www.waoc.routegadget.co.uk/",
+         "maps": [
+            {
+               "id": 105,
+               "name": "Priory Park and Love's Farm",
+               "mapfile": "106.gif"
+            },
+            {
+               "id": 87,
+               "name": "Priory Park",
+               "mapfile": "88.jpg"
+            },
+            {
+               "id": 76,
+               "name": "St Neots Priory Park",
+               "mapfile": "78.gif"
+            }
+         ]
       }
    },
    {
@@ -4365,6 +3838,7 @@
       "webpage": "index.php?pg=event&amp;event=81738&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.saxons.routegadget.co.uk/",
          "maps": []
@@ -4392,6 +3866,61 @@
       "rg": {
          "baseURL": "https://www.soc.routegadget.co.uk/",
          "maps": []
+      }
+   },
+   {
+      "id": "bof-83115",
+      "date": "2023-05-07T00:00:00.000Z",
+      "name": "Town and Country Coronation Spunch Special ",
+      "club": "MDOC",
+      "clubURL": "http://www.mdoc.org.uk",
+      "area": "Area in and around Bollington",
+      "association": "NWOA",
+      "nearestTown": "Bollington",
+      "grade": "Club",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;event=83115&bpg=",
+      "locSource": "gridref",
+      "postcode": "SK10 5JB",
+      "latLong": {
+         "lat": 53.291713349575566,
+         "lng": -2.1079725636895357
+      },
+      "rg": {
+         "baseURL": "https://www.mdoc.routegadget.co.uk/",
+         "maps": [
+            {
+               "id": 297,
+               "name": "Bollington - Urban Night",
+               "mapfile": "272.gif"
+            },
+            {
+               "id": 211,
+               "name": "Bollington - Urban Night",
+               "mapfile": "191.jpg"
+            },
+            {
+               "id": 208,
+               "name": "Bollington - Countryside Score",
+               "mapfile": "188.jpg"
+            },
+            {
+               "id": 153,
+               "name": "Bollington - Evening Countryside Score",
+               "mapfile": "127.jpg"
+            },
+            {
+               "id": 145,
+               "name": "Bollington - Urban Night",
+               "mapfile": "119.jpg"
+            },
+            {
+               "id": 74,
+               "name": "Bollington - Evening Countryside Score",
+               "mapfile": "59.jpg"
+            }
+         ]
       }
    },
    {
@@ -5132,8 +4661,8 @@
       "locSource": "google",
       "postcode": "",
       "latLong": {
-         "lat": 55.953252,
-         "lng": -3.188267
+         "lat": 55.9508818,
+         "lng": -3.2057609
       },
       "rg": {
          "baseURL": "https://www.interlopers.routegadget.co.uk/",
@@ -5210,6 +4739,7 @@
       "webpage": "index.php?pg=event&amp;event=82962&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.roxburghreivers.routegadget.co.uk/",
          "maps": [
@@ -5380,6 +4910,54 @@
          "lng": -3.5904342
       },
       "rg": null
+   },
+   {
+      "id": "bof-activity34255",
+      "date": "2023-05-10T00:00:00.000Z",
+      "name": "Club Training Run",
+      "club": "SBOC",
+      "clubURL": "http://www.sboc.org.uk",
+      "area": "RSPB Cwm Clydach",
+      "association": "WOA",
+      "nearestTown": "Swansea",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34255&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 51.7066031,
+         "lng": -3.9070638
+      },
+      "rg": {
+         "baseURL": "https://www.sboc.routegadget.co.uk/",
+         "maps": []
+      }
+   },
+   {
+      "id": "bof-activity34268",
+      "date": "2023-05-10T00:00:00.000Z",
+      "name": "Wandlebury",
+      "club": "WAOC",
+      "clubURL": "http://www.waoc.org.uk",
+      "area": "Wandlebury",
+      "association": "EAOA",
+      "nearestTown": "Cambridge",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34268&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 52.1601976,
+         "lng": 0.1844805
+      },
+      "rg": {
+         "baseURL": "https://www.waoc.routegadget.co.uk/",
+         "maps": []
+      }
    },
    {
       "id": "bof-82675",
@@ -6007,6 +5585,7 @@
       "webpage": "index.php?pg=event&amp;activity=33488&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.tay.routegadget.co.uk/",
          "maps": []
@@ -6238,11 +5817,11 @@
       "type": "Foot",
       "discipline": "Unknown",
       "webpage": "index.php?pg=event&amp;event=81687&bpg=",
-      "locSource": "google",
-      "postcode": "",
+      "locSource": "gridref",
+      "postcode": "NP7 7ET",
       "latLong": {
-         "lat": 51.825366,
-         "lng": -3.019423
+         "lat": 51.84408218066901,
+         "lng": -3.0639699524053547
       },
       "rg": {
          "baseURL": "https://www.swoc.routegadget.co.uk/",
@@ -6252,7 +5831,7 @@
    {
       "id": "bof-82163",
       "date": "2023-05-14T00:00:00.000Z",
-      "name": "MDOC Lyme Event",
+      "name": "(Cancelled) MDOC Lyme Event",
       "club": "MDOC",
       "clubURL": "http://www.mdoc.org.uk",
       "area": "Lyme ",
@@ -6618,6 +6197,30 @@
       },
       "rg": {
          "baseURL": "https://www.esoc.routegadget.co.uk/",
+         "maps": []
+      }
+   },
+   {
+      "id": "bof-activity34240",
+      "date": "2023-05-15T00:00:00.000Z",
+      "name": "EBOR Club Night ",
+      "club": "EBOR",
+      "clubURL": "http://www.eborienteers.org.uk",
+      "area": "Millthorpe School",
+      "association": "YHOA",
+      "nearestTown": "York",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34240&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 53.9488438,
+         "lng": -1.0905151
+      },
+      "rg": {
+         "baseURL": "https://www.ebor.routegadget.co.uk/",
          "maps": []
       }
    },
@@ -7343,6 +6946,30 @@
                "mapfile": "45.gif"
             }
          ]
+      }
+   },
+   {
+      "id": "bof-83110",
+      "date": "2023-05-17T00:00:00.000Z",
+      "name": "EBOR Summer Series ",
+      "club": "EBOR",
+      "clubURL": "http://www.eborienteers.org.uk",
+      "area": "Snowball Plantation, Stockton on Forest",
+      "association": "YHOA",
+      "nearestTown": "York",
+      "grade": "Club",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;event=83110&bpg=",
+      "locSource": "gridref",
+      "postcode": "YO32 9UT",
+      "latLong": {
+         "lat": 54.00561217744219,
+         "lng": -0.9822900173584895
+      },
+      "rg": {
+         "baseURL": "https://www.ebor.routegadget.co.uk/",
+         "maps": []
       }
    },
    {
@@ -8706,10 +8333,10 @@
       "discipline": "Unknown",
       "webpage": "index.php?pg=event&amp;event=82891&bpg=",
       "locSource": "gridref",
-      "postcode": "",
+      "postcode": "PO30 4HF",
       "latLong": {
-         "lat": 49.76680881527482,
-         "lng": -7.557159802041799
+         "lat": 50.66435694600191,
+         "lng": -1.4679461974490822
       },
       "rg": null
    },
@@ -8803,6 +8430,30 @@
       },
       "rg": {
          "baseURL": "https://www.esoc.routegadget.co.uk/",
+         "maps": []
+      }
+   },
+   {
+      "id": "bof-activity34241",
+      "date": "2023-05-22T00:00:00.000Z",
+      "name": "EBOR Club Night ",
+      "club": "EBOR",
+      "clubURL": "http://www.eborienteers.org.uk",
+      "area": "Millthorpe School",
+      "association": "YHOA",
+      "nearestTown": "York",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34241&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 53.9488438,
+         "lng": -1.0905151
+      },
+      "rg": {
+         "baseURL": "https://www.ebor.routegadget.co.uk/",
          "maps": []
       }
    },
@@ -9649,8 +9300,8 @@
       "locSource": "google",
       "postcode": "",
       "latLong": {
-         "lat": 55.953252,
-         "lng": -3.188267
+         "lat": 55.9508818,
+         "lng": -3.2057609
       },
       "rg": {
          "baseURL": "https://www.interlopers.routegadget.co.uk/",
@@ -9901,6 +9552,30 @@
          "lng": -3.441824
       },
       "rg": null
+   },
+   {
+      "id": "bof-activity34256",
+      "date": "2023-05-24T00:00:00.000Z",
+      "name": "Club Training Run",
+      "club": "SBOC",
+      "clubURL": "http://www.sboc.org.uk",
+      "area": "RSPB Cwm Clydach",
+      "association": "WOA",
+      "nearestTown": "Swansea",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34256&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 51.7066031,
+         "lng": -3.9070638
+      },
+      "rg": {
+         "baseURL": "https://www.sboc.routegadget.co.uk/",
+         "maps": []
+      }
    },
    {
       "id": "bof-82904",
@@ -10363,8 +10038,8 @@
       "locSource": "google",
       "postcode": "",
       "latLong": {
-         "lat": 56.4329845,
-         "lng": -5.206574199999999
+         "lat": 56.437731,
+         "lng": -5.193792
       },
       "rg": null
    },
@@ -10596,6 +10271,7 @@
       "webpage": "index.php?pg=event&amp;event=82992&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.happyherts.routegadget.co.uk/",
          "maps": []
@@ -10646,6 +10322,30 @@
       },
       "rg": {
          "baseURL": "https://www.bok.routegadget.co.uk/",
+         "maps": []
+      }
+   },
+   {
+      "id": "bof-activity34265",
+      "date": "2023-05-30T00:00:00.000Z",
+      "name": "Parc Llewelyn Fun Day",
+      "club": "SBOC",
+      "clubURL": "http://www.sboc.org.uk",
+      "area": "Parc Llewelyn",
+      "association": "WOA",
+      "nearestTown": "Swansea",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34265&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 51.6537881,
+         "lng": -3.9378874
+      },
+      "rg": {
+         "baseURL": "https://www.sboc.routegadget.co.uk/",
          "maps": []
       }
    },
@@ -10849,7 +10549,7 @@
       "name": "WARRIOR BATTLEAXE 3",
       "club": "WAROC",
       "clubURL": "https://warrior-orienteering.org.uk",
-      "area": "TBA",
+      "area": "CHAPEL HOUSE / WHITESTONE FELL",
       "association": "NWOA",
       "nearestTown": "NEWBY BRIDGE",
       "grade": "Club",
@@ -10859,8 +10559,8 @@
       "locSource": "gridref",
       "postcode": "",
       "latLong": {
-         "lat": 49.76680881527482,
-         "lng": -7.557159802041799
+         "lat": 54.26511727102171,
+         "lng": -2.9365057805755193
       },
       "rg": {
          "baseURL": "https://www.waroc.routegadget.co.uk/",
@@ -10887,6 +10587,116 @@
          "lng": -2.815268629635607
       },
       "rg": null
+   },
+   {
+      "id": "bof-83111",
+      "date": "2023-05-31T00:00:00.000Z",
+      "name": "EBOR Summer Series ",
+      "club": "EBOR",
+      "clubURL": "http://www.eborienteers.org.uk",
+      "area": "York University and Walmgate Stray",
+      "association": "YHOA",
+      "nearestTown": "York",
+      "grade": "Club",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;event=83111&bpg=",
+      "locSource": "gridref",
+      "postcode": "YO10 5NN",
+      "latLong": {
+         "lat": 53.94959494096913,
+         "lng": -1.0567939197170846
+      },
+      "rg": {
+         "baseURL": "https://www.ebor.routegadget.co.uk/",
+         "maps": [
+            {
+               "id": 164,
+               "name": "York City Trophy 2022 Courses 1-4",
+               "mapfile": "197.jpg"
+            },
+            {
+               "id": 160,
+               "name": "University of York Regional",
+               "mapfile": "193.jpg"
+            },
+            {
+               "id": 155,
+               "name": "White Rose 21 York City Urban",
+               "mapfile": "189.gif"
+            },
+            {
+               "id": 140,
+               "name": "York City Trophy 2019",
+               "mapfile": "177.gif"
+            },
+            {
+               "id": 138,
+               "name": "York University (W) Regional",
+               "mapfile": "175.jpg"
+            },
+            {
+               "id": 131,
+               "name": "York City Trophy 2018 - Courses C-E",
+               "mapfile": "167.jpg"
+            },
+            {
+               "id": 130,
+               "name": "York City Trophy 2018 - Courses A&amp;B",
+               "mapfile": "167.jpg"
+            },
+            {
+               "id": 116,
+               "name": "University of York",
+               "mapfile": "155.jpg"
+            },
+            {
+               "id": 95,
+               "name": "York City Race 2014",
+               "mapfile": "125.jpg"
+            },
+            {
+               "id": 77,
+               "name": "York Park Race 2013",
+               "mapfile": "104.jpg"
+            },
+            {
+               "id": 74,
+               "name": "York University 2013",
+               "mapfile": "100.jpg"
+            },
+            {
+               "id": 63,
+               "name": "York Park Race 2012",
+               "mapfile": "84.jpg"
+            },
+            {
+               "id": 47,
+               "name": "York Park Race 2011",
+               "mapfile": "54.jpg"
+            },
+            {
+               "id": 37,
+               "name": "York Park Race 2010",
+               "mapfile": "44.jpg"
+            },
+            {
+               "id": 24,
+               "name": "York Park Race 2009",
+               "mapfile": "25.jpg"
+            },
+            {
+               "id": 15,
+               "name": "York Park race 2008",
+               "mapfile": "17.jpg"
+            },
+            {
+               "id": 6,
+               "name": "York Park Race 2007",
+               "mapfile": "8.jpg"
+            }
+         ]
+      }
    },
    {
       "id": "bof-activity34000",
@@ -11062,11 +10872,35 @@
       "locSource": "google",
       "postcode": "",
       "latLong": {
-         "lat": 55.9550465,
-         "lng": -3.1827409
+         "lat": 55.953252,
+         "lng": -3.188267
       },
       "rg": {
          "baseURL": "https://www.interlopers.routegadget.co.uk/",
+         "maps": []
+      }
+   },
+   {
+      "id": "bof-activity34266",
+      "date": "2023-06-01T00:00:00.000Z",
+      "name": "Morriston Park Fun Day",
+      "club": "SBOC",
+      "clubURL": "http://www.sboc.org.uk",
+      "area": "Morriston Park",
+      "association": "WOA",
+      "nearestTown": "Swansea",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34266&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 51.66804680000001,
+         "lng": -3.935522799999999
+      },
+      "rg": {
+         "baseURL": "https://www.sboc.routegadget.co.uk/",
          "maps": []
       }
    },
@@ -11563,6 +11397,30 @@
       }
    },
    {
+      "id": "bof-activity34242",
+      "date": "2023-06-05T00:00:00.000Z",
+      "name": "EBOR Club Night ",
+      "club": "EBOR",
+      "clubURL": "http://www.eborienteers.org.uk",
+      "area": "",
+      "association": "YHOA",
+      "nearestTown": "York",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34242&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 53.9614205,
+         "lng": -1.0739108
+      },
+      "rg": {
+         "baseURL": "https://www.ebor.routegadget.co.uk/",
+         "maps": []
+      }
+   },
+   {
       "id": "bof-82553",
       "date": "2023-06-06T00:00:00.000Z",
       "name": "Summer sprint 3",
@@ -11787,6 +11645,7 @@
       "webpage": "index.php?pg=event&amp;event=82991&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.happyherts.routegadget.co.uk/",
          "maps": []
@@ -12173,6 +12032,54 @@
       }
    },
    {
+      "id": "bof-activity34257",
+      "date": "2023-06-07T00:00:00.000Z",
+      "name": "Club Training Run",
+      "club": "SBOC",
+      "clubURL": "http://www.sboc.org.uk",
+      "area": "RSPB Cwm Clydach",
+      "association": "WOA",
+      "nearestTown": "Swansea",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34257&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 51.7066031,
+         "lng": -3.9070638
+      },
+      "rg": {
+         "baseURL": "https://www.sboc.routegadget.co.uk/",
+         "maps": []
+      }
+   },
+   {
+      "id": "bof-activity34269",
+      "date": "2023-06-07T00:00:00.000Z",
+      "name": "Milton Country Park",
+      "club": "WAOC",
+      "clubURL": "http://www.waoc.org.uk",
+      "area": "Milton Country park",
+      "association": "EAOA",
+      "nearestTown": "Cambridge",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34269&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 52.23632869999999,
+         "lng": 0.1630999
+      },
+      "rg": {
+         "baseURL": "https://www.waoc.routegadget.co.uk/",
+         "maps": []
+      }
+   },
+   {
       "id": "bof-82622",
       "date": "2023-06-08T00:00:00.000Z",
       "name": "Evening Maprun Score",
@@ -12439,6 +12346,7 @@
       "webpage": "index.php?pg=event&amp;event=81751&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.tvoc.routegadget.co.uk/",
          "maps": []
@@ -12824,6 +12732,30 @@
                "mapfile": "138.gif"
             }
          ]
+      }
+   },
+   {
+      "id": "bof-activity34243",
+      "date": "2023-06-12T00:00:00.000Z",
+      "name": "EBOR Club Night",
+      "club": "EBOR",
+      "clubURL": "http://www.eborienteers.org.uk",
+      "area": "",
+      "association": "YHOA",
+      "nearestTown": "York",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34243&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 53.9614205,
+         "lng": -1.0739108
+      },
+      "rg": {
+         "baseURL": "https://www.ebor.routegadget.co.uk/",
+         "maps": []
       }
    },
    {
@@ -13420,6 +13352,30 @@
       }
    },
    {
+      "id": "bof-83112",
+      "date": "2023-06-14T00:00:00.000Z",
+      "name": "EBOR Summer Series",
+      "club": "EBOR",
+      "clubURL": "http://www.eborienteers.org.uk",
+      "area": "Knavesmire and Y'ted Woods",
+      "association": "YHOA",
+      "nearestTown": "York",
+      "grade": "Club",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;event=83112&bpg=",
+      "locSource": "gridref",
+      "postcode": "YO24 1QF",
+      "latLong": {
+         "lat": 53.93826237734268,
+         "lng": -1.1027492510965902
+      },
+      "rg": {
+         "baseURL": "https://www.ebor.routegadget.co.uk/",
+         "maps": []
+      }
+   },
+   {
       "id": "bof-activity34001",
       "date": "2023-06-14T00:00:00.000Z",
       "name": "STAG Spring 6",
@@ -13802,6 +13758,7 @@
       "webpage": "index.php?pg=event&amp;event=81688&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.swoc.routegadget.co.uk/",
          "maps": []
@@ -14003,6 +13960,7 @@
       "webpage": "index.php?pg=event&amp;activity=33490&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.tay.routegadget.co.uk/",
          "maps": []
@@ -14296,6 +14254,30 @@
       },
       "rg": {
          "baseURL": "https://www.stag.routegadget.co.uk/",
+         "maps": []
+      }
+   },
+   {
+      "id": "bof-activity34244",
+      "date": "2023-06-19T00:00:00.000Z",
+      "name": "EBOR Club Night",
+      "club": "EBOR",
+      "clubURL": "http://www.eborienteers.org.uk",
+      "area": "",
+      "association": "YHOA",
+      "nearestTown": "York",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34244&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 53.9614205,
+         "lng": -1.0739108
+      },
+      "rg": {
+         "baseURL": "https://www.ebor.routegadget.co.uk/",
          "maps": []
       }
    },
@@ -14629,6 +14611,7 @@
       "webpage": "index.php?pg=event&amp;event=82989&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.happyherts.routegadget.co.uk/",
          "maps": []
@@ -14674,8 +14657,8 @@
       "locSource": "google",
       "postcode": "",
       "latLong": {
-         "lat": 55.9199025,
-         "lng": -3.2008838
+         "lat": 55.953252,
+         "lng": -3.188267
       },
       "rg": {
          "baseURL": "https://www.esoc.routegadget.co.uk/",
@@ -15029,6 +15012,46 @@
       }
    },
    {
+      "id": "bof-activity34258",
+      "date": "2023-06-21T00:00:00.000Z",
+      "name": "Midsummer Madness Run",
+      "club": "SBOC",
+      "clubURL": "http://www.sboc.org.uk",
+      "area": "Cefn Bryn",
+      "association": "WOA",
+      "nearestTown": "Swansea",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34258&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 51.580103,
+         "lng": -4.1402503
+      },
+      "rg": {
+         "baseURL": "https://www.sboc.routegadget.co.uk/",
+         "maps": [
+            {
+               "id": 35,
+               "name": "Cefn Bryn West - SL2",
+               "mapfile": "35.gif"
+            },
+            {
+               "id": 27,
+               "name": "Cefn Bryn East - SL 3",
+               "mapfile": "26.gif"
+            },
+            {
+               "id": 19,
+               "name": "Cefn Bryn - WL 4",
+               "mapfile": "17.gif"
+            }
+         ]
+      }
+   },
+   {
       "id": "bof-80157",
       "date": "2023-06-22T00:00:00.000Z",
       "name": "European Youth Championships 22 - 25 Jun",
@@ -15242,6 +15265,7 @@
       "webpage": "index.php?pg=event&amp;event=82999&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.lvo.routegadget.co.uk/",
          "maps": []
@@ -15383,8 +15407,8 @@
       "locSource": "google",
       "postcode": "",
       "latLong": {
-         "lat": 54.1895856,
-         "lng": -6.0006682
+         "lat": 54.978252,
+         "lng": -1.61778
       },
       "rg": {
          "baseURL": "https://www.lvo.routegadget.co.uk/",
@@ -15581,6 +15605,7 @@
       "webpage": "index.php?pg=event&amp;event=78346&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -15780,6 +15805,30 @@
       }
    },
    {
+      "id": "bof-activity34245",
+      "date": "2023-06-26T00:00:00.000Z",
+      "name": "EBOR Club Night ",
+      "club": "EBOR",
+      "clubURL": "http://www.eborienteers.org.uk",
+      "area": "",
+      "association": "YHOA",
+      "nearestTown": "York",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34245&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 53.9614205,
+         "lng": -1.0739108
+      },
+      "rg": {
+         "baseURL": "https://www.ebor.routegadget.co.uk/",
+         "maps": []
+      }
+   },
+   {
       "id": "bof-82909",
       "date": "2023-06-27T00:00:00.000Z",
       "name": "London Park Series",
@@ -15858,9 +15907,36 @@
       "webpage": "index.php?pg=event&amp;event=82988&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.happyherts.routegadget.co.uk/",
          "maps": []
+      }
+   },
+   {
+      "id": "bof-83113",
+      "date": "2023-06-27T00:00:00.000Z",
+      "name": "EBOR Summer Series",
+      "club": "EBOR",
+      "clubURL": "http://www.eborienteers.org.uk",
+      "area": "Old Earswick",
+      "association": "YHOA",
+      "nearestTown": "York",
+      "grade": "Club",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;event=83113&bpg=",
+      "locSource": "",
+      "latLong": null,
+      "rg": {
+         "baseURL": "https://www.ebor.routegadget.co.uk/",
+         "maps": [
+            {
+               "id": 161,
+               "name": "Earswick Night Event",
+               "mapfile": "194.jpg"
+            }
+         ]
       }
    },
    {
@@ -15993,12 +16069,8 @@
       "type": "Foot",
       "discipline": "Unknown",
       "webpage": "index.php?pg=event&amp;event=82284&bpg=",
-      "locSource": "gridref",
-      "postcode": "",
-      "latLong": {
-         "lat": 49.76680881527482,
-         "lng": -7.557159802041799
-      },
+      "locSource": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.pfo.routegadget.co.uk/",
          "maps": [
@@ -16278,6 +16350,30 @@
       }
    },
    {
+      "id": "bof-activity34259",
+      "date": "2023-06-28T00:00:00.000Z",
+      "name": "Club Training Run",
+      "club": "SBOC",
+      "clubURL": "http://www.sboc.org.uk",
+      "area": "RSPB Cwm Clydach",
+      "association": "WOA",
+      "nearestTown": "Swansea",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34259&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 51.7066031,
+         "lng": -3.9070638
+      },
+      "rg": {
+         "baseURL": "https://www.sboc.routegadget.co.uk/",
+         "maps": []
+      }
+   },
+   {
       "id": "bof-82949",
       "date": "2023-06-29T00:00:00.000Z",
       "name": "Summer series 9",
@@ -16396,7 +16492,7 @@
       "name": "SBOC Summer League 7",
       "club": "SBOC",
       "clubURL": "http://www.sboc.org.uk",
-      "area": "Whiteford Burrows",
+      "area": "Nicholaston Burrows",
       "association": "WOA",
       "nearestTown": "Swansea",
       "grade": "Club",
@@ -16404,35 +16500,14 @@
       "discipline": "Unknown",
       "webpage": "index.php?pg=event&amp;event=81561&bpg=",
       "locSource": "gridref",
-      "postcode": "SA3 1DL",
+      "postcode": "SA3 2HH",
       "latLong": {
-         "lat": 51.62855558010103,
-         "lng": -4.253791249390424
+         "lat": 51.57413724878071,
+         "lng": -4.1341982682642175
       },
       "rg": {
          "baseURL": "https://www.sboc.routegadget.co.uk/",
-         "maps": [
-            {
-               "id": 45,
-               "name": "Whiteford Burrows - SHI Relays",
-               "mapfile": "43.gif"
-            },
-            {
-               "id": 43,
-               "name": "Whiteford Burrows - Welsh League",
-               "mapfile": "43.gif"
-            },
-            {
-               "id": 29,
-               "name": "Whiteford Burrows - SL 10",
-               "mapfile": "28.gif"
-            },
-            {
-               "id": 16,
-               "name": "Welsh League (Whiteford Burrows)",
-               "mapfile": "14.gif"
-            }
-         ]
+         "maps": []
       }
    },
    {
@@ -16481,27 +16556,88 @@
       }
    },
    {
-      "id": "bof-81592",
+      "id": "bof-81591",
       "date": "2023-07-01T00:00:00.000Z",
-      "name": "SBOC Summer Weekend",
+      "name": "2023 Welsh League event & SBOC Summer Weekend",
       "club": "SBOC",
       "clubURL": "http://www.sboc.org.uk",
-      "area": "",
+      "area": "Whiteford Burrows",
+      "association": "WOA",
+      "nearestTown": "Swansea",
+      "grade": "Regional",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;event=81591&bpg=",
+      "locSource": "gridref",
+      "postcode": "",
+      "latLong": {
+         "lat": 51.63675223315505,
+         "lng": -4.2484169633023185
+      },
+      "rg": {
+         "baseURL": "https://www.sboc.routegadget.co.uk/",
+         "maps": [
+            {
+               "id": 45,
+               "name": "Whiteford Burrows - SHI Relays",
+               "mapfile": "43.gif"
+            },
+            {
+               "id": 43,
+               "name": "Whiteford Burrows - Welsh League",
+               "mapfile": "43.gif"
+            },
+            {
+               "id": 29,
+               "name": "Whiteford Burrows - SL 10",
+               "mapfile": "28.gif"
+            },
+            {
+               "id": 16,
+               "name": "Welsh League (Whiteford Burrows)",
+               "mapfile": "14.gif"
+            }
+         ]
+      }
+   },
+   {
+      "id": "bof-81592",
+      "date": "2023-07-01T00:00:00.000Z",
+      "name": "SBOC Summer Weekend - 2 x 2 Relay",
+      "club": "SBOC",
+      "clubURL": "http://www.sboc.org.uk",
+      "area": "Oxwich Burrows",
       "association": "WOA",
       "nearestTown": "Swansea",
       "grade": "Club",
       "type": "Foot",
       "discipline": "Unknown",
       "webpage": "index.php?pg=event&amp;event=81592&bpg=",
-      "locSource": "google",
-      "postcode": "",
+      "locSource": "gridref",
+      "postcode": "SA3 1LS",
       "latLong": {
-         "lat": 51.62144,
-         "lng": -3.943645999999999
+         "lat": 51.557409518550855,
+         "lng": -4.163710636401161
       },
       "rg": {
          "baseURL": "https://www.sboc.routegadget.co.uk/",
-         "maps": []
+         "maps": [
+            {
+               "id": 47,
+               "name": "Oxwich Burrows NL2",
+               "mapfile": "45.gif"
+            },
+            {
+               "id": 38,
+               "name": "Oxwich Burrows - SL5",
+               "mapfile": "38.gif"
+            },
+            {
+               "id": 22,
+               "name": "Oxwich Burrows - Local Event",
+               "mapfile": "22.gif"
+            }
+         ]
       }
    },
    {
@@ -16696,30 +16832,6 @@
       }
    },
    {
-      "id": "bof-81591",
-      "date": "2023-07-02T00:00:00.000Z",
-      "name": "2023 Welsh League event & SBOC Summer Weekend",
-      "club": "SBOC",
-      "clubURL": "http://www.sboc.org.uk",
-      "area": "",
-      "association": "WOA",
-      "nearestTown": "Swansea",
-      "grade": "Regional",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;event=81591&bpg=",
-      "locSource": "google",
-      "postcode": "",
-      "latLong": {
-         "lat": 51.62144,
-         "lng": -3.943645999999999
-      },
-      "rg": {
-         "baseURL": "https://www.sboc.routegadget.co.uk/",
-         "maps": []
-      }
-   },
-   {
       "id": "bof-82025",
       "date": "2023-07-02T00:00:00.000Z",
       "name": "SOS Writtle Forest",
@@ -16784,8 +16896,33 @@
       "webpage": "index.php?pg=event&amp;event=82742&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.happyherts.routegadget.co.uk/",
+         "maps": []
+      }
+   },
+   {
+      "id": "bof-activity34246",
+      "date": "2023-07-03T00:00:00.000Z",
+      "name": "EBOR Club Night ",
+      "club": "EBOR",
+      "clubURL": "http://www.eborienteers.org.uk",
+      "area": "",
+      "association": "YHOA",
+      "nearestTown": "York",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34246&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 53.9614205,
+         "lng": -1.0739108
+      },
+      "rg": {
+         "baseURL": "https://www.ebor.routegadget.co.uk/",
          "maps": []
       }
    },
@@ -17109,6 +17246,7 @@
       "webpage": "index.php?pg=event&amp;event=82987&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.happyherts.routegadget.co.uk/",
          "maps": []
@@ -17267,8 +17405,8 @@
       "locSource": "google",
       "postcode": "",
       "latLong": {
-         "lat": 55.953252,
-         "lng": -3.188267
+         "lat": 55.9508818,
+         "lng": -3.2057609
       },
       "rg": {
          "baseURL": "https://www.interlopers.routegadget.co.uk/",
@@ -17377,6 +17515,30 @@
                "mapfile": "14.jpg"
             }
          ]
+      }
+   },
+   {
+      "id": "bof-activity34260",
+      "date": "2023-07-05T00:00:00.000Z",
+      "name": "Club Training Run",
+      "club": "SBOC",
+      "clubURL": "http://www.sboc.org.uk",
+      "area": "RSPB Cwm Clydach",
+      "association": "WOA",
+      "nearestTown": "Swansea",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34260&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 51.7066031,
+         "lng": -3.9070638
+      },
+      "rg": {
+         "baseURL": "https://www.sboc.routegadget.co.uk/",
+         "maps": []
       }
    },
    {
@@ -18110,6 +18272,30 @@
       }
    },
    {
+      "id": "bof-activity34247",
+      "date": "2023-07-10T00:00:00.000Z",
+      "name": "EBOR Club Night",
+      "club": "EBOR",
+      "clubURL": "http://www.eborienteers.org.uk",
+      "area": "",
+      "association": "YHOA",
+      "nearestTown": "York",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34247&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 53.9614205,
+         "lng": -1.0739108
+      },
+      "rg": {
+         "baseURL": "https://www.ebor.routegadget.co.uk/",
+         "maps": []
+      }
+   },
+   {
       "id": "bof-78084",
       "date": "2023-07-11T00:00:00.000Z",
       "name": "World Orienteering Championships 11-16 July",
@@ -18274,6 +18460,7 @@
       "webpage": "index.php?pg=event&amp;event=82986&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.happyherts.routegadget.co.uk/",
          "maps": []
@@ -18309,7 +18496,7 @@
       "name": "SBOC Summer League 8",
       "club": "SBOC",
       "clubURL": "http://www.sboc.org.uk",
-      "area": "Oxwich Burrows",
+      "area": "Swansea University - Singleton Campus",
       "association": "WOA",
       "nearestTown": "Swansea",
       "grade": "Club",
@@ -18317,28 +18504,18 @@
       "discipline": "Unknown",
       "webpage": "index.php?pg=event&amp;event=81563&bpg=",
       "locSource": "gridref",
-      "postcode": "SA3 1LS",
+      "postcode": "SA2 8PY",
       "latLong": {
-         "lat": 51.557409518550855,
-         "lng": -4.163710636401161
+         "lat": 51.60826942911312,
+         "lng": -3.982708468444393
       },
       "rg": {
          "baseURL": "https://www.sboc.routegadget.co.uk/",
          "maps": [
             {
-               "id": 47,
-               "name": "Oxwich Burrows NL2",
-               "mapfile": "45.gif"
-            },
-            {
-               "id": 38,
-               "name": "Oxwich Burrows - SL5",
-               "mapfile": "38.gif"
-            },
-            {
-               "id": 22,
-               "name": "Oxwich Burrows - Local Event",
-               "mapfile": "22.gif"
+               "id": 34,
+               "name": "Singleton Park - SL1",
+               "mapfile": "34.gif"
             }
          ]
       }
@@ -19196,6 +19373,7 @@
       "webpage": "index.php?pg=event&amp;event=82744&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.slow.routegadget.co.uk/",
          "maps": []
@@ -19234,6 +19412,30 @@
                "mapfile": "45.jpg"
             }
          ]
+      }
+   },
+   {
+      "id": "bof-activity34248",
+      "date": "2023-07-17T00:00:00.000Z",
+      "name": "EBOR Club Night",
+      "club": "EBOR",
+      "clubURL": "http://www.eborienteers.org.uk",
+      "area": "Millthorpe School",
+      "association": "YHOA",
+      "nearestTown": "York",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34248&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 53.9488438,
+         "lng": -1.0905151
+      },
+      "rg": {
+         "baseURL": "https://www.ebor.routegadget.co.uk/",
+         "maps": []
       }
    },
    {
@@ -19286,6 +19488,7 @@
       "webpage": "index.php?pg=event&amp;event=82985&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.happyherts.routegadget.co.uk/",
          "maps": []
@@ -19385,8 +19588,8 @@
       "locSource": "google",
       "postcode": "",
       "latLong": {
-         "lat": 55.953252,
-         "lng": -3.188267
+         "lat": 55.9508818,
+         "lng": -3.2057609
       },
       "rg": {
          "baseURL": "https://www.interlopers.routegadget.co.uk/",
@@ -19491,6 +19694,30 @@
                "mapfile": "5.jpg"
             }
          ]
+      }
+   },
+   {
+      "id": "bof-activity34261",
+      "date": "2023-07-19T00:00:00.000Z",
+      "name": "Club Training Run",
+      "club": "SBOC",
+      "clubURL": "http://www.sboc.org.uk",
+      "area": "RSPB Cwm Clydach",
+      "association": "WOA",
+      "nearestTown": "Swansea",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34261&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 51.7066031,
+         "lng": -3.9070638
+      },
+      "rg": {
+         "baseURL": "https://www.sboc.routegadget.co.uk/",
+         "maps": []
       }
    },
    {
@@ -19690,6 +19917,7 @@
       "webpage": "index.php?pg=event&amp;event=82425&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -19826,6 +20054,7 @@
       "webpage": "index.php?pg=event&amp;event=82741&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.lok.routegadget.co.uk/",
          "maps": []
@@ -19846,6 +20075,7 @@
       "webpage": "index.php?pg=event&amp;event=82426&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -19863,6 +20093,7 @@
       "webpage": "index.php?pg=event&amp;event=82427&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -19904,6 +20135,7 @@
       "webpage": "index.php?pg=event&amp;event=82984&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.happyherts.routegadget.co.uk/",
          "maps": []
@@ -19939,18 +20171,18 @@
       "name": "SBOC Summer League 10",
       "club": "SBOC",
       "clubURL": "http://www.sboc.org.uk",
-      "area": "Nicholaston Burrows",
+      "area": "",
       "association": "WOA",
       "nearestTown": "Swansea",
       "grade": "Club",
       "type": "Foot",
       "discipline": "Unknown",
       "webpage": "index.php?pg=event&amp;event=82021&bpg=",
-      "locSource": "gridref",
-      "postcode": "SA3 2HH",
+      "locSource": "google",
+      "postcode": "",
       "latLong": {
-         "lat": 51.57413724878071,
-         "lng": -4.1341982682642175
+         "lat": 51.62144,
+         "lng": -3.943645999999999
       },
       "rg": {
          "baseURL": "https://www.sboc.routegadget.co.uk/",
@@ -19996,6 +20228,7 @@
       "webpage": "index.php?pg=event&amp;event=82428&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -20058,6 +20291,7 @@
       "webpage": "index.php?pg=event&amp;event=82429&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -20158,6 +20392,7 @@
       "webpage": "index.php?pg=event&amp;event=82430&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -20265,6 +20500,7 @@
       "webpage": "index.php?pg=event&amp;event=82983&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.happyherts.routegadget.co.uk/",
          "maps": []
@@ -20409,6 +20645,46 @@
       "rg": null
    },
    {
+      "id": "bof-activity34262",
+      "date": "2023-08-02T00:00:00.000Z",
+      "name": "Step Up #1",
+      "club": "SBOC",
+      "clubURL": "http://www.sboc.org.uk",
+      "area": "Oxwich Burrows",
+      "association": "WOA",
+      "nearestTown": "Swansea",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34262&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 51.559028,
+         "lng": -4.170341
+      },
+      "rg": {
+         "baseURL": "https://www.sboc.routegadget.co.uk/",
+         "maps": [
+            {
+               "id": 47,
+               "name": "Oxwich Burrows NL2",
+               "mapfile": "45.gif"
+            },
+            {
+               "id": 38,
+               "name": "Oxwich Burrows - SL5",
+               "mapfile": "38.gif"
+            },
+            {
+               "id": 22,
+               "name": "Oxwich Burrows - Local Event",
+               "mapfile": "22.gif"
+            }
+         ]
+      }
+   },
+   {
       "id": "bof-81097",
       "date": "2023-08-03T00:00:00.000Z",
       "name": "S6D Moray 2023 Day 4 (UKOL)",
@@ -20420,12 +20696,8 @@
       "type": "Foot",
       "discipline": "Unknown",
       "webpage": "index.php?pg=event&amp;event=81097&bpg=",
-      "locSource": "gridref",
-      "postcode": "",
-      "latLong": {
-         "lat": 49.76680881527482,
-         "lng": -7.557159802041799
-      },
+      "locSource": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -20464,12 +20736,8 @@
       "type": "Foot",
       "discipline": "Unknown",
       "webpage": "index.php?pg=event&amp;event=81098&bpg=",
-      "locSource": "gridref",
-      "postcode": "",
-      "latLong": {
-         "lat": 49.76680881527482,
-         "lng": -7.557159802041799
-      },
+      "locSource": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -20517,6 +20785,7 @@
       "webpage": "index.php?pg=event&amp;event=82982&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.happyherts.routegadget.co.uk/",
          "maps": []
@@ -21056,12 +21325,8 @@
       "type": "Foot",
       "discipline": "Unknown",
       "webpage": "index.php?pg=event&amp;event=82212&bpg=",
-      "locSource": "gridref",
-      "postcode": "",
-      "latLong": {
-         "lat": 49.76680881527482,
-         "lng": -7.557159802041799
-      },
+      "locSource": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.stag.routegadget.co.uk/",
          "maps": [
@@ -21088,6 +21353,7 @@
       "webpage": "index.php?pg=event&amp;event=83098&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.od.routegadget.co.uk/",
          "maps": []
@@ -21108,6 +21374,7 @@
       "webpage": "index.php?pg=event&amp;event=82981&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.happyherts.routegadget.co.uk/",
          "maps": []
@@ -21222,8 +21489,8 @@
       "locSource": "google",
       "postcode": "",
       "latLong": {
-         "lat": 55.953252,
-         "lng": -3.188267
+         "lat": 55.9508818,
+         "lng": -3.2057609
       },
       "rg": {
          "baseURL": "https://www.interlopers.routegadget.co.uk/",
@@ -21297,6 +21564,51 @@
       "rg": {
          "baseURL": "https://www.sboc.routegadget.co.uk/",
          "maps": []
+      }
+   },
+   {
+      "id": "bof-activity34263",
+      "date": "2023-08-16T00:00:00.000Z",
+      "name": "Step Up #2",
+      "club": "SBOC",
+      "clubURL": "http://www.sboc.org.uk",
+      "area": "Whiteford Burrows",
+      "association": "WOA",
+      "nearestTown": "Swansea",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34263&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 51.62144,
+         "lng": -3.943645999999999
+      },
+      "rg": {
+         "baseURL": "https://www.sboc.routegadget.co.uk/",
+         "maps": [
+            {
+               "id": 45,
+               "name": "Whiteford Burrows - SHI Relays",
+               "mapfile": "43.gif"
+            },
+            {
+               "id": 43,
+               "name": "Whiteford Burrows - Welsh League",
+               "mapfile": "43.gif"
+            },
+            {
+               "id": 29,
+               "name": "Whiteford Burrows - SL 10",
+               "mapfile": "28.gif"
+            },
+            {
+               "id": 16,
+               "name": "Welsh League (Whiteford Burrows)",
+               "mapfile": "14.gif"
+            }
+         ]
       }
    },
    {
@@ -21489,6 +21801,7 @@
       "webpage": "index.php?pg=event&amp;activity=33493&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.tay.routegadget.co.uk/",
          "maps": []
@@ -21745,6 +22058,7 @@
       "webpage": "index.php?pg=event&amp;event=82980&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.happyherts.routegadget.co.uk/",
          "maps": []
@@ -21850,18 +22164,18 @@
       "name": "Summer LOP No 5  Wallsend",
       "club": "NATO",
       "clubURL": "http://www.newcastleorienteering.org.uk",
-      "area": "",
+      "area": "Richardson Dees Park",
       "association": "NEOA",
       "nearestTown": "Wallsend",
       "grade": "Club",
       "type": "Foot",
       "discipline": "Unknown",
       "webpage": "index.php?pg=event&amp;event=82521&bpg=",
-      "locSource": "google",
-      "postcode": "",
+      "locSource": "gridref",
+      "postcode": "NE28 8DD",
       "latLong": {
-         "lat": 54.991512,
-         "lng": -1.529375
+         "lat": 54.99489567117113,
+         "lng": -1.5357498954990083
       },
       "rg": {
          "baseURL": "https://www.nato.routegadget.co.uk/",
@@ -22375,6 +22689,7 @@
       "webpage": "index.php?pg=event&amp;event=82979&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.happyherts.routegadget.co.uk/",
          "maps": []
@@ -22386,22 +22701,38 @@
       "name": "Summer LOP No 6  Whitley Bay Links",
       "club": "NATO",
       "clubURL": "http://www.newcastleorienteering.org.uk",
-      "area": "",
+      "area": "Whitley Bay Links",
       "association": "NEOA",
       "nearestTown": "Whitley Bay",
       "grade": "Club",
       "type": "Foot",
       "discipline": "Unknown",
       "webpage": "index.php?pg=event&amp;event=82522&bpg=",
-      "locSource": "google",
-      "postcode": "",
+      "locSource": "gridref",
+      "postcode": "NE26 1TD",
       "latLong": {
-         "lat": 55.046389,
-         "lng": -1.4512989
+         "lat": 55.052958666554964,
+         "lng": -1.4521175744752453
       },
       "rg": {
          "baseURL": "https://www.nato.routegadget.co.uk/",
-         "maps": []
+         "maps": [
+            {
+               "id": 154,
+               "name": "Druridge Bay",
+               "mapfile": "119.jpg"
+            },
+            {
+               "id": 106,
+               "name": "Druridge Bay",
+               "mapfile": "73.jpg"
+            },
+            {
+               "id": 98,
+               "name": "Druridge Bay YBT Final",
+               "mapfile": "67.jpg"
+            }
+         ]
       }
    },
    {
@@ -22437,6 +22768,30 @@
                "mapfile": "46.jpg"
             }
          ]
+      }
+   },
+   {
+      "id": "bof-activity34264",
+      "date": "2023-08-30T00:00:00.000Z",
+      "name": "Step Up #3",
+      "club": "SBOC",
+      "clubURL": "http://www.sboc.org.uk",
+      "area": "Nicholaston Burrows",
+      "association": "WOA",
+      "nearestTown": "Swansea",
+      "grade": "Local",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;activity=34264&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 51.5732244,
+         "lng": -4.1201814
+      },
+      "rg": {
+         "baseURL": "https://www.sboc.routegadget.co.uk/",
+         "maps": []
       }
    },
    {
@@ -22719,6 +23074,7 @@
       "webpage": "index.php?pg=event&amp;event=82830&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.quantock.routegadget.co.uk/",
          "maps": []
@@ -22737,12 +23093,8 @@
       "type": "Foot",
       "discipline": "Unknown",
       "webpage": "index.php?pg=event&amp;event=80960&bpg=",
-      "locSource": "gridref",
-      "postcode": "",
-      "latLong": {
-         "lat": 49.76680881527482,
-         "lng": -7.557159802041799
-      },
+      "locSource": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.suffoc.routegadget.co.uk/",
          "maps": [
@@ -22827,7 +23179,7 @@
    {
       "id": "bof-81697",
       "date": "2023-09-03T00:00:00.000Z",
-      "name": "EMUL 2023 Nottingham University Urban (TBC) ",
+      "name": "EMOA Urban League 2023 University of Nottingham",
       "club": "NOC",
       "clubURL": "http://www.noc-uk.org",
       "area": "Nottingham University",
@@ -23024,6 +23376,7 @@
       "webpage": "index.php?pg=event&amp;event=82978&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.happyherts.routegadget.co.uk/",
          "maps": []
@@ -23485,6 +23838,7 @@
       "webpage": "index.php?pg=event&amp;activity=33494&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.tay.routegadget.co.uk/",
          "maps": []
@@ -24150,12 +24504,12 @@
    {
       "id": "bof-82528",
       "date": "2023-09-16T00:00:00.000Z",
-      "name": "Autumn LOP No 1 Northumberlandia",
+      "name": "Autumn LOP No 1 ",
       "club": "NATO",
       "clubURL": "http://www.newcastleorienteering.org.uk",
       "area": "",
       "association": "NEOA",
-      "nearestTown": "Cramlington",
+      "nearestTown": "Tynemouth",
       "grade": "Club",
       "type": "Foot",
       "discipline": "Unknown",
@@ -24163,8 +24517,8 @@
       "locSource": "google",
       "postcode": "",
       "latLong": {
-         "lat": 55.086136,
-         "lng": -1.5808
+         "lat": 55.0175869,
+         "lng": -1.4255819
       },
       "rg": {
          "baseURL": "https://www.nato.routegadget.co.uk/",
@@ -24888,43 +25242,22 @@
       "name": "Junior Inter Regional Championships",
       "club": "SBOC",
       "clubURL": "http://www.sboc.org.uk",
-      "area": "Margam Country Park",
+      "area": "Llantrisant Forest",
       "association": "WOA",
       "nearestTown": "Port Talbot",
       "grade": "National",
       "type": "Foot",
       "discipline": "Unknown",
       "webpage": "index.php?pg=event&amp;event=78342&bpg=",
-      "locSource": "gridref",
-      "postcode": "SA13 2TJ",
+      "locSource": "google",
+      "postcode": "",
       "latLong": {
-         "lat": 51.56287792777471,
-         "lng": -3.725362034171503
+         "lat": 51.5429188,
+         "lng": -3.3749525
       },
       "rg": {
          "baseURL": "https://www.sboc.routegadget.co.uk/",
-         "maps": [
-            {
-               "id": 58,
-               "name": "CompassSport Cup &amp; Trophy Margam",
-               "mapfile": "58.gif"
-            },
-            {
-               "id": 57,
-               "name": "Welsh Champs Margam and Graig Fawr",
-               "mapfile": "56.gif"
-            },
-            {
-               "id": 13,
-               "name": "Croeso Day3 Margam Forest North",
-               "mapfile": "11.gif"
-            },
-            {
-               "id": 15,
-               "name": "Croeso Day5 Margam Country Park",
-               "mapfile": "13.gif"
-            }
-         ]
+         "maps": []
       }
    },
    {
@@ -25355,9 +25688,9 @@
       "name": "October Odyssey Day 1",
       "club": "NN",
       "clubURL": "http://www.northern-navigators.org.uk",
-      "area": "",
+      "area": "Brandon, Durham",
       "association": "NEOA",
-      "nearestTown": "North East",
+      "nearestTown": "Durham",
       "grade": "National",
       "type": "Foot",
       "discipline": "Unknown",
@@ -25365,8 +25698,8 @@
       "locSource": "google",
       "postcode": "",
       "latLong": {
-         "lat": 25.5736012,
-         "lng": 93.24725649999999
+         "lat": 54.7552713,
+         "lng": -1.6407615
       },
       "rg": {
          "baseURL": "https://www.nn.routegadget.co.uk/",
@@ -25657,6 +25990,7 @@
       "webpage": "index.php?pg=event&amp;activity=33495&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.tay.routegadget.co.uk/",
          "maps": []
@@ -25737,9 +26071,9 @@
       "name": "October Odyssey Day 2",
       "club": "NN",
       "clubURL": "http://www.northern-navigators.org.uk",
-      "area": "",
+      "area": "Doctor's Gate",
       "association": "NEOA",
-      "nearestTown": "North East",
+      "nearestTown": "Wolsingham ",
       "grade": "National",
       "type": "Foot",
       "discipline": "Unknown",
@@ -25747,12 +26081,18 @@
       "locSource": "google",
       "postcode": "",
       "latLong": {
-         "lat": 25.5736012,
-         "lng": 93.24725649999999
+         "lat": 54.73256,
+         "lng": -1.88394
       },
       "rg": {
          "baseURL": "https://www.nn.routegadget.co.uk/",
-         "maps": []
+         "maps": [
+            {
+               "id": 1,
+               "name": "Doctors Gate ",
+               "mapfile": "1.jpg"
+            }
+         ]
       }
    },
    {
@@ -25973,6 +26313,7 @@
       "webpage": "index.php?pg=event&amp;event=81148&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.gramp.routegadget.co.uk/",
          "maps": []
@@ -25991,12 +26332,8 @@
       "type": "Foot",
       "discipline": "Unknown",
       "webpage": "index.php?pg=event&amp;event=82295&bpg=",
-      "locSource": "gridref",
-      "postcode": "",
-      "latLong": {
-         "lat": 49.76680881527482,
-         "lng": -7.557159802041799
-      },
+      "locSource": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.pfo.routegadget.co.uk/",
          "maps": []
@@ -26042,8 +26379,8 @@
       "locSource": "google",
       "postcode": "",
       "latLong": {
-         "lat": 55.953252,
-         "lng": -3.188267
+         "lat": 55.9508818,
+         "lng": -3.2057609
       },
       "rg": {
          "baseURL": "https://www.interlopers.routegadget.co.uk/",
@@ -26109,6 +26446,7 @@
       "webpage": "index.php?pg=event&amp;event=81149&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.gramp.routegadget.co.uk/",
          "maps": []
@@ -26371,32 +26709,9 @@
       "webpage": "index.php?pg=event&amp;event=82826&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.quantock.routegadget.co.uk/",
-         "maps": []
-      }
-   },
-   {
-      "id": "bof-81578",
-      "date": "2023-10-11T00:00:00.000Z",
-      "name": "SBOC Winter League 1 - MapNav #1",
-      "club": "SBOC",
-      "clubURL": "http://www.sboc.org.uk",
-      "area": "",
-      "association": "WOA",
-      "nearestTown": "Pontardawe",
-      "grade": "Club",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;event=81578&bpg=",
-      "locSource": "google",
-      "postcode": "",
-      "latLong": {
-         "lat": 51.72043499999999,
-         "lng": -3.853214999999999
-      },
-      "rg": {
-         "baseURL": "https://www.sboc.routegadget.co.uk/",
          "maps": []
       }
    },
@@ -26415,6 +26730,7 @@
       "webpage": "index.php?pg=event&amp;event=82298&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.pfo.routegadget.co.uk/",
          "maps": []
@@ -26596,12 +26912,12 @@
    {
       "id": "bof-82529",
       "date": "2023-10-14T00:00:00.000Z",
-      "name": "Autumn LOP No 2 Tynemouth",
+      "name": "Autumn LOP No 2 ",
       "club": "NATO",
       "clubURL": "http://www.newcastleorienteering.org.uk",
       "area": "",
       "association": "NEOA",
-      "nearestTown": "Tynemouth",
+      "nearestTown": "West Allotment",
       "grade": "Club",
       "type": "Foot",
       "discipline": "Unknown",
@@ -26609,8 +26925,8 @@
       "locSource": "google",
       "postcode": "",
       "latLong": {
-         "lat": 55.0175869,
-         "lng": -1.4255819
+         "lat": 55.0303118,
+         "lng": -1.5144166
       },
       "rg": {
          "baseURL": "https://www.nato.routegadget.co.uk/",
@@ -26972,6 +27288,30 @@
                "mapfile": "23.jpg"
             }
          ]
+      }
+   },
+   {
+      "id": "bof-81578",
+      "date": "2023-10-18T00:00:00.000Z",
+      "name": "SBOC Winter League 1 - MapNav #1",
+      "club": "SBOC",
+      "clubURL": "http://www.sboc.org.uk",
+      "area": "",
+      "association": "WOA",
+      "nearestTown": "Pontardawe",
+      "grade": "Club",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;event=81578&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 51.72043499999999,
+         "lng": -3.853214999999999
+      },
+      "rg": {
+         "baseURL": "https://www.sboc.routegadget.co.uk/",
+         "maps": []
       }
    },
    {
@@ -27576,6 +27916,41 @@
       }
    },
    {
+      "id": "bof-82166",
+      "date": "2023-10-28T00:00:00.000Z",
+      "name": "NWO 4 Colour Event",
+      "club": "NWO",
+      "clubURL": "http://northwilts.org.uk",
+      "area": "Hens Wood",
+      "association": "SWOA",
+      "nearestTown": "Marlborough",
+      "grade": "Club",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;event=82166&bpg=",
+      "locSource": "gridref",
+      "postcode": "SN8 3HR",
+      "latLong": {
+         "lat": 51.41588785483261,
+         "lng": -1.6476478905437388
+      },
+      "rg": {
+         "baseURL": "https://www.nwo.routegadget.co.uk/",
+         "maps": [
+            {
+               "id": 32,
+               "name": "Hens Wood - 4 Colour",
+               "mapfile": "31.gif"
+            },
+            {
+               "id": 6,
+               "name": "Hens Wood 2013",
+               "mapfile": "8.jpg"
+            }
+         ]
+      }
+   },
+   {
       "id": "bof-82258",
       "date": "2023-10-28T00:00:00.000Z",
       "name": "Tulliallan local event, incorpprating JIA Relays",
@@ -27853,12 +28228,8 @@
       "type": "Foot",
       "discipline": "Unknown",
       "webpage": "index.php?pg=event&amp;event=83036&bpg=",
-      "locSource": "gridref",
-      "postcode": "",
-      "latLong": {
-         "lat": 49.76680881527482,
-         "lng": -7.557159802041799
-      },
+      "locSource": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.sroc.routegadget.co.uk/",
          "maps": [
@@ -28091,41 +28462,6 @@
       }
    },
    {
-      "id": "bof-82166",
-      "date": "2023-10-29T00:00:00.000Z",
-      "name": "NWO 4 Colour Event",
-      "club": "NWO",
-      "clubURL": "http://northwilts.org.uk",
-      "area": "Hens Wood",
-      "association": "SWOA",
-      "nearestTown": "Marlborough",
-      "grade": "Club",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;event=82166&bpg=",
-      "locSource": "gridref",
-      "postcode": "SN8 3HR",
-      "latLong": {
-         "lat": 51.41588785483261,
-         "lng": -1.6476478905437388
-      },
-      "rg": {
-         "baseURL": "https://www.nwo.routegadget.co.uk/",
-         "maps": [
-            {
-               "id": 32,
-               "name": "Hens Wood - 4 Colour",
-               "mapfile": "31.gif"
-            },
-            {
-               "id": 6,
-               "name": "Hens Wood 2013",
-               "mapfile": "8.jpg"
-            }
-         ]
-      }
-   },
-   {
       "id": "bof-82747",
       "date": "2023-10-29T00:00:00.000Z",
       "name": "GO Regional Event",
@@ -28220,6 +28556,7 @@
       "webpage": "index.php?pg=event&amp;event=80475&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.stag.routegadget.co.uk/",
          "maps": []
@@ -28361,8 +28698,8 @@
       "locSource": "google",
       "postcode": "",
       "latLong": {
-         "lat": 55.953252,
-         "lng": -3.188267
+         "lat": 55.9508818,
+         "lng": -3.2057609
       },
       "rg": {
          "baseURL": "https://www.interlopers.routegadget.co.uk/",
@@ -28384,6 +28721,7 @@
       "webpage": "index.php?pg=event&amp;event=83018&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.dee.routegadget.co.uk/",
          "maps": []
@@ -28404,6 +28742,7 @@
       "webpage": "index.php?pg=event&amp;event=80476&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.stag.routegadget.co.uk/",
          "maps": []
@@ -28702,6 +29041,7 @@
       "webpage": "index.php?pg=event&amp;event=82299&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.pfo.routegadget.co.uk/",
          "maps": []
@@ -29453,6 +29793,7 @@
       "webpage": "index.php?pg=event&amp;event=81139&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.saxons.routegadget.co.uk/",
          "maps": []
@@ -29496,17 +29837,14 @@
       "clubURL": "http://www.noc-uk.org",
       "area": "Watchwood and Calverton",
       "association": "EMOA",
-      "nearestTown": "Mansfield",
+      "nearestTown": "Arnold",
       "grade": "Regional",
       "type": "Foot",
       "discipline": "Unknown",
       "webpage": "index.php?pg=event&amp;event=81707&bpg=",
-      "locSource": "google",
+      "locSource": "",
       "postcode": "",
-      "latLong": {
-         "lat": 53.147195,
-         "lng": -1.198674
-      },
+      "latLong": null,
       "rg": {
          "baseURL": "http://www.noc-uk.org/gadget/",
          "maps": []
@@ -29566,6 +29904,7 @@
       "webpage": "index.php?pg=event&amp;event=82472&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -29697,31 +30036,31 @@
       "name": "North East Night Championships",
       "club": "NATO",
       "clubURL": "http://www.newcastleorienteering.org.uk",
-      "area": "Broomley",
+      "area": "Broomley Woods",
       "association": "NEOA",
       "nearestTown": "Hexham",
       "grade": "Regional",
       "type": "Foot",
       "discipline": "Unknown",
       "webpage": "index.php?pg=event&amp;event=81082&bpg=",
-      "locSource": "google",
-      "postcode": "",
+      "locSource": "gridref",
+      "postcode": "NE43 7QT",
       "latLong": {
-         "lat": 54.972665,
-         "lng": -2.1121439
+         "lat": 54.9391371774618,
+         "lng": -1.9141220322442607
       },
       "rg": {
          "baseURL": "https://www.nato.routegadget.co.uk/",
          "maps": [
             {
-               "id": 152,
-               "name": "Broomley Woods",
-               "mapfile": "117.gif"
-            },
-            {
                "id": 94,
                "name": "N.E.Nights (Broomley)",
                "mapfile": "59.jpg"
+            },
+            {
+               "id": 152,
+               "name": "Broomley Woods",
+               "mapfile": "117.gif"
             },
             {
                "id": 93,
@@ -30204,6 +30543,7 @@
       "webpage": "index.php?pg=event&amp;event=82827&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.quantock.routegadget.co.uk/",
          "maps": []
@@ -30212,12 +30552,12 @@
    {
       "id": "bof-82167",
       "date": "2023-12-02T00:00:00.000Z",
-      "name": "NWO WNL Event",
+      "name": "NWO 4 Colour Event",
       "club": "NWO",
       "clubURL": "http://northwilts.org.uk",
-      "area": "Pewsey Down",
+      "area": "TBC",
       "association": "SWOA",
-      "nearestTown": "Pewsey",
+      "nearestTown": "Faringdon",
       "grade": "Club",
       "type": "Foot",
       "discipline": "Unknown",
@@ -30230,13 +30570,7 @@
       },
       "rg": {
          "baseURL": "https://www.nwo.routegadget.co.uk/",
-         "maps": [
-            {
-               "id": 33,
-               "name": "Cherhill Down",
-               "mapfile": "26.jpg"
-            }
-         ]
+         "maps": []
       }
    },
    {
@@ -30461,6 +30795,11 @@
          "baseURL": "https://www.chig.routegadget.co.uk/",
          "maps": [
             {
+               "id": 55,
+               "name": "Epping SE regional and SWELL",
+               "mapfile": "82.jpg"
+            },
+            {
                "id": 54,
                "name": "Epping East Michael Brandon Mitre",
                "mapfile": "81.gif"
@@ -30548,6 +30887,7 @@
       "webpage": "index.php?pg=event&amp;event=80545&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.halo.routegadget.co.uk/",
          "maps": []
@@ -30658,36 +30998,6 @@
       }
    },
    {
-      "id": "bof-82168",
-      "date": "2023-12-03T00:00:00.000Z",
-      "name": "NWO 4 Colour Event",
-      "club": "NWO",
-      "clubURL": "http://northwilts.org.uk",
-      "area": "Pewsey Down",
-      "association": "SWOA",
-      "nearestTown": "Pewsey",
-      "grade": "Club",
-      "type": "Foot",
-      "discipline": "Unknown",
-      "webpage": "index.php?pg=event&amp;event=82168&bpg=",
-      "locSource": "gridref",
-      "postcode": "",
-      "latLong": {
-         "lat": 51.36955195863979,
-         "lng": -1.8404972549523022
-      },
-      "rg": {
-         "baseURL": "https://www.nwo.routegadget.co.uk/",
-         "maps": [
-            {
-               "id": 33,
-               "name": "Cherhill Down",
-               "mapfile": "26.jpg"
-            }
-         ]
-      }
-   },
-   {
       "id": "bof-82196",
       "date": "2023-12-03T00:00:00.000Z",
       "name": "Hurstwood North Regional",
@@ -30757,6 +31067,7 @@
       "webpage": "index.php?pg=event&amp;event=82825&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.wim.routegadget.co.uk/",
          "maps": []
@@ -31358,6 +31669,7 @@
       "webpage": "index.php?pg=event&amp;event=82300&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.pfo.routegadget.co.uk/",
          "maps": []
@@ -31637,12 +31949,12 @@
    {
       "id": "bof-81708",
       "date": "2023-12-17T00:00:00.000Z",
-      "name": "EMOA League 2023 Walesby  (TBC )",
+      "name": "EMOA League 2023 Strawberry Hill",
       "club": "NOC",
       "clubURL": "http://www.noc-uk.org",
-      "area": "Walesby Forest",
+      "area": "Strawberry Hill",
       "association": "EMOA",
-      "nearestTown": "Ollerton",
+      "nearestTown": "Mansfield",
       "grade": "Regional",
       "type": "Foot",
       "discipline": "Unknown",
@@ -31650,76 +31962,21 @@
       "locSource": "google",
       "postcode": "",
       "latLong": {
-         "lat": 53.2244864,
-         "lng": -0.9999169
+         "lat": 40.75839,
+         "lng": -82.5154471
       },
       "rg": {
          "baseURL": "http://www.noc-uk.org/gadget/",
          "maps": [
             {
-               "id": 209,
-               "name": "Walesby Score",
-               "mapfile": "172.gif"
+               "id": 194,
+               "name": "EMJOS Strawberry Hill",
+               "mapfile": "156.gif"
             },
             {
-               "id": 208,
-               "name": "Walesby",
-               "mapfile": "172.gif"
-            },
-            {
-               "id": 200,
-               "name": "Walesby EM League",
-               "mapfile": "164.gif"
-            },
-            {
-               "id": 173,
-               "name": "Walesby",
-               "mapfile": "131.gif"
-            },
-            {
-               "id": 130,
-               "name": "Walesby",
-               "mapfile": "104.jpg"
-            },
-            {
-               "id": 97,
-               "name": "Walesby",
-               "mapfile": "83.jpg"
-            },
-            {
-               "id": 69,
-               "name": "Walesby",
-               "mapfile": "58.jpg"
-            },
-            {
-               "id": 43,
-               "name": "Walesby Night",
-               "mapfile": "38.jpg"
-            },
-            {
-               "id": 42,
-               "name": "Walesby",
-               "mapfile": "38.jpg"
-            },
-            {
-               "id": 20,
-               "name": "Walesby",
-               "mapfile": "17.jpg"
-            },
-            {
-               "id": 12,
-               "name": "Walesby Score",
-               "mapfile": "9.jpg"
-            },
-            {
-               "id": 11,
-               "name": "Walesby Colour Coded",
-               "mapfile": "9.jpg"
-            },
-            {
-               "id": 5,
-               "name": "Walesby",
-               "mapfile": "3.jpg"
+               "id": 180,
+               "name": "Strawberry Hill",
+               "mapfile": "138.gif"
             }
          ]
       }
@@ -32301,6 +32558,7 @@
       "webpage": "index.php?pg=event&amp;event=82828&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.quantock.routegadget.co.uk/",
          "maps": []
@@ -33027,6 +33285,7 @@
       "webpage": "index.php?pg=event&amp;event=80549&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.halo.routegadget.co.uk/",
          "maps": []
@@ -33093,8 +33352,8 @@
       "locSource": "google",
       "postcode": "",
       "latLong": {
-         "lat": 51.41419819999999,
-         "lng": -0.752517
+         "lat": 51.3919463,
+         "lng": -0.7557407
       },
       "rg": {
          "baseURL": "https://www.bko.routegadget.co.uk/",
@@ -33559,6 +33818,7 @@
       "webpage": "index.php?pg=event&amp;event=82829&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.quantock.routegadget.co.uk/",
          "maps": []
@@ -33633,6 +33893,7 @@
       "webpage": "index.php?pg=event&amp;event=83028&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.dee.routegadget.co.uk/",
          "maps": []
@@ -34314,6 +34575,30 @@
       }
    },
    {
+      "id": "bof-83117",
+      "date": "2024-02-24T00:00:00.000Z",
+      "name": "NWO WNL Event",
+      "club": "NWO",
+      "clubURL": "http://northwilts.org.uk",
+      "area": "Shaw Forest Park",
+      "association": "SWOA",
+      "nearestTown": "Swindon",
+      "grade": "Club",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;event=83117&bpg=",
+      "locSource": "google",
+      "postcode": "",
+      "latLong": {
+         "lat": 51.5737961,
+         "lng": -1.8270472
+      },
+      "rg": {
+         "baseURL": "https://www.nwo.routegadget.co.uk/",
+         "maps": []
+      }
+   },
+   {
       "id": "bof-80877",
       "date": "2024-02-25T00:00:00.000Z",
       "name": "East Midlands Championships 2024",
@@ -34512,6 +34797,36 @@
                "id": 87,
                "name": "Loxley Middle Race",
                "mapfile": "86.jpg"
+            }
+         ]
+      }
+   },
+   {
+      "id": "bof-83114",
+      "date": "2024-02-25T00:00:00.000Z",
+      "name": "2024 Welsh League - Pembrey",
+      "club": "SBOC",
+      "clubURL": "http://www.sboc.org.uk",
+      "area": "Pembrey Forest",
+      "association": "WOA",
+      "nearestTown": "Llanelli",
+      "grade": "Regional",
+      "type": "Foot",
+      "discipline": "Unknown",
+      "webpage": "index.php?pg=event&amp;event=83114&bpg=",
+      "locSource": "gridref",
+      "postcode": "SA16 0EJ",
+      "latLong": {
+         "lat": 51.68159143672711,
+         "lng": -4.301270649108945
+      },
+      "rg": {
+         "baseURL": "https://www.sboc.routegadget.co.uk/",
+         "maps": [
+            {
+               "id": 18,
+               "name": "Pembrey National",
+               "mapfile": "16.gif"
             }
          ]
       }
@@ -35120,6 +35435,7 @@
       "webpage": "index.php?pg=event&amp;event=82319&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.halo.routegadget.co.uk/",
          "maps": []
@@ -35255,8 +35571,8 @@
       "locSource": "google",
       "postcode": "",
       "latLong": {
-         "lat": 54.478465,
-         "lng": -0.7130069
+         "lat": 54.486335,
+         "lng": -0.613347
       },
       "rg": null
    },
@@ -36401,6 +36717,7 @@
       "webpage": "index.php?pg=event&amp;event=82323&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.halo.routegadget.co.uk/",
          "maps": []
@@ -36480,6 +36797,7 @@
       "webpage": "index.php?pg=event&amp;event=82141&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.suffoc.routegadget.co.uk/",
          "maps": [
@@ -36511,6 +36829,7 @@
       "webpage": "index.php?pg=event&amp;event=82324&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.halo.routegadget.co.uk/",
          "maps": []
@@ -36866,6 +37185,7 @@
       "webpage": "index.php?pg=event&amp;event=82035&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -36912,6 +37232,7 @@
       "webpage": "index.php?pg=event&amp;event=80378&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -36972,6 +37293,7 @@
       "webpage": "index.php?pg=event&amp;event=82036&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -37122,6 +37444,7 @@
       "webpage": "index.php?pg=event&amp;event=80379&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -37670,6 +37993,7 @@
       "webpage": "index.php?pg=event&amp;event=80380&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -37990,6 +38314,7 @@
       "webpage": "index.php?pg=event&amp;event=80383&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.ngoc.routegadget.co.uk/",
          "maps": []
@@ -38231,6 +38556,7 @@
       "webpage": "index.php?pg=event&amp;event=80381&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -38358,6 +38684,7 @@
       "webpage": "index.php?pg=event&amp;event=82331&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.halo.routegadget.co.uk/",
          "maps": []
@@ -38401,6 +38728,7 @@
       "webpage": "index.php?pg=event&amp;event=80370&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -38895,6 +39223,7 @@
       "webpage": "index.php?pg=event&amp;event=82377&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.saxons.routegadget.co.uk/",
          "maps": []
@@ -39086,6 +39415,7 @@
       "webpage": "index.php?pg=event&amp;event=82339&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.halo.routegadget.co.uk/",
          "maps": []
@@ -39113,6 +39443,11 @@
       "rg": {
          "baseURL": "https://www.chig.routegadget.co.uk/",
          "maps": [
+            {
+               "id": 55,
+               "name": "Epping SE regional and SWELL",
+               "mapfile": "82.jpg"
+            },
             {
                "id": 54,
                "name": "Epping East Michael Brandon Mitre",
@@ -39416,6 +39751,7 @@
       "webpage": "index.php?pg=event&amp;event=81902&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -39477,6 +39813,7 @@
       "webpage": "index.php?pg=event&amp;event=81912&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -39494,6 +39831,7 @@
       "webpage": "index.php?pg=event&amp;event=82806&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.chig.routegadget.co.uk/",
          "maps": []
@@ -39588,6 +39926,7 @@
       "webpage": "index.php?pg=event&amp;event=81901&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": {
          "baseURL": "https://www.mvoc.routegadget.co.uk/",
          "maps": []
@@ -39607,6 +39946,7 @@
       "webpage": "index.php?pg=event&amp;event=82092&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -39623,6 +39963,7 @@
       "webpage": "index.php?pg=event&amp;event=82093&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -39907,6 +40248,7 @@
       "webpage": "index.php?pg=event&amp;event=81914&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -39943,6 +40285,7 @@
       "webpage": "index.php?pg=event&amp;event=81915&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -40103,6 +40446,7 @@
       "webpage": "index.php?pg=event&amp;event=81908&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -40167,6 +40511,7 @@
       "webpage": "index.php?pg=event&amp;event=81910&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -40183,6 +40528,7 @@
       "webpage": "index.php?pg=event&amp;event=81916&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -40249,6 +40595,7 @@
       "webpage": "index.php?pg=event&amp;event=81918&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -40265,6 +40612,7 @@
       "webpage": "index.php?pg=event&amp;event=81919&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {
@@ -40413,6 +40761,7 @@
       "webpage": "index.php?pg=event&amp;event=81917&bpg=",
       "locSource": "",
       "postcode": "",
+      "latLong": null,
       "rg": null
    },
    {

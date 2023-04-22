@@ -1,11 +1,9 @@
 import { expect } from 'chai';
-import { clubLocationFromFixtures } from '../fixtures/club_locations';
+import * as fs from 'fs';
 import 'mocha';
 import { Fixture } from 'model/fixture';
-import * as request from "request-promise";
-import { testFixtures,  } from './club_locsations_fixtures';
-import * as fs from 'fs';
-
+import { clubLocationFromFixtures } from '../fixtures/club_locations';
+import { testFixtures, } from './club_locations_fixtures.spec';
 
 function readAllFixtures(): Fixture[] {
    try {
@@ -23,9 +21,9 @@ describe( 'Club Locations', () => {
       const allFixtures = readAllFixtures();
       const clubLocations = clubLocationFromFixtures( allFixtures ); 
 
-     // console.log( JSON.stringify( clubLocations ) );
+      console.log( JSON.stringify( clubLocations ) );
 
-      expect( clubLocations.length ).to.equal( 49 );
+      expect( clubLocations.length ).to.equal( 50 );
  
    } ).timeout( 20000 ); 
 

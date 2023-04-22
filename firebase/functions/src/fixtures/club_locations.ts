@@ -29,7 +29,7 @@ const groupBy = <T, K extends keyof any>( list: T[], getKey: ( item: T ) => K ) 
 export function getClubLocations() {
 }
 
-const CLUB_LOCATIONS_FILNAME = "fixtures/clublocations";
+const CLUB_LOCATIONS_FILNAME = "fixtures/club_locations.json";
 
 async function loadClubLocations(): Promise<ClubLocationInternal[]> {
    let response: string;
@@ -64,10 +64,18 @@ export const determineClubLocatons = functions.region( 'europe-west1' ).https.on
    await saveToStorage( locations );
 } );
 
+const UK_BOUNDING_BOX = { latmin: 48.500, longmin: -13.683, latmax: 64.067, longmax: 3.858 };
+
+function fixInUK( fix: Fixture ): boolean {
+   const loc = fix.latLong;
+   return ( loc.lat > UK_BOUNDING_BOX.latmin && loc.lat < UK_BOUNDING_BOX.latmax &&
+      loc.lng > UK_BOUNDING_BOX.longmin && loc.lng < UK_BOUNDING_BOX.longmax );
+}
+
 /** Calculate the club's location from the average of current fixtures */
 export function clubLocationFromFixtures( fixtures: Fixture[] ): ClubLocation[] {
 
-   const fixturesWithAccurateLocation = fixtures.filter( fix => fix.club !== "" &&(fix.locSource === 'gridref' || fix.locSource === 'postcode') );
+   const fixturesWithAccurateLocation = fixtures.filter( fix => fix.club !== "" && ( fix.locSource === 'gridref' || fix.locSource === 'postcode' || fix.locSource === 'google' ) && fixInUK( fix ) );
 
    const groupedByClub = groupBy( fixturesWithAccurateLocation, fix => fix.club );
 
@@ -93,7 +101,7 @@ export function clubLocationFromFixtures( fixtures: Fixture[] ): ClubLocation[] 
 async function saveToStorage( clubLocations: ClubLocation[] ): Promise<void> {
    const filename = "fixtures/clublocations";
 
-     const storage = admin.storage(); 
+   const storage = admin.storage();
 
    try {
       const file = storage.bucket().file( CLUB_LOCATIONS_FILNAME );
@@ -117,19 +125,19 @@ async function saveToStorage( clubLocations: ClubLocation[] ): Promise<void> {
 }
 
 /** Read fixtures JSON file from Google Storage */
- async function readFixtures( ): Promise < Fixture[] > {
+async function readFixtures(): Promise<Fixture[]> {
    const filename = "fixtures/uk";
 
-    const storage = admin.storage(); 
+   const storage = admin.storage();
 
-   try { 
+   try {
       const file = storage.bucket().file( filename );
-   
-      const buffer = (await file.download());
-      
-      return JSON.parse( buffer.toString()) ;
 
-   } catch( e ) {
+      const buffer = ( await file.download() );
+
+      return JSON.parse( buffer.toString() );
+
+   } catch ( e ) {
       console.error( "Fixtures: Error read fixtures from clould storage: " + e );
       throw e;
    }
