@@ -1,13 +1,16 @@
 /*  Uses Googe geoocation API to convert ;pcations to
 */
 import { Client, Status } from "@googlemaps/google-maps-services-js";
+import { getDistanceFromLatLngInKm } from "./geo_conversion";
 
 interface LatLong {
    lat: number;
    lng: number;
 }
 
-const googleLocationService = new Client( {} );
+export const googleLocationService = new Client( {} );
+
+const MIN_FROM_TRAGET_KM = 80;
 
 function makeAddress( area: string, town: string ): string {
 
@@ -28,8 +31,10 @@ function makeAddress( area: string, town: string ): string {
    }
 }
 
-/** Get the geographic location of a place using Google Geoloation service  */
-export async function convertPlace( area: string, town: string, club: string ): Promise<LatLong | null> {
+/** Get the geographic location of a place using Google Geoloation service.
+ *  If a target location is specified, only locations within MIN_FROM_TRAGET are returned
+ */
+export async function googleLocationSearch( area: string | null, town: string | null, targetLocation: LatLong | null ): Promise<LatLong | null> {
 
    let ret: LatLong;
 
@@ -48,12 +53,17 @@ export async function convertPlace( area: string, town: string, club: string ): 
          } );
 
          if ( response.data.status === Status.OK ) {
-            ret = response.data.results[0].geometry.location;
+            if ( targetLocation ) {
+               const locations = response.data.results.map( res => res.geometry.location );
+               ret = locations.find( loc => getDistanceFromLatLngInKm( loc, targetLocation ) < MIN_FROM_TRAGET_KM );
+            } else {
+               ret = response.data.results[0].geometry.location;
+            }
+
          } else if ( response.data.status === Status.ZERO_RESULTS || response.data.status === Status.NOT_FOUND ) {
-       //     console.log(
-        //       `GeoConversion:  Address not found: ${address}  Status: ${response.data.status}  Message: ${response.data.error_message} ` );
-            
-        ret = null;
+            //     console.log(
+            //       `GeoConversion:  Address not found: ${address}  Status: ${response.data.status}  Message: ${response.data.error_message} ` );
+            ret = null;
          } else {
             console.log(
                `GeoConversion: - Error in Geoconversion  Address: ${address}  Status: ${response.data.status}  Message: ${response.data.error_message} ` );
@@ -65,7 +75,7 @@ export async function convertPlace( area: string, town: string, club: string ): 
          ret = null;
       }
    } else {
- //     console.log( `GeoConversion: No address specified.  Area: ${area}   Town:  ${town}` );
+      //     console.log( `GeoConversion: No address specified.  Area: ${area}   Town:  ${town}` );
       ret = null;
    }
 

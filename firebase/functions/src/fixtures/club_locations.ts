@@ -1,10 +1,8 @@
-import * as request from "request-promise";
 import * as functions from "firebase-functions";
-
-import { Fixture, LatLong } from "model/fixture";
 import * as admin from "firebase-admin";
 import { getStorage } from 'firebase-admin/storage';
-
+import { LatLong } from "../model/latlng";
+import { Fixture } from "../model/fixture"; 
 
 export interface ClubLocation {
    shortName: string;
@@ -33,19 +31,6 @@ export async function loadClubLocations(): Promise<ClubLocation[]> {
       throw e;
    }
    return JSON.parse( response as string );
-}
-
-export function getDistanceFromLatLngInKm( pos1: LatLong, pos2: LatLong ): number {
-   const R = 6371; // Radius of the earth in km
-   const dLat = this._deg2rad( pos2.lat - pos1.lat );
-   const dLon = this._deg2rad( pos2.lng - pos1.lng );
-   const a =
-      Math.sin( dLat / 2 ) * Math.sin( dLat / 2 ) +
-      Math.cos( this._deg2rad( pos1.lat ) ) * Math.cos( this._deg2rad( pos2.lat ) ) *
-      Math.sin( dLon / 2 ) * Math.sin( dLon / 2 );
-   const c = 2 * Math.atan2( Math.sqrt( a ), Math.sqrt( 1 - a ) );
-   const d = R * c; // Distance in km
-   return d;
 }
 
 

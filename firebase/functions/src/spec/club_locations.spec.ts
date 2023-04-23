@@ -21,7 +21,7 @@ describe( 'Club Locations', () => {
       const allFixtures = readAllFixtures();
       const clubLocations = clubLocationFromFixtures( allFixtures ); 
 
-      console.log( JSON.stringify( clubLocations ) );
+      // console.log( JSON.stringify( clubLocations ) );
 
       expect( clubLocations.length ).to.equal( 88 );
  

@@ -43,6 +43,8 @@
 // tslint:disable:class-name
 // tslint:disable: no-use-before-declare
 
+import { LatLong } from "model/latlng"; 
+
 type GT_status = string;
 
 export class GT_OSGB {
@@ -895,4 +897,20 @@ class GT_Math {
 
       return I + ( Math.pow( p, 2 ) * II ) + ( Math.pow( p, 4 ) * III ) + ( Math.pow( p, 6 ) * IIIA );
    }
+}
+
+export function getDistanceFromLatLngInKm( pos1: LatLong, pos2: LatLong ): number {
+   const R = 6371; // Radius of the earth in km
+   const deg2rad = 3.1425/180;
+
+   const dLat = ( pos2.lat - pos1.lat ) * deg2rad;
+   const dLon = ( pos2.lng - pos1.lng ) * deg2rad;
+   
+   const a =
+      Math.sin( dLat / 2 ) * Math.sin( dLat / 2 ) +
+      Math.cos( ( pos1.lat ) * deg2rad ) * Math.cos( ( pos2.lat ) * deg2rad ) *
+      Math.sin( dLon / 2 ) * Math.sin( dLon / 2 );
+   const c = 2 * Math.atan2( Math.sqrt( a ), Math.sqrt( 1 - a ) );
+   const d = R * c; // Distance in km
+   return d;
 }

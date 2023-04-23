@@ -1,10 +1,6 @@
 import { ISODateString } from './date';
 import { EventGrade, EventType, EventDiscipline } from './oevent';
-
-export interface LatLong {
-   lat: number;
-   lng: number;
-}
+import { LatLong } from './latlng';
 
 export interface Point {
    east:number;

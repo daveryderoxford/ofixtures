@@ -1,10 +1,11 @@
 import * as request from "request-promise";
-import { Fixture, LatLong } from "../model/fixture";
+import { Fixture,  } from "../model/fixture";
+import { LatLong } from "../model/latlng";
 import { EventGrade } from "../model/oevent";
 import { BOFPDParseData, BOFPDParser } from "./bof_pda_parse";
 import { GT_OSGB } from "./geo_conversion";
 import { LatLong as LatLongPIO, PostCodeLookup } from "./postcode";
-import { convertPlace } from "./place_location";
+import { googleLocationSearch } from "./google_search";
 import * as admin from "firebase-admin";
 import { Routegadget } from "./routegadget";
 import { ClubLocation, loadClubLocations } from "./club_locations";
@@ -135,8 +136,8 @@ export class Fixtures {
             fixtuersToCalc.push( fix );
             fix.locSource = 'postcode';
          } else if ( bof.area || bof.nearestTown ) {
-            fix.latLong = await convertPlace( bof.area, bof.nearestTown, bof.club );
-            fix.locSource = 'google';
+            fix.latLong = await googleLocationSearch( bof.area, bof.nearestTown, this.latLngForClub(bof.club) );
+            fix.locSource = fix.latLong ? 'google' : '';
          }
       }
 
