@@ -3,17 +3,12 @@ import * as functions from "firebase-functions";
 
 import { Fixture, LatLong } from "model/fixture";
 import * as admin from "firebase-admin";
+import { getStorage } from 'firebase-admin/storage';
+
 
 export interface ClubLocation {
    shortName: string;
    latLng: { lat: number; lng: number }
-}
-
-interface ClubLocationInternal extends ClubLocation {
-   shortName: string;
-   latLng: { lat: number; lng: number }
-   latestBOFID: string;
-   latestBOFActivityId: string;
 }
 
 const groupBy = <T, K extends keyof any>( list: T[], getKey: ( item: T ) => K ) =>
@@ -25,21 +20,19 @@ const groupBy = <T, K extends keyof any>( list: T[], getKey: ( item: T ) => K ) 
    }, {} as Record<K, T[]> );
 
 
-
-export function getClubLocations() {
-}
-
 const CLUB_LOCATIONS_FILNAME = "fixtures/club_locations.json";
 
-async function loadClubLocations(): Promise<ClubLocationInternal[]> {
-   let response: string;
+export async function loadClubLocations(): Promise<ClubLocation[]> {
+   let response: any;
    try {
-      response = await request( this.BOFPDAURL, { method: "get" } );
+      const file = getStorage().bucket().file( CLUB_LOCATIONS_FILNAME );
+      response = await file.download();
+
    } catch ( e ) {
-      console.error( "Club Locations: Error making HTTP request: " + e );
+      console.error( "Club Locations: Error reading club locations: " + e );
       throw e;
    }
-   return JSON.parse( response );
+   return JSON.parse( response as string );
 }
 
 export function getDistanceFromLatLngInKm( pos1: LatLong, pos2: LatLong ): number {
@@ -56,7 +49,7 @@ export function getDistanceFromLatLngInKm( pos1: LatLong, pos2: LatLong ): numbe
 }
 
 
-// =============== Club Location calculation ==================
+// ========================== Club Location calculation =========================
 
 export const determineClubLocatons = functions.region( 'europe-west1' ).https.onRequest( async ( req, res ) => {
    const fixtures = await readFixtures();

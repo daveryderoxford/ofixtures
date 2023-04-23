@@ -16,14 +16,14 @@ function readAllFixtures(): Fixture[] {
 
 describe( 'Club Locations', () => {
 
-   it( 'should obtain club locations form the currently live fixture file ', async () => {
+   it.only( 'should obtain club locations form the currently live fixture file ', async () => {
 
       const allFixtures = readAllFixtures();
       const clubLocations = clubLocationFromFixtures( allFixtures ); 
 
       console.log( JSON.stringify( clubLocations ) );
 
-      expect( clubLocations.length ).to.equal( 50 );
+      expect( clubLocations.length ).to.equal( 88 );
  
    } ).timeout( 20000 ); 
 

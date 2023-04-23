@@ -7,12 +7,15 @@ import { LatLong as LatLongPIO, PostCodeLookup } from "./postcode";
 import { convertPlace } from "./place_location";
 import * as admin from "firebase-admin";
 import { Routegadget } from "./routegadget";
+import { ClubLocation, loadClubLocations } from "./club_locations";
 
 export class Fixtures {
    readonly BOFPDAURL =
       "https://www.britishorienteering.org.uk/event_diary_pda.php";
 
    lookup = new PostCodeLookup();
+
+   clubs: ClubLocation[];
 
    constructor ( private storage: admin.storage.Storage ) { }
 
@@ -23,6 +26,9 @@ export class Fixtures {
 
       console.log( "Loading BOF PDA Data" );
       const text = await this.loadBOFPDA();
+
+      console.log( "Loading Club locations" );
+      this.clubs = await this.loadClubLocations();
 
       console.log( "Parsing BOF PDA Data" );
       const parser = new BOFPDParser();
@@ -39,6 +45,10 @@ export class Fixtures {
 
       console.log( "Done" );
 
+   }
+
+   private async loadClubLocations(): Promise<ClubLocation[]> {
+      return await loadClubLocations()
    }
 
    /** Make fixtures array for BOF fixturesd. */
@@ -144,9 +154,9 @@ export class Fixtures {
   
    }
 
-   private latLngForClub( club: string ): LatLong | null {
-      // TODO add implementation
-      return null
+   private latLngForClub( clubname: string ): LatLong | null {
+      const club = this.clubs.find( c => c.shortName === clubname );
+      return club?.latLng;
    }
 
    private osgbToLatLong( gridRefStr: string ): LatLong {

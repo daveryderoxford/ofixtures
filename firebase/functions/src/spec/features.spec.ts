@@ -1,10 +1,10 @@
 import { expect, spy, use } from 'chai';
-// import { spies } from 'chai-spies';
 import 'mocha';
 import { Fixture } from "model/fixture";
 import { Fixtures } from '../fixtures/fixtures';
-import { smalltestBOFPDAFile } from './BOFPDATestData.spec';
+import { smalltestBOFPDAFile, clubLocationBOFFixtures } from './BOFPDATestData.spec';
 import * as admin from "firebase-admin";
+import { loadClubLocations } from 'fixtures/club_locations';
 
 const spies = require( 'chai-spies' );
 
@@ -65,17 +65,27 @@ const expectedFixtures: Fixture[] = [
    }
 ];
 
+const clubs = [
+   { "shortName": "BADO", "latLng": { "lat": 51.22570518260315, "lng": -1.3354823410909458 } },
+   { "shortName": "SROC", "latLng": { "lat": 51.84408218066901, "lng": -3.0639699524053547 } },
+   { "shortName": "WIGHTO", "latLng": { "lat": 49.76680881527482, "lng": -7.557159802041799 } }
+];
+
+const firebaseConfig = {projectId:"ofixtures-2a7d5",storageBucket:"ofixtures-2a7d5.appspot.com",locationId:"europe-west2"};
+
 describe( 'Fxtures', () => {
 
    use( spies );
 
-   it( 'should should process known BOF data correctly', async () => {
+   it( 'should process BOF fixture HTML with gridref/postcode locations ', async () => {
 
-      admin.initializeApp( { "projectId": "ofixtures-2a7d5" } );
+      admin.initializeApp( firebaseConfig );
 
       const fixtures = new Fixtures( admin.storage() );
 
-      const spyLoadBOF = spy.on( fixtures, 'loadBOFPDA', returns => Promise.resolve( smalltestBOFPDAFile ) );
+      const spyLoadBOF = spy.on( fixtures, 'loadBOFPDA', () => Promise.resolve( smalltestBOFPDAFile ) );
+
+      const spyClubs = spy.on( fixtures, 'loadClubLocations', () => Promise.resolve( clubs ) );
 
       const spySave = spy.on( fixtures, 'saveToStorage', ( fix: Fixture[] ) => {
          expect( fix ).to.deep.equal( expectedFixtures );
@@ -96,5 +106,31 @@ describe( 'Fxtures', () => {
    } ).timeout( 20000 );
 
 } );
+
+it( 'should should use club location lat long not avalaible from gridref/postcaode/google', async () => {
+
+   admin.initializeApp( firebaseConfig );
+
+   const fixtures = new Fixtures( admin.storage() );
+
+   const spyLoadBOF = spy.on( fixtures, 'loadBOFPDA', returns => Promise.resolve( clubLocationBOFFixtures ) );
+   const spyClubs = spy.on( fixtures, 'loadClubLocations', () => Promise.resolve( clubs ) );
+   const spyRG = spy.on( fixtures, 'addRoutegadgetMaps', ( fix: Fixture[] ) => Promise.resolve() );
+
+
+   const spySave = spy.on( fixtures, 'saveToStorage', ( fix: Fixture[] ) => {
+      // SWOC found
+      expect( fix[0].latLong ).to.deep.equal( clubs[1].latLng );
+      expect( fix[0].locSource ).to.equal( 'club' );
+
+      // No club found
+      expect( fix[1].latLong ).to.be.undefined;
+      expect( fix[1].locSource ).to.equal( '' );
+      return Promise.resolve();
+   } );
+
+   await fixtures.processFixtures();
+
+} ).timeout( 20000 );
 
 

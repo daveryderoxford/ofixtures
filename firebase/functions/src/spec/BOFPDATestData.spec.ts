@@ -59,7 +59,9 @@ export const smalltestBOFPDAFile = `
 <label for="evt_level_5" class="optlabel">International</label>
 </div></div>
 <div class="filter-buttons"><input class="btn btn-success" type="submit" name="bFilter" value="Filter" style="margin-left: 10px;" />
-<input class="btn btn-success" type="submit" name="bClear" value="Clear" /></div></form></div><div class="table-container listing"><table class="table standard standard smalltabletext"><tr><th style="width: 110px">Date</th><th>Event Name</th><th style="width: 65px">Level</th><th>Club</th><th>Ass.</th><th>Venue</th><th>Nearest Town<th>Grid Ref.</th></tr><tr style="background-color: #FFF"><td>Sun 24/03/19</td>
+<input class="btn btn-success" type="submit" name="bClear" value="Clear" /></div></form></div><div class="table-container listing">
+<table class="table standard standard smalltabletext"><tr><th style="width: 110px">Date</th><th>Event Name</th><th style="width: 65px">Level</th><th>Club</th><th>Ass.</th><th>Venue</th><th>Nearest Town<th>Grid Ref.</th></tr><tr style="background-color: #FFF">
+            <td>Sun 24/03/19</td>
 				<td><a href="index.php?pg=event&amp;amp;event=72446&amp;bpg=">SROC Red Rose Classic</a></td>
 				<td>National</td>
 				<td><a href="http://www.sroc.org" target="_blank">SROC</a></td>
@@ -82,6 +84,37 @@ export const smalltestBOFPDAFile = `
 				<td>Taunton</td>
 				<td><a href="http://www.streetmap.co.uk/newsearch.srf?name=TA1 2RH&amp;z=126"></a></td></tr></table></div>	</body>
 </html>
+`;
+
+/** Club location test - only contains parsed table and not full BOF data */
+export const clubLocationBOFFixtures = `
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<table>
+<tr>
+    <th>Date</th>  <th>Event Name</th>  <th>Level</th>  <th>Club</th>  <th>Ass.</th>  <th>Venue</th>  <th>Nearest Town</th>  <th>Grid Ref.</th>
+</tr>
+<tr>
+            <td>Sun 24/03/19</td>
+            <td><a href="index.php?pg=event&amp;amp;event=72446&amp;bpg=">Location from club</a></td>
+				<td>National</td>
+				<td><a href="http://www.sroc.org" target="_blank">SROC</a></td>
+				<td>NWOA</td>
+				<td></td>
+				<td>XXXXXXXXXXXX</td>
+				<td></td>
+</tr>
+<tr>
+            <td>Thu 28/03/19</td>
+            <td><a href="index.php?pg=event&amp;amp;event=72446&amp;bpg=">No location found for club</a></td>
+				<td>National</td>
+				<td><a href="http://www.sroc.org" target="_blank">CLUB_NAME_NOT_FOUND</a></td>
+				<td>NWOA</td>
+				<td></td>
+				<td>XXXXXXXXXXXX</td>
+				<td></td>
+</tr>
+</table>
 `;
 
 /** Example of full  BOF PDA fixtures data file (as per https://www.britishorienteering.org.uk/event_diary_pda.php) */
