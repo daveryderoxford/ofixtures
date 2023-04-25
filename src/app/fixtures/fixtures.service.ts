@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AngularFireStorage } from "@angular/fire/compat/storage";
+import { Storage, ref } from "@angular/fire/storage";
+import { getDownloadURL } from 'rxfire/storage';
 import { UserData } from 'app/model';
 import { Fixture, LatLong } from 'app/model/fixture';
 import { FixtureFilter, GradeFilter } from 'app/model/fixture-filter';
@@ -29,7 +29,7 @@ export class FixturesService {
    private _homeLocation$: BehaviorSubject<LatLong>;
    private _filter$: BehaviorSubject<FixtureFilter>; 
 
-   private _fileContents$: Observable<Fixture[]> = this.storage.ref( "fixtures/uk" ).getDownloadURL().pipe(
+   private _fileContents$: Observable<Fixture[]> = getDownloadURL( ref(this.storage, "fixtures/uk" )).pipe(
       switchMap( url => this.http.get<Fixture[]>( url ) ),
       map( fixtures => this._futureFixtures( fixtures ) ),
       startWith( [] ),
@@ -41,8 +41,7 @@ export class FixturesService {
 
    constructor (
       protected usd: UserDataService,
-      protected storage: AngularFireStorage,
-      protected fs: AngularFirestore,
+      protected storage: Storage,
       protected http: HttpClient ) {
 
       const grades = getFromLocalStorage( 'grades') as GradeFilter[];

@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from "@angular/router";
@@ -26,7 +25,6 @@ export class AppComponent implements OnInit {
    handset = false;
 
    constructor ( private router: Router,
-      private afs: AngularFirestore,
       private afAuth: AngularFireAuth,
       private sidebarService: SidenavService,
       private snackbar: MatSnackBar,
@@ -39,8 +37,6 @@ export class AppComponent implements OnInit {
          this.reportAnalytics( event );
          this.setLoading( event );
       } );
-
-      this.configureFirebase();
 
    }
 
@@ -100,10 +96,6 @@ export class AppComponent implements OnInit {
          ( <any> window ).ga( 'set', 'page', event.urlAfterRedirects );
          ( <any> window ).ga( 'send', 'pageview' );
       }
-   }
-
-   private configureFirebase() {
-      this.afs.firestore.settings( {} );
    }
 
    async closeSidenav( target: Array<any>) {

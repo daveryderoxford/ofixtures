@@ -1,8 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
-import { AngularFirestore, AngularFirestoreDocument } from "@angular/fire/compat/firestore";
+import { DocumentReference, Firestore, arrayRemove, arrayUnion, doc, docData, updateDoc } from "@angular/fire/firestore";
 import { UserData, UserInfo } from "app/model";
-import firebase from "firebase/compat/app";
 import { Observable, of } from 'rxjs';
 import { shareReplay, startWith, switchMap } from 'rxjs/operators';
 
@@ -18,19 +17,19 @@ export class UserDataService {
 
   constructor (
     private afAuth: AngularFireAuth,
-    private afs: AngularFirestore,
+    private fs: Firestore,
   ) {
 
     this.user$ = this.afAuth.authState.pipe(
       startWith( null ),
-      switchMap( ( user: firebase.User ) => {
+      switchMap( ( user: any ) => {
         console.log()
         if ( !user ) {
           console.log( "UserData: Firebase user null.  Stop monitoring user date  " );
           return of( null );
         } else {
           console.log( `UserData: monitoring uid: ${user.uid}` );
-          return this._doc( user.uid ).valueChanges();
+          return docData( this._doc( user.uid ))
         }
       } ),
       shareReplay(1)
@@ -58,31 +57,30 @@ export class UserDataService {
 
   /** Update the user info.  Returning the modified user details */
   async updateDetails( details: Partial<UserInfo> ): Promise<void> {
-    return this._getUserDoc().update( details )
+    return updateDoc( this._getUserDoc(), details )
   }
 
-  private _doc( uid: string ) {
-    return this.afs.doc<UserData>( "users/" + uid );
+  private _doc( uid: string ): DocumentReference<UserData> { 
+    return doc( this.fs, "users/" + uid ) as DocumentReference<UserData>
   }
 
   /** Get the database documents associated with the user
    * The user must be logged in to use this function.
    */
-  private _getUserDoc(): AngularFirestoreDocument<UserData> {
-    const userDoc = this.afs.doc<UserData>( "users/" + this.uid );
-    return userDoc;
+  private _getUserDoc(): DocumentReference<UserData>  {
+    return this._doc( this.uid );
   }
 
   /** Reserve a map for the user */
   async addFixtureReminder( eventId: string ): Promise<void> {
-    await this._getUserDoc().update( {
-      reminders: firebase.firestore.FieldValue.arrayUnion( eventId ) as any
+    await updateDoc( this._getUserDoc(), {
+      reminders: arrayUnion( eventId ) as any
     } );
   }
 
   async removeFixtureReminder( eventId: string ): Promise<void> {
-    await this._getUserDoc().update( {
-      reminders: firebase.firestore.FieldValue.arrayRemove( eventId ) as any
+    await updateDoc( this._getUserDoc(), {
+      reminders: arrayRemove( eventId ) as any
     } );
   }
 }

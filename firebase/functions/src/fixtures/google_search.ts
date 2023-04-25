@@ -2,11 +2,7 @@
 */
 import { Client, Status } from "@googlemaps/google-maps-services-js";
 import { getDistanceFromLatLngInKm } from "./geo_conversion";
-
-interface LatLong {
-   lat: number;
-   lng: number;
-}
+import { LatLong } from "model/latlng";
 
 export const googleLocationService = new Client( {} );
 

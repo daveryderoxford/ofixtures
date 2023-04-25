@@ -36,6 +36,9 @@ export async function loadClubLocations(): Promise<ClubLocation[]> {
 
 // ========================== Club Location calculation =========================
 
+/** Determine the location for a club based on the mean location for all current fixtures for the club
+ * The event location is constained ot the in the UK and based on grid ref/postcode/google area search
+ */
 export const determineClubLocatons = functions.region( 'europe-west1' ).https.onRequest( async ( req, res ) => {
    const fixtures = await readFixtures();
    const locations = clubLocationFromFixtures( fixtures );

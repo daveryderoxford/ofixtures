@@ -1,8 +1,9 @@
 import { HttpClientModule } from "@angular/common/http";
 import { ErrorHandler, NgModule } from "@angular/core";
-import { AngularFireModule } from "@angular/fire/compat";
-import { AngularFirestoreModule } from "@angular/fire/compat/firestore";
-import { AngularFireStorageModule } from "@angular/fire/compat/storage";
+import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { enableIndexedDbPersistence, getFirestore, provideFirestore } from "@angular/fire/firestore";
+import { getStorage, provideStorage } from "@angular/fire/storage";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -25,14 +26,22 @@ import { SharedModule } from "./shared/shared.module";
     ReactiveFormsModule,
     ServiceWorkerModule.register( '/ngsw-worker.js', { enabled: environment.production } ),
     AppRoutingModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+  /*   AngularFireModule.initializeApp( firebaseConfig ),
     AngularFirestoreModule,
-    AngularFireStorageModule,
+    AngularFireStorageModule, */
+    provideFirebaseApp( () => initializeApp( firebaseConfig ) ), 
+    provideFirestore( () => {
+      const firestore = getFirestore();
+      enableIndexedDbPersistence( firestore );
+      return firestore;
+    } ),
+    provideStorage( () => getStorage() ), 
     SharedModule,
     HttpClientModule,
     FixturesModule,
   ],
   bootstrap: [AppComponent],
-  providers: [{ provide: ErrorHandler, useClass: GlobalErrorHandler }]
+  providers: [{ provide: ErrorHandler, useClass: GlobalErrorHandler },
+    { provide: FIREBASE_OPTIONS, useValue: firebaseConfig }]
 })
 export class AppModule { }

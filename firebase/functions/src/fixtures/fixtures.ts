@@ -18,12 +18,14 @@ export class Fixtures {
 
    clubs: ClubLocation[];
 
+   version = "1.0.4";
+
    constructor ( private storage: admin.storage.Storage ) { }
 
    /** Read BOF PDA data from URL and parse it. */
    public async processFixtures() {
 
-      console.log( "Fixtures version 1.0.3" )
+      console.log( "Fixtures version " + this.version )
 
       console.log( "Loading BOF PDA Data" );
       const text = await this.loadBOFPDA();
