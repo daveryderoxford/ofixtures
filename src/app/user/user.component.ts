@@ -1,12 +1,11 @@
 
 import { Component, OnInit } from "@angular/core";
-import { AngularFireAuth } from "@angular/fire/compat/auth";
+import { Auth, User, authState } from "@angular/fire/auth";
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FixturesService } from "app/fixtures/fixtures.service";
 import { ControlCardTypes, UserData } from "app/model";
-import firebase from "firebase/compat/app";
 import { Subscription } from 'rxjs';
 import { UserDataService } from "./user-data.service";
 
@@ -31,7 +30,7 @@ export class UserComponent implements OnInit {
 
   constructor (
     private formBuilder: UntypedFormBuilder,
-    private afAuth: AngularFireAuth,
+    private afAuth: Auth,
     private router: Router,
     private usd: UserDataService,
     private fs: FixturesService,
@@ -48,7 +47,7 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.afAuth.authState
+    authState(this.afAuth)
       .pipe( untilDestroyed( this ) )
       .subscribe( loggedIn => this.loginChanged( loggedIn ) );
 
@@ -61,7 +60,7 @@ export class UserComponent implements OnInit {
     return this.userForm.controls['ecards'] as UntypedFormArray;
   }
 
-  loginChanged( loggedIn: firebase.User ) {
+  loginChanged( loggedIn: User ) {
     if ( !loggedIn ) {
       this.router.navigate( ["/"] );
     }

@@ -1,7 +1,6 @@
 import { HttpClientModule } from "@angular/common/http";
 import { ErrorHandler, NgModule } from "@angular/core";
 import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
-import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { enableIndexedDbPersistence, getFirestore, provideFirestore } from "@angular/fire/firestore";
 import { getStorage, provideStorage } from "@angular/fire/storage";
 import { ReactiveFormsModule } from "@angular/forms";
@@ -15,6 +14,7 @@ import { firebaseConfig } from "./app.firebase-config";
 import { GlobalErrorHandler } from './errorHandler';
 import { FixturesModule } from './fixtures/fixtures.module';
 import { SharedModule } from "./shared/shared.module";
+import { getAuth, provideAuth } from "@angular/fire/auth";
 
 @NgModule({
   declarations: [
@@ -26,10 +26,8 @@ import { SharedModule } from "./shared/shared.module";
     ReactiveFormsModule,
     ServiceWorkerModule.register( '/ngsw-worker.js', { enabled: environment.production } ),
     AppRoutingModule,
-  /*   AngularFireModule.initializeApp( firebaseConfig ),
-    AngularFirestoreModule,
-    AngularFireStorageModule, */
     provideFirebaseApp( () => initializeApp( firebaseConfig ) ), 
+    provideAuth( () => getAuth() ),
     provideFirestore( () => {
       const firestore = getFirestore();
       enableIndexedDbPersistence( firestore );
@@ -41,7 +39,6 @@ import { SharedModule } from "./shared/shared.module";
     FixturesModule,
   ],
   bootstrap: [AppComponent],
-  providers: [{ provide: ErrorHandler, useClass: GlobalErrorHandler },
-    { provide: FIREBASE_OPTIONS, useValue: firebaseConfig }]
+  providers: [{ provide: ErrorHandler, useClass: GlobalErrorHandler }]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Auth, createUserWithEmailAndPassword, sendEmailVerification } from '@angular/fire/auth';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -14,7 +14,7 @@ export class SignupComponent {
 
     constructor(private router: Router,
         private formBuilder: UntypedFormBuilder,
-        private afAuth: AngularFireAuth) {
+        private afAuth: Auth) {
         this.signupForm = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', Validators.required],
@@ -45,11 +45,11 @@ export class SignupComponent {
         this.error = '';
 
         try {
-            await this.afAuth.createUserWithEmailAndPassword(email, password);
+            await createUserWithEmailAndPassword(this.afAuth, email, password);
 
             // User is automatically signed in so get the current user and send verification email
             const user = await this.afAuth.currentUser;
-            user.sendEmailVerification();
+            sendEmailVerification(user);
 
             this.router.navigateByUrl('/user');
 

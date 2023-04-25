@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Auth, user } from '@angular/fire/auth';
 import { CollectionReference, DocumentReference, Firestore, Query, addDoc, collection, collectionData, 
          collectionGroup, deleteDoc, doc, docData, orderBy, query, setDoc, updateDoc, where } from '@angular/fire/firestore';
 import { Fixture } from 'app/model';
@@ -17,12 +17,12 @@ export class EntryService {
 
    user: any = null;
 
-   constructor ( private auth: AngularFireAuth,
+   constructor ( private auth: Auth,
       private fs: Firestore ) {
 
-      auth.user.subscribe( user => this.user = user );
+      user( auth).subscribe( user => this.user = user );
 
-      this.userEntries$ = auth.user.pipe(
+      this.userEntries$ = user( auth ).pipe(
          switchMap( ( user ) => {
             if ( user ) {
                const q = query( collectionGroup( fs, "entries" ), where( 'userId', '==', user.uid ), orderBy( 'fixtureDate' ) ) as Query<Entry>;
@@ -109,12 +109,11 @@ export class EntryService {
    /** Enter or reserve a map for an event */
    async enter( fixture: FixtureEntryDetails, entry: Partial<Entry> ): Promise<void> {
 
-      if ( !this.user ) {
+      if ( !this.user) {
          throw new Error( "Must be logged on to add map reservation" );
       }
 
-      const user = await this.auth.currentUser;
-      entry.userId = user.uid;
+      entry.userId = this.user.uid;
       entry.madeAt = new Date().toISOString();
       entry.fixtureId = fixture.fixtureId;
       entry.fixtureDate = fixture.date;

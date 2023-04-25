@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Auth, createUserWithEmailAndPassword, sendEmailVerification, updatePassword } from '@angular/fire/auth';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -14,7 +14,7 @@ export class ChangePasswordComponent {
 
   constructor(private router: Router,
     private formBuilder: UntypedFormBuilder,
-    private afAuth: AngularFireAuth) {
+    private afAuth: Auth ) {
     this.form = this.formBuilder.group({
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
@@ -44,7 +44,7 @@ export class ChangePasswordComponent {
     this.error = '';
 
     try {
-      await user.updatePassword(password);
+      await updatePassword(user, password);
       this.router.navigateByUrl('/');
 
     } catch (error) {
@@ -53,4 +53,3 @@ export class ChangePasswordComponent {
     }
   }
 }
-

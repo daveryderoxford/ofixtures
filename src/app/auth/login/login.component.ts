@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Auth, FacebookAuthProvider, GoogleAuthProvider, UserCredential, getRedirectResult, 
+         signInWithEmailAndPassword, signInWithPopup, signInWithRedirect } from '@angular/fire/auth';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import firebase from "firebase/compat/app";
+import { ActivatedRoute, Router } from '@angular/router';
 
 export type AuthProvider = "EmailAndPassword" | "Google" | "Facebook";
 
-const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
-const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+const facebookAuthProvider = new FacebookAuthProvider();
+const googleAuthProvider = new GoogleAuthProvider();
 
  const isInStandaloneMode = () =>
    ( window.matchMedia( '(display-mode: standalone)' ).matches ) ||
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
    constructor (private route: ActivatedRoute,
       private router: Router,
       private formBuilder: UntypedFormBuilder,
-      private afAuth: AngularFireAuth) { }
+      private afAuth: Auth) { }
 
    ngOnInit() {
       this.route.queryParams.subscribe( params => {
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
 
    async signInWith(provider: AuthProvider, credentials?: {email: string, password: string} ) {
 
-      let userCredentials: firebase.auth.UserCredential;
+      let userCredentials: UserCredential;
 
       try {
          this.loading = true;
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
          switch (provider) {
 
             case "EmailAndPassword":
-               userCredentials = await this.afAuth.signInWithEmailAndPassword( credentials.email, credentials.password );
+               userCredentials = await signInWithEmailAndPassword( this.afAuth, credentials.email, credentials.password );
                break;
 
             case "Google":
@@ -83,12 +83,16 @@ export class LoginComponent implements OnInit {
     * Sign in with popup avoids re-loading the application on the browser.
     * TODO Review which method is better for mobile devices where popups are not handled as well
    */
-   private async _thirdPartySignIn(provider): Promise<firebase.auth.UserCredential> {
+   private async _thirdPartySignIn( provider ): Promise<UserCredential> {
       if (isInStandaloneMode()) {
-         await firebase.auth().signInWithRedirect(provider);
-         return await firebase.auth().getRedirectResult();
+         await signInWithRedirect(this.afAuth, provider);
+         const result = await getRedirectResult( this.afAuth );
+         if ( result === null || provider.credentialFromResult( result ) === null ) {
+            return null;
+         }
+         return result;
       } else {
-         return await this.afAuth.signInWithPopup(provider);
+         return await signInWithPopup (this.afAuth, provider);
       }
    }
 

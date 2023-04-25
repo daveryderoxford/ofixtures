@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Auth } from '@angular/fire/auth';
 import { CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
@@ -9,10 +9,10 @@ import { map, take, tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class UnauthGuard implements CanActivate {
-  constructor(private afAuth: AngularFireAuth, private router: Router) { }
+  constructor(private afAuth: Auth, private router: Router) { }
 
   canActivate(): Observable<boolean> {
-    return this.afAuth.authState.pipe(
+    return authState(this.afAuth).pipe(
       take(1),
       map(user => !user),
       tap(unauthenticated => {

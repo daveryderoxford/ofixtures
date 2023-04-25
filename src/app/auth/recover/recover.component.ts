@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Auth, sendPasswordResetEmail } from '@angular/fire/auth';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recover',
@@ -15,7 +15,7 @@ export class RecoverComponent implements OnInit {
 
   constructor(private router: Router,
     private formBuilder: UntypedFormBuilder,
-    private afAuth: AngularFireAuth, 
+    private afAuth: Auth, 
     private snackBar: MatSnackBar
   ) { }
 
@@ -29,7 +29,7 @@ export class RecoverComponent implements OnInit {
     const emailAddress = this.recoverForm.get('email').value;
 
     try {
-      await this.afAuth.sendPasswordResetEmail( emailAddress );
+      await sendPasswordResetEmail(this.afAuth, emailAddress );
       this.router.navigate( ["/auth/login"]);
     } catch (err) {
       console.log('RecoverComponent: Error requesting password reset for email');

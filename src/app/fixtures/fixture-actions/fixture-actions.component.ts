@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Auth, authState } from '@angular/fire/auth';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -29,14 +29,14 @@ export class FixtureActionsComponent implements AfterViewInit {
 
    @ViewChild( MatMenuTrigger ) menu: MatMenuTrigger;
 
-   constructor ( private afAuth: AngularFireAuth,
+   constructor ( private afAuth: Auth,
       private router: Router,
       private usd: UserDataService,
       private es: EntryService,
       private snackBar: MatSnackBar,
       private loginSnackBar: LoginSnackbarService ) {
 
-      this.afAuth.authState.subscribe( user => this.loggedIn = ( user !== null ) );
+      authState(this.afAuth).subscribe( user => this.loggedIn = ( user !== null ) );
 
       this.es.fixtureEntryDetails$.subscribe( arr => {
          this.fixtureEntryDetails = arr;
@@ -126,4 +126,3 @@ export class FixtureActionsComponent implements AfterViewInit {
       this.router.navigate( ["/mapviewer"], { queryParams: { rgdata: JSON.stringify(this.fixture.rg)}  }  );
    }
 }
-

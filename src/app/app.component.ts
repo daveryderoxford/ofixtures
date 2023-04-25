@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Auth, authState } from '@angular/fire/auth';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from "@angular/router";
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
    handset = false;
 
    constructor ( private router: Router,
-      private afAuth: AngularFireAuth,
+      private afAuth: Auth,
       private sidebarService: SidenavService,
       private snackbar: MatSnackBar,
       private snackBar: MatSnackBar,
@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
          .pipe( tap( state => console.log( 'AppComponnet: state: ' + state.matches.toString() ) ) )
          .subscribe( state => this.handset = !state.matches );
 
-      this.afAuth.authState
+      authState(this.afAuth)
               .pipe( untilDestroyed( this ) )
               .subscribe( ( user: firebase.User ) => {
          this.authorised = ( user !== null );

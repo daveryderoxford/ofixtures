@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { AngularFireAuth } from "@angular/fire/compat/auth";
+import { Auth, authState } from "@angular/fire/auth";
 import { DocumentReference, Firestore, arrayRemove, arrayUnion, doc, docData, updateDoc } from "@angular/fire/firestore";
 import { UserData, UserInfo } from "app/model";
 import { Observable, of } from 'rxjs';
@@ -16,11 +16,11 @@ export class UserDataService {
   private uid: string;
 
   constructor (
-    private afAuth: AngularFireAuth,
+    private afAuth: Auth,
     private fs: Firestore,
   ) {
 
-    this.user$ = this.afAuth.authState.pipe(
+    this.user$ = authState(this.afAuth).pipe(
       startWith( null ),
       switchMap( ( user: any ) => {
         console.log()
