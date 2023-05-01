@@ -16,6 +16,8 @@ export interface RGData {
    maps: { id: string; name: string, mapfile: string }[];
 }
 
+export type LocationSource = '' | 'gridref' | 'postcode' | 'google' | 'club';
+
 export interface Fixture {
      id: string;
      date: ISODateString;
@@ -24,6 +26,7 @@ export interface Fixture {
      clubURL: string;
      area: string;
      latLong?: LatLong;
+     locSource: LocationSource;
      gridRef?: Point;
      postcode: string;
      grade: EventGrade;

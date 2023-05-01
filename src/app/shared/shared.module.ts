@@ -9,6 +9,7 @@ import { SidenavButtonComponent } from './components/sidenav-button.component';
 import { SpinnerModule } from './components/spinner/spinner.module';
 import { ToolbarComponent } from './components/toolbar.component';
 import { DialogsModule } from "./dialogs/dialogs.module";
+import { ExternalLinkIconComponent } from './components/external-link-icon.component';
 
 @NgModule({
     imports: [
@@ -21,6 +22,7 @@ import { DialogsModule } from "./dialogs/dialogs.module";
     declarations: [
         SidenavButtonComponent,
         ToolbarComponent,
+        ExternalLinkIconComponent,
     ],
     exports: [
         CommonModule,
@@ -30,7 +32,8 @@ import { DialogsModule } from "./dialogs/dialogs.module";
         AppMaterialModule,
         SidenavButtonComponent,
         ToolbarComponent,
-        AngularSplitModule
+        AngularSplitModule,
+        ExternalLinkIconComponent
     ],
 })
 export class SharedModule { }

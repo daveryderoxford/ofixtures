@@ -6,19 +6,23 @@
   <ng-template matMenuContent>
 
     <ng-container *ngIf="handset">
-      <a mat-menu-item href="{{fixture.clubURL}}"> Club website</a>
-      <a mat-menu-item *ngIf="fixture.latLong;" href="{{fixture | streetmapURL}}" target="_blank">OS map</a>
-      <a mat-menu-item *ngIf="fixture.latLong;" href="{{fixture | googleURL}}" target="_blank">Google map</a>
-      <a mat-menu-item *ngIf="fixture.latLong;" href="{{fixture | googleDirectionsURL:homeLocation}}"
-        target="_blank">Directions</a>
+      <a mat-menu-item href="{{fixture.clubURL}}">
+         Club website
+          <app-external-link-icon></app-external-link-icon>
+      </a>
+      <mat-divider></mat-divider>
+      <app-map-menu-items [fixture]="fixture" [homeLocation]="homeLocation"></app-map-menu-items>
       <mat-divider></mat-divider>
     </ng-container>
 
     <ng-container *ngIf="fixture.rg; let rg">
-      <button *ngIf="rg.maps.length>0" (click)="mapView()" mat-menu-item>
+      <button *ngIf="rg.maps.length>0 && handset" (click)="mapView()" mat-menu-item>
         O Maps
       </button>
-      <a mat-menu-item [href]="rg.baseURL + 'rg2'" target="_blank"> Club Routegadget</a>
+      <a mat-menu-item [href]="rg.baseURL + 'rg2'" target="_blank">
+        Club Routegadget
+        <app-external-link-icon></app-external-link-icon>
+      </a>
       <mat-divider></mat-divider>
     </ng-container>
 

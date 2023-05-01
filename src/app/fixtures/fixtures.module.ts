@@ -14,6 +14,7 @@ import { FixtureKeyComponent } from './fixtures-map/fixture-key.component';
 import { FixtureActionsComponent } from './fixture-actions/fixture-actions.component';
 import { PostcodeComponent } from './postcode/postcode.component';
 import { AddToGoogleCalendarButtonComponent } from './fixture-actions/google-cal-button';
+import { MapMenuItemsComponent } from './fixture-actions/map-menu-items.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AddToGoogleCalendarButtonComponent } from './fixture-actions/google-cal
     FixtureActionsComponent,
     PostcodeComponent,
     AddToGoogleCalendarButtonComponent,
+    MapMenuItemsComponent,
   ],
   imports: [
     CommonModule,

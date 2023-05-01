@@ -8,7 +8,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 import { EntryService } from 'app/entry/entry.service';
 import { Fixture } from 'app/model';
 import { Entry, FixtureEntryDetails } from 'app/model/entry';
-import { LatLong } from 'app/model/fixture';
+import { LatLong, RGData } from 'app/model/fixture';
 import { LoginSnackbarService } from 'app/shared/services/login-snackbar.service';
 import { UserDataService } from 'app/user/user-data.service';
 
@@ -153,6 +153,10 @@ export class FixturesGridComponent implements OnInit, OnChanges {
    isLiked( fixture: Fixture ): boolean {
       if ( !this.likedEvents ) { return false; }
       return this.likedEvents.includes( fixture.id );
+   }
+
+   mapView(rg: RGData) {
+      this.router.navigate( ["/mapviewer"], { queryParams: { rgdata: JSON.stringify( rg ) } } );
    }
 
    // TODO temp

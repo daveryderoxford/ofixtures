@@ -2,49 +2,67 @@ import { NgModule, Pipe, PipeTransform } from "@angular/core";
 import { Fixture, LatLong } from "app/model/fixture";
 
 // import format from 'date-fns/format';
-import { format, differenceInCalendarDays} from 'date-fns';
+import { format, differenceInCalendarDays } from 'date-fns';
 import { EventGrade } from 'app/model';
 
 /**
  * Pipes to display fixture fields used for both
  */
+const MAX_LOCATION_LENGTH = 50;
+
+@Pipe( {
+   name: 'location',
+   pure: true
+} )
+export class LocationPipe implements PipeTransform {
+   transform( fix: Fixture ): string {
+      let str = `${fix.area},  ${fix.nearestTown},  ${fix.postcode}`;
+      if ( str.length > MAX_LOCATION_LENGTH ) {
+         str = `${fix.area},  ${fix.postcode}`;
+         if ( str.length > MAX_LOCATION_LENGTH ) {
+            str = fix.area.length < MAX_LOCATION_LENGTH ? fix.area : fix.area.substring( 0, MAX_LOCATION_LENGTH - 2 ) + '...';
+         } 
+      }
+      return str;
+   }
+}
 
 /** Google maps link with directions from home location */
-@Pipe({
+@Pipe( {
    name: 'googleDirectionsURL',
    pure: true
-})
+} )
 export class GoogleDirectionsURLPipe implements PipeTransform {
-   transform(fixture: Fixture, homeLocation: LatLong): string {
+   transform( fixture: Fixture, homeLocation: LatLong ): string {
 
-      if (!homeLocation || homeLocation === undefined || !fixture) {
+      if ( !homeLocation || homeLocation === undefined || !fixture ) {
          return "";
       }
 
-      return "https://www.google.com/maps/dir/?api=1&origin=" + latLongStr(homeLocation)
-         + "&destination= " + latLongStr(fixture.latLong);
+      return "https://www.google.com/maps/dir/?api=1&origin=" + latLongStr( homeLocation )
+         + "&destination= " + latLongStr( fixture.latLong );
    }
 }
 
-@Pipe({
+@Pipe( {
    name: 'googleURL',
    pure: true
-})
+} )
 export class GoogleURLPipe implements PipeTransform {
-   transform(fix: Fixture): string {
+   transform( fix: Fixture ): string {
       return "https://www.google.com/maps/search/?api=1&query=" +
-         latLongStr(fix.latLong) + "&query_place_id=" + fix.area + "&zoom=11";
+         latLongStr( fix.latLong ) + "&query_place_id=" + fix.area + "&zoom=11";
    }
 }
 
-@Pipe({
+@Pipe( {
    name: 'bingURL',
    pure: true
-})
+} )
 export class BingURLPipe implements PipeTransform {
-   transform(fix: Fixture): string {
-      return 'https://www.bing.com/maps/?cp=' + latLongStr(fix.latLong, '~') + "&lvl=15&style=s&sp=" +
-         latLongStr(fix.latLong, '_') + "_" + fix.area;
+   transform( fix: Fixture ): string {
+      return 'https://www.bing.com/maps/?cp=' + latLongStr( fix.latLong, '~' ) + "&lvl=15&style=s&sp=" +
+         latLongStr( fix.latLong, '_' ) + "_" + fix.area;
    }
 }
 
@@ -58,8 +76,8 @@ UR is of the form https://streetmap.co.uk/loc/N52.038333,W4.578611
 export class StreetmapURLPipe implements PipeTransform {
    transform( fix: Fixture ): string {
       const l = fix.latLong;
-      if (l.lng < 0) {
-          return `https://streetmap.co.uk/loc/N${l.lat.toString()},W${(-l.lng).toString() }`;
+      if ( l.lng < 0 ) {
+         return `https://streetmap.co.uk/loc/N${l.lat.toString()},W${( -l.lng ).toString()}`;
       } else {
          return `https://streetmap.co.uk/loc/N${l.lat.toString()},E${( l.lng ).toString()}`;
       }
@@ -67,53 +85,53 @@ export class StreetmapURLPipe implements PipeTransform {
 }
 
 /** Reformat ISO date into displayed date string */
-@Pipe({
+@Pipe( {
    name: 'fixturedate',
    pure: true
-})
+} )
 export class FixtureDatePipe implements PipeTransform {
-   transform(date: string): string {
+   transform( date: string ): string {
 
       // For the next week display days in the future
-      const d = new Date(date);
+      const d = new Date( date );
 
-      const daysFrom = differenceInCalendarDays(d, new Date());
+      const daysFrom = differenceInCalendarDays( d, new Date() );
 
-      if (daysFrom >= 7) {
-         return format(d, "iii dd-MMM-yy");
-      } else if (daysFrom <= 7 && daysFrom > 1) {
-         return "Next " + format(d, "iii do");
-      } else if (daysFrom === 1) {
+      if ( daysFrom >= 7 ) {
+         return format( d, "iii dd-MMM-yy" );
+      } else if ( daysFrom <= 7 && daysFrom > 1 ) {
+         return "Next " + format( d, "iii do" );
+      } else if ( daysFrom === 1 ) {
          return "Tommorow ";
-      } else if (daysFrom === 0) {
+      } else if ( daysFrom === 0 ) {
          return "Today ";
       }
    }
 }
 
-@Pipe({
+@Pipe( {
    name: 'ellipsis'
-})
+} )
 export class EllipsisPipe implements PipeTransform {
-   transform(val, args) {
-      if (args === undefined) {
+   transform( val, args ) {
+      if ( args === undefined ) {
          return val;
       }
 
-      if (val.length > args) {
-         return val.substring(0, args) + '...';
+      if ( val.length > args ) {
+         return val.substring( 0, args ) + '...';
       } else {
          return val;
       }
    }
 }
 
-@Pipe({
+@Pipe( {
    name: 'distance'
-})
+} )
 export class FixtureDistancePipe implements PipeTransform {
-   transform(distance: number): string {
-      if (distance === -1) {
+   transform( distance: number ): string {
+      if ( distance === -1 ) {
          return "";
       } else {
          return distance.toString();
@@ -161,12 +179,13 @@ export class GradeIconNamePipe implements PipeTransform {
 }
 
 
-function latLongStr(loc: LatLong, seperator = ","): string {
+function latLongStr( loc: LatLong, seperator = "," ): string {
    return loc.lat.toString() + seperator + loc.lng.toString();
 }
 
-@NgModule({
+@NgModule( {
    declarations: [
+      LocationPipe,
       GoogleURLPipe,
       GoogleDirectionsURLPipe,
       BingURLPipe,
@@ -179,6 +198,7 @@ function latLongStr(loc: LatLong, seperator = ","): string {
       GradeIconNamePipe
    ],
    exports: [
+      LocationPipe,
       GoogleURLPipe,
       GoogleDirectionsURLPipe,
       BingURLPipe,
@@ -190,6 +210,6 @@ function latLongStr(loc: LatLong, seperator = ","): string {
       LikedPipe,
       GradeIconNamePipe
    ]
-})
+} )
 export class FilterPipeModuleModule {
 }

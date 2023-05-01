@@ -9,6 +9,7 @@ table {
   table-layout: fixed;
   border-spacing: 0;
   font-family: Roboto,"Helvetica Neue",sans-serif;
+  width: 100%;
 }
 
 tr {
@@ -47,9 +48,9 @@ td {
 }
 
 .actions {
-  width: 120px;
-  max-width: 120px;
-  min-width: 120px;
+  width: 50px;
+  max-width: 50px;
+  min-width: 50px;
   padding-left: 10px;
 }
 
@@ -62,13 +63,13 @@ td {
 .distance {
   width: 40px;
   max-width: 50px;
-  min-width: 40px;
+  min-width: 35px;
 }
 
 .name {
-  width: 200px;
+  width: 100px;
   max-width: 400px;
-  min-width: 75px;
+  min-width: 50px;
 }
 
 .club {
@@ -78,33 +79,34 @@ td {
 }
 
 .level {
-  width: 60px;
-  max-width: 60px;
-  min-width: 40px;
-}
-
-.area {
-  width: 100px;
-  max-width: 150px;
-  min-width: 75px;
+  width: 30px;
+  max-width: 50px;
+  min-width: 20px;
 }
 
 .location {
-  width: 75px;
-  max-width: 100px;
+  width: 100px;
+  max-width: 300px;
   min-width: 50px;
 }
 
-.directions {
-  width: 75px;
-  max-width: 100%;
+.maps {
+  width: 50px;
+  max-width: 50px;
+  min-width: 50px;
+}
+
+.omaps {
+  width: 50px;
+  max-width: 50px;
+  min-width: 50px;
 }
 
 .admin {
   width: 30px;
   max-width: 30px;
   min-width: 30px;
-  padding-right: 12px;
+  padding-right: 5px;
 }
 
 mat-icon {
@@ -135,3 +137,14 @@ mat-icon {
 .shaded {
   background-color: rgb(235, 235, 235);
 }
+
+.mat-link {
+  color: blue;
+}
+
+.icon-display {
+  transform: scale(0.55);
+  color: rgb(30, 30, 30)
+}
+
+

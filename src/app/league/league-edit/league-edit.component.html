@@ -1,0 +1,29 @@
+
+<app-toolbar>User details</app-toolbar>
+
+<!-- Put form in middle of page -->
+<div fxLayout="row" fxLayoutAlign="center space-around">
+
+   <!-- layout elements vertically with  10px gaps-->
+   <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap=10px>
+
+      <mat-card [class]=cardclass>
+
+         <form (ngSubmit)="save()" novalidate fxLayout="column" fxLayoutAlign="space-around" fxLayoutGap=10px>
+
+            <mat-form-field>
+               <input matInput formControlName="club" minlength=2 maxlength=10 placeholder="Club abrievation">
+               <mat-hint align="end">Between 2 and 10 characters</mat-hint>
+            </mat-form-field>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+               <button [disabled]="userForm.invalid || !userForm.dirty" mat-raised-button color=primary type="submit"
+                  aria-label="login">Save</button>
+            </div>
+
+         </form>
+      </mat-card>
+
+   </div>
+
+</div>
