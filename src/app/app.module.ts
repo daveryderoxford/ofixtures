@@ -28,11 +28,7 @@ import { getAuth, provideAuth } from "@angular/fire/auth";
     AppRoutingModule,
     provideFirebaseApp( () => initializeApp( firebaseConfig ) ), 
     provideAuth( () => getAuth() ),
-    provideFirestore( () => {
-      const firestore = getFirestore();
-      enableIndexedDbPersistence( firestore );
-      return firestore;
-    } ),
+    provideFirestore( () => getFirestore() ),
     provideStorage( () => getStorage() ), 
     SharedModule,
     HttpClientModule,
