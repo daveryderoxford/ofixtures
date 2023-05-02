@@ -8,8 +8,16 @@ import { EventGrade } from 'app/model';
 /**
  * Pipes to display fixture fields used for both
  */
-const MAX_LOCATION_LENGTH = 50 +20;
+const MAX_LOCATION_LENGTH = 50;
 
+/** Returns HTML string for the complete location genertaed from 
+ *  area, nearest twon and postcode.  Should be used in template as 
+ * [innerHTML]="fixture | location"
+ * The town is omitted if:
+ *   - it is the same as the area
+ *   - if the string will be longer than MAX_LOCATION_LENGTH.
+ *  
+ * */
 @Pipe( {
    name: 'location',
    pure: true
@@ -25,11 +33,8 @@ export class LocationPipe implements PipeTransform {
       str = ( town ) ? str + ",&nbsp;&nbsp;&nbsp;" + town : str;
       str = ( post ) ? str + ",&nbsp;&nbsp;&nbsp;<b>" + post + "</b>": str;
 
-      if ( str.length > MAX_LOCATION_LENGTH ) {
+      if ( (area+town+post).length > MAX_LOCATION_LENGTH ) {
          str = ( post ) ? area + ",&nbsp;&nbsp;&nbsp;<b>" + post + "</b>" : str;
-         if ( str.length > MAX_LOCATION_LENGTH ) {
-            str = area.length < MAX_LOCATION_LENGTH ? area : area.substring( 0, MAX_LOCATION_LENGTH - 2 ) + '...';
-         }
       }
 
       return str;
@@ -107,13 +112,13 @@ export class FixtureDatePipe implements PipeTransform {
       const daysFrom = differenceInCalendarDays( d, new Date() );
 
       if ( daysFrom >= 7 ) {
-         return format( d, "iii dd-MMM-yy" );
+         return format( d, "iii d MMM yy" );
       } else if ( daysFrom <= 7 && daysFrom > 1 ) {
-         return "Next " + format( d, "iii do" );
+         return format( d, "iii do" );
       } else if ( daysFrom === 1 ) {
-         return "Tommorow ";
+         return "TOMMOROW ";
       } else if ( daysFrom === 0 ) {
-         return "Today ";
+         return "TODAY ";
       }
    }
 }

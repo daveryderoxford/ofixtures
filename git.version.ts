@@ -1,4 +1,4 @@
-import { writeFileSync } from 'fs'; i
+import { writeFileSync } from 'fs'; 
 import { exec } from 'child_process';
 
 async function createVersionsFile( filename: string ) {
