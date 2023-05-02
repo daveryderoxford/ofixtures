@@ -68,7 +68,8 @@
         </td>
 
         <td class="location">
-          {{fixture | location}}
+          <!-- to allow multipe spaces -->
+          <span [innerHTML]="fixture | location"></span>
         </td>
 
         <td class="maps">
@@ -91,7 +92,7 @@
         </td>
 
         <td class="omaps">           
-          <a mat-button *ngIf="fixture.rg;" color=link (click)="mapView(fixture.rg)">O Maps</a>
+          <a mat-button *ngIf="fixture.rg && fixture.rg.maps.length > 0;" color=link (click)="mapView(fixture.rg)">O Maps</a>
         </td>
 
         <td class="admin">

@@ -8,7 +8,7 @@ import { EventGrade } from 'app/model';
 /**
  * Pipes to display fixture fields used for both
  */
-const MAX_LOCATION_LENGTH = 50;
+const MAX_LOCATION_LENGTH = 50 +20;
 
 @Pipe( {
    name: 'location',
@@ -16,13 +16,22 @@ const MAX_LOCATION_LENGTH = 50;
 } )
 export class LocationPipe implements PipeTransform {
    transform( fix: Fixture ): string {
-      let str = `${fix.area},  ${fix.nearestTown},  ${fix.postcode}`;
+      const area = fix.area;
+      // if town and area are the same ommit the town
+      const town = ( fix.nearestTown === area ) ? null : fix.nearestTown;
+      const post = fix.postcode;
+
+      let str = area;
+      str = ( town ) ? str + ",&nbsp;&nbsp;&nbsp;" + town : str;
+      str = ( post ) ? str + ",&nbsp;&nbsp;&nbsp;<b>" + post + "</b>": str;
+
       if ( str.length > MAX_LOCATION_LENGTH ) {
-         str = `${fix.area},  ${fix.postcode}`;
+         str = ( post ) ? area + ",&nbsp;&nbsp;&nbsp;<b>" + post + "</b>" : str;
          if ( str.length > MAX_LOCATION_LENGTH ) {
-            str = fix.area.length < MAX_LOCATION_LENGTH ? fix.area : fix.area.substring( 0, MAX_LOCATION_LENGTH - 2 ) + '...';
-         } 
+            str = area.length < MAX_LOCATION_LENGTH ? area : area.substring( 0, MAX_LOCATION_LENGTH - 2 ) + '...';
+         }
       }
+
       return str;
    }
 }
