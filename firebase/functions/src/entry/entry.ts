@@ -15,8 +15,9 @@ export const createEntry = functions.region( 'europe-west1' ).firestore
    .document('entry/{fixtureId}/entries/{id}')
    .onCreate(async (snap, context) => {
       // Increment the number of entries by one for the course in the fixture
-      const entry = snap.data() as Entry;
 
+      const entry = snap.data() as Entry;
+0
       try {
          // Get associated fixture details and increment the number of entries and total entries
          const fixSnapshot = await admin.firestore().collection(`entry`).doc(context.params.fixtureId).get();

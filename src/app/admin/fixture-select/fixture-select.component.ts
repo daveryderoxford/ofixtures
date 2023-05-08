@@ -21,15 +21,21 @@ export class FixtureSelectComponent implements OnInit {
   filter$: Observable<string>;
 
   multiselect = false;
-  initialFilter ="";
-  
-  constructor ( public fs: FixturesService, 
+  initialFilter = "";
+
+  selectedIds: string[] = [];
+
+  constructor ( public fs: FixturesService,
     public dialogRef: MatDialogRef<FixtureSelectComponent, Fixture[]>,
-    @Inject( MAT_DIALOG_DATA ) public data: { multiselect: boolean, initialFilter: string } ) { }
+    @Inject( MAT_DIALOG_DATA ) public data: { multiselect: boolean, initialFilter: string, selectedIds: string[] } ) { }
 
 
   ngOnInit(): void {
     this.multiselect = this.data.multiselect;
+
+    if ( this.data.selectedIds ) {
+      this.selectedIds = this.data.selectedIds;
+    }
 
     this.filter = new FormControl( this.data.initialFilter );
     this.filter$ = this.filter.valueChanges.pipe( startWith( this.data.initialFilter ) );
@@ -55,7 +61,11 @@ export class FixtureSelectComponent implements OnInit {
   }
 
   onSubmit( options: SelectionModel<MatListOption> ) {
-    this.dialogRef.close( options.selected.map( opt => opt.value as Fixture ));
+    this.dialogRef.close( options.selected.map( opt => opt.value as Fixture ) );
+  }
+
+  itemSelected( fixture: Fixture ): boolean {
+    return this.selectedIds.includes( fixture.id );
   }
 
 }

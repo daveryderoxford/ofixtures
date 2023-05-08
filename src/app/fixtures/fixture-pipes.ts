@@ -124,23 +124,6 @@ export class FixtureDatePipe implements PipeTransform {
 }
 
 @Pipe( {
-   name: 'ellipsis'
-} )
-export class EllipsisPipe implements PipeTransform {
-   transform( val, args ) {
-      if ( args === undefined ) {
-         return val;
-      }
-
-      if ( val.length > args ) {
-         return val.substring( 0, args ) + '...';
-      } else {
-         return val;
-      }
-   }
-}
-
-@Pipe( {
    name: 'distance'
 } )
 export class FixtureDistancePipe implements PipeTransform {
@@ -205,7 +188,6 @@ function latLongStr( loc: LatLong, seperator = "," ): string {
       BingURLPipe,
       StreetmapURLPipe,
       FixtureDatePipe,
-      EllipsisPipe,
       FixtureDistancePipe,
       FixtureDistanceColorPipe,
       LikedPipe,
@@ -218,12 +200,11 @@ function latLongStr( loc: LatLong, seperator = "," ): string {
       BingURLPipe,
       StreetmapURLPipe,
       FixtureDatePipe,
-      EllipsisPipe,
       FixtureDistancePipe,
       FixtureDistanceColorPipe,
       LikedPipe,
       GradeIconNamePipe
    ]
 } )
-export class FilterPipeModuleModule {
+export class FilterPipeModule {
 }

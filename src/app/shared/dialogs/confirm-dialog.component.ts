@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
         <mat-divider></mat-divider>
         <div mat-dialog-actions>
             <button type="button" mat-raised-button (click)="dialogRef.close(true)">OK</button>
-            <button type="button" mat-button (click)="dialogRef.close()">Cancel</button>
+            <button type="button" mat-button (click)="dialogRef.close(false)">Cancel</button>
         </div>
     `,
 } )

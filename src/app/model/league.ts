@@ -1,9 +1,13 @@
 
-export type LeagueType = 'League'| 'Multiday';
+export const leagueTypes = ['League', 'Multiday'] as const;
+export type LeagueType = typeof leagueTypes[number];
 
-export type LeagueLevel=  'National'| 'Regional' | 'Club' ;
+export const leagueLevels = ['National', 'Regional' , 'Club' ] as const;
+export type LeagueLevel = typeof leagueTypes[number];
 
 export interface League {
+   id: string;
+   userId; string;
    name: string;
    url: string;
    type: LeagueType;

@@ -11,7 +11,7 @@ export class DialogsService {
 
     constructor(private dialog: MatDialog) { }
 
-    public confirm(title: string, message: string): Promise<boolean> {
+    public async confirm(title: string, message: string): Promise<boolean> {
 
         let dialogRef: MatDialogRef<ConfirmDialogComponent>;
 
@@ -23,7 +23,7 @@ export class DialogsService {
         return dialogRef.afterClosed().toPromise();
     }
 
-    public message(title: string, message: string): Promise<boolean> {
+    public async message(title: string, message: string): Promise<boolean> {
 
         let dialogRef: MatDialogRef<MessageDialogComponent>;
 

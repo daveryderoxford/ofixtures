@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'app/shared/shared.module';
-import { FilterPipeModuleModule } from './fixture-pipes';
+import { FilterPipeModule } from './fixture-pipes';
 import { FixturesGridComponent } from './fixtures-grid/fixtures-grid.component';
 import { FixturesMapComponent } from './fixtures-map/fixtures-map.component';
 import { FixtureWeekFilterComponent } from './fixtures-options/fixture-week-filter.component';
@@ -15,6 +15,7 @@ import { FixtureActionsComponent } from './fixture-actions/fixture-actions.compo
 import { PostcodeComponent } from './postcode/postcode.component';
 import { AddToGoogleCalendarButtonComponent } from './fixture-actions/google-cal-button';
 import { MapMenuItemsComponent } from './fixture-actions/map-menu-items.component';
+import { EntryModule } from 'app/entry/entry.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MapMenuItemsComponent } from './fixture-actions/map-menu-items.componen
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
-    FilterPipeModuleModule,
+    FilterPipeModule,
+    EntryModule
   ],
   exports: [
     GradeFilterComponent

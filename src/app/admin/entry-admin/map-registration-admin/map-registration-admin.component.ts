@@ -13,8 +13,8 @@ import { EntryCourse, FixtureEntryDetails } from 'app/model/entry';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
-import { EntryService } from '../entry.service';
-import { FixtureSelectComponent } from '../fixture-select/fixture-select.component';
+import { EntryService } from '../../../entry/entry.service';
+import { FixtureSelectComponent } from '../../fixture-select/fixture-select.component';
 
 @UntilDestroy( { checkProperties: true } )
 @Component( {
@@ -84,7 +84,7 @@ export class MapRegistrationAdminComponent implements OnInit {
          width: '350px',
          maxWidth: '100vw',
        //  maxHeight: '100vh',
-         data: { multiselect: false, initialFilter: "" },
+         data: { multiselect: false, initialFilter: "", selectedIds: [] },
       } );
 
       return dialogRef.afterClosed();
@@ -177,7 +177,7 @@ export class MapRegistrationAdminComponent implements OnInit {
             await this.es.updateEntryDetails( this.id, update );
          }
          this.snackbar.open( "Map registration enabled for event", "", { duration: 2000 } );
-         await this.router.navigateByUrl( "/fixtures" );
+         await this.router.navigateByUrl( "/admim" );
 
 
       } catch ( err ) {

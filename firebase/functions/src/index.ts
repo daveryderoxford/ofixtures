@@ -12,7 +12,7 @@ import * as clubs from "./fixtures/club_locations";
 const firebaseAdmin = admin.initializeApp();
 
 /** Run to perfrom maintenance tasks once/day at 16:00 */
-export const maintenance = functions.region( 'europe-west1').pubsub.schedule( 'every day 16:00' ).onRun( async ( context ) => {
+export const maintenance = functions.region( 'europe-west1' ).pubsub.schedule( 'every day 16:00' ).timeZone( 'GB' ).onRun( async ( context ) => {
 
    console.log( "Maintenance task starting");
 

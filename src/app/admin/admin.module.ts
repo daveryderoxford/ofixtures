@@ -1,0 +1,34 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { AdminRoutingModule } from './admin-routing.module';
+import { SharedModule } from 'app/shared/shared.module';
+import { AdminComponent } from './admin-page/admin.component';
+import { LeagueAdminCardComponent } from './league-admin/league-admin-card/league-admin-card.component';
+import { LeagueFormComponent } from './league-admin/league-form/league-form.component';
+import { LeagueEditComponent } from './league-admin/league-edit.component';
+import { LeagueAddComponent } from './league-admin/league-add.component';
+import { MapRegistrationAdminComponent } from './entry-admin/map-registration-admin/map-registration-admin.component';
+import { FixtureSelectComponent } from './fixture-select/fixture-select.component';
+import { CourseDialogComponent } from './entry-admin/course-dialog/course-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
+@NgModule({
+  declarations: [
+    AdminComponent,
+    LeagueAdminCardComponent,
+    LeagueFormComponent,
+    LeagueEditComponent,
+    LeagueAddComponent,
+    MapRegistrationAdminComponent,
+    FixtureSelectComponent,
+    CourseDialogComponent
+  ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule, 
+    AdminRoutingModule,
+    SharedModule
+  ]
+})
+export class AdminModule { }

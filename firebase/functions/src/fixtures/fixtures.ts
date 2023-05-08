@@ -130,7 +130,7 @@ export class Fixtures {
             if ( fix.latLong ) {
                fix.locSource = 'gridref';
             } else {
-               console.log( `Fixture: Unable to parse grid ref string. Fixture: ${fix.id} club ${fix.club} date: ${fix.date} Grid ref: ${bof.gridRefStr}` );
+               // console.log( `Fixture: Unable to parse grid ref string. Fixture: ${fix.id} club ${fix.club} date: ${fix.date} Grid ref: ${bof.gridRefStr}` );
                fix.locSource = '';
             }
          } else if ( bof.postcode !== "" ) {

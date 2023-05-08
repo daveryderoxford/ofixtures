@@ -1,6 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
-import { Auth, authState } from '@angular/fire/auth';
+import { Auth, User, authState } from '@angular/fire/auth';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -10,7 +10,6 @@ import { Fixture } from 'app/model';
 import { Entry, FixtureEntryDetails } from 'app/model/entry';
 import { LatLong } from 'app/model/fixture';
 import { FixtureFilter } from 'app/model/fixture-filter';
-import firebase from "firebase/compat/app";
 import { Observable } from 'rxjs';
 import { FixturesService } from '../fixtures.service';
 
@@ -64,7 +63,7 @@ export class FixturesComponent implements OnInit {
          this.mapview = params.has( 'mapview' );
       } );
 
-      authState(this.auth).subscribe( ( user: firebase.User ) => {
+      authState(this.auth).subscribe( ( user: User ) => {
          this.loggedIn = ( user !== null );
       } );
 

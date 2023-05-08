@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Auth, authState } from '@angular/fire/auth';
+import { Auth, User, authState } from '@angular/fire/auth';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from "@angular/router";
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SidenavService } from './shared/services/sidenav.service';
-import firebase from "firebase/compat/app";
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { tap } from 'rxjs/operators';
 
@@ -21,7 +20,7 @@ export class AppComponent implements OnInit {
 
    loading = false;
    authorised = false;
-   user: firebase.User;
+   user: User;
    handset = false;
 
    constructor ( private router: Router,
@@ -48,7 +47,7 @@ export class AppComponent implements OnInit {
 
       authState(this.afAuth)
               .pipe( untilDestroyed( this ) )
-              .subscribe( ( user: firebase.User ) => {
+              .subscribe( ( user: User ) => {
          this.authorised = ( user !== null );
          this.user = user;
       } );

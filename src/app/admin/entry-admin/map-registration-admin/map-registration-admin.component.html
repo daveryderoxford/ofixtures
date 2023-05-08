@@ -17,7 +17,7 @@
 
                <p *ngIf="fixture">
                   <b>{{ fixture.club}} - {{fixture.date | date:'mediumDate' }} </b>
-                   <br> {{ fixture.name | ellipsis: 40 }}
+                  <br> {{ fixture.name | ellipsis: 40 }}
                </p>
 
                <button mat-flat-button color="primary" type=button (click)="selectFixture()">Select Fixture</button>

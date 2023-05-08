@@ -16,13 +16,13 @@
 
          <mat-selection-list #list [multiple]="multiselect">
 
-            <mat-list-option *cdkVirtualFor="let fixture of fixtures" [value]="fixture">
+            <mat-list-option *cdkVirtualFor="let fixture of fixtures" [value]="fixture" [selected]="itemSelected(fixture)" checkboxPosition="before">
                <div mat-line>
-                  <span fxFlex=50>{{fixture.date | date:'mediumDate' }}</span>
-                  <span fxFlex=30> {{fixture.club}}</span>
+                  <span fxFlex=50%>{{fixture.date | date:'mediumDate' }}</span>
+                  <span fxFlex=30%> {{fixture.club}}</span>
                </div>
                <p mat-line>
-                  {{fixture.name}}
+                  {{fixture.name | ellipsis: 30}} 
                </p>
             <mat-divider></mat-divider>
 

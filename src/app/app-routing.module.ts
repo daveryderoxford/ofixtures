@@ -11,6 +11,7 @@ const routes: Routes = [
    { path: "about", loadChildren: () => import( './about/about.module' ).then( m => m.AboutModule ) },
    { path: "entry", loadChildren: () => import( './entry/entry.module' ).then( m => m.EntryModule ) },
    { path: 'mapviewer', loadChildren: () => import('./mapviewer/mapviewer.module').then(m => m.MapviewerModule) },
+   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
 ];
 
 @NgModule( {
