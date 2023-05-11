@@ -15,6 +15,7 @@ import { firebaseConfig } from "./app.firebase-config";
 import { GlobalErrorHandler } from './errorHandler';
 import { FixturesModule } from './fixtures/fixtures.module';
 import { SharedModule } from "./shared/shared.module";
+import { LeagueModule } from "./league/league.module";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SharedModule } from "./shared/shared.module";
     SharedModule,
     HttpClientModule,
     FixturesModule,
+    LeagueModule, 
   ],
   bootstrap: [AppComponent],
   providers: [{ provide: ErrorHandler, useClass: GlobalErrorHandler }]

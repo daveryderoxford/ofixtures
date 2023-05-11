@@ -8,14 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 </mat-toolbar>
     `
 } )
-export class ToolbarComponent implements OnInit {
-
-   @Input() title;
+export class ToolbarComponent {
 
    constructor (  ) { }
-
-   ngOnInit() {
-   }
-
 
 }

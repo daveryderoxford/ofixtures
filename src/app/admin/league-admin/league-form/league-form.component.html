@@ -43,7 +43,7 @@
              <br>
 
             <div fxLayout="row" fxLayoutAlign="space-between center">
-               <button [disabled]="form.invalid || !form.dirty" mat-raised-button color=primary type="submit"
+               <button [disabled]="form.invalid || (!form.dirty && !eventsEdited)" mat-raised-button color=primary type="submit"
                   aria-label="submit">Submit</button>
             </div>
 

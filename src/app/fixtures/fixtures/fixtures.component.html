@@ -1,7 +1,9 @@
 <ng-container *ngIf="fixtures$ | async as fixtures">
 
+
   <!-- Large Screen -->
   <div *ngIf="!handset" class="large-screen">
+
 
     <app-sidenav-button class="top-left"> </app-sidenav-button>
 
@@ -15,6 +17,7 @@
 
     <as-split direction="vertical">
 
+
       <!-- Large Map -->
       <as-split-area>
         <app-fixtures-map [fixtures]="fixtures" [homeLocation]="homeLocation$ | async"
@@ -24,6 +27,11 @@
 
       <!-- Large table -->
       <as-split-area>
+
+        <div *ngIf="ls.selected$ | async as league">
+          <app-league-header [league]="league"></app-league-header>
+        </div>
+
         <app-fixtures-grid [fixtures]="fixtures" [entries]="entries$ | async" [userEntries]="userEntries$ | async"
           [homeLocation]="homeLocation$ | async" [selectedFixture]="selectedFixture" [handset]='false'
           [loggedIn]='loggedIn' (fixtureSelected)="onFixtureSelected($event)">

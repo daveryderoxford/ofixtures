@@ -1,14 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'app/shared/shared.module';
-import { FixturesModule } from 'app/fixtures/fixtures.module';
+import { LeagueMenuComponent } from './league-menu/league-menu.component';
+import { LeagueHeaderComponent } from './league-header/league-header.component';
 
 @NgModule({
-  declarations: [ ],
+  declarations: [ 
+    LeagueMenuComponent, LeagueHeaderComponent
+  ],
   imports: [
     CommonModule,
-    SharedModule,
-    FixturesModule,
+    SharedModule
+  ],
+  exports: [
+    LeagueMenuComponent,
+    LeagueHeaderComponent
   ]
 })
 export class LeagueModule { }

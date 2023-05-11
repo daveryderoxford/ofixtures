@@ -65,7 +65,12 @@ export class FixtureSelectComponent implements OnInit {
   }
 
   itemSelected( fixture: Fixture ): boolean {
-    return this.selectedIds.includes( fixture.id );
+    const selected = this.selectedIds.includes( fixture.id )
+    if (selected) {
+
+   console.log('event selecdted id:' + fixture.id + 'name: ' + fixture.name);
+    } 
+    return selected;
   }
 
 }

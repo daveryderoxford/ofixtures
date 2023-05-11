@@ -16,6 +16,7 @@ import { PostcodeComponent } from './postcode/postcode.component';
 import { AddToGoogleCalendarButtonComponent } from './fixture-actions/google-cal-button';
 import { MapMenuItemsComponent } from './fixture-actions/map-menu-items.component';
 import { EntryModule } from 'app/entry/entry.module';
+import { LeagueModule } from 'app/league/league.module';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { EntryModule } from 'app/entry/entry.module';
     HttpClientModule,
     SharedModule,
     FilterPipeModule,
-    EntryModule
+    EntryModule,
+    LeagueModule
   ],
   exports: [
     GradeFilterComponent

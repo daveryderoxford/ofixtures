@@ -12,6 +12,9 @@ import { LatLong } from 'app/model/fixture';
 import { FixtureFilter } from 'app/model/fixture-filter';
 import { Observable } from 'rxjs';
 import { FixturesService } from '../fixtures.service';
+import { LeagueService } from 'app/league/league-service';
+import { map, switchMap } from 'rxjs/operators';
+import { League } from 'app/model/league';
 
 @UntilDestroy( { checkProperties: true } )
 @Component( {
@@ -40,6 +43,7 @@ export class FixturesComponent implements OnInit {
    constructor (
       private auth: Auth,
       public fs: FixturesService,
+      public ls: LeagueService,
       private es: EntryService,
       private breakpointObserver: BreakpointObserver,
       public dialog: MatDialog,
@@ -48,6 +52,12 @@ export class FixturesComponent implements OnInit {
    ) {
 
       this.fs.getSelectedFixture$().subscribe( fix => this.selectedFixture = fix);
+   }
+
+   leagueFixtures$( league: League ): Observable<Fixture[]>  {
+      return this.fs.allFixtues().pipe(
+         map( fixtures => fixtures.filter( fix => league?.fixtureIds.includes( fix.id ) ) )
+      )
    }
 
    ngOnInit() {
@@ -69,9 +79,18 @@ export class FixturesComponent implements OnInit {
 
       this.homeLocation$ = this.fs.getHomeLocation();
       this.postcode$ = this.fs.getPostcode();
-      this.fixtures$ = this.fs.getFixtures();
       this.entries$ = this.es.fixtureEntryDetails$;
       this.userEntries$ = this.es.userEntries$;
+
+      this.fixtures$ = this.ls.selected$.pipe(
+         switchMap( league => {
+            if (league) {
+               return this.leagueFixtures$(league);
+            } else {
+               return this.fs.getFixtures();
+            }
+         })
+      ) 
 
       /* Array of of entries expanded for the fixtures */
       /* this.entries$ = combineLatest([this.fixtures$, this.es.fixtureEntryDetails$]).pipe(

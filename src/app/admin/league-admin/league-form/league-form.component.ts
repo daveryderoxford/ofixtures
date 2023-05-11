@@ -24,6 +24,7 @@ export class LeagueFormComponent implements OnChanges {
 
   leagueTypes = leagueTypes;
   leagueLevels = leagueLevels;
+  eventsEdited = false;
 
   urlReg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
 
@@ -54,16 +55,19 @@ export class LeagueFormComponent implements OnChanges {
     output.endDate = this.end;
     this.submitted.emit( output );
     this.form.reset();
+    this.eventsEdited = false;
   }
 
   selectFixtures() {
     this._displayFixtureSelectDialog().subscribe( fixtures => {
-      this.selectedFixtureIds = fixtures.map( fix => fix.id );
-      if ( fixtures.length > 0 ) {
-        this.start = fixtures[0].date;
-        this.end = fixtures[fixtures.length - 1].date;
+      if ( fixtures ) {
+        this.eventsEdited = true;
+        this.selectedFixtureIds = fixtures.map( fix => fix.id );
+        if ( fixtures.length > 0 ) {
+          this.start = fixtures[0].date;
+          this.end = fixtures[fixtures.length - 1].date;
+        }
       }
-
     } );
   }
 
@@ -73,7 +77,7 @@ export class LeagueFormComponent implements OnChanges {
       width: '350px',
       maxWidth: '100vw',
       //  maxHeight: '100vh',
-      data: { multiselect: true, initialFilter: "", selected: this.selectedFixtureIds },
+      data: { multiselect: true, initialFilter: "", selectedIds: this.selectedFixtureIds },
     } );
 
     return dialogRef.afterClosed();

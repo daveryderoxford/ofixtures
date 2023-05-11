@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { CollectionReference, Firestore, addDoc, collection, collectionData, deleteDoc, doc, setDoc } from '@angular/fire/firestore';
+import { CollectionReference, Firestore, collection, collectionData, deleteDoc, doc, setDoc } from '@angular/fire/firestore';
 import { League } from 'app/model/league';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 
 export function createLeague(data: Partial<League>): League {
@@ -13,6 +13,9 @@ export function createLeague(data: Partial<League>): League {
   providedIn: 'root'
 })
 export class LeagueService {
+
+  private readonly _selectedLeague = new BehaviorSubject<League | null>( null );
+  readonly selected$ = this._selectedLeague.asObservable();
 
   leagues$: Observable<League[]>;
   
@@ -38,9 +41,17 @@ export class LeagueService {
 
   }
 
-  async delete(id: string) {
+  async delete(id: string): Promise<void> {
     const d = doc( this.fs, 'leagues', id );
     await deleteDoc( d );
+  }
+
+  setSelected(league: League) {
+    if ( league ) {
+       this._selectedLeague.next( {...league} );
+    } else {
+      this._selectedLeague.next(null);
+    }
   }
   
 }
