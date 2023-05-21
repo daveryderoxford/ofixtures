@@ -1,42 +1,47 @@
 <h1 mat-dialog-title>Select fixture</h1>
 
-<div mat-dialog-content>
+<div mat-dialog-content fxLayout="column" fxLayoutAlign="space-between">
+
+   <div *ngIf="multiselect" fxLayoutAlign="center">
+      <mat-slide-toggle [formControl]="selectedOnlyControl">Selected only</mat-slide-toggle>
+      <mat-divider></mat-divider>
+   </div>
 
    <mat-form-field>
       <mat-label>Filter</mat-label>
       <input matInput [formControl]="filter" placeholder="Filter">
-      <mat-hint>Name, Club, Area</mat-hint>
+      <mat-hint>Name, Club, Date</mat-hint>
    </mat-form-field>
-
-   <mat-divider></mat-divider>
 
    <ng-container *ngIf="fixtures$ | async as fixtures">
 
-      <cdk-virtual-scroll-viewport class="viewport" itemSize="72px">
+      <mat-selection-list [multiple]="multiselect" (selectionChange)="onSelectionChange($event)">
 
-         <mat-selection-list #list [multiple]="multiselect">
+         <cdk-virtual-scroll-viewport class="viewport" itemSize="72">
 
-            <mat-list-option *cdkVirtualFor="let fixture of fixtures" [value]="fixture" [selected]="itemSelected(fixture)" checkboxPosition="before">
+            <mat-list-option *cdkVirtualFor="let fixture of fixtures" [value]="fixture"
+               [selected]="selection.isSelected(fixture)" checkboxPosition="before">
                <div mat-line>
                   <span fxFlex=50%>{{fixture.date | date:'mediumDate' }}</span>
                   <span fxFlex=30%> {{fixture.club}}</span>
                </div>
                <p mat-line>
-                  {{fixture.name | ellipsis: 30}} 
+                  {{fixture.name | ellipsis: 30}}
                </p>
-            <mat-divider></mat-divider>
+               <mat-divider></mat-divider>
 
             </mat-list-option>
 
-         </mat-selection-list>
-      </cdk-virtual-scroll-viewport>
+         </cdk-virtual-scroll-viewport>
+
+      </mat-selection-list>
 
 
-      <div mat-dialog-actions>
-         <button mat-button mat-dialog-close>Cancel</button>
-         <button mat-button type="submit" (click)="onSubmit(list.selectedOptions)">OK</button>
-      </div>
    </ng-container>
 
+</div>
 
+<div mat-dialog-actions>
+   <button mat-button mat-dialog-close>Cancel</button>
+   <button mat-button type="OK" (click)="onSubmit()">OK</button>
 </div>
