@@ -28,7 +28,9 @@ export class LeagueService {
     
     this.leagues$ = collectionData( leagueCollection ).pipe( 
       shareReplay(1),
-      map( leagues => leagues.filter( league => isAfter( new Date( league.endDate), Date.now()) ))
+      map( leagues => 
+        leagues.filter( league => isAfter( new Date( league.endDate ), Date.now() ) && league.fixtureIds.length > 0 ).sort( ( a, b ) => a.startDate.localeCompare( b.startDate ))
+      ),
     );
   }
 
