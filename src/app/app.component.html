@@ -12,7 +12,7 @@
 
       <mat-divider></mat-divider>
 
-      <app-league-menu></app-league-menu>
+      <app-league-menu (selected)="leagueSelected($event)"></app-league-menu>
 
       <!-- <button mat-list-item (click)='closeSidenav( "/events")'>Results</button> 
       <button mat-list-item (click)='closeSidenav( "/admin/event-admin" )'>Admin</button> -->

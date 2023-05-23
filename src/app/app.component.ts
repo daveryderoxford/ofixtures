@@ -7,6 +7,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SidenavService } from './shared/services/sidenav.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { tap } from 'rxjs/operators';
+import { League } from './model/league';
 
 @UntilDestroy()
 @Component( {
@@ -102,6 +103,11 @@ export class AppComponent implements OnInit {
       if ( target)  {
          await this.router.navigate( target );
       }
+   }
+
+   async leagueSelected(l: League) {
+      await this.sidenav.close();
+      await this.router.navigate( ["/fixtures"] );
    }
 
    async contact() {

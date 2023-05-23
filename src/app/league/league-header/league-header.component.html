@@ -4,7 +4,7 @@
 
    <span fxFlex></span>
 
-   <a mat-button href="{{league.url}}">Website</a>
+   <a *ngIf="league.url" mat-button href="{{league.url}}">Website</a>
    <button mat-button (click)="ls.setSelected(null)">Clear</button>
 
 </mat-toolbar>

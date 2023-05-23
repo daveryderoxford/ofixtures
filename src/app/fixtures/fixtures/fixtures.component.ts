@@ -37,6 +37,7 @@ export class FixturesComponent implements OnInit {
    handset = false;
    mapview = false;
    loggedIn: boolean;
+   zoomBounds = false;
 
    currentRow: number;
 
@@ -85,9 +86,12 @@ export class FixturesComponent implements OnInit {
       this.fixtures$ = this.ls.selected$.pipe(
          switchMap( league => {
             if (league) {
+               this.zoomBounds = true;
                return this.leagueFixtures$(league);
             } else {
+               this.zoomBounds = false;
                return this.fs.getFixtures();
+
             }
          })
       ) 

@@ -6,7 +6,7 @@
   <ng-template matMenuContent>
 
     <ng-container *ngIf="handset">
-      <a mat-menu-item href="{{fixture.clubURL}}">
+      <a *ngIf="fixture.clubURL" mat-menu-item href="{{fixture.clubURL}}">
          Club website
           <app-external-link-icon></app-external-link-icon>
       </a>

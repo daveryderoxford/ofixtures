@@ -1,13 +1,12 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { ChangeDetectionStrategy, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatButtonToggleChange } from '@angular/material/button-toggle';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatListOption, MatSelectionList, MatSelectionListChange } from '@angular/material/list';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSelectionList, MatSelectionListChange } from '@angular/material/list';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { FixturesService } from 'app/fixtures/fixtures.service';
 import { Fixture } from 'app/model';
-import { combineLatest, Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 @UntilDestroy( {} )
@@ -62,23 +61,22 @@ export class FixtureSelectComponent implements OnInit {
   }
 
   private _filterFixtures( fixtures: Fixture[], filter: string, selectedOnly: boolean ): Fixture[] {
-    const filtered = fixtures.filter( fixture => this._stringFilter( filter, fixture ) && this._selectionFilter( selectedOnly, fixture ) );
-    return filtered;
+    const str = filter.trim().toLowerCase();
+    return fixtures.filter( fixture => this._stringFilter( str, fixture ) && this._selectionFilter( selectedOnly, fixture ) );
   }
 
-  private _stringFilter( filter: string, fixture: Fixture ): boolean {
-    const str = filter.trim().toLowerCase();
-    if ( str === "" ) {
+  private _stringFilter( filterStr: string, fixture: Fixture ): boolean {
+    if ( filterStr === "" ) {
       return true
     } else {
-      return fixture.club.toLowerCase().includes( str ) ||
-        fixture.name.toLowerCase().includes( str ) ||
-        fixture.date.toLowerCase().includes( str ) ||
-        fixture.area.toLowerCase().includes( str );
+      return fixture.club.toLowerCase().includes( filterStr ) ||
+        fixture.name.toLowerCase().includes( filterStr ) ||
+        fixture.date.toLowerCase().includes( filterStr ) ||
+        fixture.area.toLowerCase().includes( filterStr );
     }
   }
 
-  private _selectionFilter( selectedOnly: boolean, fixture: Fixture ) {
+  private _selectionFilter( selectedOnly: boolean, fixture: Fixture ): boolean {
     if ( selectedOnly ) {
       return this.selection.selected.includes( fixture );
     } else {

@@ -10,6 +10,7 @@ import { ToolbarComponent } from './components/toolbar.component';
 import { DialogsModule } from "./dialogs/dialogs.module";
 import { ExternalLinkIconComponent } from './components/external-link-icon.component';
 import { EllipsisPipe } from "./pipes/ellipsis-pipe";
+import { NgLetDirective } from "./components/ngLetDirective";
 
 @NgModule({
     imports: [
@@ -23,7 +24,8 @@ import { EllipsisPipe } from "./pipes/ellipsis-pipe";
         SidenavButtonComponent,
         ToolbarComponent,
         ExternalLinkIconComponent,
-        EllipsisPipe
+        EllipsisPipe,
+        NgLetDirective
     ],
     exports: [
         CommonModule,
@@ -34,7 +36,8 @@ import { EllipsisPipe } from "./pipes/ellipsis-pipe";
         ToolbarComponent,
         AngularSplitModule,
         ExternalLinkIconComponent,
-        EllipsisPipe
+        EllipsisPipe,
+        NgLetDirective
     ],
 })
 export class SharedModule { }

@@ -26,7 +26,7 @@ export class LeagueFormComponent implements OnChanges {
   leagueLevels = leagueLevels;
   eventsEdited = false;
 
-  urlReg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+  urlReg = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
 
   form = new FormGroup( {
     name: new FormControl( '', { validators: [Validators.required] } ),

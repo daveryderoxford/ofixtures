@@ -1,12 +1,11 @@
 import {
    AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component,
-   EventEmitter, HostListener, Input, NgZone, OnDestroy, OnInit, Output, ViewEncapsulation
+   EventEmitter,
+   Input, NgZone, OnDestroy, OnInit, Output, ViewEncapsulation
 } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { Fixture, LatLong } from 'app/model/fixture';
-import { Canvas, circle, Circle, CircleMarker, CircleMarkerOptions, control, FeatureGroup, Map, tileLayer, TileLayer, Util } from "leaflet";
-import { interval, timer } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { Canvas, Circle, CircleMarker, CircleMarkerOptions, FeatureGroup, Map, TileLayer, Util, circle, control, point, tileLayer } from "leaflet";
 
 @UntilDestroy( { checkProperties: true } )
 @Component( {
@@ -28,7 +27,12 @@ export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
 
    @Input() set fixtures( fixtures: Fixture[] ) {
       this.setFixtures( fixtures );
+      if (this.zoomBounds ) {
+         this._fitToBounds();
+      }
    }
+
+   @Input() zoomBounds: boolean = false;
 
    @Input() set selectedFixture( selected: Fixture ) {
       this.selectFixture( selected );
@@ -220,6 +224,13 @@ export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
       this._selectedFixtureMarker = fixtureMarker;
       this._selectedFixtureMarker.setStyle( { weight: 4 } );
       //  console.log( "Map Fixture selected " + fixtureMarker.fixture.name );
+   }
+
+   /** Zooms the map to display all the selected fixtures
+    *  useful when displaying a league or 
+    */
+   private _fitToBounds() {
+      this.map.fitBounds( this._fixtureMarkers.getBounds());
    }
 
    /** Returns the number of weeks in the future from now

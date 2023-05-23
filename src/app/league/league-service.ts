@@ -3,7 +3,8 @@ import { Auth } from '@angular/fire/auth';
 import { CollectionReference, Firestore, collection, collectionData, deleteDoc, doc, setDoc } from '@angular/fire/firestore';
 import { League } from 'app/model/league';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { shareReplay } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
+import { isAfter} from 'date-fns';
 
 export function createLeague(data: Partial<League>): League {
   return 
@@ -17,12 +18,18 @@ export class LeagueService {
   private readonly _selectedLeague = new BehaviorSubject<League | null>( null );
   readonly selected$ = this._selectedLeague.asObservable();
 
+  /** All leagues with any fixtures in the future */
   leagues$: Observable<League[]>;
   
   constructor( private fs: Firestore,
     private auth: Auth) {
+
     const leagueCollection = collection( this.fs, 'leagues' ) as CollectionReference<League>;
-    this.leagues$ = collectionData( leagueCollection ).pipe( shareReplay(1) );
+    
+    this.leagues$ = collectionData( leagueCollection ).pipe( 
+      shareReplay(1),
+      map( leagues => leagues.filter( league => isAfter( new Date( league.endDate), Date.now()) ))
+    );
   }
 
   async update(id: string, league: Partial<League>): Promise<void> {
