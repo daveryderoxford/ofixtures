@@ -1,0 +1,67 @@
+
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { UntilDestroy } from '@ngneat/until-destroy';
+import { EventDiscipline, EventGrade, EventType, eventDisciplines, eventGrades, eventTypes } from 'app/model';
+import { AdditionalFixture, Fixture } from 'app/model/fixture';
+import { formatISO } from 'date-fns';
+import { Observable } from 'rxjs';
+
+@UntilDestroy( { checkProperties: true } )
+@Component( {
+  selector: 'app-fixture-form',
+  templateUrl: './fixture-form.component.html',
+  styleUrls: ['./fixture-form.component.scss']
+} )
+export class FixtureFormComponent  implements OnChanges {
+
+  urlReg = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+  what3wordsReg = /^\/{0,}[^0-9`~!@#$%^&*()+\-_=[{\]}\\|'<,.>?/";:£§º©®\s]{1,}[・.。][^ 0 - 9`~!@#$%^&*()+\-_=[{\]}\\|'<,.>?/";:£§º©®\s]{1,}[・.。][^0-9`~!@#$ %^&* () +\-_=[{ \]}\\| '<,.>?/";:£§º©®\s]{1,}$/;
+  postcodeReg = /^[A-Z]{1,2}([0-9]{1,2}|[0-9][A-Z])\s*[0-9][A-Z]{2}$/gi;
+  gridRefReg = /^[a-zA-Z]{2}[0-9]{6}|[0-9]{8}/;
+
+  @Input() fixture
+  @Output() submitted = new EventEmitter<Partial<AdditionalFixture>>();
+
+  form = new FormGroup( {
+    date: new FormControl( '', { validators: [Validators.required] } ),
+    name: new FormControl( '', { validators: [Validators.required] } ),
+    club: new FormControl( '', { validators: [Validators.required] } ),
+    clubURL: new FormControl( '', { validators: [Validators.pattern( this.urlReg )] } ),
+    postcode: new FormControl( '' ),
+    gridRefString: new FormControl( '', { validators: [Validators.pattern( this.gridRefReg )] } ),
+    what3words: new FormControl( '', { validators: [Validators.pattern( this.what3wordsReg )] } ),
+    grade: new FormControl<EventGrade | ''>( '', { validators: [Validators.required] } ),
+    type: new FormControl<EventType | ''>( '', { validators: [Validators.required] } ),
+    discipline: new FormControl<EventDiscipline | ''>( '', { validators: [Validators.required] } ),
+    webpage: new FormControl( '', { validators: [Validators.pattern( this.urlReg )] } ),
+    nearestTown: new FormControl( '' ),
+    association: new FormControl( '', { validators: [Validators.required] } ),
+  } );
+
+  types = eventTypes;
+  grades = eventGrades;
+  disciplines = eventDisciplines;
+
+  constructor () { }
+
+  ngOnChanges( changes: SimpleChanges ) {
+    if ( changes.fixture?.currentValue ) {
+      this.form.patchValue( this.fixture );
+    }
+  }
+
+  submit() {
+    const output: Partial<Fixture> = this.form.getRawValue() as Partial<Fixture>;
+    // TO bodge - convert date to iso string
+    output.date = formatISO( new Date(output.date));
+    this.submitted.emit( output );
+    this.form.reset();
+  }
+
+  public canDeactivate(): boolean {
+    return !this.form.dirty;
+  }
+
+}

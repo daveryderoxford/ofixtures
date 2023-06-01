@@ -1,0 +1,101 @@
+<app-toolbar>Additional Fixture details</app-toolbar>
+
+<!-- Put form in middle of page -->
+<div fxLayout="row" fxLayoutAlign="center space-around">
+
+   <!-- layout elements vertically with  10px gaps-->
+   <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap=10px>
+
+      <mat-card>
+
+         <form (ngSubmit)="submit()" [formGroup]="form" novalidate fxLayout="column" fxLayoutAlign="space-around"
+            fxLayoutGap=10px>
+
+            <mat-form-field appearance="standard">
+               <mat-label>Date</mat-label>
+               <input matInput formControlName="date" [matDatepicker]="picker">
+               <mat-hint>DD/MM/YYYY</mat-hint>
+               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+               <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+               <input matInput formControlName="name" placeholder="Name">
+               <mat-error>Name required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+               <input matInput formControlName="club" placeholder="Club">
+               <mat-error>Club required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+               <input matInput formControlName="clubURL" placeholder="Club URL">
+               <mat-hint>A fully formed URL with http/https</mat-hint>
+               <mat-error>Valid URL required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+               <input matInput formControlName="postcode" placeholder="Post code">
+               <mat-error>Invalid post code</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+               <input matInput formControlName="gridRefString" placeholder="Grid reference">
+               <mat-error>Invalid grid reference</mat-error>
+               <mat-hint>6 figures with 2 letter prefix</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field>
+               <input matInput formControlName="what3words" placeholder="What 3 Words">
+               <mat-error>What 3 words invalid</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+               <mat-select formControlName="grade" placeholder="Event Grade">
+                  <mat-option *ngFor="let grade of grades;" [value]="grade">
+                     {{ grade }}
+                  </mat-option>
+               </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+               <mat-select formControlName="type" placeholder="Type">
+                  <mat-option *ngFor="let type of types;" [value]="type">
+                     {{ type }}
+                  </mat-option>
+               </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+               <mat-select formControlName="discipline" placeholder="Discipline">
+                  <mat-option *ngFor="let discipline of disciplines;" [value]="discipline">
+                     {{ discipline }}
+                  </mat-option>
+               </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+               <input matInput formControlName="webpage" placeholder="Web page">
+            </mat-form-field>
+
+            <mat-form-field>
+               <input matInput formControlName="nearestTown" placeholder="Nearest town">
+            </mat-form-field>
+
+            <mat-form-field>
+               <input matInput formControlName="association" placeholder="Association">
+               <mat-error>Association required</mat-error>
+            </mat-form-field>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+               <button [disabled]="form.invalid || !form.dirty" mat-raised-button color=primary type="submit"
+                  aria-label="submit">Save</button>
+            </div>
+
+         </form>
+      </mat-card>
+
+   </div>
+
+</div>

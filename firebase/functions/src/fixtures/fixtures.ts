@@ -9,6 +9,7 @@ import { googleLocationSearch } from "./google_search";
 import * as admin from "firebase-admin";
 import { Routegadget } from "./routegadget";
 import { ClubLocation, loadClubLocations } from "./club_locations";
+import { readAdditionalFixtures } from "./additional_fixtures";
 
 export class Fixtures {
    readonly BOFPDAURL =
@@ -39,6 +40,9 @@ export class Fixtures {
 
       console.log( "Making fixtures (includes getting postcodes)" );
       const fixtures = await this.makeFixtures( bofFixtures );
+
+      console.log( "Reading Additional fixtures and add to array" );
+      fixtures.concat( (await readAdditionalFixtures()) ).sort( (a,b) => a.date.localeCompare(b.date) );
 
       console.log( "Finding Routegadget maps" );
       await this.addRoutegadgetMaps( fixtures );

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { EventGrades } from 'app/model';
+import { eventGrades } from 'app/model';
 import { GradeFilter } from 'app/model/fixture-filter';
 
 @Component({
@@ -13,7 +13,7 @@ import { GradeFilter } from 'app/model/fixture-filter';
 
 export class GradeFilterComponent implements OnInit {
 
-   grades = EventGrades.grades;
+   grades = eventGrades;
 
    form: UntypedFormGroup;
    items: UntypedFormArray;

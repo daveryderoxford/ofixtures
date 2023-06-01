@@ -1,6 +1,6 @@
-import { ISODateString } from "./date";
 
-export type EventGrade = "IOF" | "International" | "National" | "Regional"| "Club" | "Local";
+export const eventGrades = ["IOF" , "International" , "National" , "Regional" , "Club" , "Local"] as const;
+export type EventGrade = typeof eventGrades[number];
 
 export class EventGrades {
     static grades: Array<EventGrade> = ["IOF" , "International" , "National" , "Regional", "Club", "Local"];
@@ -17,17 +17,11 @@ export class EventGrades {
     }
 }
 
-export type EventDiscipline = "Sprint" | "Urban" | "Middle" | "Long" | "Ultralong"| "Other" | "Unknown" ;
-export class EventDisciplines {
-    static disciplines: Array<EventDiscipline> = [ "Sprint", "Urban", "Middle", "Long", "Ultralong", "Other", "Unknown" ];
-}
+export const eventDisciplines = ["Sprint", "Urban", "Middle", "Long", "Mountain marathon", "Other", "Unknown"] as const;
+export type EventDiscipline = typeof eventDisciplines[number];
 
-export type EventType = "Foot" | "Bike" | "Ski" | "Trail" | "Other" ;
-export class EventTypes {
-    static types: Array<EventType> = ["Foot", "Bike" , "Ski" , "Trail" , "Other" ];
-}
+export const eventTypes = ["Foot", "Bike", "Ski", "Trail", "Other"] as const;
+export type EventType = typeof eventTypes[number];
 
-export type ControlCardType = "SI" | "Emit" | "Other";
-export class ControlCardTypes {
-    static types: Array<ControlCardType> = ["SI", "Emit" , "Other"];
-}
+export const controlCardTypes = ["SI", "Emit", "Other"] as const;
+export type ControlCardType = typeof controlCardTypes[number];

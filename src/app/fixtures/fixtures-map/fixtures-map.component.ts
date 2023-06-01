@@ -1,11 +1,10 @@
 import {
-   AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component,
-   EventEmitter,
-   Input, NgZone, OnDestroy, OnInit, Output, ViewEncapsulation
+   AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter,
+   Input, NgZone, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewEncapsulation
 } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { Fixture, LatLong } from 'app/model/fixture';
-import { Canvas, Circle, CircleMarker, CircleMarkerOptions, FeatureGroup, Map, TileLayer, Util, circle, control, point, tileLayer } from "leaflet";
+import { Canvas, Circle, CircleMarker, CircleMarkerOptions, FeatureGroup, Map, TileLayer, Util, circle, control, tileLayer } from "leaflet";
 
 @UntilDestroy( { checkProperties: true } )
 @Component( {
@@ -16,10 +15,11 @@ import { Canvas, Circle, CircleMarker, CircleMarkerOptions, FeatureGroup, Map, T
    changeDetection: ChangeDetectionStrategy.OnPush
 } )
 /** Map of fixtures */
-export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
+export class FixturesMapComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
 
    private _fixtures: Fixture[] = [];
    private _selectedFixtureMarker: FixtureMarker = null;
+   private _zoomBounds: boolean = false;
    private _homeLocation: LatLong = { "lat": 51.43116, "lng": -0.508227, };
 
    private _fixtureMarkers = new FeatureGroup<FixtureMarker>();
@@ -27,12 +27,17 @@ export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
 
    @Input() set fixtures( fixtures: Fixture[] ) {
       this.setFixtures( fixtures );
-      if (this.zoomBounds ) {
+      if (this._zoomBounds ) {
          this._fitToBounds();
       }
    }
 
-   @Input() zoomBounds: boolean = false;
+   @Input() set zoomBounds( zoom: boolean ) {
+      this._zoomBounds = zoom;
+      if ( this._zoomBounds ) {
+         this._fitToBounds();
+      }
+   }
 
    @Input() set selectedFixture( selected: Fixture ) {
       this.selectFixture( selected );
@@ -54,14 +59,17 @@ export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
    ngOnInit() {
       this._loadMap();
    }
-
+   
    ngAfterViewInit() {
       this._delayedResize();
    }
 
    private _loadMap() {
 
-      this.map = new Map( 'map', { preferCanvas: true, zoomControl: false } ).setView( this._homeLocation, 9 );
+      // Create the map outside of angular so the various map events don't trigger change detection
+      this.zone.runOutsideAngular( () => {
+          this.map = new Map( 'map', { preferCanvas: true, zoomControl: false } ).setView( this._homeLocation, 9 );
+      });
 
       control.scale( { position: 'bottomleft' } ).addTo( this.map );
       control.zoom( { position: 'bottomright' } ).addTo( this.map );
@@ -79,6 +87,10 @@ export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
       this.setHomeLocation( this._homeLocation );
       this.setFixtures( this._fixtures );
 
+   }
+
+   ngOnChanges( changes: SimpleChanges ) {
+     const i=1;
    }
 
    ngOnDestroy() {
@@ -227,10 +239,12 @@ export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
    }
 
    /** Zooms the map to display all the selected fixtures
-    *  useful when displaying a league or 
+    *  useful when displaying a league/multiday
     */
    private _fitToBounds() {
-      this.map.fitBounds( this._fixtureMarkers.getBounds());
+      if (this._fixtureMarkers.getLayers().length > 0) {
+         this.map.fitBounds( this._fixtureMarkers.getBounds(), {maxZoom: 10});
+      } 
    }
 
    /** Returns the number of weeks in the future from now

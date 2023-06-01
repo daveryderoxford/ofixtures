@@ -5,7 +5,7 @@ import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } fr
 import { Router } from "@angular/router";
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FixturesService } from "app/fixtures/fixtures.service";
-import { ControlCardTypes, UserData } from "app/model";
+import { controlCardTypes, UserData } from "app/model";
 import { Subscription } from 'rxjs';
 import { UserDataService } from "./user-data.service";
 
@@ -18,7 +18,7 @@ import { UserDataService } from "./user-data.service";
 export class UserComponent implements OnInit {
   originalUserData: UserData = null;
   userForm: UntypedFormGroup;
-  ecardTypes = ControlCardTypes.types;
+  ecardTypes = controlCardTypes;
 
   error = "";
   subscription: Subscription;

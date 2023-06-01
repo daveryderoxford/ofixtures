@@ -12,6 +12,10 @@ import { MapRegistrationAdminComponent } from './entry-admin/map-registration-ad
 import { FixtureSelectComponent } from './fixture-select/fixture-select.component';
 import { CourseDialogComponent } from './entry-admin/course-dialog/course-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FixtureFormComponent } from './additional-fixture/fixture-form/fixture-form.component';
+import { FixtureAddComponent } from './additional-fixture/fixture-add.component';
+import { FixtureEditComponent } from './additional-fixture/fixture-edit.component';
+import { FixtureAdminCardComponent } from './additional-fixture/fixture-admin-card/fixture-admin-card.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     LeagueAddComponent,
     MapRegistrationAdminComponent,
     FixtureSelectComponent,
-    CourseDialogComponent
+    CourseDialogComponent,
+    FixtureFormComponent,
+    FixtureAddComponent,
+    FixtureEditComponent,
+    FixtureAdminCardComponent
   ],
   imports: [
     CommonModule,

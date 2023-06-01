@@ -9,6 +9,18 @@ service cloud.firestore {
    function validUserUpdate(old, new) {
      return old.key  == new.key;
    }
+   
+    match /leagues/{id} {
+      allow create: if request.auth.uid != null;
+      allow update, delete: if request.auth.uid == resource.data.userId || isAdmin(request);
+      allow read;
+    }
+    
+     match /fixtures/{id} {
+      allow create: if request.auth.uid != null;
+      allow update, delete: if request.auth.uid == resource.data.userId || isAdmin(request);
+      allow read;
+    }
   
     match /fixture_entry_details/{fixtureId} {
       allow create: if request.auth.uid != null;

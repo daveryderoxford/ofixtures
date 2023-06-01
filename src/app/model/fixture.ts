@@ -38,3 +38,8 @@ export interface Fixture {
      distance?: number;
      rg: RGData;
 }
+
+export interface AdditionalFixture extends Fixture {
+   userId; string;
+   gridRefString: string;
+}
