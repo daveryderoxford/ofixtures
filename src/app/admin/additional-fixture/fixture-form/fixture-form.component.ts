@@ -36,6 +36,7 @@ export class FixtureFormComponent  implements OnChanges {
     type: new FormControl<EventType | ''>( '', { validators: [Validators.required] } ),
     discipline: new FormControl<EventDiscipline | ''>( '', { validators: [Validators.required] } ),
     webpage: new FormControl( '', { validators: [Validators.pattern( this.urlReg )] } ),
+    area: new FormControl( '' ),
     nearestTown: new FormControl( '' ),
     association: new FormControl( '', { validators: [Validators.required] } ),
   } );

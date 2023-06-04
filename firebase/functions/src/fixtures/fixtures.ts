@@ -1,8 +1,8 @@
 import * as request from "request-promise";
-import { Fixture,  } from "../model/fixture";
+import { Fixture, } from "../model/fixture";
 import { LatLong } from "../model/latlng";
 import { EventGrade } from "../model/oevent";
-import { BOFPDParseData, BOFPDParser } from "./bof_pda_parse";
+import { BOFPDParser } from "./bof_pda_parse";
 import { GT_OSGB } from "./geo_conversion";
 import { LatLong as LatLongPIO, PostCodeLookup } from "./postcode";
 import { googleLocationSearch } from "./google_search";
@@ -19,35 +19,31 @@ export class Fixtures {
 
    clubs: ClubLocation[];
 
-   version = "1.0.4";
+   version = "2.0.0";
 
    constructor ( private storage: admin.storage.Storage ) { }
 
    /** Read BOF PDA data from URL and parse it. */
    public async processFixtures() {
 
-      console.log( "Fixtures version " + this.version )
-
-      console.log( "Loading BOF PDA Data" );
-      const text = await this.loadBOFPDA();
+      console.log( "Fixtures version " + this.version );
 
       console.log( "Loading Club locations" );
       this.clubs = await this.loadClubLocations();
 
-      console.log( "Parsing BOF PDA Data" );
-      const parser = new BOFPDParser();
-      const bofFixtures = parser.parseBOFPDAFile( text );
+      console.log( "Processing BOF Fixtures");
+      const bofFixtures = await this.processBOFFixtures();
 
-      console.log( "Making fixtures (includes getting postcodes)" );
-      const fixtures = await this.makeFixtures( bofFixtures );
-
-      console.log( "Reading Additional fixtures and add to array" );
-      fixtures.concat( (await readAdditionalFixtures()) ).sort( (a,b) => a.date.localeCompare(b.date) );
+      console.log( "Processing Additional fixtures" );
+      const additionalFixtures = await this.processAdditonalFixtures();
+      
+      const fixtures = bofFixtures.concat( additionalFixtures );
+      fixtures.sort( ( a, b ) => a.date.localeCompare( b.date ) );
 
       console.log( "Finding Routegadget maps" );
       await this.addRoutegadgetMaps( fixtures );
 
-      console.log( "Saving fixtures" );
+      console.log( "Saving fixture file" );
       await this.saveToStorage( fixtures );
 
       console.log( "Done" );
@@ -59,7 +55,14 @@ export class Fixtures {
    }
 
    /** Make fixtures array for BOF fixturesd. */
-   private async makeFixtures( bofFixtures: BOFPDParseData[] ): Promise<Fixture[]> {
+   private async processBOFFixtures(): Promise<Fixture[]> {
+
+      console.log( "Loading BOF PDA Data" );
+      const text = await this.loadBOFPDA();
+
+      console.log( "Parsing BOF PDA Data" );
+      const parser = new BOFPDParser();
+      const bofFixtures = parser.parseBOFPDAFile( text )
 
       //  Create fixture array
       const fixtures: Partial<Fixture>[] = bofFixtures.map( bof => {
@@ -88,19 +91,47 @@ export class Fixtures {
       return fixtures as Fixture[];
    }
 
+   private async processAdditonalFixtures(): Promise<Fixture[]> {
+
+      console.log( "Reading additional fixtures" );
+      const fixtures = await readAdditionalFixtures();
+
+      const data = fixtures.map( f => {
+         return {
+            postcode: f.postcode,
+            gridRefStr: f.gridRefString,
+         }
+      });
+      await this.calcPostCodes( fixtures, data );
+
+      const data2 = fixtures.map( f => {
+         return {
+            postcode: f.postcode,
+            gridRefStr: f.gridRefString,
+            area: f?.area,
+            nearestTown: f?.nearestTown,
+            club: f.club
+         };
+      });
+      await this.calcLatLongs( fixtures, data2 );
+
+      return fixtures;
+
+   }
+
    /** Sets Fixture postcodes for bof data for all values, determining postcode from latlong where necessary */
-   private async calcPostCodes( fixtures: Partial<Fixture>[], bofFixtures: BOFPDParseData[] ) {
+   private async calcPostCodes( fixtures: Partial<Fixture>[], data: { postcode: string, gridRefStr: string }[] ) {
       console.log( "     Calculating postcodes" )
       const latlongsToCalc: LatLongPIO[] = [];
       const fixturesToCalc: Partial<Fixture>[] = [];
 
       // Set postcodes for ones avalible from BOF data and identify ones that need to be calculated using postcode.io
       for ( let i = 0; i < fixtures.length; i++ ) {
-         if ( bofFixtures[i].postcode !== "" ) {
-            fixtures[i].postcode = bofFixtures[i].postcode;
-         } else if ( bofFixtures[i].gridRefStr !== "" ) {
-            const loc = this.osgbToLatLong( bofFixtures[i].gridRefStr );
-            if (loc) {
+         if ( data[i].postcode !== "" ) {
+            fixtures[i].postcode = data[i].postcode;
+         } else if ( data[i].gridRefStr && data[i].gridRefStr !== "" ) {
+            const loc = this.osgbToLatLong( data[i].gridRefStr );
+            if ( loc ) {
                latlongsToCalc.push( loc );
                fixturesToCalc.push( fixtures[i] );
             }
@@ -117,7 +148,7 @@ export class Fixtures {
    }
 
    /** Sets Fixture latlong for bof data for all values, calculating from postcode where necessary */
-   private async calcLatLongs( fixtures: Partial<Fixture>[], bofFixtures: BOFPDParseData[] ) {
+   private async calcLatLongs( fixtures: Partial<Fixture>[], data: { postcode: string, gridRefStr: string, area: string, nearestTown: string, club: string }[] ) {
       console.log( "     Calculating latlongs" )
 
       const postcodesToCalc: string[] = [];
@@ -126,10 +157,10 @@ export class Fixtures {
       // Set latlongs for ones avalible from BOF data and identify ones that need to be calculated using postcode.io or google geolocation.
       // Default value for club is used if no other exist
       for ( let i = 0; i < fixtures.length; i++ ) {
-         const bof = bofFixtures[i];
+         const bof = data[i];
          const fix = fixtures[i];
 
-         if ( bof.gridRefStr !== "" ) {
+         if ( bof.gridRefStr && bof.gridRefStr !== "" ) {
             fix.latLong = this.osgbToLatLong( bof.gridRefStr );
             if ( fix.latLong ) {
                fix.locSource = 'gridref';
@@ -137,12 +168,12 @@ export class Fixtures {
                // console.log( `Fixture: Unable to parse grid ref string. Fixture: ${fix.id} club ${fix.club} date: ${fix.date} Grid ref: ${bof.gridRefStr}` );
                fix.locSource = '';
             }
-         } else if ( bof.postcode !== "" ) {
+         } else if ( bof.postcode && bof.postcode !== "" ) {
             postcodesToCalc.push( bof.postcode );
             fixtuersToCalc.push( fix );
             fix.locSource = 'postcode';
          } else if ( bof.area || bof.nearestTown ) {
-            fix.latLong = await googleLocationSearch( bof.area, bof.nearestTown, this.latLngForClub(bof.club) );
+            fix.latLong = await googleLocationSearch( bof.area, bof.nearestTown, this.latLngForClub( bof.club ) );
             fix.locSource = fix.latLong ? 'google' : '';
          }
       }
@@ -154,11 +185,11 @@ export class Fixtures {
       }
 
       // Set default latlong for club if we could not obtain from other sources
-      fixtures.filter( fix => !fix.latLong ).forEach(fix => {
+      fixtures.filter( fix => !fix.latLong ).forEach( fix => {
          fix.latLong = this.latLngForClub( fix.club );
          fix.locSource = fix.latLong ? 'club' : '';
-      });
-  
+      } );
+
    }
 
    private latLngForClub( clubname: string ): LatLong | null {

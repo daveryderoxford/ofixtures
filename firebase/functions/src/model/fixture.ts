@@ -33,3 +33,9 @@ export interface Fixture {
      association?: string;
      rg? : RGData;
 }
+
+export interface AdditionalFixture extends Fixture {
+   userId; string;
+   gridRefString: string;
+}
+

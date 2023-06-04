@@ -80,12 +80,17 @@ export class Routegadget {
     */
    public getRoutegadgetData( area: string, club: string ): RGData {
 
-      const areaWords = area.toLowerCase().trim().split( " " ).filter( word => {
-         return !skippedAreaWords.includes( word ) && word.length > 2;
-      } );
+      let areaWords: string[];
+      if ( area ) {
+         areaWords = area.toLowerCase().trim().split( " " ).filter( word => {
+            return !skippedAreaWords.includes( word ) && word.length > 2;
+         } );
+      } else {
+         areaWords = [];
+      }
       // console.log( "Routgadget area:  " + area + "  Words: " + areaWords.toString());
 
-      const clubLower = club.toLowerCase();
+      const clubLower = club?.toLowerCase();
       const rgSite = this.rgSitesMap.get( clubLower );
 
       if ( !rgSite ) {
@@ -95,22 +100,22 @@ export class Routegadget {
       const maps = rgSite.events.filter( event => {
          const name = event.name.toLowerCase();
          // the area is not empty string and either complete area string matches or filtered area worda occur in event name
-         const ok = area !== "" && 
-            (name.includes( area ) ||
-            areaWords.some( word => this.wordInString( name , word) ));
+         const ok = area !== "" &&
+            ( name.includes( area ) ||
+               areaWords.some( word => this.wordInString( name, word ) ) );
          return ok;
       } ).sort( ( a, b ) => {
          // Sort to have matches complete area string first followed by sort by event id order.  
          const amatches = a.name.includes( area );
          const bmatches = b.name.includes( area );
          if ( amatches === bmatches ) {
-            return parseInt( b.id ) - parseInt( a.id);
+            return parseInt( b.id ) - parseInt( a.id );
          } else {
             return amatches ? 1 : -1;
          }
       } ).map( event => {
          return { id: event.id, name: event.name, mapfile: event.mapfile }
-      });
+      } );
 
       // console.log( "Routgadget maps:  " + JSON.stringify(maps) );
 
@@ -118,7 +123,7 @@ export class Routegadget {
    }
 
    /** Returns if a word if found in a string */
-   wordInString (string: string, word): boolean {
+   wordInString( string: string, word ): boolean {
       return new RegExp( "\\b" + this.escapeRegExp( word ) + "\\b" ).test( string );
    }
 
