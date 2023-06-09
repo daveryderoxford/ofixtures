@@ -61,7 +61,7 @@ export class LeagueService {
     if ( league ) {
       if ( this._selectedLeague.value?.id !== league.id ) {
         this._selectedLeague.next( { ...league } );
-        this.fixtureService.updateSelectedFixture( null );
+        this.fixtureService.setSelectedFixture( null );
       }
     } else {
       if ( this._selectedLeague.value !== null ) {

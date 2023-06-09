@@ -4,14 +4,13 @@
     <!-- Large Screen -->
     <div *ngIf="!handset" class="large-screen">
 
-
       <app-sidenav-button class="top-left"> </app-sidenav-button>
 
       <app-postcode class="top-left-2 mat-elevation-z2" [postcode]="postcode$ | async"
         (postcodeChanged)="postcodeChanged($event)">
       </app-postcode>
 
-      <app-fixtures-options *ngIf="!league" class="top-right mat-elevation-z2" [filter]="fs.getFilter() | async"
+      <app-fixtures-options *ngIf="!league" class="top-right mat-elevation-z2" [filter]="fs.filter$ | async"
         (filterChanged)="filterChanged($event)">
       </app-fixtures-options>
 
@@ -66,7 +65,7 @@
 
         <app-postcode [postcode]="postcode$ | async" (postcodeChanged)="postcodeChanged($event)"></app-postcode>
 
-        <app-fixtures-options *ngIf="!league" [filter]="fs.getFilter() | async"
+        <app-fixtures-options *ngIf="!league" [filter]="fs.filter$ | async"
           (filterChanged)="filterChanged($event)"></app-fixtures-options>
       </div>
 

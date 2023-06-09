@@ -78,8 +78,8 @@ export class FixturesComponent implements OnInit {
          this.loggedIn = ( user !== null );
       } );
 
-      this.homeLocation$ = this.fs.getHomeLocation();
-      this.postcode$ = this.fs.getPostcode();
+      this.homeLocation$ = this.fs.homeLocation$;
+      this.postcode$ = this.fs.postcode$;
       this.entries$ = this.es.fixtureEntryDetails$;
       this.userEntries$ = this.es.userEntries$;
 
@@ -108,18 +108,18 @@ export class FixturesComponent implements OnInit {
    }
 
    onFixtureSelected( fixture: Fixture ) {
-      this.fs.updateSelectedFixture( fixture );
+      this.fs.setSelectedFixture( fixture );
    }
 
    async postcodeChanged( p: string ) {
-      const latlong = await this.fs.updatePostcode( p );
+      const latlong = await this.fs.setPostcode( p );
       if ( !latlong ) {
          this.snackbar.open( 'Lat/Long for postcode could not be determined.', '', { duration: 2 * 1000 } );
       }
    }
 
    filterChanged( f: FixtureFilter ) {
-      this.fs.updateFilter( f );
+      this.fs.setFilter( f );
    }
 
    toggleMobileFilter() {

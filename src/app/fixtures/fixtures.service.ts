@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage, ref } from "@angular/fire/storage";
-import { getDownloadURL } from 'rxfire/storage';
 import { UserData } from 'app/model';
 import { Fixture, LatLong } from 'app/model/fixture';
 import { FixtureFilter, GradeFilter } from 'app/model/fixture-filter';
 import { UserDataService } from 'app/user/user-data.service';
 import { differenceInMonths, isFuture, isSaturday, isSunday, isToday, isWeekend } from 'date-fns';
-import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
+import { getDownloadURL } from 'rxfire/storage';
+import { BehaviorSubject, Observable, combineLatest, of } from 'rxjs';
 import { catchError, map, shareReplay, startWith, switchMap, tap } from 'rxjs/operators';
 
 @Injectable( {
@@ -18,39 +18,39 @@ export class FixturesService {
    DEFAULT_FILTER = {
       time: { sat: true, sun: true, weekday: true },
       gradesEnabled: true,
-      grades: this._makeDefaultGrades(),
+      grades: makeDefaultGrades(),
       likedOnly: false
    };
 
    DEFAULT_POSTCODE = 'TW18 2AB';
-   DEFAULT_LATLNG =  { "lat": 51.43116, "lng": -0.508227 };
+   DEFAULT_LATLNG = { "lat": 51.43116, "lng": -0.508227 };
 
    private _postcode$ = new BehaviorSubject<string>( this.DEFAULT_POSTCODE );
-   postcode$ =  this._postcode$.asObservable();
+   readonly postcode$ = this._postcode$.asObservable();
 
    private _homeLocation$ = new BehaviorSubject<LatLong>( this.DEFAULT_LATLNG );
-   homeLocation$ = this._homeLocation$.asObservable();
+   readonly homeLocation$ = this._homeLocation$.asObservable();
 
    private _filter$ = new BehaviorSubject<FixtureFilter>( this.DEFAULT_FILTER );
-   filter$: Observable<FixtureFilter>;
+   readonly filter$: Observable<FixtureFilter>;
 
-   private _fileContents$: Observable<Fixture[]> = getDownloadURL( ref(this.storage, "fixtures/uk" )).pipe(
+   private _fileContents$: Observable<Fixture[]> = getDownloadURL( ref( this.storage, "fixtures/uk" ) ).pipe(
       switchMap( url => this.http.get<Fixture[]>( url ) ),
-      map( fixtures => this._futureFixtures( fixtures ) ),
+      map( fixtures => futureFixtures( fixtures ) ),
       startWith( [] ),
       shareReplay( 1 ),
       catchError( this.handleError<Fixture[]>( 'Fixture download', [] ) )
    );
 
    private _selectedFixture$ = new BehaviorSubject<Fixture | null>( null );
-   selectedFixture$ = this._selectedFixture$.asObservable();
+   readonly selectedFixture$ = this._selectedFixture$.asObservable();
 
    constructor (
       protected usd: UserDataService,
       protected storage: Storage,
       protected http: HttpClient ) {
 
-      const grades = getFromLocalStorage( 'grades') as GradeFilter[];
+      const grades = getFromLocalStorage( 'grades' ) as GradeFilter[];
       if ( grades ) {
          this._filter$.next( { ...this.DEFAULT_FILTER, grades: grades } )
       }
@@ -64,14 +64,14 @@ export class FixturesService {
       this.usd.user$.subscribe( user => {
          if ( user ) {
             if ( user.postcode && user.postcode !== "" ) {
-               this.updatePostcode( user.postcode );
+               this.setPostcode( user.postcode );
             }
             if ( user.fixtureGradeFilters ) {
-               this.updateFilter( { ...this._filter$.value, grades: user.fixtureGradeFilters } );
+               this.setFilter( { ...this._filter$.value, grades: user.fixtureGradeFilters } );
             }
          } else {
             // set likedonly to false on logout
-            this.updateFilter( { ...this._filter$.value, likedOnly: false } );
+            this.setFilter( { ...this._filter$.value, likedOnly: false } );
          }
       } );
    }
@@ -95,59 +95,20 @@ export class FixturesService {
       );
 
       const fixturesObs$ = combineLatest( [fixturesWithDistance$, this.usd.user$, this._filter$] ).pipe(
-         map( ( [fixtures, userdata, ftr] ) => fixtures.filter( fix => this._showFixture( fix, userdata, ftr ) ) )
+         map( ( [fixtures, userdata, ftr] ) => fixtures.filter( fix => isFixtureShown( fix, userdata, ftr ) ) )
       );
 
       return fixturesObs$;
    }
 
-   private _futureFixtures( fixtures: Fixture[] ): Fixture[] {
-      return fixtures.filter( fix => {
-         const d = new Date( fix.date );
-         return isToday( d ) || isFuture( d );
-      } );
-   }
-
-   updateSelectedFixture( fixture: Fixture ) {
+   setSelectedFixture( fixture: Fixture ) {
       this._selectedFixture$.next( fixture );
-   }
-
-   public _showFixture( fix: Fixture, userdata: UserData, ftr: FixtureFilter ): boolean {
-
-      const fixdate = new Date( fix.date );
-
-      const timeFilterPassed = ( isSaturday( fixdate ) && ftr.time.sat === true ) ||
-         ( isSunday( fixdate ) && ftr.time.sun === true ) ||
-         ( !isWeekend( fixdate ) && ftr.time.weekday === true );
-
-      let gradeOFilterPassed: boolean;
-      if ( ftr.gradesEnabled ) {
-         const gradeFilter = ftr.grades.find( ( grade ) => grade.name === fix.grade );
-
-         gradeOFilterPassed = gradeFilter.enabled &&
-            differenceInMonths( fixdate, new Date() ) <= gradeFilter.time &&
-            fix.distance < gradeFilter.distance;
-      } else {
-         gradeOFilterPassed = true;
-      }
-
-      let isLiked = false;
-      const likedOnly = ftr.likedOnly;
-      isLiked = userdata?.reminders.includes( fix.id );
-
-      // For liked only show all liked events.  Otherwise filter based on time and grade fiilters
-      return likedOnly ? isLiked : timeFilterPassed && gradeOFilterPassed;
-
-   }
-
-   getHomeLocation(): Observable<LatLong> {
-      return this._homeLocation$.asObservable();
    }
 
    /** Updates the postcode used for fixture location calculation
     * Returns promise containg the calculated lat long or null if the latlong could not be calculated 
     */
-   async updatePostcode( postcode: string ): Promise<LatLong | null> {
+   async setPostcode( postcode: string ): Promise<LatLong | null> {
 
       const latlng = await this._calcLatLong( postcode ).toPromise();
 
@@ -163,28 +124,9 @@ export class FixturesService {
 
    }
 
-   getPostcode(): Observable<string> {
-      return this._postcode$.asObservable();
-   }
-
-   updateFilter( f: FixtureFilter ) {
+   setFilter( f: FixtureFilter ) {
       this._filter$.next( f );
       saveToLocalStorage( 'grades', f?.grades );
-   }
-
-   getFilter(): Observable<FixtureFilter> {
-      return this._filter$.asObservable();
-   }
-
-   private _makeDefaultGrades(): GradeFilter[] {
-      return [
-         { name: 'IOF', enabled: true, distance: 1000, time: 48 },
-         { name: 'International', enabled: true, distance: 1000, time: 48 },
-         { name: 'National', enabled: true, distance: 500, time: 12 },
-         { name: 'Regional', enabled: true, distance: 100, time: 12 },
-         { name: 'Club', enabled: true, distance: 60, time: 6 },
-         { name: 'Local', enabled: true, distance: 40, time: 2 },
-      ];
    }
 
    /** Calculate lat long from postcode, returning null if lat/long could not be calculated */
@@ -255,10 +197,57 @@ export class FixturesService {
    }
 }
 
+
+function makeDefaultGrades(): GradeFilter[] {
+   return [
+      { name: 'IOF', enabled: true, distance: 1000, time: 48 },
+      { name: 'International', enabled: true, distance: 1000, time: 48 },
+      { name: 'National', enabled: true, distance: 500, time: 12 },
+      { name: 'Regional', enabled: true, distance: 100, time: 12 },
+      { name: 'Club', enabled: true, distance: 60, time: 6 },
+      { name: 'Local', enabled: true, distance: 40, time: 2 },
+   ];
+}
+
+function futureFixtures( fixtures: Fixture[] ): Fixture[] {
+   return fixtures.filter( fix => {
+      const d = new Date( fix.date );
+      return isToday( d ) || isFuture( d );
+   } );
+}
+
+function isFixtureShown( fix: Fixture, userdata: UserData, ftr: FixtureFilter ): boolean {
+
+   const fixdate = new Date( fix.date );
+
+   const timeFilterPassed = ( isSaturday( fixdate ) && ftr.time.sat === true ) ||
+      ( isSunday( fixdate ) && ftr.time.sun === true ) ||
+      ( !isWeekend( fixdate ) && ftr.time.weekday === true );
+
+   let gradeOFilterPassed: boolean;
+   if ( ftr.gradesEnabled ) {
+      const gradeFilter = ftr.grades.find( ( grade ) => grade.name === fix.grade );
+
+      gradeOFilterPassed = gradeFilter.enabled &&
+         differenceInMonths( fixdate, new Date() ) <= gradeFilter.time &&
+         fix.distance < gradeFilter.distance;
+   } else {
+      gradeOFilterPassed = true;
+   }
+
+   let isLiked = false;
+   const likedOnly = ftr.likedOnly;
+   isLiked = userdata?.reminders.includes( fix.id );
+
+   // For liked only show all liked events.  Otherwise filter based on time and grade fiilters
+   return likedOnly ? isLiked : timeFilterPassed && gradeOFilterPassed;
+
+}
+
 type LocalStorageKey = 'grades' | 'location';
 
 interface LocalStorageLocationData {
-   postcode: string, 
+   postcode: string,
    latlng: LatLong
 }
 
@@ -281,3 +270,5 @@ function getFromLocalStorage( key: LocalStorageKey ): LocalStorageLocationData |
       return null;
    }
 }
+
+

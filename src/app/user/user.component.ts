@@ -126,7 +126,7 @@ export class UserComponent implements OnInit {
       // nationality id hard coded to GBR to simplify UI for the moment ng serve
       await this.usd.updateDetails( { ...this.userForm.value, nationality: 'GBR' } );
       console.log( 'UserComponnet: User results saved' );
-      this.fs.updatePostcode( this.userForm.value.postcode );
+      this.fs.setPostcode( this.userForm.value.postcode );
     } finally {
       this.busy = false;
       this.router.navigate( ["/"] );
