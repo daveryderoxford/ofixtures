@@ -5,17 +5,14 @@
   <mat-sidenav>
 
     <mat-action-list>
-      <button mat-list-item (click)='closeSidenav(["/fixtures"])'>Fixtures</button>
+      <button mat-list-item (click)='showFixtures(false)'>Fixtures</button>
 
-      <button *ngIf="handset" mat-list-item (click)='closeSidenav(["/fixtures", {mapview: true}])'>Fixtures
+      <button *ngIf="handset" mat-list-item (click)='showFixtures(true)'>Fixtures
         Map</button>
 
       <mat-divider></mat-divider>
 
       <app-league-menu (selected)="leagueSelected($event)"></app-league-menu>
-
-      <!-- <button mat-list-item (click)='closeSidenav( "/events")'>Results</button> 
-      <button mat-list-item (click)='closeSidenav( "/admin/event-admin" )'>Admin</button> -->
 
       <mat-divider></mat-divider>
 
@@ -31,11 +28,7 @@
       <button mat-list-item (click)='closeSidenav(["/about"])'>About</button>
       <button mat-list-item (click)='contact()'>Contact</button>
 
-      <button mat-list-item (click)='closeSidenav(["/admin"])'>Admin</button>
-
-      <ng-container *ngIf="isAdmin()">
-        <button mat-list-item (click)="scriptsClicked()">Scripts</button>
-      </ng-container>
+      <button mat-list-item (click)='adminMenu()'>Admin</button>
 
     </mat-action-list>
 

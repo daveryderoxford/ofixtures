@@ -69,10 +69,10 @@ export class FixtureSelectComponent implements OnInit {
     if ( filterStr === "" ) {
       return true
     } else {
-      return fixture.club.toLowerCase().includes( filterStr ) ||
+      return fixture.club?.toLowerCase().includes( filterStr ) ||
         fixture.name.toLowerCase().includes( filterStr ) ||
         fixture.date.toLowerCase().includes( filterStr ) ||
-        fixture.area.toLowerCase().includes( filterStr );
+        fixture.area?.toLowerCase().includes( filterStr );
     }
   }
 

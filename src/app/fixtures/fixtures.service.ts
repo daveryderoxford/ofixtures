@@ -25,9 +25,14 @@ export class FixturesService {
    DEFAULT_POSTCODE = 'TW18 2AB';
    DEFAULT_LATLNG =  { "lat": 51.43116, "lng": -0.508227 };
 
-   private _postcode$: BehaviorSubject<string>;
-   private _homeLocation$: BehaviorSubject<LatLong>;
-   private _filter$: BehaviorSubject<FixtureFilter>; 
+   private _postcode$ = new BehaviorSubject<string>( this.DEFAULT_POSTCODE );
+   postcode$ =  this._postcode$.asObservable();
+
+   private _homeLocation$ = new BehaviorSubject<LatLong>( this.DEFAULT_LATLNG );
+   homeLocation$ = this._homeLocation$.asObservable();
+
+   private _filter$ = new BehaviorSubject<FixtureFilter>( this.DEFAULT_FILTER );
+   filter$: Observable<FixtureFilter>;
 
    private _fileContents$: Observable<Fixture[]> = getDownloadURL( ref(this.storage, "fixtures/uk" )).pipe(
       switchMap( url => this.http.get<Fixture[]>( url ) ),
@@ -38,6 +43,7 @@ export class FixturesService {
    );
 
    private _selectedFixture$ = new BehaviorSubject<Fixture | null>( null );
+   selectedFixture$ = this._selectedFixture$.asObservable();
 
    constructor (
       protected usd: UserDataService,
@@ -45,17 +51,15 @@ export class FixturesService {
       protected http: HttpClient ) {
 
       const grades = getFromLocalStorage( 'grades') as GradeFilter[];
-      const initialFilter = grades ? { ...this.DEFAULT_FILTER, grades: grades } : this.DEFAULT_FILTER;
-      this._filter$ = new BehaviorSubject<FixtureFilter>( initialFilter );
+      if ( grades ) {
+         this._filter$.next( { ...this.DEFAULT_FILTER, grades: grades } )
+      }
 
       const location = getFromLocalStorage( 'location' ) as LocalStorageLocationData;
-
-      const initialPostCode = location ? location.postcode : this.DEFAULT_POSTCODE;
-      this._postcode$ = new BehaviorSubject<string>( initialPostCode );
-
-      const initialLatLng = location ? location.latlng : this.DEFAULT_LATLNG;
-      this._homeLocation$ = new BehaviorSubject<LatLong>( initialLatLng );
-
+      if ( location ) {
+         this._postcode$.next( location.postcode );
+         this._homeLocation$.next( location.latlng );
+      }
       /* When user changes - set filters to reflect user details and unset liked only */
       this.usd.user$.subscribe( user => {
          if ( user ) {
@@ -102,10 +106,6 @@ export class FixturesService {
          const d = new Date( fix.date );
          return isToday( d ) || isFuture( d );
       } );
-   }
-
-   getSelectedFixture$(): Observable<Fixture> {
-      return this._selectedFixture$.asObservable();
    }
 
    updateSelectedFixture( fixture: Fixture ) {

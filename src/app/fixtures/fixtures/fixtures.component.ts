@@ -52,7 +52,7 @@ export class FixturesComponent implements OnInit {
       public route: ActivatedRoute
    ) {
 
-      this.fs.getSelectedFixture$().subscribe( fix => this.selectedFixture = fix);
+      this.fs.selectedFixture$.subscribe( fix => this.selectedFixture = fix);
    }
 
    leagueFixtures$( league: League ): Observable<Fixture[]>  {

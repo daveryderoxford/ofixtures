@@ -8,6 +8,8 @@ import { SidenavService } from './shared/services/sidenav.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { tap } from 'rxjs/operators';
 import { League } from './model/league';
+import { LoginSnackbarService } from './shared/services/login-snackbar.service';
+import { LeagueService } from './league/league-service';
 
 @UntilDestroy()
 @Component( {
@@ -27,9 +29,10 @@ export class AppComponent implements OnInit {
    constructor ( private router: Router,
       private afAuth: Auth,
       private sidebarService: SidenavService,
-      private snackbar: MatSnackBar,
       private snackBar: MatSnackBar,
+      private loginSnackBar: LoginSnackbarService,
       private breakpointObserver: BreakpointObserver,
+      private ls: LeagueService
    ) {
 
       // Send google analytics message when navigating to any route succeeds.
@@ -43,7 +46,10 @@ export class AppComponent implements OnInit {
    ngOnInit() {
 
       this.breakpointObserver.observe( ['(min-width: 500px) and (min-height: 400px)'] )
-         .pipe( tap( state => console.log( 'AppComponnet: state: ' + state.matches.toString() ) ) )
+         .pipe( 
+            untilDestroyed( this ),
+            tap( state => console.log( 'AppComponnet: state: ' + state.matches.toString() ) ) 
+         )
          .subscribe( state => this.handset = !state.matches );
 
       authState(this.afAuth)
@@ -61,7 +67,7 @@ export class AppComponent implements OnInit {
       const ConsentCookie = "CookieConsent";
 
       if ( !this.readCookie( ConsentCookie ) ) {
-         this.snackbar.open( "This site uses cookies for analytics purposes.", "Accept" ).afterDismissed().subscribe( () => {
+         this.snackBar.open( "This site uses cookies for analytics purposes.", "Accept" ).afterDismissed().subscribe( () => {
             document.cookie = ConsentCookie + "=true";
          } );
       }
@@ -99,10 +105,30 @@ export class AppComponent implements OnInit {
    }
 
    async closeSidenav( target: Array<any>) {
-      await this.sidenav.close();
+      this.sidenav.close();
       if ( target)  {
-         await this.router.navigate( target );
+         this.router.navigate( target );
       }
+   }
+
+   async adminMenu() {
+      if ( !this.authorised ) {
+         await this.sidenav.close();
+         this.loginSnackBar.open( 'Must be logged in manage fixtures/leagues' );
+      } else {
+         await this.router.navigate( ['/admin'] );
+         await this.sidenav.close();
+      }
+   }
+
+   async showFixtures( mapView: boolean) {
+      this.ls.setSelected(null);
+      if ( mapView ) {
+         this.router.navigate( ["/fixtures", { mapview: true }] );
+      } else {
+         this.router.navigate( ["/fixtures"] );
+      }
+      this.sidenav.close();
    }
 
    async leagueSelected(l: League) {
@@ -122,25 +148,6 @@ export class AppComponent implements OnInit {
       }
       await this.afAuth.signOut();
       await this.sidenav.close();
-   }
-
-
-   // Administration functions
-
-   isAdmin(): boolean {
-      return false;
-
-      // TODO make this work
-      /*  try {
-           if (!this.user) {
-              return false;
-           }
-           const idTokenResult = await this.user.getIdTokenResult( true );
-           return idTokenResult.claims.admin;
-        } catch ( err ) {
-           console.log( "AppComponent: Error obtaining custom claim " + err );
-           return false;
-        } */
    }
 
    // Detects if device is on iOS
@@ -168,11 +175,6 @@ export class AppComponent implements OnInit {
          } );
 
       }
-   }
-
-   async scriptsClicked() {
-      await this.sidenav.close();
-
    }
 }
 

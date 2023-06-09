@@ -4,15 +4,16 @@ import { CollectionReference, Firestore, collection, collectionData, deleteDoc, 
 import { League } from 'app/model/league';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { isAfter} from 'date-fns';
+import { isAfter } from 'date-fns';
+import { FixturesService } from 'app/fixtures/fixtures.service';
 
-export function createLeague(data: Partial<League>): League {
-  return 
+export function createLeague( data: Partial<League> ): League {
+  return
 }
 
-@Injectable({
+@Injectable( {
   providedIn: 'root'
-})
+} )
 export class LeagueService {
 
   private readonly _selectedLeague = new BehaviorSubject<League | null>( null );
@@ -20,27 +21,28 @@ export class LeagueService {
 
   /** All leagues with any fixtures in the future */
   leagues$: Observable<League[]>;
-  
-  constructor( private fs: Firestore,
-    private auth: Auth) {
+
+  constructor ( private fs: Firestore,
+    private auth: Auth,
+    private fixtureService: FixturesService ) {
 
     const leagueCollection = collection( this.fs, 'leagues' ) as CollectionReference<League>;
-    
-    this.leagues$ = collectionData( leagueCollection ).pipe( 
-      shareReplay(1),
-      map( leagues => 
-        leagues.filter( league => isAfter( new Date( league.endDate ), Date.now() ) && league.fixtureIds.length > 0 ).sort( ( a, b ) => a.startDate.localeCompare( b.startDate ))
+
+    this.leagues$ = collectionData( leagueCollection ).pipe(
+      shareReplay( 1 ),
+      map( leagues =>
+        leagues.filter( league => isAfter( new Date( league.endDate ), Date.now() ) && league.fixtureIds.length > 0 ).sort( ( a, b ) => a.startDate.localeCompare( b.startDate ) )
       ),
     );
   }
 
-  async update(id: string, league: Partial<League>): Promise<void> {
-    const d = doc( this.fs, 'leagues', id);
-    await setDoc( d, league, { merge: true });
+  async update( id: string, league: Partial<League> ): Promise<void> {
+    const d = doc( this.fs, 'leagues', id );
+    await setDoc( d, league, { merge: true } );
   }
 
   async add( league: Partial<League> ): Promise<void> {
-    
+
     // Get document ref for new document
     const d = doc( collection( this.fs, "leagues" ) );
     league.userId = this.auth.currentUser.uid;
@@ -50,17 +52,22 @@ export class LeagueService {
 
   }
 
-  async delete(id: string): Promise<void> {
+  async delete( id: string ): Promise<void> {
     const d = doc( this.fs, 'leagues', id );
     await deleteDoc( d );
   }
 
-  setSelected(league: League) {
+  setSelected( league: League | null ) {
     if ( league ) {
-       this._selectedLeague.next( {...league} );
+      if ( this._selectedLeague.value?.id !== league.id ) {
+        this._selectedLeague.next( { ...league } );
+        this.fixtureService.updateSelectedFixture( null );
+      }
     } else {
-      this._selectedLeague.next(null);
+      if ( this._selectedLeague.value !== null ) {
+        this._selectedLeague.next( null );
+      }
     }
   }
-  
+
 }

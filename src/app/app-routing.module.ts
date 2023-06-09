@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FixturesComponent } from './fixtures/fixtures/fixtures.component';
 
 const routes: Routes = [
-   { path: "", component: FixturesComponent },
+   { path: '', redirectTo: '/fixtures', pathMatch: 'full' },
    { path: "fixtures", component: FixturesComponent },
    { path: "fixtures/:mapview", component: FixturesComponent },
    { path: "auth", loadChildren: () => import( './auth/auth.module' ).then( m => m.AuthModule ) },

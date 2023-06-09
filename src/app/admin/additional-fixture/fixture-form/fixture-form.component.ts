@@ -1,12 +1,10 @@
 
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { EventDiscipline, EventGrade, EventType, eventDisciplines, eventGrades, eventTypes } from 'app/model';
 import { AdditionalFixture, Fixture } from 'app/model/fixture';
 import { formatISO } from 'date-fns';
-import { Observable } from 'rxjs';
 
 @UntilDestroy( { checkProperties: true } )
 @Component( {
