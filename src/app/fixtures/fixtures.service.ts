@@ -32,7 +32,7 @@ export class FixturesService {
    readonly homeLocation$ = this._homeLocation$.asObservable();
 
    private _filter$ = new BehaviorSubject<FixtureFilter>( this.DEFAULT_FILTER );
-   readonly filter$: Observable<FixtureFilter>;
+   readonly filter$ = this._filter$.asObservable();
 
    private _fileContents$: Observable<Fixture[]> = getDownloadURL( ref( this.storage, "fixtures/uk" ) ).pipe(
       switchMap( url => this.http.get<Fixture[]>( url ) ),
@@ -196,7 +196,6 @@ export class FixturesService {
       };
    }
 }
-
 
 function makeDefaultGrades(): GradeFilter[] {
    return [
