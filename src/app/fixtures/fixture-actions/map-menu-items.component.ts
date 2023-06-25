@@ -5,6 +5,7 @@ import { LatLong } from 'app/model/fixture';
 @Component( {
   selector: 'app-map-menu-items',
   template: `
+      <!-- Exclude maps for fixtures where the location is just obtained from the club --> 
       <ng-container *ngIf="fixture.latLong && fixture.locSource !== 'club'">
 
         <a *ngIf="handset" mat-menu-item href="{{fixture | streetmapURL}}" target="_blank">

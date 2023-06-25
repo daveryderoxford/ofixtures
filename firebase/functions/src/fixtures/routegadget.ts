@@ -78,17 +78,7 @@ export class Routegadget {
     *  2.  Any word in area string (excluding  common names and words shorter that 3 characters) is also occurs in the event name
     *  All comparisons are case insensitive. 
     */
-   public getRoutegadgetData( area: string, club: string ): RGData {
-
-      let areaWords: string[];
-      if ( area ) {
-         areaWords = area.toLowerCase().trim().split( " " ).filter( word => {
-            return !skippedAreaWords.includes( word ) && word.length > 2;
-         } );
-      } else {
-         areaWords = [];
-      }
-      // console.log( "Routgadget area:  " + area + "  Words: " + areaWords.toString());
+   public getRoutegadgetData( area: string | undefined, club: string | undefined ): RGData {
 
       const clubLower = club?.toLowerCase();
       const rgSite = this.rgSitesMap.get( clubLower );
@@ -96,6 +86,16 @@ export class Routegadget {
       if ( !rgSite ) {
          return ( null );
       }
+
+      if ( !area ) {
+         return { baseURL: rgSite.baseURL, maps: [] };
+      }
+
+      const areaWords = area.toLowerCase().trim().split( " " ).filter( word => {
+         return !skippedAreaWords.includes( word ) && word.length > 2;
+      } );
+
+      // console.log( "Routgadget area:  " + area + "  Words: " + areaWords.toString());
 
       const maps = rgSite.events.filter( event => {
          const name = event.name.toLowerCase();

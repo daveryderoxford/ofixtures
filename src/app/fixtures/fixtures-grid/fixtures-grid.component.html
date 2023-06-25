@@ -74,9 +74,6 @@
 
         <td class="maps">
           <ng-container *ngIf="fixture.latLong && fixture.locSource !== 'club'">
-            <!--   <a href="{{fixture | googleURL}}" target="_blank">Google</a> &nbsp;/&nbsp;
-            <a href="{{fixture | googleDirectionsURL:homeLocation }}" target="_blank" *ngIf="fixture.latLong">Directions</a> &nbsp;/&nbsp;
-            <a href="{{fixture | bingURL}}" target="_blank">OS Map</a> -->
             <a mat-button color=link [matMenuTriggerFor]="mapMenu">Maps
               <mat-icon class=mat-link>arrow_drop_down</mat-icon>
             </a>
