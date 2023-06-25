@@ -60,6 +60,7 @@ export class FixturesService {
          this._postcode$.next( location.postcode );
          this._homeLocation$.next( location.latlng );
       }
+      
       /* When user changes - set filters to reflect user details and unset liked only */
       this.usd.user$.subscribe( user => {
          if ( user ) {
