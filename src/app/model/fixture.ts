@@ -37,6 +37,7 @@ export interface Fixture {
      association: string;
      distance?: number;
      rg: RGData;
+     what3words?: string;
 }
 
 export interface AdditionalFixture extends Fixture {

@@ -8,6 +8,7 @@ import { LatLong } from 'app/model/fixture';
       <!-- Exclude maps for fixtures where the location is just obtained from the club --> 
       <ng-container *ngIf="fixture.latLong && fixture.locSource !== 'club'">
 
+      <!-- For OS maps, use streetmap for moble and bing for desktop -->
         <a *ngIf="handset" mat-menu-item href="{{fixture | streetmapURL}}" target="_blank">
           OS map
           <app-external-link-icon></app-external-link-icon>
@@ -28,6 +29,11 @@ import { LatLong } from 'app/model/fixture';
           <app-external-link-icon></app-external-link-icon>
         </a>
       <ng-container>
+
+      <a *ngIf="fixture.what3words" mat-menu-item [href]="'https://what3words.com/' + fixture.what3words" target="_blank">
+        What 3 Words
+        <app-external-link-icon></app-external-link-icon>
+      </a>
   `,
   styles: [
   ],

@@ -32,6 +32,7 @@ export interface Fixture {
      nearestTown?: string;
      association?: string;
      rg? : RGData;
+     what3words?: string;
 }
 
 export interface AdditionalFixture extends Fixture {
