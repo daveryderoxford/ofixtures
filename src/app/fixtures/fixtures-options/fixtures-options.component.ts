@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { UntypedFormControl } from '@angular/forms';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { FixtureFilter, FixtureTimeFilter } from 'app/model/fixture-filter';
 import { LoginSnackbarService } from 'app/shared/services/login-snackbar.service';

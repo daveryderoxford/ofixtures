@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { FixtureSelectComponent } from 'app/admin/fixture-select/fixture-select.component';
 import { Fixture } from 'app/model';
