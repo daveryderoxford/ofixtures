@@ -2,7 +2,7 @@
 /** Material2 components impored at an application level  */
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { NgModule } from "@angular/core";
-import { FlexLayoutModule } from "@angular/flex-layout";
+import { FlexLayoutModule } from "@ngbracket/ngx-layout";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatButtonModule } from "@angular/material/button";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
