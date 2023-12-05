@@ -37,7 +37,7 @@
     "angular-split": "^14.1.0",
     "core-js": "^3.6.5",
     "date-fns": "^2.14.0",
-    "firebase": "^9.16.0",
+    "firebase": "^10.7.1",
     "immutable": "^4.0.0-rc.12",
     "leaflet": "^1.4.0",
     "rxjs": "^6.5.5",
