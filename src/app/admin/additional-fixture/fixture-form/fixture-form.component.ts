@@ -1,17 +1,29 @@
 
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { EventDiscipline, EventGrade, EventType, eventDisciplines, eventGrades, eventTypes } from 'app/model';
 import { AdditionalFixture, Fixture } from 'app/model/fixture';
 import { formatISO } from 'date-fns';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatLegacyOptionModule } from '@angular/material/legacy-core';
+import { NgFor } from '@angular/common';
+import { MatLegacySelectModule } from '@angular/material/legacy-select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatLegacyInputModule } from '@angular/material/legacy-input';
+import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
+import { MatLegacyCardModule } from '@angular/material/legacy-card';
+import { FlexModule } from '@ngbracket/ngx-layout/flex';
+import { ToolbarComponent } from '../../../shared/components/toolbar.component';
 
 @UntilDestroy( { checkProperties: true } )
-@Component( {
-  selector: 'app-fixture-form',
-  templateUrl: './fixture-form.component.html',
-  styleUrls: ['./fixture-form.component.scss']
-} )
+@Component({
+    selector: 'app-fixture-form',
+    templateUrl: './fixture-form.component.html',
+    styleUrls: ['./fixture-form.component.scss'],
+    standalone: true,
+    imports: [ToolbarComponent, FlexModule, MatLegacyCardModule, ReactiveFormsModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatDatepickerModule, MatLegacySelectModule, NgFor, MatLegacyOptionModule, MatLegacyButtonModule]
+})
 export class FixtureFormComponent  implements OnChanges {
 
   urlReg = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;

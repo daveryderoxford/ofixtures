@@ -1,20 +1,34 @@
 
 import { Component, OnInit } from "@angular/core";
 import { Auth, User, authState } from "@angular/fire/auth";
-import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FixturesService } from "app/fixtures/fixtures.service";
 import { controlCardTypes, UserData } from "app/model";
 import { Subscription } from 'rxjs';
 import { UserDataService } from "./user-data.service";
+import { MatLegacyOptionModule } from "@angular/material/legacy-core";
+import { MatLegacySelectModule } from "@angular/material/legacy-select";
+import { ExtendedModule } from "@ngbracket/ngx-layout/extended";
+import { MatIconModule } from "@angular/material/icon";
+import { MatLegacyButtonModule } from "@angular/material/legacy-button";
+import { MatLegacyInputModule } from "@angular/material/legacy-input";
+import { MatLegacyFormFieldModule } from "@angular/material/legacy-form-field";
+import { MatLegacyProgressBarModule } from "@angular/material/legacy-progress-bar";
+import { NgIf, NgStyle, NgFor } from "@angular/common";
+import { MatLegacyCardModule } from "@angular/material/legacy-card";
+import { FlexModule } from "@ngbracket/ngx-layout/flex";
+import { ToolbarComponent } from "../shared/components/toolbar.component";
 
 @UntilDestroy()
-@Component( {
-  selector: "app-user",
-  templateUrl: "./user.component.html",
-  styleUrls: ["./user.component.scss"]
-} )
+@Component({
+    selector: "app-user",
+    templateUrl: "./user.component.html",
+    styleUrls: ["./user.component.scss"],
+    standalone: true,
+    imports: [ToolbarComponent, FlexModule, MatLegacyCardModule, ReactiveFormsModule, NgIf, MatLegacyProgressBarModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatLegacyButtonModule, MatIconModule, NgStyle, ExtendedModule, NgFor, MatLegacySelectModule, MatLegacyOptionModule]
+})
 export class UserComponent implements OnInit {
   originalUserData: UserData = null;
   userForm: UntypedFormGroup;

@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth, FacebookAuthProvider, GoogleAuthProvider, UserCredential, getRedirectResult, 
          signInWithEmailAndPassword, signInWithPopup, signInWithRedirect } from '@angular/fire/auth';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatLegacyInputModule } from '@angular/material/legacy-input';
+import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
+import { MatLegacyCardModule } from '@angular/material/legacy-card';
+import { FlexModule } from '@ngbracket/ngx-layout/flex';
+import { ToolbarComponent } from '../../shared/components/toolbar.component';
 
 export type AuthProvider = "EmailAndPassword" | "Google" | "Facebook";
 
@@ -15,9 +21,11 @@ const googleAuthProvider = new GoogleAuthProvider();
    document.referrer.includes( 'android-app://' )
 
 @Component({
-   selector: 'app-login',
-   templateUrl: './login.component.html',
-   styleUrls: ['./login.component.scss']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss'],
+    standalone: true,
+    imports: [ToolbarComponent, FlexModule, MatLegacyCardModule, ReactiveFormsModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatLegacyButtonModule, RouterLink]
 })
 export class LoginComponent implements OnInit {
    loginForm: UntypedFormGroup;

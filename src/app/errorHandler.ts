@@ -43,11 +43,11 @@ export class GlobalErrorHandler implements ErrorHandler {
    }
 
    private _refreshPageMessage() {
-      if ( this.snackBar ) {
-         this.snackBar.open( "An error occurred processing request", "Refresh", {} ).onAction().subscribe( () => {
-            location.reload();
-         });
-      }
+    if ( this.snackBar ) {
+        this.snackBar.open( "An error occurred processing request", "Refresh", {} ).onAction().subscribe( () => {
+           location.reload();
+        });
+     }
    }
 
    private _handleHTTPError( error: HttpErrorResponse ) {

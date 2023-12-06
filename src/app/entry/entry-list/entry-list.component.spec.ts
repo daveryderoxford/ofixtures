@@ -8,8 +8,8 @@ describe('EntryListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ EntryListComponent ]
-    })
+    declarations: [EntryListComponent]
+})
     .compileComponents();
   }));
 

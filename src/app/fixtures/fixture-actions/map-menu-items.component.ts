@@ -1,10 +1,14 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Fixture } from 'app/model';
 import { LatLong } from 'app/model/fixture';
+import { GoogleURLPipe, GoogleDirectionsURLPipe, BingURLPipe, StreetmapURLPipe } from '../fixture-pipes';
+import { ExternalLinkIconComponent } from '../../shared/components/external-link-icon.component';
+import { MatLegacyMenuModule } from '@angular/material/legacy-menu';
+import { NgIf } from '@angular/common';
 
-@Component( {
-  selector: 'app-map-menu-items',
-  template: `
+@Component({
+    selector: 'app-map-menu-items',
+    template: `
       <!-- Exclude maps for fixtures where the location is just obtained from the club --> 
       <ng-container *ngIf="fixture.latLong && fixture.locSource !== 'club'">
 
@@ -35,10 +39,11 @@ import { LatLong } from 'app/model/fixture';
         <app-external-link-icon></app-external-link-icon>
       </a>
   `,
-  styles: [
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
-} )
+    styles: [],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgIf, MatLegacyMenuModule, ExternalLinkIconComponent, GoogleURLPipe, GoogleDirectionsURLPipe, BingURLPipe, StreetmapURLPipe]
+})
 export class MapMenuItemsComponent implements OnInit {
 
   @Input() fixture: Fixture;

@@ -1,14 +1,21 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Location } from '@angular/common';
+import { Location, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { RGData } from 'app/model/fixture';
+import { AngularImageViewerComponent } from './angular-image_viewer/angular-image-viewer.component';
+import { FlexModule } from '@ngbracket/ngx-layout/flex';
+import { MatIconModule } from '@angular/material/icon';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
-@Component( {
-        selector: 'app-mapviewer',
-        templateUrl: './mapviewer.component.html',
-        styleUrls: ['./mapviewer.component.scss']
-    } )
+@Component({
+    selector: 'app-mapviewer',
+    templateUrl: './mapviewer.component.html',
+    styleUrls: ['./mapviewer.component.scss'],
+    standalone: true,
+    imports: [MatToolbarModule, MatLegacyButtonModule, MatIconModule, NgIf, FlexModule, AngularImageViewerComponent]
+})
 export class MapviewerComponent implements OnInit {
 
     config = {

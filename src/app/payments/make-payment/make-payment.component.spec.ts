@@ -8,8 +8,8 @@ describe('MakePaymentComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ MakePaymentComponent ]
-    })
+    declarations: [MakePaymentComponent]
+})
     .compileComponents();
   }));
 

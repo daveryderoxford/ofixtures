@@ -4,14 +4,15 @@ import { Fixture } from 'app/model/fixture';
 import { AdditionalFixtureService } from './additional-fixture.service';
 import { FixtureFormComponent } from './fixture-form/fixture-form.component';
 
-@Component( {
-  selector: 'app-fixture-add',
-  template: `
+@Component({
+    selector: 'app-fixture-add',
+    template: `
     <app-fixture-form (submitted)="submitted($event)"></app-fixture-form>
   `,
-  styles: [
-  ]
-} )
+    styles: [],
+    standalone: true,
+    imports: [FixtureFormComponent]
+})
 export class FixtureAddComponent {
 
   @ViewChild( FixtureFormComponent ) FixtureForm;

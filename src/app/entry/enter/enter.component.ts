@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -9,6 +9,15 @@ import { UserDataService } from 'app/user/user-data.service';
 import { forkJoin } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { EntryService } from '../entry.service';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatLegacyOptionModule } from '@angular/material/legacy-core';
+import { MatLegacySelectModule } from '@angular/material/legacy-select';
+import { MatLegacyInputModule } from '@angular/material/legacy-input';
+import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
+import { NgIf, NgFor } from '@angular/common';
+import { MatLegacyCardModule } from '@angular/material/legacy-card';
+import { FlexModule } from '@ngbracket/ngx-layout/flex';
+import { ToolbarComponent } from '../../shared/components/toolbar.component';
 
 interface FormData {
    firstname?: string;
@@ -18,11 +27,25 @@ interface FormData {
 }
 
 @UntilDestroy()
-@Component( {
-   selector: 'app-enter',
-   templateUrl: './enter.component.html',
-   styleUrls: ['./enter.component.scss'],
-} )
+@Component({
+    selector: 'app-enter',
+    templateUrl: './enter.component.html',
+    styleUrls: ['./enter.component.scss'],
+    standalone: true,
+    imports: [
+        ToolbarComponent,
+        FlexModule,
+        MatLegacyCardModule,
+        NgIf,
+        ReactiveFormsModule,
+        MatLegacyFormFieldModule,
+        MatLegacyInputModule,
+        MatLegacySelectModule,
+        MatLegacyOptionModule,
+        NgFor,
+        MatLegacyButtonModule,
+    ],
+})
 export class EnterComponent implements OnInit {
 
    form: UntypedFormGroup;

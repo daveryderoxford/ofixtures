@@ -8,8 +8,8 @@ describe('EnterComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ EnterComponent ]
-    })
+    declarations: [EnterComponent]
+})
     .compileComponents();
   }));
 

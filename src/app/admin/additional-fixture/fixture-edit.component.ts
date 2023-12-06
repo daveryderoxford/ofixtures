@@ -5,15 +5,17 @@ import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { FixtureFormComponent } from './fixture-form/fixture-form.component';
 import { AdditionalFixtureService } from './additional-fixture.service';
+import { AsyncPipe } from '@angular/common';
 
-@Component( {
-  selector: 'app-fixture-edit',
-  template: `
+@Component({
+    selector: 'app-fixture-edit',
+    template: `
     <app-fixture-form [fixture]="fixture$ | async" (submitted)="submitted($event)"></app-fixture-form>
   `,
-  styles: [
-  ]
-} )
+    styles: [],
+    standalone: true,
+    imports: [FixtureFormComponent, AsyncPipe]
+})
 export class FixtureEditComponent implements OnInit {
 
   fixture$: Observable<AdditionalFixture>;

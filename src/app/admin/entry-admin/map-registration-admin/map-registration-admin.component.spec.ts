@@ -8,8 +8,8 @@ describe('MapRegistrationAdminComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ MapRegistrationAdminComponent ]
-    })
+    imports: [MapRegistrationAdminComponent]
+})
     .compileComponents();
   }));
 

@@ -2,6 +2,8 @@ import { Component, OnInit, HostListener, Optional, Inject, Input, Output, Event
 import { ImageViewerConfig } from './models/image-viewer-config.model';
 import { CustomImageEvent } from './models/custom-image-event-model';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NgStyle, NgIf, NgFor } from '@angular/common';
+import { FullScreenDirective } from './directives/full-screen.directive';
 
 
 const DEFAULT_CONFIG: ImageViewerConfig = {
@@ -60,9 +62,11 @@ const DEFAULT_CONFIG: ImageViewerConfig = {
 
 
 @Component({
-  selector: 'angular-image-viewer',
-  templateUrl: './angular-image-viewer.component.html',
-  styleUrls: ['./angular-image-viewer.component.scss']
+    selector: 'angular-image-viewer',
+    templateUrl: './angular-image-viewer.component.html',
+    styleUrls: ['./angular-image-viewer.component.scss'],
+    standalone: true,
+    imports: [FullScreenDirective, NgStyle, NgIf, NgFor]
 })
 export class AngularImageViewerComponent implements OnInit, OnChanges {
 

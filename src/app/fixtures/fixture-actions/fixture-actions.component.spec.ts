@@ -8,8 +8,8 @@ describe('FixtureActionsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ FixtureActionsComponent ]
-    })
+    declarations: [FixtureActionsComponent]
+})
     .compileComponents();
   }));
 

@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'app/shared/shared.module';
-import { FilterPipeModule } from './fixture-pipes';
+
 import { FixturesGridComponent } from './fixtures-grid/fixtures-grid.component';
 import { FixturesMapComponent } from './fixtures-map/fixtures-map.component';
 import { FixtureWeekFilterComponent } from './fixtures-options/fixture-week-filter.component';
@@ -19,7 +19,13 @@ import { EntryModule } from 'app/entry/entry.module';
 import { LeagueModule } from 'app/league/league.module';
 
 @NgModule({
-  declarations: [
+    imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    SharedModule,
+    EntryModule,
+    LeagueModule,
     FixturesMapComponent,
     FixturesGridComponent,
     FixturesComponent,
@@ -30,19 +36,10 @@ import { LeagueModule } from 'app/league/league.module';
     FixtureActionsComponent,
     PostcodeComponent,
     AddToGoogleCalendarButtonComponent,
-    MapMenuItemsComponent,
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    SharedModule,
-    FilterPipeModule,
-    EntryModule,
-    LeagueModule
-  ],
-  exports: [
-    GradeFilterComponent
-  ]
+    MapMenuItemsComponent
+],
+    exports: [
+        GradeFilterComponent
+    ]
 })
 export class FixturesModule { }

@@ -18,10 +18,11 @@ const MAX_LOCATION_LENGTH = 50;
  *   - if the string will be longer than MAX_LOCATION_LENGTH.
  *  
  * */
-@Pipe( {
-   name: 'location',
-   pure: true
-} )
+@Pipe({
+    name: 'location',
+    pure: true,
+    standalone: true
+})
 export class LocationPipe implements PipeTransform {
    transform( fix: Fixture ): string {
       const area = fix.area;
@@ -42,10 +43,11 @@ export class LocationPipe implements PipeTransform {
 }
 
 /** Google maps link with directions from home location */
-@Pipe( {
-   name: 'googleDirectionsURL',
-   pure: true
-} )
+@Pipe({
+    name: 'googleDirectionsURL',
+    pure: true,
+    standalone: true
+})
 export class GoogleDirectionsURLPipe implements PipeTransform {
    transform( fixture: Fixture, homeLocation: LatLong ): string {
 
@@ -58,10 +60,11 @@ export class GoogleDirectionsURLPipe implements PipeTransform {
    }
 }
 
-@Pipe( {
-   name: 'googleURL',
-   pure: true
-} )
+@Pipe({
+    name: 'googleURL',
+    pure: true,
+    standalone: true
+})
 export class GoogleURLPipe implements PipeTransform {
    transform( fix: Fixture ): string {
       return "https://www.google.com/maps/search/?api=1&query=" +
@@ -69,10 +72,11 @@ export class GoogleURLPipe implements PipeTransform {
    }
 }
 
-@Pipe( {
-   name: 'bingURL',
-   pure: true
-} )
+@Pipe({
+    name: 'bingURL',
+    pure: true,
+    standalone: true
+})
 export class BingURLPipe implements PipeTransform {
    transform( fix: Fixture ): string {
       return 'https://www.bing.com/maps/?cp=' + latLongStr( fix.latLong, '~' ) + "&lvl=15&style=s&sp=" +
@@ -84,9 +88,10 @@ export class BingURLPipe implements PipeTransform {
 Returns a streetmap URL to display OS map for StreetMap website.
 UR is of the form https://streetmap.co.uk/loc/N52.038333,W4.578611
 */
-@Pipe( {
-   name: 'streetmapURL'
-} )
+@Pipe({
+    name: 'streetmapURL',
+    standalone: true
+})
 export class StreetmapURLPipe implements PipeTransform {
    transform( fix: Fixture ): string {
       const l = fix.latLong;
@@ -99,10 +104,11 @@ export class StreetmapURLPipe implements PipeTransform {
 }
 
 /** Reformat ISO date into displayed date string */
-@Pipe( {
-   name: 'fixturedate',
-   pure: true
-} )
+@Pipe({
+    name: 'fixturedate',
+    pure: true,
+    standalone: true
+})
 export class FixtureDatePipe implements PipeTransform {
    transform( date: string ): string {
 
@@ -123,9 +129,10 @@ export class FixtureDatePipe implements PipeTransform {
    }
 }
 
-@Pipe( {
-   name: 'distance'
-} )
+@Pipe({
+    name: 'distance',
+    standalone: true
+})
 export class FixtureDistancePipe implements PipeTransform {
    transform( distance: number ): string {
       if ( distance === -1 ) {
@@ -136,10 +143,11 @@ export class FixtureDistancePipe implements PipeTransform {
    }
 }
 
-@Pipe( {
-   name: 'distancecolor',
-   pure: true
-} )
+@Pipe({
+    name: 'distancecolor',
+    pure: true,
+    standalone: true
+})
 export class FixtureDistanceColorPipe implements PipeTransform {
    transform( distance: number ): string {
 
@@ -156,9 +164,10 @@ export class FixtureDistanceColorPipe implements PipeTransform {
 }
 
 
-@Pipe( {
-   name: 'liked'
-} )
+@Pipe({
+    name: 'liked',
+    standalone: true
+})
 export class LikedPipe implements PipeTransform {
    transform( eventId: string, likedEvents: string[] ): boolean {
       if ( !likedEvents ) { return false; }
@@ -166,9 +175,10 @@ export class LikedPipe implements PipeTransform {
    }
 }
 
-@Pipe( {
-   name: 'gradeIconName'
-} )
+@Pipe({
+    name: 'gradeIconName',
+    standalone: true
+})
 export class GradeIconNamePipe implements PipeTransform {
    transform( grade: EventGrade ): string {
       return 'grade-' + grade.toLowerCase();
@@ -180,31 +190,4 @@ function latLongStr( loc: LatLong, seperator = "," ): string {
    return loc.lat.toString() + seperator + loc.lng.toString();
 }
 
-@NgModule( {
-   declarations: [
-      LocationPipe,
-      GoogleURLPipe,
-      GoogleDirectionsURLPipe,
-      BingURLPipe,
-      StreetmapURLPipe,
-      FixtureDatePipe,
-      FixtureDistancePipe,
-      FixtureDistanceColorPipe,
-      LikedPipe,
-      GradeIconNamePipe
-   ],
-   exports: [
-      LocationPipe,
-      GoogleURLPipe,
-      GoogleDirectionsURLPipe,
-      BingURLPipe,
-      StreetmapURLPipe,
-      FixtureDatePipe,
-      FixtureDistancePipe,
-      FixtureDistanceColorPipe,
-      LikedPipe,
-      GradeIconNamePipe
-   ]
-} )
-export class FilterPipeModule {
-}
+

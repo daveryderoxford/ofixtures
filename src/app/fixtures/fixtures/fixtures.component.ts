@@ -15,13 +15,29 @@ import { FixturesService } from '../fixtures.service';
 import { LeagueService } from 'app/league/league-service';
 import { map, switchMap } from 'rxjs/operators';
 import { League } from 'app/model/league';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { ToolbarComponent } from '../../shared/components/toolbar.component';
+import { FlexModule } from '@ngbracket/ngx-layout/flex';
+import { FixturesGridComponent } from '../fixtures-grid/fixtures-grid.component';
+import { LeagueHeaderComponent } from '../../league/league-header/league-header.component';
+import { FixturesMapComponent } from '../fixtures-map/fixtures-map.component';
+import { AngularSplitModule } from 'angular-split';
+import { FixturesOptionsComponent } from '../fixtures-options/fixtures-options.component';
+import { PostcodeComponent } from '../postcode/postcode.component';
+import { SidenavButtonComponent } from '../../shared/components/sidenav-button.component';
+import { NgLetDirective } from '../../shared/components/ngLetDirective';
+import { NgIf, AsyncPipe } from '@angular/common';
 
 @UntilDestroy( { checkProperties: true } )
-@Component( {
-   selector: 'app-fixtures',
-   templateUrl: './fixtures.component.html',
-   styleUrls: ['./fixtures.component.scss']
-} )
+@Component({
+    selector: 'app-fixtures',
+    templateUrl: './fixtures.component.html',
+    styleUrls: ['./fixtures.component.scss'],
+    standalone: true,
+    imports: [NgIf, NgLetDirective, SidenavButtonComponent, PostcodeComponent, FixturesOptionsComponent, AngularSplitModule, FixturesMapComponent, LeagueHeaderComponent, FixturesGridComponent, FlexModule, ToolbarComponent, MatLegacyButtonModule, MatIconModule, MatDividerModule, AsyncPipe]
+})
 
 export class FixturesComponent implements OnInit {
    selectedFixture: Fixture = null;

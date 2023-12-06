@@ -5,15 +5,17 @@ import { League } from 'app/model/league';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { LeagueFormComponent } from './league-form/league-form.component';
+import { AsyncPipe } from '@angular/common';
 
-@Component( {
-  selector: 'app-league-edit',
-  template: `
+@Component({
+    selector: 'app-league-edit',
+    template: `
     <app-league-form [league]="league$ | async" (submitted)="submitted($event)"></app-league-form>
   `,
-  styles: [
-  ]
-} )
+    styles: [],
+    standalone: true,
+    imports: [LeagueFormComponent, AsyncPipe]
+})
 export class LeagueEditComponent implements OnInit {
 
   league$: Observable<League>;

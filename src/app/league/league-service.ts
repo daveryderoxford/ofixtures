@@ -28,7 +28,7 @@ export class LeagueService {
 
     const leagueCollection = collection( this.fs, 'leagues' ) as CollectionReference<League>;
 
-    this.leagues$ = collectionData( leagueCollection ).pipe(
+    this.leagues$ = collectionData<League>( leagueCollection ).pipe(
       shareReplay( 1 ),
       map( leagues =>
         leagues.filter( league => isAfter( new Date( league.endDate ), Date.now() ) && league.fixtureIds.length > 0 ).sort( ( a, b ) => a.startDate.localeCompare( b.startDate ) )

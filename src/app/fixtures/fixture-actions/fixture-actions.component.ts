@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Auth, authState } from '@angular/fire/auth';
-import { MatLegacyMenuTrigger as MatMenuTrigger } from '@angular/material/legacy-menu';
+import { MatLegacyMenuTrigger as MatMenuTrigger, MatLegacyMenuModule } from '@angular/material/legacy-menu';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
@@ -9,13 +9,31 @@ import { FixtureEntryDetails } from 'app/model/entry';
 import { Fixture, LatLong } from 'app/model/fixture';
 import { LoginSnackbarService } from 'app/shared/services/login-snackbar.service';
 import { UserDataService } from 'app/user/user-data.service';
+import { AddToGoogleCalendarButtonComponent } from './google-cal-button';
+import { MapMenuItemsComponent } from './map-menu-items.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { ExternalLinkIconComponent } from '../../shared/components/external-link-icon.component';
+import { NgIf } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
 
 @UntilDestroy( { checkProperties: true } )
-@Component( {
-   selector: 'app-fixture-actions',
-   templateUrl: './fixture-actions.component.html',
-   styleUrls: ['./fixture-actions.component.scss'],
-} )
+@Component({
+    selector: 'app-fixture-actions',
+    templateUrl: './fixture-actions.component.html',
+    styleUrls: ['./fixture-actions.component.scss'],
+    standalone: true,
+    imports: [
+        MatLegacyButtonModule,
+        MatLegacyMenuModule,
+        MatIconModule,
+        NgIf,
+        ExternalLinkIconComponent,
+        MatDividerModule,
+        MapMenuItemsComponent,
+        AddToGoogleCalendarButtonComponent,
+    ],
+})
 export class FixtureActionsComponent implements AfterViewInit {
 
    @Input() fixture: Fixture;

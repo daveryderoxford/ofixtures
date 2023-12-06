@@ -1,6 +1,6 @@
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, CdkVirtualForOf } from '@angular/cdk/scrolling';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
+import { MatIconRegistry, MatIconModule } from '@angular/material/icon';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -11,19 +11,34 @@ import { Entry, FixtureEntryDetails } from 'app/model/entry';
 import { LatLong, RGData } from 'app/model/fixture';
 import { LoginSnackbarService } from 'app/shared/services/login-snackbar.service';
 import { UserDataService } from 'app/user/user-data.service';
+import { LocationPipe, FixtureDatePipe, FixtureDistancePipe, FixtureDistanceColorPipe, GradeIconNamePipe } from '../fixture-pipes';
+import { EllipsisPipe } from '../../shared/pipes/ellipsis-pipe';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatLineModule } from '@angular/material/core';
+import { MatLegacyListModule } from '@angular/material/legacy-list';
+import { FixtureActionsComponent } from '../fixture-actions/fixture-actions.component';
+import { MapMenuItemsComponent } from '../fixture-actions/map-menu-items.component';
+import { MatLegacyMenuModule } from '@angular/material/legacy-menu';
+import { ExternalLinkIconComponent } from '../../shared/components/external-link-icon.component';
+import { MatLegacyTooltipModule } from '@angular/material/legacy-tooltip';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { ExtendedModule } from '@ngbracket/ngx-layout/extended';
+import { NgIf, NgClass } from '@angular/common';
+import { FlexModule } from '@ngbracket/ngx-layout/flex';
 
 interface StyledFixture extends Fixture {
    shaded?: boolean;
 }
 
 @UntilDestroy( { checkProperties: true } )
-@Component( {
-   selector: 'app-fixtures-grid',
-   templateUrl: './fixtures-grid.component.html',
-   styleUrls: ['./fixtures-grid.component.scss'],
-   changeDetection: ChangeDetectionStrategy.OnPush
-
-} )
+@Component({
+    selector: 'app-fixtures-grid',
+    templateUrl: './fixtures-grid.component.html',
+    styleUrls: ['./fixtures-grid.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, FlexModule, NgIf, CdkVirtualForOf, NgClass, ExtendedModule, MatLegacyButtonModule, MatLegacyTooltipModule, MatIconModule, ExternalLinkIconComponent, MatLegacyMenuModule, MapMenuItemsComponent, FixtureActionsComponent, MatLegacyListModule, MatLineModule, MatDividerModule, EllipsisPipe, LocationPipe, FixtureDatePipe, FixtureDistancePipe, FixtureDistanceColorPipe, GradeIconNamePipe]
+})
 export class FixturesGridComponent implements OnInit, OnChanges {
 
    private _selectedFixture: Fixture;

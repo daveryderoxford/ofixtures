@@ -5,12 +5,13 @@ import { League } from 'app/model/league';
 import { LeagueFormComponent } from './league-form/league-form.component';
 
 @Component({
-  selector: 'app-league-add',
-  template: `
+    selector: 'app-league-add',
+    template: `
     <app-league-form (submitted)="submitted($event)"></app-league-form>
   `,
-  styles: [
-  ]
+    styles: [],
+    standalone: true,
+    imports: [LeagueFormComponent]
 })
 export class LeagueAddComponent {
 

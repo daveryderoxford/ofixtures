@@ -1,18 +1,30 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { FixtureSelectComponent } from 'app/admin/fixture-select/fixture-select.component';
 import { Fixture } from 'app/model';
 import { League, LeagueLevel, LeagueType, leagueLevels, leagueTypes } from 'app/model/league';
 import { Observable } from 'rxjs';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatLegacyOptionModule } from '@angular/material/legacy-core';
+import { NgFor } from '@angular/common';
+import { MatLegacySelectModule } from '@angular/material/legacy-select';
+import { MatLegacyInputModule } from '@angular/material/legacy-input';
+import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
+import { MatLegacyCardModule } from '@angular/material/legacy-card';
+import { FlexModule } from '@ngbracket/ngx-layout/flex';
+import { ToolbarComponent } from '../../../shared/components/toolbar.component';
 
 @UntilDestroy( { checkProperties: true } )
-@Component( {
-  selector: 'app-league-form',
-  templateUrl: './league-form.component.html',
-  styleUrls: ['./league-form.component.scss']
-} )
+@Component({
+    selector: 'app-league-form',
+    templateUrl: './league-form.component.html',
+    styleUrls: ['./league-form.component.scss'],
+    standalone: true,
+    imports: [ToolbarComponent, FlexModule, MatLegacyCardModule, ReactiveFormsModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatLegacySelectModule, NgFor, MatLegacyOptionModule, MatLegacyButtonModule, MatDividerModule]
+})
 export class LeagueFormComponent implements OnChanges {
   //form;
   selectedFixtureIds: string[] = [];

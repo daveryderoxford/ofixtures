@@ -1,19 +1,28 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { UntypedFormControl } from '@angular/forms';
-import { MatButtonToggleChange } from '@angular/material/button-toggle';
+import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonToggleChange, MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { FixtureFilter, FixtureTimeFilter } from 'app/model/fixture-filter';
 import { LoginSnackbarService } from 'app/shared/services/login-snackbar.service';
 import { GradeFilterComponent } from '../grade-filter-dialog/grade-filter-dialog.component';
+import { MatLegacySlideToggleModule } from '@angular/material/legacy-slide-toggle';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { FixtureWeekFilterComponent } from './fixture-week-filter.component';
+import { ExtendedModule } from '@ngbracket/ngx-layout/extended';
+import { NgClass } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { FlexModule } from '@ngbracket/ngx-layout/flex';
 
 @UntilDestroy( { checkProperties: true } )
-@Component( {
-   selector: 'app-fixtures-options',
-   templateUrl: './fixtures-options.component.html',
-   styleUrls: ['./fixtures-options.component.scss']
-} )
+@Component({
+    selector: 'app-fixtures-options',
+    templateUrl: './fixtures-options.component.html',
+    styleUrls: ['./fixtures-options.component.scss'],
+    standalone: true,
+    imports: [FlexModule, MatButtonToggleModule, MatIconModule, NgClass, ExtendedModule, FixtureWeekFilterComponent, MatLegacyButtonModule, MatLegacySlideToggleModule, ReactiveFormsModule]
+})
 export class FixturesOptionsComponent implements OnInit {
 
    outputFilter: FixtureFilter;

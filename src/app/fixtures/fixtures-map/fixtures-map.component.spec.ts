@@ -8,8 +8,8 @@ describe('FixturesMapComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ FixturesMapComponent ]
-    })
+    imports: [FixturesMapComponent]
+})
     .compileComponents();
   }));
 

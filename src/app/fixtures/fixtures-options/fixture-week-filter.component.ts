@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FixtureTimeFilter } from 'app/model/fixture-filter';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
-@Component( {
-   selector: 'app-fixture-week-filter',
-   template: `
+@Component({
+    selector: 'app-fixture-week-filter',
+    template: `
  <div>
     <mat-button-toggle-group multiple="true">
 
@@ -23,18 +24,20 @@ import { FixtureTimeFilter } from 'app/model/fixture-filter';
     </mat-button-toggle-group>
   </div>
   `,
-   styles: [
-      `mat-button-toggle {
+    styles: [
+        `mat-button-toggle {
          height: 38px;
          line-height: 38px;
          padding: 0 8px;
       }`,
-      `::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+        `::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
          line-height: 35px !important;
          padding: 0 8px !important;
       }`
-   ]
-} )
+    ],
+    standalone: true,
+    imports: [MatButtonToggleModule]
+})
 export class FixtureWeekFilterComponent implements OnInit {
 
    @Input() timeFilter: FixtureTimeFilter;

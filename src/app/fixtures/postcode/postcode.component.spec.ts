@@ -8,8 +8,8 @@ describe('PostcodeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PostcodeComponent ]
-    })
+    imports: [PostcodeComponent]
+})
     .compileComponents();
   }));
 

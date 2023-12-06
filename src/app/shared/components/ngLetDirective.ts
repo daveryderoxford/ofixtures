@@ -35,10 +35,11 @@ interface NgLetContext<T> {
  *
  * @publicApi
  */
-@Directive( {
-   // eslint-disable-next-line @angular-eslint/directive-selector
-   selector: '[ngLet]'
-} )
+@Directive({
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: '[ngLet]',
+    standalone: true
+})
 export class NgLetDirective<T> {
 
    private context: NgLetContext<T | null> = { ngLet: null, $implicit: null };

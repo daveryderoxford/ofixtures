@@ -2,7 +2,8 @@ import { Directive, Input, ElementRef, OnChanges, OnInit, SimpleChanges } from '
 // import * as screenfull from 'screenfull';
 
 @Directive({
-  selector: '[appScreenfull]'
+    selector: '[appScreenfull]',
+    standalone: true
 })
 export class FullScreenDirective implements OnChanges, OnInit {
 

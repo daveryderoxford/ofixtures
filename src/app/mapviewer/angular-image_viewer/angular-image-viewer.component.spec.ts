@@ -8,8 +8,8 @@ describe('AngularImageViewerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AngularImageViewerComponent ]
-    })
+    imports: [AngularImageViewerComponent]
+})
     .compileComponents();
   }));
 

@@ -18,25 +18,23 @@ import { FixtureEditComponent } from './additional-fixture/fixture-edit.componen
 import { FixtureAdminCardComponent } from './additional-fixture/fixture-admin-card/fixture-admin-card.component';
 
 @NgModule({
-  declarations: [
-    AdminComponent,
-    LeagueAdminCardComponent,
-    LeagueFormComponent,
-    LeagueEditComponent,
-    LeagueAddComponent,
-    MapRegistrationAdminComponent,
-    FixtureSelectComponent,
-    CourseDialogComponent,
-    FixtureFormComponent,
-    FixtureAddComponent,
-    FixtureEditComponent,
-    FixtureAdminCardComponent
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule, 
-    AdminRoutingModule,
-    SharedModule
-  ]
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        AdminRoutingModule,
+        SharedModule,
+        AdminComponent,
+        LeagueAdminCardComponent,
+        LeagueFormComponent,
+        LeagueEditComponent,
+        LeagueAddComponent,
+        MapRegistrationAdminComponent,
+        FixtureSelectComponent,
+        CourseDialogComponent,
+        FixtureFormComponent,
+        FixtureAddComponent,
+        FixtureEditComponent,
+        FixtureAdminCardComponent
+    ]
 })
 export class AdminModule { }

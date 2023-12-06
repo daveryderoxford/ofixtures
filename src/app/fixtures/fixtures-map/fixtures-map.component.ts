@@ -5,15 +5,18 @@ import {
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { Fixture, LatLong } from 'app/model/fixture';
 import { Canvas, Circle, CircleMarker, CircleMarkerOptions, FeatureGroup, Map, TileLayer, Util, circle, control, tileLayer } from "leaflet";
+import { FixtureKeyComponent } from './fixture-key.component';
 
 @UntilDestroy( { checkProperties: true } )
-@Component( {
-   selector: 'app-fixtures-map',
-   templateUrl: './fixtures-map.component.html',
-   styleUrls: ['./fixtures-map.component.scss'],
-   encapsulation: ViewEncapsulation.None,
-   changeDetection: ChangeDetectionStrategy.OnPush
-} )
+@Component({
+    selector: 'app-fixtures-map',
+    templateUrl: './fixtures-map.component.html',
+    styleUrls: ['./fixtures-map.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [FixtureKeyComponent]
+})
 /** Map of fixtures */
 export class FixturesMapComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
 
