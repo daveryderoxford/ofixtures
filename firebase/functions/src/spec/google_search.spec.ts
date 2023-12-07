@@ -52,7 +52,7 @@ describe( 'Convert place names to geographic coodrinated using Google Maps geoCo
       { lat: 10, lng: 10 },
    ] );
 
-   it.only( 'First result within 80km of target location ', async () => {
+   it( 'First result within 80km of target location ', async () => {
 
       const searchSpy = spy.on( googleLocationService, 'geocode', () => Promise.resolve( multipleSearchResults ) );
 
@@ -64,7 +64,7 @@ describe( 'Convert place names to geographic coodrinated using Google Maps geoCo
 
    } );
 
-   it.only( 'Expect first result to be returned if null target is specified', async () => {
+   it( 'Expect first result to be returned if null target is specified', async () => {
 
       const searchSpy = spy.on( googleLocationService, 'geocode', () => Promise.resolve( multipleSearchResults ) );
 

@@ -109,14 +109,14 @@ describe( 'Fxtures', () => {
 
 } );
 
-it( 'should should use club location lat long not avalaible from gridref/postcaode/google', async () => {
+it( 'should should use club location if lat long not avalaible from gridref/postcaode/google', async () => {
 
    admin.initializeApp( firebaseConfig );
 
    const fixtures = new Fixtures( admin.storage() );
 
-   const spyLoadBOF = spy.on( fixtures, 'loadBOFPDA', returns => Promise.resolve( [] ) );
-   const spyLoadAdditional = spy.on( fixtures, 'loadAdditionalEvents', () => Promise.resolve( [] ) ); // TODO
+   const spyLoadBOF = spy.on( fixtures, 'loadBOFPDA', returns => Promise.resolve( [clubLocationBOFFixtures] ) );
+   const spyLoadAdditional = spy.on( fixtures, 'loadAdditionalEvents', () => Promise.resolve( [] ) ); 
    const spyClubs = spy.on( fixtures, 'loadClubLocations', () => Promise.resolve( clubs ) );
    const spyRG = spy.on( fixtures, 'addRoutegadgetMaps', ( fix: Fixture[] ) => Promise.resolve() );
 

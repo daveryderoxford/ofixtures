@@ -7,7 +7,7 @@ import { testFixtures, } from './club_locations_fixtures.spec';
 
 function readAllFixtures(): Fixture[] {
    try {
-      const data = fs.readFileSync( '/Users/user/Documents/workspace/ofixtures/firebase/functions/src/spec/all_fixtures.json', 'utf8' );
+      const data = fs.readFileSync( './src/spec/all_fixtures.json', 'utf8' );
       return JSON.parse( data );
    } catch ( err ) {
       console.error( err );
@@ -16,7 +16,7 @@ function readAllFixtures(): Fixture[] {
 
 describe( 'Club Locations', () => {
 
-   it.only( 'should obtain club locations form the currently live fixture file ', async () => {
+   it( 'should obtain club locations form the currently live fixture file ', async () => {
 
       const allFixtures = readAllFixtures();
       const clubLocations = clubLocationFromFixtures( allFixtures ); 

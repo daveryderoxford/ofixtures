@@ -22,7 +22,7 @@ function makeEntry(e: Partial<Entry>): Entry {
     return entry;
 }
 
-describe( 'Create usr data when user is created', () => {
+describe( 'Create user data when user is created', () => {
 
     it('gnerate IOF entry list', () => {
         const fixture: FixtureEntryDetails = {
@@ -53,7 +53,7 @@ describe( 'Create usr data when user is created', () => {
 
    });
 
-   it( 'Mark use data as archived when user is deleted', () => {
+   it( 'Mark user data as archived when user is deleted', () => {
       // Delete a user
 
       // Check that user is marked as archivied
