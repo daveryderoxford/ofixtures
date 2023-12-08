@@ -14,7 +14,7 @@
     "bundle-stats": "ng build --configuration production --statsJson && webpack-bundle-analyzer dist/stats.json",
     "sme": "source-map-explorer",
     "ng-high-memory": "node --max_old_space_size=8000 ./node_modules/@angular/cli/bin/ng",
-    "servedist": "cd dist && python -m SimpleHTTPServer 8000"
+    "servedist": "cd dist && python3 -m http.server 8000"
   },
   "private": true,
   "dependencies": {
