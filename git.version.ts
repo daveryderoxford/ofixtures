@@ -19,4 +19,3 @@ async function createVersionsFile( filename: string ) {
 }
 
 createVersionsFile( 'src/environments/versions.ts' );
-
