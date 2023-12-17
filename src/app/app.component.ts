@@ -2,13 +2,16 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Auth, User, authState } from '@angular/fire/auth';
-import { MatDividerModule} from '@angular/material/divider';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterOutlet } from "@angular/router";
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { tap } from 'rxjs/operators';
+import { first, tap } from 'rxjs/operators';
+import { FixturesService } from './fixtures/fixtures.service';
+import { PostcodeDialogComponent } from './fixtures/postcode/dialog/postcode-dialog/postcode-dialog.component';
 import { LeagueMenuComponent } from './league/league-menu/league-menu.component';
 import { LeagueService } from './league/league-service';
 import { League } from './model/league';
@@ -33,14 +36,17 @@ export class AppComponent implements OnInit {
    authorised = false;
    user: User;
    handset = false;
+   firstWarning = true;
 
    constructor(private router: Router,
       private afAuth: Auth,
+      private fixtureService: FixturesService,
       private sidebarService: SidenavService,
       private snackBar: MatSnackBar,
       private loginSnackBar: LoginSnackbarService,
       private breakpointObserver: BreakpointObserver,
-      private ls: LeagueService
+      private ls: LeagueService,
+      private dialog: MatDialog,
    ) {
 
       // Send google analytics message when navigating to any route succeeds.
@@ -48,7 +54,6 @@ export class AppComponent implements OnInit {
          this.reportAnalytics(event);
          this.setLoading(event);
       });
-
    }
 
    ngOnInit() {
@@ -69,28 +74,35 @@ export class AppComponent implements OnInit {
 
       this.sidebarService.setSidenav(this.sidenav);
       this.cookieConsent();
+      this.postcodeWarning();
    }
 
    private cookieConsent() {
       const ConsentCookie = "CookieConsent";
 
-      if (!this.readCookie(ConsentCookie)) {
+      if (!existsInLocalStorage('cookieConsent')) {
          this.snackBar.open("This site uses cookies for analytics purposes.", "Accept").afterDismissed().subscribe(() => {
-            document.cookie = ConsentCookie + "=true";
+            saveToLocalStorage('cookieConsent', true)
          });
       }
    }
 
-   private readCookie(name: string) {
-      const nameEQ = name + "=";
-      const ca = document.cookie.split(';');
+   /* Display a warining on mobile if the posttcode is set to the default */
+   private postcodeWarning() {
+      const PostcodeCookie = "PostcodeCookie";
+      this.fixtureService.postcode$.pipe(first()
+      ).subscribe((pc) => {
+         if (!existsInLocalStorage('postCodeWarning') && pc === FixturesService.DEFAULT_POSTCODE && this.firstWarning) {
+            const dialogRef = this.dialog.open(PostcodeDialogComponent, {
+               panelClass: 'sb-highzorder-dialog'
+            });
 
-      for (const c of ca) {
-         if (c.trim().indexOf(nameEQ) === 0) {
-            return c.substring(nameEQ.length, c.length);
+            dialogRef.afterClosed().subscribe(() => {
+               saveToLocalStorage('postCodeWarning', true)
+               this.firstWarning = false;
+            });
          }
-      }
-      return null;
+      })
    }
 
    private setLoading(routerEvent: Event): void {
@@ -183,5 +195,27 @@ export class AppComponent implements OnInit {
          });
 
       }
+   }
+}
+
+type LocalStorageKey = 'postCodeWarning' | 'cookieConsent';
+
+function saveToLocalStorage(key: LocalStorageKey, data: boolean) {
+   if (data) {
+      try {
+         localStorage.setItem(key, data.toString());
+      } catch (e) {
+         console.log('App component: Error saving to local storage Key: ' + key + '   ' + e.message);
+      }
+   }
+}
+
+function existsInLocalStorage(key: LocalStorageKey): boolean {
+   try {
+      const str = localStorage.getItem(key);
+      return str !== null;
+   } catch (e) {
+      console.log('App component: Error reading from local storage.  Key: ' + key + '   ' + e.message);
+      return false;
    }
 }

@@ -15,23 +15,23 @@ import { catchError, map, shareReplay, startWith, switchMap, tap } from 'rxjs/op
 } )
 export class FixturesService {
 
-   DEFAULT_FILTER = {
+   static DEFAULT_FILTER = {
       time: { sat: true, sun: true, weekday: true },
       gradesEnabled: true,
       grades: makeDefaultGrades(),
       likedOnly: false
    };
 
-   DEFAULT_POSTCODE = 'TW18 2AB';
-   DEFAULT_LATLNG = { "lat": 51.43116, "lng": -0.508227 };
+   static DEFAULT_POSTCODE = 'TW18 2AB';
+   static DEFAULT_LATLNG = { "lat": 51.43116, "lng": -0.508227 };
 
-   private _postcode$ = new BehaviorSubject<string>( this.DEFAULT_POSTCODE );
+   private _postcode$ = new BehaviorSubject<string>( FixturesService.DEFAULT_POSTCODE );
    readonly postcode$ = this._postcode$.asObservable();
 
-   private _homeLocation$ = new BehaviorSubject<LatLong>( this.DEFAULT_LATLNG );
+   private _homeLocation$ = new BehaviorSubject<LatLong>( FixturesService.DEFAULT_LATLNG );
    readonly homeLocation$ = this._homeLocation$.asObservable();
 
-   private _filter$ = new BehaviorSubject<FixtureFilter>( this.DEFAULT_FILTER );
+   private _filter$ = new BehaviorSubject<FixtureFilter>( FixturesService.DEFAULT_FILTER );
    readonly filter$ = this._filter$.asObservable();
 
    private _fileContents$: Observable<Fixture[]> = getDownloadURL( ref( this.storage, "fixtures/uk" ) ).pipe(
@@ -52,7 +52,7 @@ export class FixturesService {
 
       const grades = getFromLocalStorage( 'grades' ) as GradeFilter[];
       if ( grades ) {
-         this._filter$.next( { ...this.DEFAULT_FILTER, grades: grades } )
+         this._filter$.next( { ...FixturesService.DEFAULT_FILTER, grades: grades } )
       }
 
       const location = getFromLocalStorage( 'location' ) as LocalStorageLocationData;

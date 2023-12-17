@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Select postcode</h1>
+
+<div mat-dialog-content>
+    <mat-form-field appearance="standard">
+        <mat-label>Postcode</mat-label>
+        <input matInput [formControl]="postcodeFormControl" [value]="postcode" (keydown.enter)="postcodeEntered()">
+      </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+   <button mat-button mat-dialog-close>Cancel</button>
+   <button mat-flat-button	color="primary" type="submit" (click)="postcodeEntered()" cdkFocusInitial>OK</button>
+</div>
+
