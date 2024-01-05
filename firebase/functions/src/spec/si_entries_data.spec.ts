@@ -62,7 +62,7 @@ export const siEntriesFile = `
 	<meta name="msapplication-wide310x150logo" content="mstile-wide.png">
 	<meta name="msapplication-square310x310logo" content="mstile-large.png">
 
-			<script type="text/javascript" src="https://maps-api-ssl.google.com/maps/api/js?key=AIzaSyDgOjeSP6ycKtrJw1gndz37M_o0usEcSgo&callback=Function.prototype"></script>
+			<script type="text/javascript" src="https://maps-api-ssl.google.com/maps/api/ko&callback=Function.prototype"></script>
 		<script type="text/javascript" src="https://www.sientries.co.uk/common/idx_index_filter_pk.js?ver=46"></script>
 
 	<script type="text/javascript">
