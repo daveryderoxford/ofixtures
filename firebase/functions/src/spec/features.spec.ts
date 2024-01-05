@@ -1,10 +1,13 @@
 import { expect, spy, use } from 'chai';
+import * as admin from "firebase-admin";
 import 'mocha';
 import { Fixture } from "model/fixture";
+import { EntryData } from '../fixtures/entries/entry';
+import { Fabian } from '../fixtures/entries/fabian';
+import { RaceSignup } from '../fixtures/entries/racesignup';
+import { SIEntries } from '../fixtures/entries/si_entries';
 import { Fixtures } from '../fixtures/fixtures';
-import { smalltestBOFPDAFile, clubLocationBOFFixtures } from './BOFPDATestData.spec';
-import * as admin from "firebase-admin";
-import { loadClubLocations } from 'fixtures/club_locations';
+import { clubLocationBOFFixtures, smalltestBOFPDAFile } from './BOFPDATestData.spec';
 
 const spies = require( 'chai-spies' );
 
@@ -71,13 +74,41 @@ const clubs = [
    { "shortName": "WIGHTO", "latLng": { "lat": 49.76680881527482, "lng": -7.557159802041799 } }
 ];
 
+const sientries: EntryData[] = [
+   {
+     date: "2019-03-24T00:00:00.000Z",
+     club: "SROC",
+     title: "match SROC",
+     entruUrl: "https://testurl",
+     status: "Open"
+   }
+];
+const fabianEvents: EntryData[]  = [
+   {
+      date: "2019-03-24T00:00:00.000Z",
+      club: "DVO",
+      title: "no match SROC",
+      entruUrl: "https://testurl",
+      status: "Closed"
+    }
+];
+const racesignupEvents: EntryData[]  = [
+   {
+      date: "2019-03-24T00:00:00.000Z",
+      club: "QO",
+      title: "match QO",
+      entruUrl: "https://testurl2",
+      status: "Closed"
+    }
+];
+
 const firebaseConfig = {projectId:"ofixtures-2a7d5",storageBucket:"ofixtures-2a7d5.appspot.com",locationId:"europe-west2"};
 
 describe( 'Fxtures', () => {
 
    use( spies );
 
-   it( 'should process BOF fixture HTML with gridref/postcode locations ', async () => {
+   it.only( 'should process BOF fixture HTML with gridref/postcode locations ', async () => {
 
       admin.initializeApp( firebaseConfig );
 
@@ -94,8 +125,14 @@ describe( 'Fxtures', () => {
          return Promise.resolve();
       } );
 
-      // Stub adding Routegadget maps
-      const spyRG = spy.on( fixtures, 'addRoutegadgetMaps', ( fix: Fixture[] ) => {
+      const spyRG = spy.on( fixtures, 'addRoutegadgetMaps', ( fix: Fixture[] ) => Promise.resolve() );
+
+      const spyFabian = spy.on( Fabian.prototype, "getEvents", () => Promise.resolve( fabianEvents ));
+      const spySientries = spy.on( SIEntries.prototype, "getEvents", () => Promise.resolve( sientries ));
+      const spyRS = spy.on( RaceSignup.prototype, "getEvents", () => Promise.resolve( racesignupEvents ));
+
+      // Stub adding entriy urls 
+      const spyEntries = spy.on( fixtures, 'addEntryDetails', ( fix: Fixture[] ) => {
          return Promise.resolve();
       } );
 
@@ -119,6 +156,7 @@ it( 'should should use club location if lat long not avalaible from gridref/post
    const spyLoadAdditional = spy.on( fixtures, 'loadAdditionalEvents', () => Promise.resolve( [] ) ); 
    const spyClubs = spy.on( fixtures, 'loadClubLocations', () => Promise.resolve( clubs ) );
    const spyRG = spy.on( fixtures, 'addRoutegadgetMaps', ( fix: Fixture[] ) => Promise.resolve() );
+   const spyEntries = spy.on( fixtures, 'addEntryDetails', ( fix: Fixture[] ) => Promise.resolve() );
 
    const spySave = spy.on( fixtures, 'saveToStorage', ( fix: Fixture[] ) => {
       // SWOC found
@@ -132,6 +170,30 @@ it( 'should should use club location if lat long not avalaible from gridref/post
    } );
 
    await fixtures.processFixtures();
+
+} ).timeout( 20000 );
+
+it.only( 'should process  entrires ', async () => {
+
+   admin.initializeApp( firebaseConfig );
+
+   const fixtures = new Fixtures( admin.storage() );
+
+   const spyLoadAdditional = spy.on( fixtures, 'loadAdditionalEvents', () => Promise.resolve( [] ) );
+
+   const spyClubs = spy.on( fixtures, 'loadClubLocations', () => Promise.resolve( clubs ) );
+
+   const spySave = spy.on( fixtures, 'saveToStorage', ( fix: Fixture[] ) => {
+      expect( fix ).to.deep.equal( expectedFixtures );
+      return Promise.resolve();
+   } );
+
+   // Stub adding Routegadget maps
+   const spyRG = spy.on( fixtures, 'addRoutegadgetMaps', ( fix: Fixture[] ) => { return Promise.resolve();} );
+
+   await fixtures.processFixtures();
+
+   expect( spyRG ).to.have.been.called();
 
 } ).timeout( 20000 );
 

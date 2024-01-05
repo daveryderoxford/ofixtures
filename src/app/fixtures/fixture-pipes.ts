@@ -1,9 +1,8 @@
-import { NgModule, Pipe, PipeTransform } from "@angular/core";
+import { Pipe, PipeTransform } from "@angular/core";
 import { Fixture, LatLong } from "app/model/fixture";
 
-// import format from 'date-fns/format';
-import { format, differenceInCalendarDays } from 'date-fns';
 import { EventGrade } from 'app/model';
+import { differenceInCalendarDays, format } from 'date-fns';
 
 /**
  * Pipes to display fixture fields used for both

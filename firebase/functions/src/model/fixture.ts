@@ -33,6 +33,7 @@ export interface Fixture {
      association?: string;
      rg? : RGData;
      what3words?: string;
+     entryURL?: string;
 }
 
 export interface AdditionalFixture extends Fixture {

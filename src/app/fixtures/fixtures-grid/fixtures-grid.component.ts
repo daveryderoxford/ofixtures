@@ -1,9 +1,18 @@
-import { CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, CdkVirtualForOf } from '@angular/cdk/scrolling';
+import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { NgClass, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
-import { MatIconRegistry, MatIconModule } from '@angular/material/icon';
+import { MatLineModule } from '@angular/material/core';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatLegacyListModule } from '@angular/material/legacy-list';
+import { MatLegacyMenuModule } from '@angular/material/legacy-menu';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatLegacyTooltipModule } from '@angular/material/legacy-tooltip';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { ExtendedModule } from '@ngbracket/ngx-layout/extended';
+import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { EntryService } from 'app/entry/entry.service';
 import { Fixture } from 'app/model';
@@ -11,20 +20,12 @@ import { Entry, FixtureEntryDetails } from 'app/model/entry';
 import { LatLong, RGData } from 'app/model/fixture';
 import { LoginSnackbarService } from 'app/shared/services/login-snackbar.service';
 import { UserDataService } from 'app/user/user-data.service';
-import { LocationPipe, FixtureDatePipe, FixtureDistancePipe, FixtureDistanceColorPipe, GradeIconNamePipe } from '../fixture-pipes';
+import { ExternalLinkIconComponent } from '../../shared/components/external-link-icon.component';
 import { EllipsisPipe } from '../../shared/pipes/ellipsis-pipe';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatLineModule } from '@angular/material/core';
-import { MatLegacyListModule } from '@angular/material/legacy-list';
 import { FixtureActionsComponent } from '../fixture-actions/fixture-actions.component';
 import { MapMenuItemsComponent } from '../fixture-actions/map-menu-items.component';
-import { MatLegacyMenuModule } from '@angular/material/legacy-menu';
-import { ExternalLinkIconComponent } from '../../shared/components/external-link-icon.component';
-import { MatLegacyTooltipModule } from '@angular/material/legacy-tooltip';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
-import { ExtendedModule } from '@ngbracket/ngx-layout/extended';
-import { NgIf, NgClass } from '@angular/common';
-import { FlexModule } from '@ngbracket/ngx-layout/flex';
+import { FixtureDatePipe, FixtureDistanceColorPipe, FixtureDistancePipe, GradeIconNamePipe, LocationPipe } from '../fixture-pipes';
+import { isSameDay } from "date-fns";
 
 interface StyledFixture extends Fixture {
    shaded?: boolean;
@@ -53,7 +54,7 @@ export class FixturesGridComponent implements OnInit, OnChanges {
       let shaded = false;
       let previousFix = null;
       for ( const fix of this._fixtures ) {
-         if ( previousFix && fix.date !== previousFix.date ) {
+         if ( previousFix && !isSameDay(new Date(fix.date), new Date(previousFix.date)) ) {
             shaded = !shaded;
          }
          fix.shaded = shaded;
@@ -222,6 +223,5 @@ export class FixturesGridComponent implements OnInit, OnChanges {
    async viewEntries( fixture: Fixture ) {
       this.router.navigate( ["/entry/entrylist", fixture.id] );
    }
-
 }
 

@@ -10,6 +10,7 @@ import * as admin from "firebase-admin";
 import { Routegadget } from "./routegadget";
 import { ClubLocation, loadClubLocations } from "./club_locations";
 import { readAdditionalFixtures } from "./additional_fixtures";
+import { Entries } from "./entries/entry";
 
 export class Fixtures {
    readonly BOFPDAURL =
@@ -42,6 +43,9 @@ export class Fixtures {
 
       console.log( "Finding Routegadget maps" );
       await this.addRoutegadgetMaps( fixtures );
+
+      console.log("Finding entry details");
+      await this.addEntryDetails( fixtures );
 
       console.log( "Saving fixture file" );
       await this.saveToStorage( fixtures );
@@ -233,8 +237,13 @@ export class Fixtures {
       for ( const fixture of fixtures ) {
          fixture.rg = rg.getRoutegadgetData( fixture.area, fixture.club );
       }
-
    }
+
+   async addEntryDetails( fixtures: Fixture[] ) {
+      const entry = new Entries();
+      await entry.addEntries(fixtures);
+   }
+   
 
    /** Save fixtures JSON file to Google Storage */
    private async saveToStorage( fixtures: Fixture[] ): Promise<void> {
