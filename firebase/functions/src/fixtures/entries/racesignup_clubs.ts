@@ -16,10 +16,18 @@ export const raceSignupClubs: RaceSignupClub[] = [
     {
         shortName: 'bko',
         racesignup: 'bkolong'
+    },  
+    {
+        shortName: 'claro',
+        racesignup:'claro'
     },
     {
         shortName: 'clok',
         racesignup: 'clok'
+    },
+    {
+        shortName: 'clyde',
+        racesignup: 'clyde'
     },
     {
         shortName: 'dfok',

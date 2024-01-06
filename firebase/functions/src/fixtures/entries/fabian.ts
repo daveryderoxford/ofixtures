@@ -91,9 +91,9 @@ export class Fabian {
 
         const str = this.text(el).split("-");
 
-        const day = parseInt(str[0]);
-        const month = parseInt(str[1]);
-        const year = parseInt(str[2]) + 2000;
+        const day = parseInt(str[0]);     // Day is from 1 to 31
+        const month = parseInt(str[1])-1; // Month is from 0 to 11
+        const year = parseInt(str[2]) + 2000;  
 
         return (new Date(year, month, day)).toISOString()
     }

@@ -78,7 +78,7 @@ export class RaceSignup {
             entry.title = link.text();
 
             entry.date = this.getDate(cells[1]);
-            entry.club = this.getClub(cells[2]).toUpperCase();
+            entry.club = this.getClub(cells[2]);
             entry.status = this.getStatus(cells[3]);
 
         } catch (e) {
@@ -165,7 +165,7 @@ export class RaceSignup {
         if (!club) {
             console.log(' Club not found: ' + filename);
         }
-        return club?.shortName;
+        return club?.shortName.toUpperCase();
     }
 
     /* Returns the status from the status element*/

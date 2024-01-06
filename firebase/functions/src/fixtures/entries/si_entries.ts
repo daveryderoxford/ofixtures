@@ -56,7 +56,6 @@ export class SIEntries {
 
         try {
 
-
             const typeLink = this.$("div.etp_running img", row);
             eventType = this.getType(typeLink);
 
@@ -64,7 +63,7 @@ export class SIEntries {
 
             const entryLink = this.$("div.eti_title a", row);
             entry.title = entryLink.text();
-            entry.club = entry.title.split(" ")[0].toUpperCase();  // club name is first titem in title
+            entry.club = entry.title.split(" ")[0]?.toUpperCase();  // club name is first titem in title
             entry.entruUrl = entryLink.prop("href");
 
             entry.status = this.getStatus(this.$("div.eti_status a", row));
