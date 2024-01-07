@@ -5,10 +5,16 @@
 <mat-menu #menu="matMenu" overlapTrigger=true>
   <ng-template matMenuContent>
 
+    <a *ngIf="fixture.entryURL" mat-menu-item href="{{fixture.entryURL}}">
+      Enter
+      <app-external-link-icon></app-external-link-icon>
+    </a>
+    <mat-divider></mat-divider>
+
     <ng-container *ngIf="handset">
       <a *ngIf="fixture.clubURL" mat-menu-item href="{{fixture.clubURL}}">
-         Club website
-          <app-external-link-icon></app-external-link-icon>
+        Club website
+        <app-external-link-icon></app-external-link-icon>
       </a>
       <mat-divider></mat-divider>
       <app-map-menu-items [fixture]="fixture" [homeLocation]="homeLocation" [handset]="handset"></app-map-menu-items>

@@ -5,7 +5,7 @@ import { RaceSignup } from '../fixtures/entries/racesignup';
 import { realRacesignupFile } from './racesignup_data.spec';
 import { EntryData } from 'fixtures/entries/entry';
 
-describe( 'RaceSignup data parser ', () => {
+describe.only( 'RaceSignup data parser ', () => {
 
    it( 'Should parse race sigup data', () => {
 

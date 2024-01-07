@@ -20,12 +20,13 @@ import { Entry, FixtureEntryDetails } from 'app/model/entry';
 import { LatLong, RGData } from 'app/model/fixture';
 import { LoginSnackbarService } from 'app/shared/services/login-snackbar.service';
 import { UserDataService } from 'app/user/user-data.service';
+import { isSameDay } from "date-fns";
 import { ExternalLinkIconComponent } from '../../shared/components/external-link-icon.component';
 import { EllipsisPipe } from '../../shared/pipes/ellipsis-pipe';
+import { EnterButtonComponent } from '../enter-button/enter-button.component';
 import { FixtureActionsComponent } from '../fixture-actions/fixture-actions.component';
 import { MapMenuItemsComponent } from '../fixture-actions/map-menu-items.component';
 import { FixtureDatePipe, FixtureDistanceColorPipe, FixtureDistancePipe, GradeIconNamePipe, LocationPipe } from '../fixture-pipes';
-import { isSameDay } from "date-fns";
 
 interface StyledFixture extends Fixture {
    shaded?: boolean;
@@ -38,7 +39,8 @@ interface StyledFixture extends Fixture {
     styleUrls: ['./fixtures-grid.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, FlexModule, NgIf, CdkVirtualForOf, NgClass, ExtendedModule, MatLegacyButtonModule, MatLegacyTooltipModule, MatIconModule, ExternalLinkIconComponent, MatLegacyMenuModule, MapMenuItemsComponent, FixtureActionsComponent, MatLegacyListModule, MatLineModule, MatDividerModule, EllipsisPipe, LocationPipe, FixtureDatePipe, FixtureDistancePipe, FixtureDistanceColorPipe, GradeIconNamePipe]
+    imports: [CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, FlexModule, NgIf, CdkVirtualForOf, NgClass, ExtendedModule, MatLegacyButtonModule, MatLegacyTooltipModule, MatIconModule, ExternalLinkIconComponent, MatLegacyMenuModule, MapMenuItemsComponent, FixtureActionsComponent, MatLegacyListModule, MatLineModule, MatDividerModule, EllipsisPipe, LocationPipe, FixtureDatePipe, FixtureDistancePipe, FixtureDistanceColorPipe, GradeIconNamePipe, EnterButtonComponent
+]
 })
 export class FixturesGridComponent implements OnInit, OnChanges {
 

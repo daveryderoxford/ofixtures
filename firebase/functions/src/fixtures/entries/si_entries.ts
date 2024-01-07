@@ -1,7 +1,8 @@
 import * as cheerio from "cheerio";
 import * as request from "request-promise";
-import { EntryData, EntryStatus } from "./entry";
+import { EntryData } from "./entry";
 import { } from "perf_hooks";
+import { EntryStatus } from "model/fixture";
 
 export class SIEntries {
 

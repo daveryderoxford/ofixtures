@@ -18,6 +18,8 @@ export interface RGData {
 
 export type LocationSource = '' | 'gridref' | 'postcode' | 'google' | 'club';
 
+export type EntryStatus = 'Future' | 'Open' | 'Closed' | 'EOD' | 'Full' | 'NotEvent';
+
 export interface Fixture {
      id: string;
      date: ISODateString;
@@ -38,6 +40,8 @@ export interface Fixture {
      distance?: number;
      rg: RGData;
      what3words?: string;
+     entryURL?: string;
+     entryStatus?: EntryStatus;
 }
 
 export interface AdditionalFixture extends Fixture {

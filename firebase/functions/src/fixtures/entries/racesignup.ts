@@ -1,7 +1,8 @@
 import * as cheerio from "cheerio";
 import { raceSignupClubs } from "./racesignup_clubs";
 import * as request from "request-promise";
-import { EntryData, EntryStatus } from "./entry";
+import { EntryData } from "./entry";
+import { EntryStatus } from "model/fixture";
 
 export class RaceSignup {
 
@@ -163,9 +164,11 @@ export class RaceSignup {
 
         const club = raceSignupClubs.find((club) => club.racesignup === filename);
         if (!club) {
-            console.log(' Club not found: ' + filename);
+            console.log('   Club not found: ' + filename);
+            return null;
+        } else {
+            club?.shortName?.toUpperCase();
         }
-        return club?.shortName.toUpperCase();
     }
 
     /* Returns the status from the status element*/

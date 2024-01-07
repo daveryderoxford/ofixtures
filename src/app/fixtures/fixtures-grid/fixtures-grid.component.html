@@ -25,6 +25,8 @@
             <mat-icon [class.red]="isLiked(fixture)">favorite</mat-icon>
           </button>
 
+          <app-enter-button *ngIf="fixture.entryURL" [url]="fixture.entryURL" [status]="fixture.entryStatus"></app-enter-button>
+
           <ng-container *ngIf="isEntryAvalaible(fixture)">
 
             <ng-container *ngIf="isEntered(fixture); then editEntryButton else addEntryButton"></ng-container>

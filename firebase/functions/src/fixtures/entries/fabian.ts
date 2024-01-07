@@ -1,6 +1,7 @@
 import * as cheerio from "cheerio";
 import * as request from "request-promise";
-import { EntryData, EntryStatus } from "./entry";
+import { EntryData } from "./entry";
+import { EntryStatus } from "model/fixture";
 
 export class Fabian {
 
