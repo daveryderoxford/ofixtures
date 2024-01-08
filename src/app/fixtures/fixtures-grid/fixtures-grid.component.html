@@ -123,10 +123,11 @@
         {{fixture.area | ellipsis: 30}}
         <span fxFlex></span>
 
+        <mat-icon  *ngIf="fixture.entryURL" class="black handset-icon-size">person</mat-icon>
+
         <mat-icon *ngIf="isLiked(fixture)" class="red handset-icon-size">favorite</mat-icon>
 
         <mat-icon [svgIcon]="fixture.grade | gradeIconName" class="handset-icon-size"></mat-icon>
-
 
       </p>
 
