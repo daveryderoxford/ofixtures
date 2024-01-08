@@ -4,6 +4,7 @@ import { CollectionReference, Firestore, collection, collectionData, deleteDoc, 
 import { AdditionalFixture } from 'app/model/fixture';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { startOfDay, subDays } from 'date-fns';
 
 @Injectable( {
   providedIn: 'root'
@@ -23,7 +24,11 @@ export class AdditionalFixtureService {
   public get fixtures$() {
     if ( !this._fixtures$ ) {
       const fixturesRef = collection( this.fs, "fixtures" ) as CollectionReference<AdditionalFixture>;
-      const q = query( fixturesRef, where( "userId", "==", this.auth.currentUser.uid ) );
+      const queryStart = startOfDay(subDays(new Date(), 1)).toISOString();
+      const q = query( fixturesRef, 
+        where( "userId", "==", this.auth.currentUser.uid ),
+        where( "date", ">", queryStart)
+      );
       this._fixtures$ = collectionData( q ).pipe(
         map( fixtures => fixtures.sort( (a,b) => a.date.localeCompare(b.date))),
         shareReplay(1),
