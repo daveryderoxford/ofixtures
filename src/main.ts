@@ -1,29 +1,27 @@
 
 import { enableProdMode, ErrorHandler, importProvidersFrom } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
-
-import { environment } from 'environments/environment';
-import { AppComponent } from './app/app.component';
-import { LeagueModule } from './app/league/league.module';
-import { FixturesModule } from './app/fixtures/fixtures.module';
-import { withInterceptorsFromDi, provideHttpClient } from '@angular/common/http';
-import { SharedModule } from './app/shared/shared.module';
-import { provideStorage, getStorage } from '@angular/fire/storage';
-import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import { provideAuth, getAuth, connectAuthEmulator } from '@angular/fire/auth';
-import { firebaseConfig } from './app/app.firebase-config';
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { AppRoutingModule } from './app/app-routing.module';
-import { ServiceWorkerModule } from '@angular/service-worker';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { connectAuthEmulator, getAuth, provideAuth } from '@angular/fire/auth';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getStorage, provideStorage } from '@angular/fire/storage';
 import { ReactiveFormsModule } from '@angular/forms';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
-import { GlobalErrorHandler } from './app/errorHandler';
-import { MatLegacyDialogModule as MatDialogModule}  from '@angular/material/legacy-dialog';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
+import { bootstrapApplication, BrowserModule } from '@angular/platform-browser';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from 'environments/environment';
 import { connectFirestoreEmulator } from 'firebase/firestore';
 import { connectStorageEmulator } from 'firebase/storage';
+import { AppRoutingModule } from './app/app-routing.module';
+import { AppComponent } from './app/app.component';
+import { firebaseConfig } from './app/app.firebase-config';
+import { GlobalErrorHandler } from './app/errorHandler';
+import { FixturesModule } from './app/fixtures/fixtures.module';
+import { LeagueModule } from './app/league/league.module';
+import { SharedModule } from './app/shared/shared.module';
+import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
 
 if (environment.production) {
   enableProdMode();
@@ -31,11 +29,12 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom(BrowserModule,
+    importProvidersFrom(
+      BrowserModule,
       ReactiveFormsModule,
       ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
       AppRoutingModule,
-      provideFirebaseApp( () => initializeApp(firebaseConfig)),
+      provideFirebaseApp(() => initializeApp(firebaseConfig)),
       provideAuth(() => {
         const auth = getAuth();
         if (environment.useEmulator) {
@@ -49,21 +48,25 @@ bootstrapApplication(AppComponent, {
         if (environment.useEmulator) {
           console.log('Firestore emulator configured');
           connectFirestoreEmulator(firestore, 'http://localhost', 8080);
-        } 
+        }
         return firestore;
       }),
-      provideStorage(() =>  {
+      provideStorage(() => {
         const storage = getStorage();
-      if (environment.useEmulator) {
-        console.log('Storage emulator configured');
-        connectStorageEmulator(storage, 'http://localhost', 9199);
-      } 
-      return storage;
-    }),
+        if (environment.useEmulator) {
+          console.log('Storage emulator configured');
+          connectStorageEmulator(storage, 'http://localhost', 9199);
+        }
+        return storage;
+      }),
+      provideAnalytics(() => getAnalytics()),
       SharedModule,
       FixturesModule,
-      LeagueModule),
-      { provide: ErrorHandler, useClass: GlobalErrorHandler },
+      LeagueModule
+    ),
+    { provide: ErrorHandler, useClass: GlobalErrorHandler },
+    ScreenTrackingService,
+    UserTrackingService,
     provideAnimations(),
     provideHttpClient(withInterceptorsFromDi()),
     importProvidersFrom(MatDialogModule, MatSnackBarModule),
