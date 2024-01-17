@@ -108,7 +108,7 @@ describe( 'Fxtures', () => {
 
    use( spies );
 
-   it.only( 'should process BOF fixture HTML with gridref/postcode locations ', async () => {
+   it( 'should process BOF fixture HTML with gridref/postcode locations ', async () => {
 
       admin.initializeApp( firebaseConfig );
 
@@ -173,7 +173,7 @@ it( 'should should use club location if lat long not avalaible from gridref/post
 
 } ).timeout( 20000 );
 
-it.only( 'should process  entrires ', async () => {
+it( 'should process  entrires ', async () => {
 
    admin.initializeApp( firebaseConfig );
 

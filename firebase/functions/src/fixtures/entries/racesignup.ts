@@ -78,7 +78,7 @@ export class RaceSignup {
             entry.entruUrl = 'https://racesignup.co.uk' + link.prop("href");
             entry.title = link.text();
 
-            entry.date = this.getDate(cells[1]);
+            [entry.date, entry.enddate] = this.getDate(cells[1]);
             entry.club = this.getClub(cells[2]);
             entry.status = this.getStatus(cells[3]);
 
@@ -95,64 +95,100 @@ export class RaceSignup {
     }
 
     /** convert date of the form Wed 27 Dec to ISO date string 
-     * Dates may take the form of: 
-     *    Sun 28 Jan
-     *    27 - 28 Jan 2024
-     *    27 - 28 January 
-     *    22/23 January
-     * 
-     * 10 Jan - 13 Mar
-     *  Jan - Mar
-     * We could potrnatally return a date range to handle the second cases better. 
+     * Dates may take the form of a single date, two days (separated by a /) 
+     * or a period (separated by a -).
     */
-    private getDate(el: cheerio.Element): string {
-        const str = this.$(el).text().trim().split(' ');
+    private getDate(el: cheerio.Element): [string, string] {
+        const str = this.$(el).text().trim();
+        const arr = str.split(" ");
 
-        var month, day, year;
+        var date, endDate;
 
         try {
-            switch (str.length) {
-                case 3:  // Sun 28 Jan  AND  Jan - Mar
-                    if (str[1] === '-') {
-                        day = 1;
-                        month = 1;
-                        year = 1970;
-                    } else {
-                        month = this.getMonthFromString(str[2]);
-                        day = parseInt(str[1]);
-                        year = this.makeYear(month);
-                    }
-                    break;
-                case 2:  // 22/23 January
-                    month = this.getMonthFromString(str[1]);
-                    day = parseInt(str[0].split("/")[0]);
-                    year = this.makeYear(month);
-                    break;
-                case 4:
-                case 5:  // 27 - 28  Jan 2024 AND  10 Jan - 13 Mar
-                    if (str[2] == '-') {
-                        day = 1;
-                        month = 1;
-                        year = 1970;
-                    } else {
-                        day = parseInt(str[0]);
-                        month = this.getMonthFromString(str[3]);
-                        year = this.makeYear(month);
-                    }
-                    break;
-                default:
-                    console.log('RaceSignup: Unexpected date format. Row: ' + this.$(el).text());
-                    day = 1;
-                    month = 1;
-                    year = 1970;
+            if (str.includes('-')) {
+                [date, endDate] = this.getPeriod(arr);
+            } else if (str.includes('/')) {
+                [date, endDate] = this.getTwoDayPeriod(arr);
+            } else {
+                [date, endDate] = this.getSingleDay(arr);
             }
         } catch (error) {
-            console.log('Error parsing racesignuop date' + str);
+            console.log('Error parsing racesignup date: ' + str);
+            return [this.dateStr(1970, 1, 1), null];
+        }
+
+        return [date, endDate];
+
+    }
+
+    dateStr = (y, m, d: number) => (new Date(y, m, d)).toISOString();
+
+    /* Gets Racesignup date for a single date in the form Sun 28 Jan */
+    private getSingleDay(arr: string[]): [string, string] {
+        const month = this.getMonthFromString(arr[2]);
+        const day = parseInt(arr[1]);
+        const year = this.makeYear(month);
+        const date = this.dateStr(year, month, day);
+
+        return [date, null];
+    }
+
+    /** Gets Racesignup date for 2 days period
+     *  of the following form 22/23 January
+     */
+    private getTwoDayPeriod(arr: string[]): [string, string] {
+
+        const days = arr[0].split("/");
+        const day = parseInt(days[0]);
+        const endDay =  parseInt(days[1]);
+
+        const month = this.getMonthFromString(arr[1]);
+
+        const year = this.makeYear(month);
+
+        const date = this.dateStr(year, month, day);
+        const endDate = this.dateStr(year, month, endDay);
+
+        return [date, endDate];
+    }
+
+    /* Gets racesignup date for a period.  
+     * This is identifed by date containing a -. 
+     * Handles the following forms: 
+     *  27 - 28 Jan 2024
+     *  27 - 28 January 
+     *  10 Jan - 13 Mar
+     *  Jan - Mar (not parsed ) */
+    private getPeriod(arr: string[]): [string, string] {
+        var month, day, year;
+        var endMonth, endDay, endYear;
+
+        if (parseInt(arr[0]) != Number.NaN) {
+            if (arr[1] == '-') {  // 27 - 28 January and  27 - 28  Jan 2024 
+                month = this.getMonthFromString(arr[3]);
+                day = parseInt(arr[0]);
+                endMonth = month;
+                endDay = parseInt(arr[2]);
+                year = this.makeYear(month);
+                endYear = this.makeYear(endMonth);
+            } else if (arr[2] == '-') {  // 10 Jan - 13 Mar
+                month = this.getMonthFromString(arr[1]);
+                day = parseInt(arr[0]);
+                endMonth = this.getMonthFromString(arr[4]);
+                endDay = parseInt(arr[3]);
+                year = this.makeYear(month);
+                endYear = this.makeYear(endMonth);
+            }
+        } else {  // Jan - Mar
             day = 1;
             month = 1;
             year = 1970;
         }
-        return (new Date(year, month, day)).toISOString()
+
+        const date = this.dateStr(year, month, day);
+        const endDate = this.dateStr(endYear, endMonth, endDay);
+
+        return [date, endDate];
     }
 
     /** Get club name from club image url */
@@ -167,16 +203,18 @@ export class RaceSignup {
             console.log('   Club not found: ' + filename);
             return null;
         } else {
-            club?.shortName?.toUpperCase();
+            return club.shortName.toUpperCase();
         }
     }
 
-    /* Returns the status from the status element*/
+    /* Returns the status from the status element */
     private getStatus(el: cheerio.Element): EntryStatus {
         const statusStr = this.text(el).trim();
 
         switch (statusStr) {
             case 'OPEN':
+            case 'BUY':
+            case 'YHOA SUPERLEAGUE':
                 return 'Open';
             case 'CLOSED':
                 return 'Closed';
@@ -184,6 +222,8 @@ export class RaceSignup {
                 return 'Full';
             case 'OPENS SOON':
                 return 'Future'
+            case 'LIMITED EOD':
+                return 'EOD'
             case 'CANCELLED':
             case 'PASSENGERS ONLY':
                 return 'NotEvent'
@@ -201,6 +241,7 @@ export class RaceSignup {
         return (now.getMonth() <= futureMonth) ? year : year + 1
     }
 
+    /** Returns month index (0-11) from month name string */
     getMonthFromString(mon: string): number {
         var d = Date.parse(mon + "1, 2012");
         if (!isNaN(d)) {

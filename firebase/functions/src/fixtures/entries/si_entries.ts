@@ -114,12 +114,15 @@ export class SIEntries {
                 return 'Closed';
             case 'Not Yet Open':
                 return 'Future';
+            case 'Entry on Day':
+                return 'EOD';
             case 'Course Full':
             case 'Event Full':
             case 'Waiting List':
                 return 'Full';
             case 'Pre-selection List':
             case 'Event Cancelled':
+            case 'Event Postponed':
                 return 'NotEvent'
             default:
                 throw new Error('SI Entries invalid status: ' + statusStr);

@@ -12,7 +12,7 @@ describe.only( 'RaceSignup data parser ', () => {
       const rs = new RaceSignup();
       const events: EntryData[] = rs.parse( realRacesignupFile );
 
-    //  console.log(events);
+      console.log(events);
 
       expect( events.length).to.equal( 69 );
 
@@ -25,7 +25,7 @@ describe.only( 'RaceSignup data parser ', () => {
 
    //   console.log(events);
 
-      expect( events.length).greaterThan( 0 );
+      expect(events.length).greaterThan( 0 );
 
    } ).timeout( 40000 );
 
