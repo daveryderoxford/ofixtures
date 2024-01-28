@@ -123,10 +123,19 @@ export class RaceSignup {
 
     dateStr = (y, m, d: number) => (new Date(y, m, d)).toISOString();
 
-    /* Gets Racesignup date for a single date in the form Sun 28 Jan */
+    /* Gets Racesignup date for a single date in the form  or */
     private getSingleDay(arr: string[]): [string, string] {
-        const month = this.getMonthFromString(arr[2]);
-        const day = parseInt(arr[1]);
+        var month: number;
+        var day: number;
+
+        if (parseInt(arr[1]) !== Number.NaN) {  // Sun 28 Jan
+            month = this.getMonthFromString(arr[2]);
+            day = parseInt(arr[1]);
+        } else {  // 6 March 2024
+            month = this.getMonthFromString(arr[1]);
+            day = parseInt(arr[0]);
+        }
+
         const year = this.makeYear(month);
         const date = this.dateStr(year, month, day);
 
@@ -140,7 +149,7 @@ export class RaceSignup {
 
         const days = arr[0].split("/");
         const day = parseInt(days[0]);
-        const endDay =  parseInt(days[1]);
+        const endDay = parseInt(days[1]);
 
         const month = this.getMonthFromString(arr[1]);
 
@@ -153,12 +162,12 @@ export class RaceSignup {
     }
 
     /* Gets racesignup date for a period.  
-     * This is identifed by date containing a -. 
+     * This is identifed by date string containing a -. 
      * Handles the following forms: 
      *  27 - 28 Jan 2024
      *  27 - 28 January 
      *  10 Jan - 13 Mar
-     *  Jan - Mar (not parsed ) */
+     *  Note:  Dates of the form Jan - Mar (are not parsed) */
     private getPeriod(arr: string[]): [string, string] {
         var month, day, year;
         var endMonth, endDay, endYear;

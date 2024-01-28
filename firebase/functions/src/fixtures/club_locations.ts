@@ -3,6 +3,7 @@ import * as admin from "firebase-admin";
 import { getStorage } from 'firebase-admin/storage';
 import { LatLong } from "../model/latlng";
 import { Fixture } from "../model/fixture"; 
+import { clubLOcationsDefault } from "./club_locations_default";
 
 export interface ClubLocation {
    shortName: string;
@@ -22,7 +23,8 @@ const CLUB_LOCATIONS_FILNAME = "fixtures/club_locations.json";
 
 export async function loadClubLocations(): Promise<ClubLocation[]> {
    let response: any;
-   try {
+  /*  TODO Temp workaround to issue with Googlew Cloud storage crashing 
+    try {
       const file = getStorage().bucket().file( CLUB_LOCATIONS_FILNAME );
       response = await file.download();
 
@@ -30,7 +32,8 @@ export async function loadClubLocations(): Promise<ClubLocation[]> {
       console.error( "Club Locations: Error reading club locations: " + e );
       throw e;
    }
-   return JSON.parse( response as string );
+   return JSON.parse( response as string ); */
+   return Promise.resolve(clubLOcationsDefault);
 }
 
 
