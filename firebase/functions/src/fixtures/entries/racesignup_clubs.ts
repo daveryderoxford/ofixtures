@@ -70,6 +70,10 @@ export const raceSignupClubs: RaceSignupClub[] = [
         racesignup: 'havoc'
     },
     {
+        shortName: 'mdoc',
+        racesignup: 'mdoc'
+    },
+    {
         shortName: 'mv',
         racesignup: 'mvoc_banner'
     },

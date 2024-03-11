@@ -15,7 +15,7 @@ import { FixtureFormComponent } from './fixture-form/fixture-form.component';
 })
 export class FixtureAddComponent {
 
-  @ViewChild( FixtureFormComponent ) FixtureForm;
+  @ViewChild( FixtureFormComponent ) fixtureForm;
 
   constructor ( private fs: AdditionalFixtureService,
     private router: Router ) { }
@@ -26,7 +26,7 @@ export class FixtureAddComponent {
   }
 
   canDeactivate(): boolean {
-    return this.FixtureForm.canDeactivate();
+    return this.fixtureForm.canDeactivate();
   }
 
 }

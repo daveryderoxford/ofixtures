@@ -115,6 +115,7 @@ export class SIEntries {
             case 'Not Yet Open':
                 return 'Future';
             case 'Entry on Day':
+            case 'Limited Entry on Day':
                 return 'EOD';
             case 'Course Full':
             case 'Event Full':

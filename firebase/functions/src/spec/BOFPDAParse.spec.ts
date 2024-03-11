@@ -2,9 +2,9 @@
 import { expect } from 'chai';
 import 'mocha';
 import { BOFPDParseData, BOFPDParser } from '../fixtures/bof_pda_parse';
-import { testBOFPDAFile } from './BOFPDATestData.spec';
+import { googleLocationBOFFixtures, testBOFPDAFile } from './BOFPDATestData.spec';
 
-describe( 'BOF PDA Fixtures fiile parser ', () => {
+describe.only( 'BOF PDA Fixtures fiile parser ', () => {
 
    it( 'Should parse all fields incluing a grid reference column', () => {
 
@@ -30,6 +30,28 @@ describe( 'BOF PDA Fixtures fiile parser ', () => {
       expect( bofFixtures[ 0 ].nearestTown ).to.equal( 'Grange over Sands' );
       expect( bofFixtures[ 0 ].gridRefStr ).to.equal( 'SD393805' );
    } );
+
+   it.only('Should parse records in new format with Google location links rather than streetmap ', () => {
+
+      const parser = new BOFPDParser();
+      const bofFixtures: BOFPDParseData[] = parser.parseBOFPDAFile(googleLocationBOFFixtures);
+
+      // console.log(JSON.stringify(bofFixtures) );
+
+      // Row with postcode 
+      expect(bofFixtures[0].postcode).to.equal('GL4 8HG');
+      expect(bofFixtures[0].gridRefStr).to.equal('');
+
+      // Row 2 another postcode
+      expect(bofFixtures[1].postcode).to.equal('GL53 9EG');
+
+      // Row 3 short postcode also treated as missing. - OK are rare
+      expect(bofFixtures[2].postcode).to.equal('');
+
+      // Row 4 no postcode
+      expect(bofFixtures[3].postcode).to.equal('');
+
+   });
 
    it( 'Should parse record with no postcode or grid reference', () => {
 

@@ -86,6 +86,58 @@ export const smalltestBOFPDAFile = `
 </html>
 `;
 
+/** BOF fixtues in the new format that include a Google URL rather than a Streetmap one */
+export const googleLocationBOFFixtures = `
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<table>
+<tr>
+    <th>Date</th>  <th>Event Name</th>  <th>Level</th>  <th>Club</th>  <th>Ass.</th>  <th>Venue</th>  <th>Nearest Town</th>  <th>Grid Ref.</th>
+</tr>
+<tr style="background-color: #EEE">
+					<td>Sat 06/04/24</td>
+					<td><a href="https://www.britishorienteering.org.uk/index.php?pg=event&amp;amp;event=83557&amp;bpg=">NGOC League</a>
+					</td>
+					<td>Local</td>
+					<td><a href="http://www.ngoc.org.uk/" target="_blank">NGOC</a></td>
+					<td>SWOA</td>
+					<td><a href="https://www.google.co.uk/maps/search/Witcombe+and+Cranham+Woods%2C+GL4+8HG">Witcombe and Cranham Woods</a></td>
+					<td>Gloucester</td>
+					<td><a href="https://www.google.co.uk/maps/search/Witcombe+and+Cranham+Woods%2C+GL4+8HG"></a></td>
+</tr>
+<tr style="background-color: #FFF">
+					<td>Thu 02/05/24</td>
+					<td><a href="https://www.britishorienteering.org.uk/index.php?pg=event&amp;amp;event=84421&amp;bpg=">Evening Maprun Score</a></td>
+					<td>Local</td>
+					<td><a href="http://www.ngoc.org.uk/" target="_blank">NGOC</a></td>
+					<td>SWOA</td>
+					<td><a href="https://www.google.co.uk/maps/search/Leckhampton%2C+GL53+9EG">Leckhampton</a></td>
+					<td>Cheltenham</td>
+					<td><a href="https://www.google.co.uk/maps/search/Leckhampton%2C+GL53+9EG"></a></td>
+</tr>
+<tr style="background-color: #FFF">
+					<td>Thu 02/05/24</td>
+					<td><a href="https://www.britishorienteering.org.uk/index.php?pg=event&amp;amp;activity=35613&amp;bpg=">4 character postcode eg XXnn</a></td>
+					<td>Activity</td>
+					<td><a href="http://www.interlopers.org.uk/" target="_blank">INT</a></td>
+					<td>SOA</td>
+					<td><a href="https://www.google.co.uk/maps/search/Torphin+and+Woodhall+Mains%2C+EH13">Torphin and Woodhall Mains</a></td>
+					<td>Edinburgh</td>
+					<td><a href="https://www.google.co.uk/maps/search/Torphin+and+Woodhall+Mains%2C+EH13"></a></td>
+</tr>
+<tr style="background-color: #FFF">
+					<td>Thu 14/03/24</td>
+					<td><a href="https://www.britishorienteering.org.uk/index.php?pg=event&amp;amp;event=83209&amp;bpg=">No post code</a></td>
+					<td>Local</td>
+					<td><a href="http://www.quantockorienteers.co.uk/" target="_blank">QO</a></td>
+					<td>SWOA</td>
+					<td>Galmington</td>
+					<td>Taunton</td>
+					<td></td>
+</tr>
+</table>
+`
+
 /** Club location test - only contains parsed table and not full BOF data */
 export const clubLocationBOFFixtures = `
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
