@@ -1,5 +1,5 @@
 import * as request from "request-promise";
-import { Fixture, } from "../model/fixture";
+import { Fixture, LocationSource, } from "../model/fixture";
 import { LatLong } from "../model/latlng";
 import { EventGrade } from "../model/oevent";
 import { BOFPDParser } from "./bof_pda_parse";
@@ -49,6 +49,8 @@ export class Fixtures {
 
       console.log( "Saving fixture file" );
       await this.saveToStorage( fixtures );
+
+      this.writeLogSummary(fixtures);
 
       console.log( "Done" );
 
@@ -280,4 +282,29 @@ export class Fixtures {
       }
       return response;
    }
+
+   locCount = (fixtures: Fixture[], src: LocationSource) => fixtures.filter(f => f.locSource === src).length;
+
+   private writeLogSummary(fixtures: Fixture[]) {
+
+      const summary = `
+-------------------------------------------
+  Fixtures Summary
+
+  Total fixtures: ${fixtures.length}
+
+  Position from gridref: ${this.locCount(fixtures, 'gridref')}
+  Position from postcode: ${this.locCount(fixtures, 'postcode')}
+  Position from google: ${this.locCount(fixtures, 'google')}
+  Position from club: ${this.locCount(fixtures, 'club')}
+  Position from not known: ${this.locCount(fixtures, '')}
+  
+  Fixtures with Routegagdget data ${fixtures.filter(f => f.rg).length }
+  Fixtures that can be entered ${fixtures.filter(f => f.entryURL).length}
+-------------------------------------------
+      `;
+
+      console.log(summary);
+   }
+
 }

@@ -151,7 +151,7 @@ export class BOFPDParser {
       if (this.validPostcode(param)) {
          return param;
       } else {
-         param = '';
+         return '';
       }
    }
 
