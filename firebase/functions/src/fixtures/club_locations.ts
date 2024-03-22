@@ -1,8 +1,7 @@
-import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { getStorage } from 'firebase-admin/storage';
+import * as functions from "firebase-functions";
+import { Fixture } from "../model/fixture";
 import { LatLong } from "../model/latlng";
-import { Fixture } from "../model/fixture"; 
 import { clubLOcationsDefault } from "./club_locations_default";
 
 export interface ClubLocation {

@@ -1,8 +1,8 @@
 /*  Uses Googe geoocation API to convert ;pcations to
 */
 import { Client, Status } from "@googlemaps/google-maps-services-js";
-import { getDistanceFromLatLngInKm } from "./geo_conversion";
 import { LatLong } from "model/latlng";
+import { getDistanceFromLatLngInKm } from "./geo_conversion";
 
 export const googleLocationService = new Client( {} );
 

@@ -80,7 +80,8 @@ const sientries: EntryData[] = [
      club: "SROC",
      title: "match SROC",
      entruUrl: "https://testurl",
-     status: "Open"
+     status: "Open",
+     source: 'Racesignup'
    }
 ];
 const fabianEvents: EntryData[]  = [
@@ -89,7 +90,8 @@ const fabianEvents: EntryData[]  = [
       club: "DVO",
       title: "no match SROC",
       entruUrl: "https://testurl",
-      status: "Closed"
+      status: "Closed",
+      source: 'Racesignup'
     }
 ];
 const racesignupEvents: EntryData[]  = [
@@ -98,7 +100,8 @@ const racesignupEvents: EntryData[]  = [
       club: "QO",
       title: "match QO",
       entruUrl: "https://testurl2",
-      status: "Closed"
+      status: "Closed",
+      source: 'Racesignup'
     }
 ];
 

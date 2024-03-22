@@ -74,6 +74,7 @@ export class Fabian {
             entry.title = this.$("a", cells[0]).text();
             entry.entruUrl = this.getURL(cells[3]);
             entry.status = this.getStatus(cells[4]);
+            entry.source = 'Fabian';
             
         } catch (e) {
             console.log('Fabian parser: Error processing row ' + this.$(row).text() + '\n' + e);

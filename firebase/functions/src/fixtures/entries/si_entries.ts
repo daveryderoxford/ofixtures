@@ -68,6 +68,7 @@ export class SIEntries {
             entry.entruUrl = entryLink.prop("href");
 
             entry.status = this.getStatus(this.$("div.eti_status a", row));
+            entry.source = 'SIEntries';
 
         } catch (e) {
             console.log('SI entries parser: Error processing row ' + this.$(row).text() + '\n' + e);

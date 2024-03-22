@@ -1,8 +1,10 @@
-import { RaceSignup } from "./racesignup";
+import { isAfter, isBefore, isSameDay, startOfDay } from "date-fns";
 import { EntryStatus, Fixture } from "model/fixture";
-import { SIEntries } from "./si_entries";
 import { Fabian } from "./fabian";
-import { addDays, isAfter, isBefore, isSameDay, startOfDay } from "date-fns";
+import { RaceSignup } from "./racesignup";
+import { SIEntries } from "./si_entries";
+
+type EntrySource = 'Racesignup' | 'SIEntries' | 'Fabian';
 
 export class EntryData {
     constructor(
@@ -11,6 +13,7 @@ export class EntryData {
         public club: string | null,
         public entruUrl: string,
         public status: EntryStatus,
+        public source: EntrySource,
         public enddate?: string,
     ) { };
 }
@@ -36,7 +39,7 @@ export class Entries {
             if (found.length === 1) {
                 fix.entryURL = found[0].entruUrl;
                 fix.entryStatus = found[0].status;
-                 console.log('    Found match for: ' + fix.date + '  ' + fix.club);
+              //   console.log('    Found match for: ' + fix.date + '  ' + fix.club);
             } else if (found.length > 1) {
                 const urls = found.map(entry => entry.entruUrl).join(',   ');
                  console.log('    More than one matching event found. ' + fix.date + '  ' + fix.club + '\n    URLs:  ' + urls);
