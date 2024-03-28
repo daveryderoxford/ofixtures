@@ -11,6 +11,7 @@ import { GT_OSGB } from "./geo_conversion";
 import { googleLocationSearch } from "./google_search";
 import { LatLong as LatLongPIO, PostCodeLookup } from "./postcode";
 import { Routegadget } from "./routegadget";
+import { OTools } from './otools/otools';
 
 export class Fixtures {
    readonly BOFPDAURL =
@@ -20,7 +21,7 @@ export class Fixtures {
 
    clubs: ClubLocation[];
 
-   version = "2.0.0";
+   version = "2.1.0";
 
    constructor(private storage: admin.storage.Storage) { }
 
@@ -46,6 +47,10 @@ export class Fixtures {
 
       console.log("Finding entry details");
       await this.addEntryDetails(fixtures);
+
+      console.log("Adding OTools event ID's");
+      const otools = new OTools();
+      await otools.addOToolsEventIds(fixtures);
 
       console.log("Saving fixture file");
       await this.saveToStorage(fixtures);
@@ -288,7 +293,7 @@ export class Fixtures {
    private writeLogSummary(fixtures: Fixture[]) {
 
       console.log('-------------------------------------------');
-      console.log('Fixtures Summary/n');
+      console.log('Fixtures Summary');
 
       this.logLine('Total fixtures', fixtures.length, 800);
 
@@ -299,6 +304,8 @@ export class Fixtures {
       this.logLine('Position from not known', this.locCount(fixtures, ''), 0);
 
       this.logLine('Fixtures with Routegagdget data', fixtures.filter(f => f.rg).length, 500);
+
+      this.logLine('Fixtures with OTools data', fixtures.filter(f => f.otoolsId).length, 40);
 
       this.logLine('Fixtures that can be entered', fixtures.filter(f => f.entryURL).length, 30);
 

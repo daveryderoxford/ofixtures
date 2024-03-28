@@ -45,6 +45,12 @@
     <app-add-to-calendar [date]="fixtureDate()" [title]=fixture.name [location]="calanderlocation()"
       [details]="calanderDetails()"></app-add-to-calendar>
 
+    <a *ngIf="fixture.otoolsId" mat-menu-item [href]="'https://www.otools.uk/seeding?eventId=' + fixture.otoolsId"
+      target="_blank">
+      Entries (OTools)
+      <app-external-link-icon></app-external-link-icon>
+    </a>
+
     <div *ngIf="hasMapReservation()">
 
       <mat-divider></mat-divider>

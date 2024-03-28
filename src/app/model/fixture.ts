@@ -42,6 +42,7 @@ export interface Fixture {
      what3words?: string;
      entryURL?: string;
      entryStatus?: EntryStatus;
+     otoolsId?: string;
 }
 
 export interface AdditionalFixture extends Fixture {
