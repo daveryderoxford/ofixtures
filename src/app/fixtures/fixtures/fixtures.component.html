@@ -10,6 +10,8 @@
         (postcodeChanged)="postcodeChanged($event)">
       </app-postcode>
 
+      <app-fixture-search #search class="search-position mat-elevation-z"></app-fixture-search>
+
       <app-fixtures-options *ngIf="!league" class="top-right mat-elevation-z2" [filter]="fs.filter$ | async"
         (filterChanged)="filterChanged($event)">
       </app-fixtures-options>

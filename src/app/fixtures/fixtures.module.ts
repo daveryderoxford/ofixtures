@@ -36,7 +36,7 @@ import { LeagueModule } from 'app/league/league.module';
     FixtureActionsComponent,
     PostcodeComponent,
     AddToGoogleCalendarButtonComponent,
-    MapMenuItemsComponent
+    MapMenuItemsComponent,
 ],
     exports: [
         GradeFilterComponent

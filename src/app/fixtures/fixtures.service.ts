@@ -10,6 +10,12 @@ import { getDownloadURL } from 'rxfire/storage';
 import { BehaviorSubject, Observable, combineLatest, of } from 'rxjs';
 import { catchError, map, shareReplay, startWith, switchMap, tap } from 'rxjs/operators';
 
+function anyWordStartsWith( str: string, search: string): boolean {
+   if (!str) return false;
+   const words = str.toLocaleLowerCase().split(' ');
+   return words.some( word => word.startsWith(search));
+}
+
 @Injectable( {
    providedIn: 'root'
 } )
@@ -33,6 +39,9 @@ export class FixturesService {
 
    private _filter$ = new BehaviorSubject<FixtureFilter>( FixturesService.DEFAULT_FILTER );
    readonly filter$ = this._filter$.asObservable();
+
+   private _search$ = new BehaviorSubject<string>('');
+   readonly search$ = this._search$.asObservable;
 
    private _fileContents$: Observable<Fixture[]> = getDownloadURL( ref( this.storage, "fixtures/uk" ) ).pipe(
       switchMap( url => this.http.get<Fixture[]>( url ) ),
@@ -95,8 +104,8 @@ export class FixturesService {
          shareReplay( 1 ),
       );
 
-      const fixturesObs$ = combineLatest( [fixturesWithDistance$, this.usd.user$, this._filter$] ).pipe(
-         map( ( [fixtures, userdata, ftr] ) => fixtures.filter( fix => isFixtureShown( fix, userdata, ftr ) ) )
+      const fixturesObs$ = combineLatest( [fixturesWithDistance$, this.usd.user$, this._filter$, this._search$] ).pipe(
+         map( ( [fixtures, userdata, ftr, search] ) => fixtures.filter( fix => isFixtureShown( fix, userdata, ftr, search ) ) )
       );
 
       return fixturesObs$;
@@ -128,6 +137,10 @@ export class FixturesService {
    setFilter( f: FixtureFilter ) {
       this._filter$.next( f );
       saveToLocalStorage( 'grades', f?.grades );
+   }
+
+   setSearch( str: string) {
+      this._search$.next(str);
    }
 
    /** Calculate lat long from postcode, returning null if lat/long could not be calculated */
@@ -216,7 +229,7 @@ function futureFixtures( fixtures: Fixture[] ): Fixture[] {
    } );
 }
 
-function isFixtureShown( fix: Fixture, userdata: UserData, ftr: FixtureFilter ): boolean {
+function isFixtureShown( fix: Fixture, userdata: UserData, ftr: FixtureFilter, search: string): boolean {
 
    const fixdate = new Date( fix.date );
 
@@ -239,8 +252,15 @@ function isFixtureShown( fix: Fixture, userdata: UserData, ftr: FixtureFilter ):
    const likedOnly = ftr.likedOnly;
    isLiked = userdata?.reminders.includes( fix.id );
 
+   const s = search.toLocaleLowerCase();
+
+   const searchPassed = !s || s === '' || 
+      anyWordStartsWith(fix.club, s) || 
+      anyWordStartsWith(fix.area, s) || 
+      anyWordStartsWith(fix.nearestTown, s) || 
+      anyWordStartsWith(fix.name, s);
    // For liked only show all liked events.  Otherwise filter based on time and grade fiilters
-   return likedOnly ? isLiked : timeFilterPassed && gradeOFilterPassed;
+   return likedOnly ? isLiked : timeFilterPassed && gradeOFilterPassed && searchPassed;
 
 }
 
