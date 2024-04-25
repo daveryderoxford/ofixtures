@@ -50,8 +50,12 @@ export const raceSignupClubs: RaceSignupClub[] = [
         racesignup: 'elo'
     },
     {
-        shortName: 'esoc',
-        racesignup: 'esoc'
+        shortName: 'epoc',
+        racesignup: 'epoc'
+    },
+    {
+        shortName: 'epoc',
+        racesignup: 'epocmoving'
     },
     {
         shortName: 'euoc',

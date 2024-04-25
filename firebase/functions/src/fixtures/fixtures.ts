@@ -21,7 +21,7 @@ export class Fixtures {
 
    clubs: ClubLocation[];
 
-   version = "2.1.0";
+   version = "2.2.0";
 
    constructor(private storage: admin.storage.Storage) { }
 

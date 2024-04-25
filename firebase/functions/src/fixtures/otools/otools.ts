@@ -24,7 +24,7 @@ export class OTools {
             const found = otools.find(ot => ot.bofFixture?.id.toString() === id);
             if (found) {
                fixture.otoolsId = found.system + ':' + found.id;
-               console.log(`OTools: OFixtures event Id:  ${fixture.id}   OTools Id:  ${fixture.otoolsId}`);
+               // console.log(`OTools: OFixtures event Id:  ${fixture.id}   OTools Id:  ${fixture.otoolsId}`);
 
             }
          }

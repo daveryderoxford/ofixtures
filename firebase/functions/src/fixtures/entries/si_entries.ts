@@ -124,6 +124,7 @@ export class SIEntries {
                 return 'Full';
             case 'Pre-selection List':
             case 'Event Cancelled':
+            case 'Course Cancelled':
             case 'Event Postponed':
                 return 'NotEvent'
             default:
