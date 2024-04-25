@@ -16,7 +16,7 @@ import { MatLegacyInputModule } from '@angular/material/legacy-input';
 import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatLegacySlideToggleModule } from '@angular/material/legacy-slide-toggle';
-import { NgIf, AsyncPipe, DatePipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 
 @UntilDestroy( {} )
@@ -27,24 +27,23 @@ import { FlexModule } from '@ngbracket/ngx-layout/flex';
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        MatLegacyDialogModule,
-        FlexModule,
-        NgIf,
-        MatLegacySlideToggleModule,
-        ReactiveFormsModule,
-        MatDividerModule,
-        MatLegacyFormFieldModule,
-        MatLegacyInputModule,
-        MatLegacyListModule,
-        CdkVirtualScrollViewport,
-        CdkFixedSizeVirtualScroll,
-        CdkVirtualForOf,
-        MatLineModule,
-        MatLegacyButtonModule,
-        AsyncPipe,
-        DatePipe,
-        EllipsisPipe,
-    ],
+    MatLegacyDialogModule,
+    FlexModule,
+    MatLegacySlideToggleModule,
+    ReactiveFormsModule,
+    MatDividerModule,
+    MatLegacyFormFieldModule,
+    MatLegacyInputModule,
+    MatLegacyListModule,
+    CdkVirtualScrollViewport,
+    CdkFixedSizeVirtualScroll,
+    CdkVirtualForOf,
+    MatLineModule,
+    MatLegacyButtonModule,
+    AsyncPipe,
+    DatePipe,
+    EllipsisPipe
+],
 })
 export class FixtureSelectComponent implements OnInit {
 

@@ -19,12 +19,14 @@
 
     <mat-form-field>
       <input matInput formControlName="climb" placeholder="Climb">
-            <mat-hint align="end">climb in m</mat-hint>
+      <mat-hint align="end">climb in m</mat-hint>
     </mat-form-field>
 
-    <mat-form-field *ngIf="hasAgeClasses">
-      <input matInput formControlName="ageClasses" placeholder="Age Classes">
-    </mat-form-field>
+    @if (hasAgeClasses) {
+      <mat-form-field>
+        <input matInput formControlName="ageClasses" placeholder="Age Classes">
+      </mat-form-field>
+    }
 
   </form>
 </div>

@@ -28,7 +28,7 @@ import { FixturesOptionsComponent } from '../fixtures-options/fixtures-options.c
 import { PostcodeComponent } from '../postcode/postcode.component';
 import { SidenavButtonComponent } from '../../shared/components/sidenav-button.component';
 import { NgLetDirective } from '../../shared/components/ngLetDirective';
-import { NgIf, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { FixtureSearchComponent } from '../fixtures-search/fixture-search.component';
 
 @UntilDestroy( { checkProperties: true } )
@@ -37,7 +37,7 @@ import { FixtureSearchComponent } from '../fixtures-search/fixture-search.compon
     templateUrl: './fixtures.component.html',
     styleUrls: ['./fixtures.component.scss'],
     standalone: true,
-   imports: [NgIf, NgLetDirective, FixtureSearchComponent, SidenavButtonComponent, PostcodeComponent, FixturesOptionsComponent, AngularSplitModule, FixturesMapComponent, LeagueHeaderComponent, FixturesGridComponent, FlexModule, ToolbarComponent, MatLegacyButtonModule, MatIconModule, MatDividerModule, AsyncPipe]
+   imports: [NgLetDirective, FixtureSearchComponent, SidenavButtonComponent, PostcodeComponent, FixturesOptionsComponent, AngularSplitModule, FixturesMapComponent, LeagueHeaderComponent, FixturesGridComponent, FlexModule, ToolbarComponent, MatLegacyButtonModule, MatIconModule, MatDividerModule, AsyncPipe]
 })
 
 export class FixturesComponent implements OnInit {

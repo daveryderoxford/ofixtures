@@ -10,7 +10,7 @@ import { MatLegacyInputModule } from '@angular/material/legacy-input';
 import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
 import { MatLegacyCardModule } from '@angular/material/legacy-card';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
-import { NgIf, NgFor, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { ToolbarComponent } from '../../shared/components/toolbar.component';
 
 /** Display all the entries for a fixture */
@@ -21,17 +21,15 @@ import { ToolbarComponent } from '../../shared/components/toolbar.component';
     styleUrls: ['./entry-list.component.scss'],
     standalone: true,
     imports: [
-        ToolbarComponent,
-        NgIf,
-        FlexModule,
-        MatLegacyCardModule,
-        MatLegacyFormFieldModule,
-        MatLegacyInputModule,
-        NgFor,
-        MatLegacyTableModule,
-        SpinnerComponent,
-        DatePipe,
-    ],
+    ToolbarComponent,
+    FlexModule,
+    MatLegacyCardModule,
+    MatLegacyFormFieldModule,
+    MatLegacyInputModule,
+    MatLegacyTableModule,
+    SpinnerComponent,
+    DatePipe
+],
 })
 export class EntryListComponent implements OnInit {
 

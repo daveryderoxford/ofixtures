@@ -13,7 +13,7 @@ import { AddToGoogleCalendarButtonComponent } from './google-cal-button';
 import { MapMenuItemsComponent } from './map-menu-items.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { ExternalLinkIconComponent } from '../../shared/components/external-link-icon.component';
-import { NgIf } from '@angular/common';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyButtonModule } from '@angular/material/legacy-button';
 
@@ -24,15 +24,14 @@ import { MatLegacyButtonModule } from '@angular/material/legacy-button';
     styleUrls: ['./fixture-actions.component.scss'],
     standalone: true,
     imports: [
-        MatLegacyButtonModule,
-        MatLegacyMenuModule,
-        MatIconModule,
-        NgIf,
-        ExternalLinkIconComponent,
-        MatDividerModule,
-        MapMenuItemsComponent,
-        AddToGoogleCalendarButtonComponent,
-    ],
+    MatLegacyButtonModule,
+    MatLegacyMenuModule,
+    MatIconModule,
+    ExternalLinkIconComponent,
+    MatDividerModule,
+    MapMenuItemsComponent,
+    AddToGoogleCalendarButtonComponent
+],
 })
 export class FixtureActionsComponent implements AfterViewInit {
 

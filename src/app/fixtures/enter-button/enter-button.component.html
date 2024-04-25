@@ -1,4 +1,6 @@
 
-<a *ngIf="_status!=='NotEvent'" mat-button [color]=selectColor() [href]=url target="_blank">
+@if (_status!=='NotEvent') {
+  <a mat-button [color]=selectColor() [href]=url target="_blank">
     {{buttonText}}
-</a>
+  </a>
+}

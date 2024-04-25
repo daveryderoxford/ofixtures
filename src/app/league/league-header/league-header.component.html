@@ -1,10 +1,12 @@
 <mat-toolbar color=primary>
 
-   {{league.name}}
+  {{league.name}}
 
-   <span fxFlex></span>
+  <span fxFlex></span>
 
-   <a *ngIf="league.url" mat-button href="{{league.url}}">Website</a>
-   <button mat-button (click)="ls.setSelected(null)">Clear</button>
+  @if (league.url) {
+    <a mat-button href="{{league.url}}">Website</a>
+  }
+  <button mat-button (click)="ls.setSelected(null)">Clear</button>
 
 </mat-toolbar>

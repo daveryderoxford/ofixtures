@@ -5,53 +5,66 @@
 <mat-menu #menu="matMenu" overlapTrigger=true>
   <ng-template matMenuContent>
 
-    <a *ngIf="fixture.entryURL" mat-menu-item href="{{fixture.entryURL}}">
-      Enter
-      <app-external-link-icon></app-external-link-icon>
-    </a>
-    <mat-divider></mat-divider>
-
-    <ng-container *ngIf="handset">
-      <a *ngIf="fixture.clubURL" mat-menu-item href="{{fixture.clubURL}}">
-        Club website
+    @if (fixture.entryURL) {
+      <a mat-menu-item href="{{fixture.entryURL}}">
+        Enter
         <app-external-link-icon></app-external-link-icon>
       </a>
+    }
+    <mat-divider></mat-divider>
+
+    @if (handset) {
+      @if (fixture.clubURL) {
+        <a mat-menu-item href="{{fixture.clubURL}}">
+          Club website
+          <app-external-link-icon></app-external-link-icon>
+        </a>
+      }
       <mat-divider></mat-divider>
       <app-map-menu-items [fixture]="fixture" [homeLocation]="homeLocation" [handset]="handset"></app-map-menu-items>
       <mat-divider></mat-divider>
-    </ng-container>
+    }
 
-    <ng-container *ngIf="fixture.rg; let rg">
-      <button *ngIf="rg.maps.length>0 && handset" (click)="mapView()" mat-menu-item>
-        O Maps
-      </button>
+    @if (fixture.rg; as rg) {
+      @if (rg.maps.length>0 && handset) {
+        <button (click)="mapView()" mat-menu-item>
+          O Maps
+        </button>
+      }
       <a mat-menu-item [href]="rg.baseURL + 'rg2'" target="_blank">
         Club Routegadget
         <app-external-link-icon></app-external-link-icon>
       </a>
       <mat-divider></mat-divider>
-    </ng-container>
+    }
 
-    <button *ngIf="!liked()" (click)="toggleReminder()" mat-menu-item>
-      Like
-    </button>
+    @if (!liked()) {
+      <button (click)="toggleReminder()" mat-menu-item>
+        Like
+      </button>
+    }
 
-    <button *ngIf="liked()" (click)="toggleReminder()" mat-menu-item>
-      UnLike
-    </button>
+    @if (liked()) {
+      <button (click)="toggleReminder()" mat-menu-item>
+        UnLike
+      </button>
+    }
 
     <mat-divider></mat-divider>
 
     <app-add-to-calendar [date]="fixtureDate()" [title]=fixture.name [location]="calanderlocation()"
-      [details]="calanderDetails()"></app-add-to-calendar>
+    [details]="calanderDetails()"></app-add-to-calendar>
 
-    <a *ngIf="fixture.otoolsId" mat-menu-item [href]="'https://www.otools.uk/seeding?eventId=' + fixture.otoolsId"
+    @if (fixture.otoolsId) {
+<a mat-menu-item [href]="'https://www.otools.uk/seeding?eventId=' + fixture.otoolsId"
       target="_blank">
       Entries (OTools)
       <app-external-link-icon></app-external-link-icon>
     </a>
+}
 
-    <div *ngIf="hasMapReservation()">
+    @if (hasMapReservation()) {
+<div>
 
       <mat-divider></mat-divider>
 
@@ -64,6 +77,7 @@
       </button>
 
     </div>
+}
 
   </ng-template>
 

@@ -1,4 +1,4 @@
-import { CommonModule, NgIf } from '@angular/common';
+
 import { Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyButtonModule } from '@angular/material/legacy-button';
@@ -7,7 +7,7 @@ import { EntryStatus } from 'app/model/fixture';
 @Component({
   selector: 'app-enter-button',
   standalone: true,
-  imports: [CommonModule, MatLegacyButtonModule, NgIf, MatIconModule],
+  imports: [MatLegacyButtonModule, MatIconModule],
   templateUrl: './enter-button.component.html',
   styleUrls: ['./enter-button.component.scss'],
 })

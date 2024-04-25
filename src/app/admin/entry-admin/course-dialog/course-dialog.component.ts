@@ -4,7 +4,7 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule }
 import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogModule } from '@angular/material/legacy-dialog';
 import { EntryCourse } from 'app/model/entry';
 import { MatLegacyButtonModule } from '@angular/material/legacy-button';
-import { NgIf } from '@angular/common';
+
 import { MatLegacyInputModule } from '@angular/material/legacy-input';
 import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
 
@@ -15,7 +15,7 @@ import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
     styleUrls: ['./course-dialog.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [MatLegacyDialogModule, ReactiveFormsModule, MatLegacyFormFieldModule, MatLegacyInputModule, NgIf, MatLegacyButtonModule]
+    imports: [MatLegacyDialogModule, ReactiveFormsModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatLegacyButtonModule]
 })
 export class CourseDialogComponent implements OnInit {
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { PostcodeComponent } from "../../postcode.component";
 import { FixturesService } from 'app/fixtures/fixtures.service';
 import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
@@ -13,7 +13,7 @@ import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
     selector: 'app-postcode-dialog',
     standalone: true,
     templateUrl: './postcode-dialog.component.html',
-    imports: [CommonModule, PostcodeComponent, MatDialogModule, MatButtonModule, MatLegacyFormFieldModule, MatLegacyInputModule, ReactiveFormsModule,]
+    imports: [PostcodeComponent, MatDialogModule, MatButtonModule, MatLegacyFormFieldModule, MatLegacyInputModule, ReactiveFormsModule]
 })
 export class PostcodeDialogComponent {
 

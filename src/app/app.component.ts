@@ -1,5 +1,5 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { CommonModule } from '@angular/common';
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Auth, User, authState } from '@angular/fire/auth';
 import { MatDividerModule } from '@angular/material/divider';
@@ -25,7 +25,7 @@ import { SidenavService } from './shared/services/sidenav.service';
    templateUrl: './app.component.html',
    styleUrls: ['app.component.scss'],
    standalone: true,
-   imports: [CommonModule, SpinnerComponent, MatSidenavModule, MatDividerModule, MatListModule, LeagueMenuComponent, RouterOutlet]
+   imports: [SpinnerComponent, MatSidenavModule, MatDividerModule, MatListModule, LeagueMenuComponent, RouterOutlet]
 
 })
 export class AppComponent implements OnInit {

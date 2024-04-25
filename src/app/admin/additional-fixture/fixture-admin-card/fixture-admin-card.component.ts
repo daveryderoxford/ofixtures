@@ -9,7 +9,7 @@ import { AdditionalFixtureService } from '../additional-fixture.service';
 import { MatLineModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatLegacyListModule } from '@angular/material/legacy-list';
-import { NgIf, NgFor, AsyncPipe, DatePipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyButtonModule } from '@angular/material/legacy-button';
@@ -21,7 +21,7 @@ import { MatLegacyCardModule } from '@angular/material/legacy-card';
     templateUrl: './fixture-admin-card.component.html',
     styleUrls: ['./fixture-admin-card.component.scss'],
     standalone: true,
-    imports: [MatLegacyCardModule, FlexModule, MatLegacyButtonModule, RouterLink, MatIconModule, MatExpansionModule, NgIf, MatLegacyListModule, MatDividerModule, NgFor, MatLineModule, AsyncPipe, DatePipe]
+    imports: [MatLegacyCardModule, FlexModule, MatLegacyButtonModule, RouterLink, MatIconModule, MatExpansionModule, MatLegacyListModule, MatDividerModule, MatLineModule, AsyncPipe, DatePipe]
 })
 export class FixtureAdminCardComponent  {
 

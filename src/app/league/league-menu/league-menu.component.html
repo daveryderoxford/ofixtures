@@ -1,48 +1,56 @@
 <mat-accordion displayMode="flat">
 
-   <mat-expansion-panel>
+  <mat-expansion-panel>
 
-      <mat-expansion-panel-header>
-         Multi-day
-      </mat-expansion-panel-header>
+    <mat-expansion-panel-header>
+      Multi-day
+    </mat-expansion-panel-header>
 
-      <ng-template matExpansionPanelContent>
-         <mat-action-list>
-            <button mat-list-item class="menubutton" *ngFor="let l of (multiday$ | async)" (click)="selectLeague(l)">
-               {{l.name}} - {{l.startDate | date:'yyyy'}}
-            </button>
-         </mat-action-list>
-      </ng-template>
-   </mat-expansion-panel>
+    <ng-template matExpansionPanelContent>
+      <mat-action-list>
+        @for (l of (multiday$ | async); track l) {
+          <button mat-list-item class="menubutton" (click)="selectLeague(l)">
+            {{l.name}} - {{l.startDate | date:'yyyy'}}
+          </button>
+        }
+      </mat-action-list>
+    </ng-template>
+  </mat-expansion-panel>
 
-   <mat-expansion-panel class="mat-elevation-z0, expansion">
-      <mat-expansion-panel-header>
-         Leagues
-      </mat-expansion-panel-header>
+  <mat-expansion-panel class="mat-elevation-z0, expansion">
+    <mat-expansion-panel-header>
+      Leagues
+    </mat-expansion-panel-header>
 
-      <ng-template matExpansionPanelContent>
+    <ng-template matExpansionPanelContent>
 
-         <mat-action-list>
-            <span matSubheader>National</span>
+      <mat-action-list>
+        <span matSubheader>National</span>
 
-            <button mat-list-item class="menubutton" *ngFor="let l of (national$ | async)" (click)="selectLeague(l)">
-               {{l.name}} - {{l.startDate | date:'yyyy'}}
-            </button>
-            <mat-divider></mat-divider>
+        @for (l of (national$ | async); track l) {
+          <button mat-list-item class="menubutton" (click)="selectLeague(l)">
+            {{l.name}} - {{l.startDate | date:'yyyy'}}
+          </button>
+        }
+        <mat-divider></mat-divider>
 
-            <span matSubheader>Regional</span>
+        <span matSubheader>Regional</span>
 
-            <button mat-list-item class="menubutton" *ngFor="let l of (regional$ | async)" (click)="selectLeague(l)">
-               {{l.name}} - {{l.startDate | date:'yyyy'}}
-            </button>
-            <mat-divider></mat-divider>
+        @for (l of (regional$ | async); track l) {
+          <button mat-list-item class="menubutton" (click)="selectLeague(l)">
+            {{l.name}} - {{l.startDate | date:'yyyy'}}
+          </button>
+        }
+        <mat-divider></mat-divider>
 
-            <span matSubheader>Club</span>
-            <button mat-list-item class="menubutton" *ngFor="let l of (club$ | async)" (click)="selectLeague(l)">
-               {{l.name}} - {{l.startDate | date:'yyyy'}}
-            </button>
-         </mat-action-list>
-      </ng-template>
+        <span matSubheader>Club</span>
+        @for (l of (club$ | async); track l) {
+          <button mat-list-item class="menubutton" (click)="selectLeague(l)">
+            {{l.name}} - {{l.startDate | date:'yyyy'}}
+          </button>
+        }
+      </mat-action-list>
+    </ng-template>
 
-   </mat-expansion-panel>
+  </mat-expansion-panel>
 </mat-accordion>

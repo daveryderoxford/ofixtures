@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatLegacyButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyOptionModule } from '@angular/material/legacy-core';
-import { NgFor } from '@angular/common';
+
 import { MatLegacySelectModule } from '@angular/material/legacy-select';
 import { MatLegacyInputModule } from '@angular/material/legacy-input';
 import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
@@ -23,7 +23,7 @@ import { ToolbarComponent } from '../../../shared/components/toolbar.component';
     templateUrl: './league-form.component.html',
     styleUrls: ['./league-form.component.scss'],
     standalone: true,
-    imports: [ToolbarComponent, FlexModule, MatLegacyCardModule, ReactiveFormsModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatLegacySelectModule, NgFor, MatLegacyOptionModule, MatLegacyButtonModule, MatDividerModule]
+    imports: [ToolbarComponent, FlexModule, MatLegacyCardModule, ReactiveFormsModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatLegacySelectModule, MatLegacyOptionModule, MatLegacyButtonModule, MatDividerModule]
 })
 export class LeagueFormComponent implements OnChanges {
   //form;

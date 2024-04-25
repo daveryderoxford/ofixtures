@@ -7,7 +7,7 @@ import { MatLegacyButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyInputModule } from '@angular/material/legacy-input';
 import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
 import { MatLegacyCheckboxModule } from '@angular/material/legacy-checkbox';
-import { NgFor } from '@angular/common';
+
 
 @Component({
     selector: 'app-filter',
@@ -15,7 +15,7 @@ import { NgFor } from '@angular/common';
     styleUrls: ['./grade-filter-dialog.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [MatLegacyDialogModule, ReactiveFormsModule, NgFor, MatLegacyCheckboxModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatLegacyButtonModule]
+    imports: [MatLegacyDialogModule, ReactiveFormsModule, MatLegacyCheckboxModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatLegacyButtonModule]
 })
 
 export class GradeFilterComponent implements OnInit {

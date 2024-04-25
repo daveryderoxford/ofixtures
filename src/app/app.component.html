@@ -7,8 +7,10 @@
     <mat-action-list>
       <button mat-list-item (click)='showFixtures(false)'>Fixtures</button>
 
-      <button *ngIf="handset" mat-list-item (click)='showFixtures(true)'>Fixtures
+      @if (handset) {
+        <button mat-list-item (click)='showFixtures(true)'>Fixtures
         Map</button>
+      }
 
       <mat-divider></mat-divider>
 
@@ -16,13 +18,15 @@
 
       <mat-divider></mat-divider>
 
-      <ng-container *ngIf="authorised">
+      @if (authorised) {
         <button mat-list-item (click)='closeSidenav(["/user"])'>User settings</button>
         <button mat-list-item (click)='closeSidenav(["/auth/change-password"])'>Change password</button>
         <button mat-list-item (click)="logout()">Logout</button>
-      </ng-container>
+      }
 
-      <button mat-list-item *ngIf="!authorised" (click)='closeSidenav(["/auth/login"])'>Login</button>
+      @if (!authorised) {
+        <button mat-list-item (click)='closeSidenav(["/auth/login"])'>Login</button>
+      }
 
       <mat-divider></mat-divider>
       <button mat-list-item (click)='closeSidenav(["/about"])'>About</button>

@@ -1,51 +1,48 @@
 <mat-card fxFlex=400px fxFlex-sm=100%>
 
-   <mat-card-header>
-      <mat-card-title>League/Multi-Day</mat-card-title>
-      <mat-card-subtitle>Collections of fixtures. Either national/regional/club leagues of events (eg UKOL) or
-         multiday
-         events (eg White Rose)
-      </mat-card-subtitle>
-   </mat-card-header>
+  <mat-card-header>
+    <mat-card-title>League/Multi-Day</mat-card-title>
+    <mat-card-subtitle>Collections of fixtures. Either national/regional/club leagues of events (eg UKOL) or
+      multiday
+      events (eg White Rose)
+    </mat-card-subtitle>
+  </mat-card-header>
 
 
-   <mat-card-content>
-      <p>
-         <a mat-flat-button color=primary [routerLink]="['/admin/league/add']">
-            <mat-icon>add</mat-icon> Add
-         </a>
-      </p>
-      <ng-container *ngIf="leagues$ | async as leagues">
-         <mat-accordion>
-
-            <mat-expansion-panel>
-               <mat-expansion-panel-header>
-                  <mat-panel-title>
-                     Show/Edit Leagues
-                  </mat-panel-title>
-               </mat-expansion-panel-header>
-               <mat-list>
-                  <mat-divider></mat-divider>
-                  <mat-list-item *ngFor="let league of leagues">
-                     <h3 matLine>{{league.name}}</h3>
-                     <p matLine>{{league.fixtureIds.length}} fixtures</p>
-                     <p matLine> {{league.startDate | date:'mediumDate'}} to {{league.endDate | date:'mediumDate'}} </p>
-
-                     <button mat-icon-button color="primary" (click)="edit(league)">
-                        <mat-icon>edit</mat-icon>
-                     </button>
-
-                     &nbsp;&nbsp;
-                     <button mat-icon-button color="warn" (click)="delete(league)">
-                        <mat-icon>delete</mat-icon>
-                     </button>
-                     <mat-divider></mat-divider>
-                  </mat-list-item>
-
-               </mat-list>
-            </mat-expansion-panel>
-
-         </mat-accordion>
-      </ng-container>
-   </mat-card-content>
+  <mat-card-content>
+    <p>
+      <a mat-flat-button color=primary [routerLink]="['/admin/league/add']">
+        <mat-icon>add</mat-icon> Add
+      </a>
+    </p>
+    @if (leagues$ | async; as leagues) {
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Show/Edit Leagues
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list>
+            <mat-divider></mat-divider>
+            @for (league of leagues; track league) {
+              <mat-list-item>
+                <h3 matLine>{{league.name}}</h3>
+                <p matLine>{{league.fixtureIds.length}} fixtures</p>
+                <p matLine> {{league.startDate | date:'mediumDate'}} to {{league.endDate | date:'mediumDate'}} </p>
+                <button mat-icon-button color="primary" (click)="edit(league)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                &nbsp;&nbsp;
+                <button mat-icon-button color="warn" (click)="delete(league)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+                <mat-divider></mat-divider>
+              </mat-list-item>
+            }
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+    }
+  </mat-card-content>
 </mat-card>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { SearchInputComponent } from './search-input/search-input.component';
 import { FormControl } from '@angular/forms';
 import { FixturesService } from 'app/fixtures/fixtures.service';
@@ -8,7 +8,7 @@ import { debounce, debounceTime, distinctUntilChanged, map } from 'rxjs/operator
 @Component({
   selector: 'app-fixture-search',
   standalone: true,
-  imports: [CommonModule, SearchInputComponent],
+  imports: [SearchInputComponent],
   template: `<app-search-input  placeholder="Name, Club, Area, Location" (onStringChange)="updateSearch($event)">
              </app-search-input>`,
   styles: [],

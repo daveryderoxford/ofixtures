@@ -3,53 +3,57 @@
 <!-- Put form in middle of page -->
 <div fxLayout="row" fxLayoutAlign="center space-around">
 
-   <!-- layout elements vertically with  10px gaps-->
-   <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap=10px>
+  <!-- layout elements vertically with  10px gaps-->
+  <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap=10px>
 
-      <mat-card [class]=cardclass>
+    <mat-card [class]=cardclass>
 
-         <form (ngSubmit)="submit()" [formGroup]="form" novalidate fxLayout="column" fxLayoutAlign="space-around" fxLayoutGap=10px>
+      <form (ngSubmit)="submit()" [formGroup]="form" novalidate fxLayout="column" fxLayoutAlign="space-around" fxLayoutGap=10px>
 
-            <mat-form-field>
-               <input matInput formControlName="name" placeholder="Name">
-               <mat-error>Name required</mat-error>
-            </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="name" placeholder="Name">
+          <mat-error>Name required</mat-error>
+        </mat-form-field>
 
-            <mat-form-field>
-               <input matInput formControlName="url" placeholder="URL">
-                   <mat-hint>A fully formed URL with http/https</mat-hint>
-               <mat-error>Valid URL required</mat-error>
-            </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="url" placeholder="URL">
+          <mat-hint>A fully formed URL with http/https</mat-hint>
+          <mat-error>Valid URL required</mat-error>
+        </mat-form-field>
 
-            <mat-form-field>
-               <mat-select formControlName="type" placeholder="Type" >
-                  <mat-option *ngFor="let type of leagueTypes;" [value]="type">
-                     {{ type }}
-                  </mat-option>
-               </mat-select>
-            </mat-form-field>
+        <mat-form-field>
+          <mat-select formControlName="type" placeholder="Type" >
+            @for (type of leagueTypes; track type) {
+              <mat-option [value]="type">
+                {{ type }}
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
 
-            <mat-form-field>
-               <mat-select formControlName="level" placeholder="Level">
-                  <mat-option *ngFor="let level of leagueLevels;" [value]="level">
-                     {{ level }}
-                  </mat-option>
-               </mat-select>
-            </mat-form-field> 
+        <mat-form-field>
+          <mat-select formControlName="level" placeholder="Level">
+            @for (level of leagueLevels; track level) {
+              <mat-option [value]="level">
+                {{ level }}
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
 
-            <button mat-flat-button color=primary type="button" (click)="selectFixtures()">Select Events</button>
-            {{selectedFixtureIds.length}} fixtures selected
-             <mat-divider></mat-divider>
-             <br>
+        <button mat-flat-button color=primary type="button" (click)="selectFixtures()">Select Events</button>
+        {{selectedFixtureIds.length}} fixtures selected
+        <mat-divider></mat-divider>
+        <br>
 
-            <div fxLayout="row" fxLayoutAlign="space-between center">
-               <button [disabled]="form.invalid || (!form.dirty && !eventsEdited)" mat-raised-button color=primary type="submit"
-                  aria-label="submit">Save</button>
-            </div>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <button [disabled]="form.invalid || (!form.dirty && !eventsEdited)" mat-raised-button color=primary type="submit"
+            aria-label="submit">Save</button>
+          </div>
 
-         </form>
+        </form>
       </mat-card>
 
-   </div>
+    </div>
 
-</div>
+  </div>

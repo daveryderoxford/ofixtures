@@ -7,7 +7,7 @@ import { AdditionalFixture, Fixture } from 'app/model/fixture';
 import { formatISO } from 'date-fns';
 import { MatLegacyButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyOptionModule } from '@angular/material/legacy-core';
-import { NgFor } from '@angular/common';
+
 import { MatLegacySelectModule } from '@angular/material/legacy-select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatLegacyInputModule } from '@angular/material/legacy-input';
@@ -22,7 +22,7 @@ import { ToolbarComponent } from '../../../shared/components/toolbar.component';
     templateUrl: './fixture-form.component.html',
     styleUrls: ['./fixture-form.component.scss'],
     standalone: true,
-    imports: [ToolbarComponent, FlexModule, MatLegacyCardModule, ReactiveFormsModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatDatepickerModule, MatLegacySelectModule, NgFor, MatLegacyOptionModule, MatLegacyButtonModule]
+    imports: [ToolbarComponent, FlexModule, MatLegacyCardModule, ReactiveFormsModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatDatepickerModule, MatLegacySelectModule, MatLegacyOptionModule, MatLegacyButtonModule]
 })
 export class FixtureFormComponent  implements OnChanges {
 

@@ -16,7 +16,7 @@ import { MatLegacyButtonModule } from "@angular/material/legacy-button";
 import { MatLegacyInputModule } from "@angular/material/legacy-input";
 import { MatLegacyFormFieldModule } from "@angular/material/legacy-form-field";
 import { MatLegacyProgressBarModule } from "@angular/material/legacy-progress-bar";
-import { NgIf, NgStyle, NgFor } from "@angular/common";
+import { NgStyle } from "@angular/common";
 import { MatLegacyCardModule } from "@angular/material/legacy-card";
 import { FlexModule } from "@ngbracket/ngx-layout/flex";
 import { ToolbarComponent } from "../shared/components/toolbar.component";
@@ -27,7 +27,7 @@ import { ToolbarComponent } from "../shared/components/toolbar.component";
     templateUrl: "./user.component.html",
     styleUrls: ["./user.component.scss"],
     standalone: true,
-    imports: [ToolbarComponent, FlexModule, MatLegacyCardModule, ReactiveFormsModule, NgIf, MatLegacyProgressBarModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatLegacyButtonModule, MatIconModule, NgStyle, ExtendedModule, NgFor, MatLegacySelectModule, MatLegacyOptionModule]
+    imports: [ToolbarComponent, FlexModule, MatLegacyCardModule, ReactiveFormsModule, MatLegacyProgressBarModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatLegacyButtonModule, MatIconModule, NgStyle, ExtendedModule, MatLegacySelectModule, MatLegacyOptionModule]
 })
 export class UserComponent implements OnInit {
   originalUserData: UserData = null;

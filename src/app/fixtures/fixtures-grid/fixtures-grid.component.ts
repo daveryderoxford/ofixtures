@@ -1,5 +1,5 @@
 import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { MatLineModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
@@ -39,8 +39,7 @@ interface StyledFixture extends Fixture {
     styleUrls: ['./fixtures-grid.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, FlexModule, NgIf, CdkVirtualForOf, NgClass, ExtendedModule, MatLegacyButtonModule, MatLegacyTooltipModule, MatIconModule, ExternalLinkIconComponent, MatLegacyMenuModule, MapMenuItemsComponent, FixtureActionsComponent, MatLegacyListModule, MatLineModule, MatDividerModule, EllipsisPipe, LocationPipe, FixtureDatePipe, FixtureDistancePipe, FixtureDistanceColorPipe, GradeIconNamePipe, EnterButtonComponent
-]
+    imports: [CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, FlexModule, CdkVirtualForOf, NgClass, ExtendedModule, MatLegacyButtonModule, MatLegacyTooltipModule, MatIconModule, ExternalLinkIconComponent, MatLegacyMenuModule, MapMenuItemsComponent, FixtureActionsComponent, MatLegacyListModule, MatLineModule, MatDividerModule, EllipsisPipe, LocationPipe, FixtureDatePipe, FixtureDistancePipe, FixtureDistanceColorPipe, GradeIconNamePipe, EnterButtonComponent]
 })
 export class FixturesGridComponent implements OnInit, OnChanges {
 
