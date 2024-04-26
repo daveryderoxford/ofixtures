@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, output } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, output } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { UntilDestroy } from '@ngneat/until-destroy';
@@ -16,6 +16,7 @@ import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
 import { MatLegacyCardModule } from '@angular/material/legacy-card';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { ToolbarComponent } from '../../../shared/components/toolbar.component';
+import { input } from "@angular/core";
 
 @UntilDestroy( { checkProperties: true } )
 @Component({
@@ -31,7 +32,7 @@ export class LeagueFormComponent implements OnChanges {
   start: string;
   end: string;
 
-  @Input() league
+  league = input<League>();
   submitted = output<Partial<League>>();
 
   leagueTypes = leagueTypes;
@@ -53,10 +54,10 @@ export class LeagueFormComponent implements OnChanges {
 
   ngOnChanges( changes: SimpleChanges ) {
     if ( changes.league?.currentValue ) {
-      this.form.patchValue( this.league );
-      this.selectedFixtureIds = this.league.fixtureIds;
-      this.start = this.league.startDate;
-      this.end = this.league.endDate;
+      this.form.patchValue( this.league() );
+      this.selectedFixtureIds = this.league().fixtureIds;
+      this.start = this.league().startDate;
+      this.end = this.league().endDate;
     }
   }
 
@@ -99,5 +100,6 @@ export class LeagueFormComponent implements OnChanges {
     return !this.form.dirty;
   }
 
+;
 ;
 }

@@ -14,6 +14,7 @@ import { ExtendedModule } from '@ngbracket/ngx-layout/extended';
 import { NgClass } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
+import { input } from "@angular/core";
 
 @UntilDestroy( { checkProperties: true } )
 @Component({

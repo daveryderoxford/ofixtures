@@ -5,28 +5,28 @@
 <mat-menu #menu="matMenu" overlapTrigger=true>
   <ng-template matMenuContent>
 
-    @if (fixture.entryURL) {
-      <a mat-menu-item href="{{fixture.entryURL}}">
+    @if (fixture().entryURL) {
+      <a mat-menu-item href="{{fixture().entryURL}}">
         Enter
         <app-external-link-icon></app-external-link-icon>
       </a>
     }
     <mat-divider></mat-divider>
 
-    @if (handset) {
-      @if (fixture.clubURL) {
-        <a mat-menu-item href="{{fixture.clubURL}}">
+    @if (handset()) {
+      @if (fixture().clubURL) {
+        <a mat-menu-item href="{{fixture().clubURL}}">
           Club website
           <app-external-link-icon></app-external-link-icon>
         </a>
       }
       <mat-divider></mat-divider>
-      <app-map-menu-items [fixture]="fixture" [homeLocation]="homeLocation" [handset]="handset"></app-map-menu-items>
+      <app-map-menu-items [fixture]="fixture()" [homeLocation]="homeLocation()" [handset]="handset()"></app-map-menu-items>
       <mat-divider></mat-divider>
     }
 
-    @if (fixture.rg; as rg) {
-      @if (rg.maps.length>0 && handset) {
+    @if (fixture().rg; as rg) {
+      @if (rg.maps.length>0 && handset()) {
         <button (click)="mapView()" mat-menu-item>
           O Maps
         </button>
@@ -52,11 +52,11 @@
 
     <mat-divider></mat-divider>
 
-    <app-add-to-calendar [date]="fixtureDate()" [title]=fixture.name [location]="calanderlocation()"
+    <app-add-to-calendar [date]="fixtureDate()" [title]=fixture().name [location]="calanderlocation()"
     [details]="calanderDetails()"></app-add-to-calendar>
 
-    @if (fixture.otoolsId) {
-<a mat-menu-item [href]="'https://www.otools.uk/seeding?eventId=' + fixture.otoolsId"
+    @if (fixture().otoolsId) {
+<a mat-menu-item [href]="'https://www.otools.uk/seeding?eventId=' + fixture().otoolsId"
       target="_blank">
       Entries (OTools)
       <app-external-link-icon></app-external-link-icon>

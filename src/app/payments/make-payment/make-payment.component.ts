@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener, Input } from '@angular/core';
 import { PaymentService } from '../payment.service';
+import { input } from "@angular/core";
 
 declare var StripeCheckout;
 
@@ -11,7 +12,7 @@ declare var StripeCheckout;
    styleUrls: ['./make-payment.component.scss']
 } )
 export class MakePaymentComponent implements OnInit {
-   @Input() amount: number;
+   amount = input<number>();
 
    handler: any;
 
@@ -23,7 +24,7 @@ export class MakePaymentComponent implements OnInit {
        //  image: '/your/awesome/logo.jpg',
          locale: 'auto',
          token: token => {
-            this.paymentSvc.processPayment( token, this.amount );
+            this.paymentSvc.processPayment( token, this.amount() );
          }
       } );
    }
@@ -32,7 +33,7 @@ export class MakePaymentComponent implements OnInit {
       this.handler.open( {
          name: 'Splitsbrowser',
          excerpt: 'Event entry payment',
-         amount: this.amount
+         amount: this.amount()
       } );
    }
 
@@ -40,4 +41,6 @@ export class MakePaymentComponent implements OnInit {
    onPopstate() {
       this.handler.close();
    }
+
+;
 }

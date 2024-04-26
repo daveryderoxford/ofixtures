@@ -5,6 +5,7 @@ import { AbstractControlValueAccessor } from './abstract-value-accessor';
 import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
 import { MatLegacyInputModule } from '@angular/material/legacy-input';
 import { MatIconModule } from '@angular/material/icon';
+import { input } from "@angular/core";
 
 @Component({
   selector: 'app-search-input',
@@ -32,8 +33,8 @@ export class SearchInputComponent extends AbstractControlValueAccessor<string> i
 
   @ViewChild('input') inputElement: ElementRef;
 
-  @Input() placeholder = '';
-  @Input() alwaysOpen: boolean = false;
+  placeholder = input('');
+  alwaysOpen = input<boolean>(false);
   onBlur = output<string>();
   onClose = output<void>();
   onStringChange = output<string>();
@@ -45,13 +46,13 @@ export class SearchInputComponent extends AbstractControlValueAccessor<string> i
 
   ngOnInit() {
 
-    if (this.alwaysOpen) {
+    if (this.alwaysOpen()) {
       this.searchVisible = true;
     }
   }
 
   public close(): void {
-    if (!this.alwaysOpen) {
+    if (!this.alwaysOpen()!) {
       this.searchVisible = false;
     }
     this.value = '';
@@ -67,7 +68,7 @@ export class SearchInputComponent extends AbstractControlValueAccessor<string> i
   }
 
   onBlurring(searchValue: string) {
-    if (!searchValue && !this.alwaysOpen) {
+    if (!searchValue && !this.alwaysOpen()!) {
       this.searchVisible = false;
     }
     this.onBlur.emit(searchValue);
@@ -81,6 +82,8 @@ export class SearchInputComponent extends AbstractControlValueAccessor<string> i
     this.onFocus.emit(searchValue);
   }
 
+;
+;
 ;
 ;
 ;

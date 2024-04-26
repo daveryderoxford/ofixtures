@@ -1,13 +1,15 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { input } from "@angular/core";
 
 @Component({
     selector: 'app-about-item',
-    template: `
+    
+        template: `
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        {{title}}
+        {{title()}}
       </mat-panel-title>
     </mat-expansion-panel-header>
     <ng-content></ng-content>
@@ -20,11 +22,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 })
 export class AboutItemComponent implements OnInit {
 
-  @Input() title: string;
+  title = input<string>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+;
 }

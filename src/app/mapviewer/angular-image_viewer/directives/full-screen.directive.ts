@@ -1,4 +1,6 @@
 import { Directive, Input, ElementRef, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { input } from "@angular/core";
+
 // import * as screenfull from 'screenfull';
 
 @Directive({
@@ -7,7 +9,7 @@ import { Directive, Input, ElementRef, OnChanges, OnInit, SimpleChanges } from '
 })
 export class FullScreenDirective implements OnChanges, OnInit {
 
-  @Input('appScreenfull') fullscreenState: boolean;
+  fullscreenState = input<boolean>(undefined, { alias: 'appScreenfull' });
 
   constructor(private el: ElementRef) { }
 
@@ -26,7 +28,7 @@ export class FullScreenDirective implements OnChanges, OnInit {
     // tslint:disable-next-line: no-string-literal
     if (!changes['fullscreenState'].isFirstChange()) {
 
-      if (this.fullscreenState) {
+      if (this.fullscreenState()) {
         const element: any = this.el.nativeElement;
 
         // tslint:disable-next-line: max-line-length
@@ -57,4 +59,5 @@ export class FullScreenDirective implements OnChanges, OnInit {
 
   }
 
+;
 }

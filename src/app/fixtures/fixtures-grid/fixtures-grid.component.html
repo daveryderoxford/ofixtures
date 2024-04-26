@@ -1,7 +1,7 @@
 <cdk-virtual-scroll-viewport fxFill [itemSize]="itemSize">
 
   <!-- Large Screen -->
-  @if (!handset) {
+  @if (!handset()) {
     <table class="table">
       <thead>
         <tr>
@@ -68,8 +68,8 @@
               </a>
               <mat-menu #mapMenu="matMenu">
                 <ng-template matMenuContent>
-                  <app-map-menu-items [fixture]="fixture" [homeLocation]="homeLocation"
-                  [handset]="handset"></app-map-menu-items>
+                  <app-map-menu-items [fixture]="fixture" [homeLocation]="homeLocation()"
+                  [handset]="handset()"></app-map-menu-items>
                 </ng-template>
               </mat-menu>
             }
@@ -80,7 +80,7 @@
             }
           </td>
           <td class="admin">
-            <app-fixture-actions [fixture]="fixture" [handset]="handset"></app-fixture-actions>
+            <app-fixture-actions [fixture]="fixture" [handset]="handset()"></app-fixture-actions>
           </td>
         </tr>
       </tbody>
@@ -89,7 +89,7 @@
 
 
   <!-- Handset -->
-  @if (handset) {
+  @if (handset()) {
     <mat-list fxFill>
       <mat-list-item (click)="actions.openMenu()" *cdkVirtualFor="let fixture of _fixtures"
         [ngClass]="{ 'shaded': fixture?.shaded }">
@@ -116,7 +116,7 @@
           }
           <mat-icon [svgIcon]="fixture.grade | gradeIconName" class="handset-icon-size"></mat-icon>
         </p>
-        <app-fixture-actions #actions [handset]="handset" [fixture]="fixture"></app-fixture-actions>
+        <app-fixture-actions #actions [handset]="handset()" [fixture]="fixture"></app-fixture-actions>
         <mat-divider></mat-divider>
       </mat-list-item>
     </mat-list>

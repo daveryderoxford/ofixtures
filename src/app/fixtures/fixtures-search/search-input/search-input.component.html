@@ -3,7 +3,7 @@
           #input 
           matInput type="text"
            [(ngModel)]="value" 
-           [placeholder]="placeholder" 
+           [placeholder]="placeholder()" 
            (ngModelChange)="updateChanges()"
            (blur)="onBlurring(input.value)" 
            (keyup)="onKeyup(input.value)"

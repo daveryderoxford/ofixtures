@@ -3,6 +3,7 @@ import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatLegacyButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyInputModule } from '@angular/material/legacy-input';
 import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
+import { input } from "@angular/core";
 
 @Component({
     selector: 'app-postcode',
@@ -16,13 +17,13 @@ export class PostcodeComponent implements OnInit {
 
   constructor() { }
 
-  @Input() postcode: string;
+  postcode = input<string>();
   postcodeChanged = output<string>();
 
   postcodeFormControl: FormControl;
 
   ngOnInit() {
-    this.postcodeFormControl = new FormControl<string>( this.postcode, [this.validatePostcode, Validators.required] );
+    this.postcodeFormControl = new FormControl<string>( this.postcode(), [this.validatePostcode, Validators.required] );
   }
 
   postcodeEntered() {
@@ -45,5 +46,6 @@ export class PostcodeComponent implements OnInit {
     return regex.test( text ) ? null : { postcodeInvalid: true };
   }
 
+;
 ;
 }

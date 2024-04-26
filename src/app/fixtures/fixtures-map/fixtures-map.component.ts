@@ -5,6 +5,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 import { Fixture, LatLong } from 'app/model/fixture';
 import { Canvas, Circle, CircleMarker, CircleMarkerOptions, FeatureGroup, Map, TileLayer, Util, circle, control, tileLayer } from "leaflet";
 import { FixtureKeyComponent } from './fixture-key.component';
+import { input } from "@angular/core";
 
 @UntilDestroy( { checkProperties: true } )
 @Component({

@@ -15,6 +15,7 @@ import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
 import { MatLegacyCardModule } from '@angular/material/legacy-card';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { ToolbarComponent } from '../../../shared/components/toolbar.component';
+import { input } from "@angular/core";
 
 @UntilDestroy( { checkProperties: true } )
 @Component({
@@ -31,7 +32,7 @@ export class FixtureFormComponent  implements OnChanges {
   postcodeReg = /^[A-Z]{1,2}([0-9]{1,2}|[0-9][A-Z])\s*[0-9][A-Z]{2}$/gi;
   gridRefReg = /^[a-zA-Z]{2}[0-9]{6}|[0-9]{8}/;
 
-  @Input() fixture
+  fixture = input();
   submitted = output<Partial<AdditionalFixture>>();
 
   form = new FormGroup( {
@@ -59,7 +60,7 @@ export class FixtureFormComponent  implements OnChanges {
 
   ngOnChanges( changes: SimpleChanges ) {
     if ( changes.fixture?.currentValue ) {
-      this.form.patchValue( this.fixture );
+      this.form.patchValue( this.fixture() );
     }
   }
 
@@ -75,5 +76,6 @@ export class FixtureFormComponent  implements OnChanges {
     return !this.form.dirty;
   }
 
+;
 ;
 }

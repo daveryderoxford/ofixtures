@@ -1,4 +1,5 @@
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+import { input } from "@angular/core";
 
 interface NgLetContext<T> {
    /**

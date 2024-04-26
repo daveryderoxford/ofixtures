@@ -1,11 +1,12 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { MatLegacyProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
-
+import { input } from "@angular/core";
 
 @Component({
     selector: 'app-spinner',
-    template: `
-     @if (loading) {
+    
+        template: `
+     @if (loading()) {
        <div class="loading-spinner">
          <mat-spinner mode="indeterminate" color="accent" diameter="40" ></mat-spinner>
        </div>
@@ -17,12 +18,12 @@ import { MatLegacyProgressSpinnerModule } from '@angular/material/legacy-progres
 })
 export class SpinnerComponent implements OnInit {
 
-  @Input()
-  loading = false;
+  loading = input(false);
 
   constructor() { }
 
   ngOnInit() {
   }
 
+;
 }

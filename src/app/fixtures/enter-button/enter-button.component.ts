@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyButtonModule } from '@angular/material/legacy-button';
 import { EntryStatus } from 'app/model/fixture';
+import { input } from "@angular/core";
 
 @Component({
   selector: 'app-enter-button',
@@ -17,7 +18,7 @@ export class EnterButtonComponent {
   buttonText: string;
   _status: EntryStatus
 
-  @Input({ required: true }) url: string;
+  url = input.required<string>();
 
   @Input({ required: true }) set status(val: EntryStatus) {
     this._status = val;
@@ -36,5 +37,6 @@ export class EnterButtonComponent {
     }
 
   }
+
 }
 

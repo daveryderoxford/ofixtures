@@ -27,6 +27,7 @@ import { EnterButtonComponent } from '../enter-button/enter-button.component';
 import { FixtureActionsComponent } from '../fixture-actions/fixture-actions.component';
 import { MapMenuItemsComponent } from '../fixture-actions/map-menu-items.component';
 import { FixtureDatePipe, FixtureDistanceColorPipe, FixtureDistancePipe, GradeIconNamePipe, LocationPipe } from '../fixture-pipes';
+import { input } from "@angular/core";
 
 interface StyledFixture extends Fixture {
    shaded?: boolean;
@@ -63,8 +64,8 @@ export class FixturesGridComponent implements OnInit, OnChanges {
       }
    }
 
-   @Input() entries: FixtureEntryDetails[];
-   @Input() userEntries: Entry[];
+   entries = input<FixtureEntryDetails[]>();
+   userEntries = input<Entry[]>();
 
    @Input() set selectedFixture( f: Fixture ) {
       if ( f !== this._selectedFixture ) {
@@ -73,9 +74,9 @@ export class FixturesGridComponent implements OnInit, OnChanges {
       this._selectedFixture = f;
    }
 
-   @Input() homeLocation: LatLong;
-   @Input() handset: boolean;
-   @Input() loggedIn: boolean;
+   homeLocation = input<LatLong>();
+   handset = input<boolean>();
+   loggedIn = input<boolean>();
 
    fixtureSelected = output<Fixture>();
 
@@ -105,7 +106,7 @@ export class FixturesGridComponent implements OnInit, OnChanges {
    }
 
    ngOnChanges() {
-      if ( this.handset ) {
+      if ( this.handset() ) {
          this.itemSize = 88;
       } else {
          this.itemSize = 38;
@@ -178,13 +179,13 @@ export class FixturesGridComponent implements OnInit, OnChanges {
 
    // TODO temp
    isEntryAvalaible( fixture: Fixture ): boolean {
-      if ( !this.entries ) { return false; }
-      const index = this.entries.findIndex( entry => fixture.id === entry.fixtureId );
+      if ( !this.entries() ) { return false; }
+      const index = this.entries().findIndex( entry => fixture.id === entry.fixtureId );
       return index !== -1;
    }
 
    async toggleReminder( fixture: Fixture ) {
-      if ( !this.loggedIn ) {
+      if ( !this.loggedIn() ) {
          this.loginSnackBar.open( 'Must be logged in to like fixture' );
       } else {
          try {
@@ -203,7 +204,7 @@ export class FixturesGridComponent implements OnInit, OnChanges {
    }
 
    async enter( fixture: Fixture ) {
-      if ( !this.loggedIn ) {
+      if ( !this.loggedIn() ) {
          this.loginSnackBar.open( "Must be logged in to add map reservation" );
       } else {
          this.router.navigate( ["/entry/enter", fixture.id] );
@@ -212,8 +213,8 @@ export class FixturesGridComponent implements OnInit, OnChanges {
 
    /** retuns observable of css class to apply  */
    isEntered( fixture: Fixture ): boolean {
-      if ( !this.userEntries ) { return false; }
-      const index = this.userEntries.findIndex( entry => entry.fixtureId === fixture.id );
+      if ( !this.userEntries() ) { return false; }
+      const index = this.userEntries().findIndex( entry => entry.fixtureId === fixture.id );
       return index !== -1;
    }
 
@@ -225,5 +226,10 @@ export class FixturesGridComponent implements OnInit, OnChanges {
       this.router.navigate( ["/entry/entrylist", fixture.id] );
    }
 
+;
+;
+;
+;
+;
 ;
 }

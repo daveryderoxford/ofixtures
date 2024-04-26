@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, In
 import { Properties } from './interfaces';
 import { defaultProperties, backwardCompatibilityProperties } from './properties';
 import { IvyPinch } from './ivypinch';
+import { input } from "@angular/core";
 
 interface ComponentProperties extends Properties {
     disabled?: boolean;
@@ -131,20 +132,20 @@ export class PinchZoomComponent implements OnDestroy {
         return this._limitZoom;
     }
 
-    @Input() disabled!: boolean;
-    @Input() disablePan!: boolean;
-    @Input() overflow!: 'hidden' | 'visible';
-    @Input() zoomControlScale!: number;
-    @Input() disableZoomControl!: 'disable' | 'never' | 'auto';
-    @Input() backgroundColor!: string;
-    @Input() limitPan!: boolean;
-    @Input() minPanScale!: number;
-    @Input() minScale!: number;
-    @Input() listeners!: 'auto' | 'mouse and touch';
-    @Input() wheel!: boolean;
-    @Input() autoHeight!: boolean;
-    @Input() wheelZoomFactor!: number;
-    @Input() draggableImage!: boolean;
+    disabled = input<boolean>();
+    disablePan = input<boolean>();
+    overflow = input<'hidden' | 'visible'>();
+    zoomControlScale = input<number>();
+    disableZoomControl = input<'disable' | 'never' | 'auto'>();
+    backgroundColor = input<string>();
+    limitPan = input<boolean>();
+    minPanScale = input<number>();
+    minScale = input<number>();
+    listeners = input<'auto' | 'mouse and touch'>();
+    wheel = input<boolean>();
+    autoHeight = input<boolean>();
+    wheelZoomFactor = input<number>();
+    draggableImage = input<boolean>();
 
     @HostBinding('style.overflow')
     get hostOverflow() {
@@ -306,4 +307,19 @@ export class PinchZoomComponent implements OnDestroy {
     getDefaultComponentProperties() {
         return { ...defaultProperties, ..._defaultComponentProperties };
     }
+
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
 }

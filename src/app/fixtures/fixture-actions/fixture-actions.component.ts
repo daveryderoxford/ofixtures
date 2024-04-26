@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { Auth, authState } from '@angular/fire/auth';
 import { MatLegacyMenuTrigger as MatMenuTrigger, MatLegacyMenuModule } from '@angular/material/legacy-menu';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
@@ -16,6 +16,7 @@ import { ExternalLinkIconComponent } from '../../shared/components/external-link
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { input } from "@angular/core";
 
 @UntilDestroy( { checkProperties: true } )
 @Component({
@@ -35,9 +36,9 @@ import { MatLegacyButtonModule } from '@angular/material/legacy-button';
 })
 export class FixtureActionsComponent implements AfterViewInit {
 
-   @Input() fixture: Fixture;
-   @Input() handset = false;
-   @Input() homeLocation: LatLong;
+   fixture = input<Fixture>();
+   handset = input(false);
+   homeLocation = input<LatLong>();
 
    // TODO TEMP comment out map reservation
    mapReservationSupported = true;
@@ -73,7 +74,7 @@ export class FixtureActionsComponent implements AfterViewInit {
    liked(): boolean {
       const userData = this.usd.currentUserData;
       if ( userData ) {
-         return userData.reminders.includes( this.fixture.id );
+         return userData.reminders.includes( this.fixture().id );
       } else {
          return false;
       }
@@ -85,11 +86,11 @@ export class FixtureActionsComponent implements AfterViewInit {
       } else {
          try {
             if ( this.liked() ) {
-               await this.usd.removeFixtureReminder( this.fixture.id );
+               await this.usd.removeFixtureReminder( this.fixture().id );
                this.snackBar.open( 'Event Unliked', '', { duration: 2000 } );
 
             } else {
-               await this.usd.addFixtureReminder( this.fixture.id );
+               await this.usd.addFixtureReminder( this.fixture().id );
                this.snackBar.open( 'Event Liked', '', { duration: 2000 } );
             }
          } catch ( e ) {
@@ -100,23 +101,23 @@ export class FixtureActionsComponent implements AfterViewInit {
    }
 
    hasMapReservation(): boolean {
-      return this.fixtureEntryDetails.filter( details => this.fixture.id === details.fixtureId ).length !== 0;
+      return this.fixtureEntryDetails.filter( details => this.fixture().id === details.fixtureId ).length !== 0;
    }
 
    async reserveMap(): Promise<void> {
       if ( !this.loggedIn ) {
          this.loginSnackBar.open( "Must be logged in to add map reservation" );
       } else {
-         this.router.navigate( ["/entry/enter", this.fixture.id] );
+         this.router.navigate( ["/entry/enter", this.fixture().id] );
       }
    }
 
    async viewEntries() {
-      this.router.navigate( ["/entry/entrylist", this.fixture.id] );
+      this.router.navigate( ["/entry/entrylist", this.fixture().id] );
    }
 
    calanderlocation(): string {
-      const f = this.fixture;
+      const f = this.fixture();
       let ret = "";
 
       f.area ? ret += f.area : ret;
@@ -125,7 +126,7 @@ export class FixtureActionsComponent implements AfterViewInit {
    }
 
    calanderDetails(): string {
-      const f = this.fixture;
+      const f = this.fixture();
       let ret = f.name;
       
       f.club ? ret += "%0D%0AClub: " + f.club : ret;
@@ -136,10 +137,10 @@ export class FixtureActionsComponent implements AfterViewInit {
    }
 
    fixtureDate(): Date {
-      return new Date(this.fixture.date);
+      return new Date(this.fixture().date);
    }
 
    mapView() {
-      this.router.navigate( ["/mapviewer"], { queryParams: { rgdata: JSON.stringify(this.fixture.rg)}  }  );
+      this.router.navigate( ["/mapviewer"], { queryParams: { rgdata: JSON.stringify(this.fixture().rg)}  }  );
    }
 }
