@@ -1,5 +1,5 @@
 
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, output } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { EventDiscipline, EventGrade, EventType, eventDisciplines, eventGrades, eventTypes } from 'app/model';
@@ -32,7 +32,7 @@ export class FixtureFormComponent  implements OnChanges {
   gridRefReg = /^[a-zA-Z]{2}[0-9]{6}|[0-9]{8}/;
 
   @Input() fixture
-  @Output() submitted = new EventEmitter<Partial<AdditionalFixture>>();
+  submitted = output<Partial<AdditionalFixture>>();
 
   form = new FormGroup( {
     date: new FormControl( '', { validators: [Validators.required] } ),
@@ -75,4 +75,5 @@ export class FixtureFormComponent  implements OnChanges {
     return !this.form.dirty;
   }
 
+;
 }

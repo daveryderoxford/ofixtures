@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { FixturesGridComponent } from './fixtures-grid.component';
+import { expect } from 'chai';
 
 describe('FixturesGridComponent', () => {
   let component: FixturesGridComponent;

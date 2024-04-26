@@ -1,6 +1,6 @@
 import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, ViewChild, output } from '@angular/core';
 import { MatLineModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
@@ -77,7 +77,7 @@ export class FixturesGridComponent implements OnInit, OnChanges {
    @Input() handset: boolean;
    @Input() loggedIn: boolean;
 
-   @Output() fixtureSelected = new EventEmitter<Fixture>();
+   fixtureSelected = output<Fixture>();
 
    @ViewChild( CdkVirtualScrollViewport ) viewPort: CdkVirtualScrollViewport;
 
@@ -224,5 +224,6 @@ export class FixturesGridComponent implements OnInit, OnChanges {
    async viewEntries( fixture: Fixture ) {
       this.router.navigate( ["/entry/entrylist", fixture.id] );
    }
-}
 
+;
+}

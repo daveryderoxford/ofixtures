@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, output } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonToggleChange, MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -32,7 +32,7 @@ export class FixturesOptionsComponent implements OnInit {
       this.outputFilter = Object.assign( f );
    }
 
-   @Output() filterChanged = new EventEmitter<FixtureFilter>();
+   filterChanged = output<FixtureFilter>();
 
    gradesEnabledControl: UntypedFormControl;
 
@@ -81,4 +81,6 @@ export class FixturesOptionsComponent implements OnInit {
          }
       } );
    }
+
+;
 }

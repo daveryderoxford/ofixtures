@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, output } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { UntilDestroy } from '@ngneat/until-destroy';
@@ -32,7 +32,7 @@ export class LeagueFormComponent implements OnChanges {
   end: string;
 
   @Input() league
-  @Output() submitted = new EventEmitter<Partial<League>>();
+  submitted = output<Partial<League>>();
 
   leagueTypes = leagueTypes;
   leagueLevels = leagueLevels;
@@ -99,4 +99,5 @@ export class LeagueFormComponent implements OnChanges {
     return !this.form.dirty;
   }
 
+;
 }

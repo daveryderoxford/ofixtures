@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Optional, Inject, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, HostListener, Optional, Inject, Input, OnChanges, SimpleChanges, output } from '@angular/core';
 import { ImageViewerConfig } from './models/image-viewer-config.model';
 import { CustomImageEvent } from './models/custom-image-event-model';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -82,14 +82,11 @@ export class AngularImageViewerComponent implements OnInit, OnChanges {
   @Input()
   config: ImageViewerConfig;
 
-  @Output()
-  indexChange: EventEmitter<number> = new EventEmitter();
+  indexChange = output<number>();
 
-  @Output()
-  configChange: EventEmitter<ImageViewerConfig> = new EventEmitter();
+  configChange = output<ImageViewerConfig>();
 
-  @Output()
-  customImageEvent: EventEmitter<CustomImageEvent> = new EventEmitter();
+  customImageEvent = output<CustomImageEvent>();
 
   styleHeight = '100%';
 
@@ -211,7 +208,7 @@ export class AngularImageViewerComponent implements OnInit, OnChanges {
   }
 
   triggerConfigBinding() {
-    this.configChange.next(this.config);
+    this.configChange.emit(this.config);
   }
 
   fireCustomEvent(name, imageIndex) {
@@ -261,4 +258,7 @@ export class AngularImageViewerComponent implements OnInit, OnChanges {
     return result;
   }
 
+;
+;
+;
 }

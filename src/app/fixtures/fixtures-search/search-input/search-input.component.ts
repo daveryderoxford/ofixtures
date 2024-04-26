@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, ElementRef, EventEmitter, forwardRef, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, forwardRef, Input, OnInit, ViewChild, output } from '@angular/core';
 import { FormControl, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { AbstractControlValueAccessor } from './abstract-value-accessor';
 import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
@@ -34,11 +34,11 @@ export class SearchInputComponent extends AbstractControlValueAccessor<string> i
 
   @Input() placeholder = '';
   @Input() alwaysOpen: boolean = false;
-  @Output() onBlur = new EventEmitter<string>();
-  @Output() onClose = new EventEmitter<void>();
-  @Output() onStringChange = new EventEmitter<string>();
-  @Output() onFocus = new EventEmitter<string>();
-  @Output() onOpen = new EventEmitter<void>();
+  onBlur = output<string>();
+  onClose = output<void>();
+  onStringChange = output<string>();
+  onFocus = output<string>();
+  onOpen = output<void>();
 
   searchVisible = false;
   value = '';
@@ -80,4 +80,10 @@ export class SearchInputComponent extends AbstractControlValueAccessor<string> i
   onFocussing(searchValue: string) {
     this.onFocus.emit(searchValue);
   }
+
+;
+;
+;
+;
+;
 }

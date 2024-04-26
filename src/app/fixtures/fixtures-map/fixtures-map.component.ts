@@ -1,7 +1,6 @@
 import {
-   AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter,
-   Input, NgZone, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewEncapsulation
-} from '@angular/core';
+   AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component,
+   Input, NgZone, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewEncapsulation, output } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { Fixture, LatLong } from 'app/model/fixture';
 import { Canvas, Circle, CircleMarker, CircleMarkerOptions, FeatureGroup, Map, TileLayer, Util, circle, control, tileLayer } from "leaflet";
@@ -50,7 +49,7 @@ export class FixturesMapComponent implements OnInit, OnChanges, AfterViewInit, O
       this.setHomeLocation( home );
    }
 
-   @Output() fixtureSelected = new EventEmitter<Fixture>();
+   fixtureSelected = output<Fixture>();
 
    map: Map = null;
 
@@ -281,6 +280,8 @@ export class FixturesMapComponent implements OnInit, OnChanges, AfterViewInit, O
          this.map.panTo( found.fixture.latLong );
       }
    }
+
+;
 }
 
 // Augment Canvas with LabeledFixture renderer

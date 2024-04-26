@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, output } from '@angular/core';
 import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatLegacyButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyInputModule } from '@angular/material/legacy-input';
@@ -17,7 +17,7 @@ export class PostcodeComponent implements OnInit {
   constructor() { }
 
   @Input() postcode: string;
-  @Output() postcodeChanged = new EventEmitter<string>();
+  postcodeChanged = output<string>();
 
   postcodeFormControl: FormControl;
 
@@ -45,4 +45,5 @@ export class PostcodeComponent implements OnInit {
     return regex.test( text ) ? null : { postcodeInvalid: true };
   }
 
+;
 }

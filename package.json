@@ -39,6 +39,7 @@
     "firebase": "^10.7.1",
     "immutable": "^4.0.0-rc.12",
     "leaflet": "^1.4.0",
+    "ngxtension": "^3.0.1",
     "rxjs": "^6.5.5",
     "tslib": "^2.2.0",
     "zone.js": "^0.14.4"

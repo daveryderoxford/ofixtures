@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, output } from '@angular/core';
 import { FixtureTimeFilter } from 'app/model/fixture-filter';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
@@ -42,7 +42,7 @@ export class FixtureWeekFilterComponent implements OnInit {
 
    @Input() timeFilter: FixtureTimeFilter;
 
-   @Output() filterChanged = new EventEmitter<FixtureTimeFilter>();
+   filterChanged = output<FixtureTimeFilter>();
 
    constructor () { }
 
@@ -54,4 +54,5 @@ export class FixtureWeekFilterComponent implements OnInit {
       this.filterChanged.emit( this.timeFilter);
    }
 
+;
 }

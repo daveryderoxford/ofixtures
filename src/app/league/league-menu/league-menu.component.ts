@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { League } from 'app/model/league';
 import { map } from 'rxjs/operators';
 import { LeagueService } from '../league-service';
@@ -16,7 +16,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 })
 export class LeagueMenuComponent {
 
-  @Output() selected = new EventEmitter<League>();
+  selected = output<League>();
 
   multiday$ = this.ls.leagues$.pipe(
     map( leagues => leagues.filter( l => l.type === 'Multiday' ) )
@@ -41,4 +41,5 @@ export class LeagueMenuComponent {
     this.ls.setSelected( league );
   }
 
+;
 }
