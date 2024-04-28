@@ -28,7 +28,6 @@ type PropertyName = keyof ComponentProperties;
 })
 export class PinchZoomComponent implements OnDestroy {
     pinchZoom: any;
-    _properties!: ComponentProperties;
     defaultComponentProperties!: ComponentProperties;
     zoomControlPositionClass: string | undefined;
     _transitionDuration!: number;
@@ -37,15 +36,7 @@ export class PinchZoomComponent implements OnDestroy {
     _autoZoomOut!: boolean;
     _limitZoom!: number | 'original image size';
 
-    @Input('properties') set properties(value: ComponentProperties) {
-        if (value) {
-            this._properties = value;
-        }
-    }
-
-    get properties() {
-        return this._properties;
-    }
+    properties = input<ComponentProperties>();
 
     // transitionDuration
     @Input('transition-duration') set transitionDurationBackwardCompatibility(value: number) {
@@ -307,19 +298,4 @@ export class PinchZoomComponent implements OnDestroy {
     getDefaultComponentProperties() {
         return { ...defaultProperties, ..._defaultComponentProperties };
     }
-
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
 }
