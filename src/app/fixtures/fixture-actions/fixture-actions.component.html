@@ -21,7 +21,8 @@
         </a>
       }
       <mat-divider></mat-divider>
-      <app-map-menu-items [fixture]="fixture()" [homeLocation]="homeLocation()" [handset]="handset()"></app-map-menu-items>
+      <app-map-menu-items [fixture]="fixture()" [homeLocation]="homeLocation()"
+        [handset]="handset()"></app-map-menu-items>
       <mat-divider></mat-divider>
     }
 
@@ -42,9 +43,7 @@
       <button (click)="toggleReminder()" mat-menu-item>
         Like
       </button>
-    }
-
-    @if (liked()) {
+    } @else {
       <button (click)="toggleReminder()" mat-menu-item>
         UnLike
       </button>
@@ -53,31 +52,30 @@
     <mat-divider></mat-divider>
 
     <app-add-to-calendar [date]="fixtureDate()" [title]=fixture().name [location]="calanderlocation()"
-    [details]="calanderDetails()"></app-add-to-calendar>
+      [details]="calanderDetails()"></app-add-to-calendar>
 
     @if (fixture().otoolsId) {
-<a mat-menu-item [href]="'https://www.otools.uk/seeding?eventId=' + fixture().otoolsId"
-      target="_blank">
-      Entries (OTools)
-      <app-external-link-icon></app-external-link-icon>
-    </a>
-}
+      <a mat-menu-item [href]="'https://www.otools.uk/seeding?eventId=' + fixture().otoolsId" target="_blank">
+        Entries (OTools)
+        <app-external-link-icon></app-external-link-icon>
+      </a>
+    }
 
     @if (hasMapReservation()) {
-<div>
+      <div>
 
-      <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
 
-      <button (click)="reserveMap()" mat-menu-item>
-        Reserve Map
-      </button>
+        <button (click)="reserveMap()" mat-menu-item>
+          Reserve Map
+        </button>
 
-      <button (click)="viewEntries()" mat-menu-item>
-        Entry List
-      </button>
+        <button (click)="viewEntries()" mat-menu-item>
+          Entry List
+        </button>
 
-    </div>
-}
+      </div>
+    }
 
   </ng-template>
 

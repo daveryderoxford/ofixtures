@@ -1,11 +1,15 @@
 import {
    AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component,
-   Input, NgZone, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewEncapsulation, output } from '@angular/core';
+   NgZone,
+   OnDestroy, OnInit,
+   ViewEncapsulation, effect,
+   input,
+   output
+} from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { Fixture, LatLong } from 'app/model/fixture';
 import { Canvas, Circle, CircleMarker, CircleMarkerOptions, FeatureGroup, Map, TileLayer, Util, circle, control, tileLayer } from "leaflet";
 import { FixtureKeyComponent } from './fixture-key.component';
-import { input } from "@angular/core";
 
 @UntilDestroy( { checkProperties: true } )
 @Component({
@@ -18,37 +22,39 @@ import { input } from "@angular/core";
     imports: [FixtureKeyComponent]
 })
 /** Map of fixtures */
-export class FixturesMapComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
 
-   private _fixtures: Fixture[] = [];
    private _selectedFixtureMarker: FixtureMarker = null;
-   private _zoomBounds: boolean = false;
    private _homeLocation: LatLong = { "lat": 51.43116, "lng": -0.508227, };
 
    private _fixtureMarkers = new FeatureGroup<FixtureMarker>();
    private _homeMarkers = new FeatureGroup<Circle>();
 
-   @Input() set fixtures( fixtures: Fixture[] ) {
-      this.setFixtures( fixtures );
-      if (this._zoomBounds ) {
+    fixtures = input.required<Fixture[]>();
+
+    fixturesEffect = effect(() => {
+       this.setFixtures(this.fixtures());
+       if (this.zoomBounds()) {
+          this._fitToBounds();
+       }    
+   });
+
+   zoomBounds = input<boolean>(false);
+   zommEffect = effect(() => {
+      if (this.zoomBounds()) {
          this._fitToBounds();
-      }
-   }
+      }   
+   });
 
-   @Input() set zoomBounds( zoom: boolean ) {
-      this._zoomBounds = zoom;
-      if ( this._zoomBounds ) {
-         this._fitToBounds();
-      }
-   }
+   selectedFixture = input<Fixture>(null);
+   selectedFixtureEffect = effect(() => {
+      this.selectFixture(this.selectedFixture());
+   });
 
-   @Input() set selectedFixture( selected: Fixture ) {
-      this.selectFixture( selected );
-   }
-
-   @Input() set homeLocation( home: LatLong ) {
-      this.setHomeLocation( home );
-   }
+    homeLocation = input<LatLong>(null);
+    homeLocationEffect = effect(() => {
+      this.setHomeLocation(this.homeLocation());
+   });
 
    fixtureSelected = output<Fixture>();
 
@@ -88,12 +94,8 @@ export class FixturesMapComponent implements OnInit, OnChanges, AfterViewInit, O
       this._homeMarkers.addTo( this.map );
 
       this.setHomeLocation( this._homeLocation );
-      this.setFixtures( this._fixtures );
+      this.setFixtures( this.fixtures() );
 
-   }
-
-   ngOnChanges( changes: SimpleChanges ) {
-     const i=1;
    }
 
    ngOnDestroy() {
@@ -158,8 +160,6 @@ export class FixturesMapComponent implements OnInit, OnChanges, AfterViewInit, O
    }
 
    setFixtures( fixtures: Fixture[] ) {
-
-      this._fixtures = fixtures;
 
       if ( !this.map ) {
          return;

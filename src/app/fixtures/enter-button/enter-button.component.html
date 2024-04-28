@@ -1,6 +1,9 @@
-
-@if (_status!=='NotEvent') {
+@if (status() !== 'NotEvent') {
   <a mat-button [color]=selectColor() [href]=url() target="_blank">
-    {{buttonText}}
+    @if ( status() === 'Open') {
+      Enter
+    } @else {
+      {{status()}}
+    }
   </a>
 }

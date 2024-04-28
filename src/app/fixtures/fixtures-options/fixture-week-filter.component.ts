@@ -40,22 +40,15 @@ import { input } from "@angular/core";
     standalone: true,
     imports: [MatButtonToggleModule]
 })
-export class FixtureWeekFilterComponent implements OnInit {
+export class FixtureWeekFilterComponent {
 
    timeFilter = input<FixtureTimeFilter>();
-
    filterChanged = output<FixtureTimeFilter>();
 
    constructor () { }
-
-   ngOnInit() {
-   }
 
    timeFilterClicked( key: string ) {
       this.timeFilter()[ key ] = !this.timeFilter()[ key ];
       this.filterChanged.emit( this.timeFilter());
    }
-
-;
-;
 }

@@ -1,6 +1,6 @@
 import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, ViewChild, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, ViewChild, computed, input, output } from '@angular/core';
 import { MatLineModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
@@ -27,7 +27,6 @@ import { EnterButtonComponent } from '../enter-button/enter-button.component';
 import { FixtureActionsComponent } from '../fixture-actions/fixture-actions.component';
 import { MapMenuItemsComponent } from '../fixture-actions/map-menu-items.component';
 import { FixtureDatePipe, FixtureDistanceColorPipe, FixtureDistancePipe, GradeIconNamePipe, LocationPipe } from '../fixture-pipes';
-import { input } from "@angular/core";
 
 interface StyledFixture extends Fixture {
    shaded?: boolean;
@@ -45,27 +44,28 @@ interface StyledFixture extends Fixture {
 export class FixturesGridComponent implements OnInit, OnChanges {
 
    private _selectedFixture: Fixture;
-   public _fixtures: StyledFixture[];
 
    displayData: Array<any> = [];
    itemSize: number;
 
-   @Input() set fixtures( f: Fixture[] ) {
-      this._fixtures = [...f];
+   fixtures = input.required<Fixture[]>();
+   entries = input<FixtureEntryDetails[]>();
+   userEntries = input<Entry[]>();
+
+   styledFixtures = computed(() => {
+      const styled: StyledFixture[] = [...this.fixtures()];
       // Set Shaded property for date row styling
       let shaded = false;
       let previousFix = null;
-      for ( const fix of this._fixtures ) {
-         if ( previousFix && !isSameDay(new Date(fix.date), new Date(previousFix.date)) ) {
+      for (const fix of styled) {
+         if (previousFix && !isSameDay(new Date(fix.date), new Date(previousFix.date))) {
             shaded = !shaded;
          }
          fix.shaded = shaded;
          previousFix = fix;
       }
-   }
-
-   entries = input<FixtureEntryDetails[]>();
-   userEntries = input<Entry[]>();
+      return styled;
+   });
 
    @Input() set selectedFixture( f: Fixture ) {
       if ( f !== this._selectedFixture ) {
@@ -161,7 +161,7 @@ export class FixturesGridComponent implements OnInit, OnChanges {
    }
 
    private showElement( fixture: Fixture ) {
-      const index = this._fixtures.findIndex( f => f === fixture );
+      const index = this.fixtures().findIndex( f => f === fixture );
 
       if ( index !== -1 && this.viewPort ) {
          this.viewPort.scrollToIndex( index );
@@ -225,11 +225,4 @@ export class FixturesGridComponent implements OnInit, OnChanges {
    async viewEntries( fixture: Fixture ) {
       this.router.navigate( ["/entry/entrylist", fixture.id] );
    }
-
-;
-;
-;
-;
-;
-;
 }

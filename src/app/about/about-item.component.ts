@@ -20,14 +20,10 @@ import { input } from "@angular/core";
     standalone: true,
     imports: [MatExpansionModule]
 })
-export class AboutItemComponent implements OnInit {
+export class AboutItemComponent  {
 
   title = input<string>();
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
-;
 }

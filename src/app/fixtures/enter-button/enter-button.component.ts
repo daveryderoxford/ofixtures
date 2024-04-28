@@ -16,26 +16,17 @@ import { input } from "@angular/core";
 export class EnterButtonComponent {
 
   buttonText: string;
-  _status: EntryStatus
+
 
   url = input.required<string>();
-
-  @Input({ required: true }) set status(val: EntryStatus) {
-    this._status = val;
-    if (val === 'Open') {
-      this.buttonText = 'Enter';
-    } else {
-      this.buttonText = val;
-    }
-  }
+  status = input.required<EntryStatus>();
 
   selectColor(): string {
-    if (this._status === 'Open') {
+    if (this.status() === 'Open') {
       return 'enter'
     } else {
       return 'other'
     }
-
   }
 
 }
