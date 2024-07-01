@@ -1,20 +1,19 @@
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { Router, RouterLink } from '@angular/router';
-import { AdditionalFixture } from 'app/model/fixture';
-import { DialogsService } from 'app/shared';
-import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
-import { AdditionalFixtureService } from '../additional-fixture.service';
 import { MatLineModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatLegacyListModule } from '@angular/material/legacy-list';
-import { AsyncPipe, DatePipe } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyButtonModule } from '@angular/material/legacy-button';
-import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { MatLegacyCardModule } from '@angular/material/legacy-card';
+import { MatLegacyListModule } from '@angular/material/legacy-list';
+import { Router, RouterLink } from '@angular/router';
+import { FlexModule } from '@ngbracket/ngx-layout/flex';
+import { AdditionalFixture } from 'app/model/fixture';
+import { DialogsService } from 'app/shared';
+import { AdditionalFixtureService } from '../additional-fixture.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-fixture-admin-card',
@@ -25,14 +24,12 @@ import { MatLegacyCardModule } from '@angular/material/legacy-card';
 })
 export class FixtureAdminCardComponent  {
 
-  fixtures$: Observable<AdditionalFixture[]>;
+  fixtures = toSignal(this.fs.fixtures$);
 
-  constructor ( private fs: AdditionalFixtureService,
+  constructor ( protected fs: AdditionalFixtureService,
     private auth: Auth,
     private router: Router,
-    private ds: DialogsService ) {
-        this.fixtures$ = fs.fixtures$; 
-    }
+    private ds: DialogsService ) {}
 
   async delete ( fixture: AdditionalFixture ) {
 

@@ -17,10 +17,9 @@
           Show/Edit additional fixtures
         </mat-panel-title>
       </mat-expansion-panel-header>
-      @if (fixtures$ | async; as fixtures) {
         <mat-list>
           <mat-divider></mat-divider>
-          @for (fixture of fixtures; track fixture) {
+          @for (fixture of fixtures(); track fixture) {
             <mat-list-item>
               <h3 matLine>{{fixture.name}}</h3>
               <div mat-line>
@@ -39,7 +38,7 @@
             </mat-list-item>
           }
         </mat-list>
-      }
+      
     </mat-expansion-panel>
   </mat-card-content>
 </mat-card>

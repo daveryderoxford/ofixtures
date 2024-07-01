@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, sendEmailVerification, updatePassword } from '@angular/fire/auth';
+import { Auth, updatePassword } from '@angular/fire/auth';
 import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatLegacyButtonModule } from '@angular/material/legacy-button';

@@ -9,7 +9,7 @@ import { MatLegacyButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyOptionModule } from '@angular/material/legacy-core';
 
 import { MatLegacySelectModule } from '@angular/material/legacy-select';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+
 import { MatLegacyInputModule } from '@angular/material/legacy-input';
 import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
 import { MatLegacyCardModule } from '@angular/material/legacy-card';
@@ -23,7 +23,7 @@ import { input } from "@angular/core";
     templateUrl: './fixture-form.component.html',
     styleUrls: ['./fixture-form.component.scss'],
     standalone: true,
-    imports: [ToolbarComponent, FlexModule, MatLegacyCardModule, ReactiveFormsModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatDatepickerModule, MatLegacySelectModule, MatLegacyOptionModule, MatLegacyButtonModule]
+    imports: [ToolbarComponent, FlexModule, MatLegacyCardModule, ReactiveFormsModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatLegacySelectModule, MatLegacyOptionModule, MatLegacyButtonModule],
 })
 export class FixtureFormComponent  implements OnChanges {
 
@@ -75,7 +75,4 @@ export class FixtureFormComponent  implements OnChanges {
   public canDeactivate(): boolean {
     return !this.form.dirty;
   }
-
-;
-;
 }

@@ -1,6 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { input } from "@angular/core";
 
 @Component({
     selector: 'app-about-item',

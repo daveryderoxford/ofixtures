@@ -14,22 +14,11 @@ import { NgLetDirective } from "./components/ngLetDirective";
 
 @NgModule({
     imports: [
-    CommonModule,
     AngularSplitModule.forRoot(),
-    SidenavButtonComponent,
-    ToolbarComponent,
-    ExternalLinkIconComponent,
-    EllipsisPipe,
-    NgLetDirective,
 ],
     exports: [
-    CommonModule,
-    SidenavButtonComponent,
-    ToolbarComponent,
     AngularSplitModule,
-    ExternalLinkIconComponent,
-    EllipsisPipe,
-    NgLetDirective
+
 ],
 })
 export class SharedModule { }

@@ -18,7 +18,6 @@ import { AppRoutingModule } from './app/app-routing.module';
 import { AppComponent } from './app/app.component';
 import { firebaseConfig } from './app/app.firebase-config';
 import { GlobalErrorHandler } from './app/errorHandler';
-import { FixturesModule } from './app/fixtures/fixtures.module';
 import { LeagueModule } from './app/league/league.module';
 import { SharedModule } from './app/shared/shared.module';
 import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
@@ -61,7 +60,6 @@ bootstrapApplication(AppComponent, {
       }),
       provideAnalytics(() => getAnalytics()),
       SharedModule,
-      FixturesModule,
       LeagueModule
     ),
     { provide: ErrorHandler, useClass: GlobalErrorHandler },

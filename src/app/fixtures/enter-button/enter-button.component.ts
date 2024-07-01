@@ -1,5 +1,5 @@
 
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyButtonModule } from '@angular/material/legacy-button';
 import { EntryStatus } from 'app/model/fixture';

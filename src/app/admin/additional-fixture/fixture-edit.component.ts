@@ -1,25 +1,28 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AdditionalFixture, Fixture } from 'app/model/fixture';
-import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
-import { FixtureFormComponent } from './fixture-form/fixture-form.component';
-import { AdditionalFixtureService } from './additional-fixture.service';
 import { AsyncPipe } from '@angular/common';
+import { Component, ViewChild, computed, input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Fixture } from 'app/model/fixture';
+import { AdditionalFixtureService } from './additional-fixture.service';
+import { FixtureFormComponent } from './fixture-form/fixture-form.component';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-fixture-edit',
     template: `
-    <app-fixture-form [fixture]="fixture$ | async" (submitted)="submitted($event)"></app-fixture-form>
+    <app-fixture-form [fixture]="fixture()" (submitted)="submitted($event)"></app-fixture-form>
   `,
     styles: [],
     standalone: true,
     imports: [FixtureFormComponent, AsyncPipe]
 })
-export class FixtureEditComponent implements OnInit {
+export class FixtureEditComponent {
 
-  fixture$: Observable<AdditionalFixture>;
-  id: string;
+  // Route parameter
+  id = input<string>('');
+
+  fixtures = toSignal(this.fs.fixtures$);
+
+  fixture = computed(() => this.fixtures().find(l => l.id === this.id()) );
 
   @ViewChild( FixtureFormComponent ) FixtureForm;
 
@@ -27,19 +30,8 @@ export class FixtureEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router ) { }
 
-  ngOnInit(): void {
-    this.fixture$ = this.route.paramMap.pipe(
-      switchMap( params => {
-        this.id = params.get( 'id' );
-        return this.fs.fixtures$.pipe(
-          map( fixtures => fixtures.find( l => l.id === this.id ) )
-        );
-      } )
-    );
-  }
-
   async submitted( data: Partial<Fixture> ) {
-    await this.fs.update( this.id, data );
+    await this.fs.update( this.id(), data );
     this.router.navigate( ["/admin"] );
   }
 
