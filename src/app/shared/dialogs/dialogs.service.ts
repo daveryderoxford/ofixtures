@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 
 import { ConfirmDialogComponent } from './confirm-dialog.component';
@@ -8,8 +8,7 @@ import { MessageDialogComponent } from "./message-dialog.component";
     providedIn: 'root',
   })
 export class DialogsService {
-
-    constructor(private dialog: MatDialog) { }
+      private dialog = inject(MatDialog);
 
     public async confirm(title: string, message: string): Promise<boolean> {
 

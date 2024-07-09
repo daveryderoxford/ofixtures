@@ -56,8 +56,6 @@ export class MapMenuItemsComponent implements OnInit {
   homeLocation = input<LatLong>();
   handset = input<boolean>();
 
-  constructor() { }
-
   ngOnInit(): void {
   }
 }

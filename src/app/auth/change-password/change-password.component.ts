@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Auth, updatePassword } from '@angular/fire/auth';
 import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -18,12 +18,13 @@ import { ToolbarComponent } from '../../shared/components/toolbar.component';
     imports: [ToolbarComponent, FlexModule, MatLegacyCardModule, ReactiveFormsModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatLegacyButtonModule]
 })
 export class ChangePasswordComponent {
+      private router = inject(Router);
+      private formBuilder = inject(UntypedFormBuilder);
+      private afAuth = inject(Auth);
   form: UntypedFormGroup;
   error = '';
 
-  constructor(private router: Router,
-    private formBuilder: UntypedFormBuilder,
-    private afAuth: Auth ) {
+  constructor() {
     this.form = this.formBuilder.group({
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],

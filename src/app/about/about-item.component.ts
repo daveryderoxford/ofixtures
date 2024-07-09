@@ -22,7 +22,4 @@ import { MatExpansionModule } from '@angular/material/expansion';
 export class AboutItemComponent  {
 
   title = input<string>();
-
-  constructor() { }
-
 }

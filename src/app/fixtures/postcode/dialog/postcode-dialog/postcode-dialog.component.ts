@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { PostcodeComponent } from "../../postcode.component";
 import { FixturesService } from 'app/fixtures/fixtures.service';
@@ -16,9 +16,7 @@ import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
     imports: [PostcodeComponent, MatDialogModule, MatButtonModule, MatLegacyFormFieldModule, MatLegacyInputModule, ReactiveFormsModule]
 })
 export class PostcodeDialogComponent {
-
-  constructor(private fs: FixturesService) {}
-  
+      private fs = inject(FixturesService);
   postcodeFormControl: FormControl;
   postcode: string;
 

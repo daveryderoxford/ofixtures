@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { SearchInputComponent } from './search-input/search-input.component';
 import { FormControl } from '@angular/forms';
@@ -15,8 +15,7 @@ import { debounce, debounceTime, distinctUntilChanged, map } from 'rxjs/operator
 })
 
 export class FixtureSearchComponent {
-
-  constructor(private fs: FixturesService) { }
+      private fs = inject(FixturesService);
 
   updateSearch(str: string) {
     const s = str.length < 2 ? '' : str;

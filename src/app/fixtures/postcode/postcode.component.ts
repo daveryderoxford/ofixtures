@@ -14,9 +14,6 @@ import { input } from "@angular/core";
     imports: [MatLegacyFormFieldModule, MatLegacyInputModule, ReactiveFormsModule, MatLegacyButtonModule]
 })
 export class PostcodeComponent implements OnInit {
-
-  constructor() { }
-
   postcode = input<string>();
   postcodeChanged = output<string>();
 

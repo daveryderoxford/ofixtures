@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Input, OnDestroy, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Input, OnDestroy, SimpleChanges, inject } from '@angular/core';
 
 import { Properties } from './interfaces';
 import { defaultProperties, backwardCompatibilityProperties } from './properties';
@@ -27,6 +27,7 @@ type PropertyName = keyof ComponentProperties;
     styleUrls: ['./pinch-zoom.component.sass'],
 })
 export class PinchZoomComponent implements OnDestroy {
+      private elementRef = inject(ElementRef);
     pinchZoom: any;
     defaultComponentProperties!: ComponentProperties;
     zoomControlPositionClass: string | undefined;
@@ -36,7 +37,7 @@ export class PinchZoomComponent implements OnDestroy {
     _autoZoomOut!: boolean;
     _limitZoom!: number | 'original image size';
 
-    properties = input<ComponentProperties>();
+    @Input() properties : ComponentProperties;
 
     // transitionDuration
     @Input('transition-duration') set transitionDurationBackwardCompatibility(value: number) {
@@ -196,7 +197,7 @@ export class PinchZoomComponent implements OnDestroy {
         return this.getPropertiesValue('zoomControlScale');
     }
 
-    constructor(private elementRef: ElementRef) {
+    constructor() {
         this.defaultComponentProperties = this.getDefaultComponentProperties();
         this.applyPropertiesDefault(this.defaultComponentProperties, {});
     }

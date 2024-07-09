@@ -33,9 +33,6 @@ import { MatLegacyMenuModule } from '@angular/material/legacy-menu';
     imports: [MatLegacyMenuModule]
 })
 export class FixtureKeyComponent implements OnInit {
-
-  constructor() { }
-
   ngOnInit() {
   }
 

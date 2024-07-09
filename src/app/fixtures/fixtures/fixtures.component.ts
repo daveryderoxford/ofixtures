@@ -1,6 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { AsyncPipe } from '@angular/common';
-import { Component, OnInit, computed, signal } from '@angular/core';
+import { Component, OnInit, computed, signal, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Auth, User, authState } from '@angular/fire/auth';
 import { MatDividerModule } from '@angular/material/divider';
@@ -35,7 +35,14 @@ import { PostcodeComponent } from '../postcode/postcode.component';
 })
 
 export class FixturesComponent implements OnInit {
-
+      private auth = inject(Auth);
+      public fs = inject(FixturesService);
+      public ls = inject(LeagueService);
+      private es = inject(EntryService);
+      private breakpointObserver = inject(BreakpointObserver);
+      public dialog = inject(MatDialog);
+      public snackbar = inject(MatSnackBar);
+      public route = inject(ActivatedRoute);
    homeLocation = toSignal(this.fs.homeLocation$);
    postcode = toSignal(this.fs.postcode$);
    filter = toSignal(this.fs.filter$);
@@ -67,17 +74,6 @@ export class FixturesComponent implements OnInit {
    loggedIn: boolean;
 
    currentRow: number;
-
-   constructor(
-      private auth: Auth,
-      public fs: FixturesService,
-      public ls: LeagueService,
-      private es: EntryService,
-      private breakpointObserver: BreakpointObserver,
-      public dialog: MatDialog,
-      public snackbar: MatSnackBar,
-      public route: ActivatedRoute
-   ) { }
 
    ngOnInit() {
 

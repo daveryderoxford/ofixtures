@@ -1,5 +1,5 @@
 import { MatLegacyDialogRef as MatDialogRef, MatLegacyDialogModule } from '@angular/material/legacy-dialog';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatLegacyButtonModule } from '@angular/material/legacy-button';
 import { MatDividerModule } from '@angular/material/divider';
 
@@ -23,11 +23,8 @@ import { MatDividerModule } from '@angular/material/divider';
 })
 
 export class MessageDialogComponent {
+      public dialogRef = inject<MatDialogRef<MessageDialogComponent>>(MatDialogRef<MessageDialogComponent>);
     public title: string;
     public message: string;
-
-    constructor(public dialogRef: MatDialogRef<MessageDialogComponent>) {
-
-    }
 }
 

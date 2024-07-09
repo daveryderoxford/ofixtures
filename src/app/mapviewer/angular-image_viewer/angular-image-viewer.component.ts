@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Optional, Inject, Input, OnChanges, SimpleChanges, output } from '@angular/core';
+import { Component, OnInit, HostListener, Input, OnChanges, SimpleChanges, output, inject } from '@angular/core';
 import { ImageViewerConfig } from './models/image-viewer-config.model';
 import { CustomImageEvent } from './models/custom-image-event-model';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -69,7 +69,8 @@ const DEFAULT_CONFIG: ImageViewerConfig = {
     imports: [FullScreenDirective, NgStyle]
 })
 export class AngularImageViewerComponent implements OnInit, OnChanges {
-
+      public moduleConfig = inject<ImageViewerConfig>('config' as any /* TODO(inject-migration): Please check if the type is correct */, { optional: true });
+      private sanitizer = inject(DomSanitizer);
   @Input()
   src: string[];
 
@@ -100,9 +101,6 @@ export class AngularImageViewerComponent implements OnInit, OnChanges {
   private prevX: number;
   private prevY: number;
   private hovered = false;
-
-  constructor(@Optional() @Inject('config') public moduleConfig: ImageViewerConfig,
-              private sanitizer: DomSanitizer) { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.screenHeightOccupied) {

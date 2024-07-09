@@ -10,9 +10,6 @@ import { MatIconModule } from '@angular/material/icon';
     imports: [MatIconModule]
 })
 export class ExternalLinkIconComponent implements OnInit {
-
-  constructor() { }
-
   ngOnInit(): void {
   }
 

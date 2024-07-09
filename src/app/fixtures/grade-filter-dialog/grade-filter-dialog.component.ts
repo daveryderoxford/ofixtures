@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogModule } from '@angular/material/legacy-dialog';
 import { eventGrades } from 'app/model';
@@ -19,15 +19,13 @@ import { MatLegacyCheckboxModule } from '@angular/material/legacy-checkbox';
 })
 
 export class GradeFilterComponent implements OnInit {
-
+      private formBuilder = inject(UntypedFormBuilder);
+      public dialogRef = inject<MatDialogRef<GradeFilterComponent>>(MatDialogRef<GradeFilterComponent>);
+      public data = inject<GradeFilter[]>(MAT_DIALOG_DATA);
    grades = eventGrades;
 
    form: UntypedFormGroup;
    items: UntypedFormArray;
-
-   constructor(private formBuilder: UntypedFormBuilder,
-      public dialogRef: MatDialogRef<GradeFilterComponent>,
-      @Inject(MAT_DIALOG_DATA) public data: GradeFilter[]) { }
 
    ngOnInit() {
       this.form = this.formBuilder.group({

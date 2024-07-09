@@ -13,7 +13,4 @@ import { ToolbarComponent } from '../../shared/components/toolbar.component';
     imports: [ToolbarComponent, FlexModule, FixtureAdminCardComponent, LeagueAdminCardComponent, MatLegacyCardModule]
 })
 export class AdminComponent {
-
-  constructor() {}
-
 }

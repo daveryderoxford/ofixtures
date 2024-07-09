@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DialogsService } from '../dialogs/dialogs.service';
@@ -11,8 +11,7 @@ export interface ComponentCanDeactivate {
   providedIn: 'root'
 })
 export class PendingChangesGuard  {
-
-  constructor(private ds: DialogsService) { }
+      private ds = inject(DialogsService);
 
   async canDeactivate(component: ComponentCanDeactivate): Promise<boolean> {
     if (component.canDeactivate()) {

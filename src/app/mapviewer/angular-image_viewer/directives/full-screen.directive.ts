@@ -1,4 +1,4 @@
-import { Directive, Input, ElementRef, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Directive, Input, ElementRef, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
 import { input } from "@angular/core";
 
 // import * as screenfull from 'screenfull';
@@ -8,10 +8,8 @@ import { input } from "@angular/core";
     standalone: true
 })
 export class FullScreenDirective implements OnChanges, OnInit {
-
+      private el = inject(ElementRef);
   fullscreenState = input<boolean>(undefined, { alias: 'appScreenfull' });
-
-  constructor(private el: ElementRef) { }
 
   ngOnChanges(changes: SimpleChanges) {
     // console.log('fullscreenState isFirstChange:', changes["fullscreenState"].isFirstChange());

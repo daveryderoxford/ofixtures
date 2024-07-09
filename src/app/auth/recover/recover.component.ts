@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Auth, sendPasswordResetEmail } from '@angular/fire/auth';
 import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
@@ -18,14 +18,12 @@ import { ToolbarComponent } from '../../shared/components/toolbar.component';
     imports: [ToolbarComponent, FlexModule, MatLegacyCardModule, ReactiveFormsModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatLegacyButtonModule, RouterLink]
 })
 export class RecoverComponent implements OnInit {
+      private router = inject(Router);
+      private formBuilder = inject(UntypedFormBuilder);
+      private afAuth = inject(Auth);
+      private snackBar = inject(MatSnackBar);
   recoverForm: UntypedFormGroup;
   error: string;
-
-  constructor(private router: Router,
-    private formBuilder: UntypedFormBuilder,
-    private afAuth: Auth, 
-    private snackBar: MatSnackBar
-  ) { }
 
   ngOnInit() {
     this.recoverForm = this.formBuilder.group({

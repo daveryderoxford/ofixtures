@@ -1,6 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { Auth, User, authState } from '@angular/fire/auth';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
@@ -29,7 +29,15 @@ import { SidenavService } from './shared/services/sidenav.service';
 
 })
 export class AppComponent implements OnInit {
-
+      private router = inject(Router);
+      private afAuth = inject(Auth);
+      private fixtureService = inject(FixturesService);
+      private sidebarService = inject(SidenavService);
+      private snackBar = inject(MatSnackBar);
+      private loginSnackBar = inject(LoginSnackbarService);
+      private breakpointObserver = inject(BreakpointObserver);
+      private ls = inject(LeagueService);
+      private dialog = inject(MatDialog);
    @ViewChild(MatSidenav, { static: true }) sidenav: MatSidenav;
 
    loading = false;
@@ -38,16 +46,7 @@ export class AppComponent implements OnInit {
    handset = false;
    firstWarning = true;
 
-   constructor(private router: Router,
-      private afAuth: Auth,
-      private fixtureService: FixturesService,
-      private sidebarService: SidenavService,
-      private snackBar: MatSnackBar,
-      private loginSnackBar: LoginSnackbarService,
-      private breakpointObserver: BreakpointObserver,
-      private ls: LeagueService,
-      private dialog: MatDialog,
-   ) {
+   constructor() {
 
       // Send google analytics message when navigating to any route succeeds.
       this.router.events.subscribe(event => {

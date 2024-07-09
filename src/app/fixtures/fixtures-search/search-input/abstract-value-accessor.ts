@@ -1,15 +1,16 @@
-import { ChangeDetectorRef, Component, Injector, Type } from '@angular/core';
+import { ChangeDetectorRef, Component, Injector, Type, inject } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 
 @Component({ template: '' })
 export abstract class AbstractControlValueAccessor<T>
    implements ControlValueAccessor {
+      public injector = inject(Injector);
    value: string;
 
    protected cdRef: ChangeDetectorRef;
 
-   constructor(public injector: Injector) {
-      this.cdRef = injector.get<ChangeDetectorRef>(ChangeDetectorRef as Type<ChangeDetectorRef>);
+   constructor() {
+      this.cdRef = this.injector.get<ChangeDetectorRef>(ChangeDetectorRef as Type<ChangeDetectorRef>);
    }
 
    /**

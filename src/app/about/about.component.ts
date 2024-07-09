@@ -13,9 +13,6 @@ import { ToolbarComponent } from "../shared/components/toolbar.component";
     imports: [ToolbarComponent, FlexModule, MatExpansionModule, AboutItemComponent]
 })
 export class AboutComponent implements OnInit {
-
-  constructor() { }
-
   ver = versions;
 
   ngOnInit() {

@@ -3,7 +3,7 @@
  *  Uses EntryService to create FixtureEntryDetails for the fixture of they do not already exist
 */
 import { DatePipe, NgFor, NgIf, NgStyle } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDividerModule } from '@angular/material/divider';
@@ -54,7 +54,12 @@ import { CourseDialogComponent } from '../course-dialog/course-dialog.component'
 ],
 })
 export class MapRegistrationAdminComponent implements OnInit {
-
+      private route = inject(ActivatedRoute);
+      private router = inject(Router);
+      private formBuilder = inject(UntypedFormBuilder);
+      private dialog = inject(MatDialog);
+      private snackbar = inject(MatSnackBar);
+      private es = inject(EntryService);
    form: UntypedFormGroup;
    error = '';
    coursesChanged = false;
@@ -66,13 +71,6 @@ export class MapRegistrationAdminComponent implements OnInit {
    new = false;
    fixture: Fixture = null;
    busy = false;
-
-   constructor(private route: ActivatedRoute,
-      private router: Router,
-      private formBuilder: UntypedFormBuilder,
-      private dialog: MatDialog,
-      private snackbar: MatSnackBar,
-      private es: EntryService) { }
 
    ngOnInit() {
 

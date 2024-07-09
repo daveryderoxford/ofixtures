@@ -20,8 +20,6 @@ export class SpinnerComponent implements OnInit {
 
   loading = input(false);
 
-  constructor() { }
-
   ngOnInit() {
   }
 
