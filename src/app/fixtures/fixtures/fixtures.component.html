@@ -21,7 +21,7 @@
           (fixtureSelected)="onFixtureSelected($event)">
         </app-fixtures-map>
         } @placeholder {
-          <div>Hi daveryderoxford</div>
+          <div>Map Loading</div>
         }
       </as-split-area>
       <!-- Large table -->
@@ -53,16 +53,16 @@
       </button>
       <button mat-button (click)="toggleMobileFilter()">
         FILTER
-        @if (hideMobleFilter) {
+        @if (hideMobleFilter()) {
         <mat-icon>arrow_drop_down</mat-icon>
         }
-        @if (!hideMobleFilter) {
+        @if (!hideMobleFilter()) {
         <mat-icon>arrow_drop_up</mat-icon>
         }
       </button>
     </app-toolbar>
     <!-- Mobile filter -->
-    @if (!hideMobleFilter) {
+    @if (!hideMobleFilter()) {
     <div fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="7px" class="mat-elevation-z2">
       <app-postcode [postcode]="postcode()" (postcodeChanged)="postcodeChanged($event)"></app-postcode>
       @if (!league) {

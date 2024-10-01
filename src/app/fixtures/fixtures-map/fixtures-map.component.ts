@@ -1,4 +1,5 @@
-import {
+ // @ts-nocheck
+ import {
    AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component,
    NgZone,
    OnDestroy, OnInit,
@@ -8,7 +9,7 @@ import {
 } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { Fixture, LatLong } from 'app/model/fixture';
-import { Canvas, Circle, CircleMarker, CircleMarkerOptions, FeatureGroup, Map, TileLayer, Util, circle, control, tileLayer } from "leaflet";
+import { Canvas, Circle, CircleMarker, FeatureGroup, Map, TileLayer, Util, circle, control, tileLayer } from "leaflet/dist/leaflet-src.esm";
 import { FixtureKeyComponent } from './fixture-key.component';
 
 @UntilDestroy( { checkProperties: true } )
@@ -344,15 +345,19 @@ class LabeledCircleMarker extends CircleMarker {
    }
 
    setText( text: string ) {
-      ( <LabeledCircleMarkerOptions> this.options ).text = text;
-      return this.redraw();
+      ( <LabeledCircleMarkerOptions> super.options ).text = text;
+      return super.redraw();
    }
 
    getText(): string {
-      return ( <LabeledCircleMarkerOptions> this.options ).text;
+      return ( <LabeledCircleMarkerOptions> super.options ).text;
    }
 }
 
 class FixtureMarker extends LabeledCircleMarker {
    fixture: Fixture;
+
+   constructor(latlng: LatLong, opt: LabeledCircleMarkerOptions) {
+      super(latlng, opt);
+   }
 }
