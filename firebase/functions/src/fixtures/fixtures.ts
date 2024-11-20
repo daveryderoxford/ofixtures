@@ -1,5 +1,5 @@
 import * as admin from "firebase-admin";
-import * as request from "request-promise";
+import request from "request-promise";
 import { Fixture, LocationSource, } from "../model/fixture";
 import { LatLong } from "../model/latlng";
 import { EventGrade } from "../model/oevent";

@@ -1,4 +1,4 @@
-import * as request from "request-promise";
+import request from "request-promise";
 // require( 'request-debug' )( request );
 
 export interface LatLong {

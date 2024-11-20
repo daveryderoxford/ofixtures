@@ -70,8 +70,8 @@ describe( 'Routegaedget', () => {
       const ret = gr.getRoutegadgetData( 'Merrist', 'SN' );
 
       expect( ret.baseURL ).to.equal( sn.baseURL );
-      expect( ret.maps.length ).to.equal( 4 );
-      expect( ret.maps[0] ).to.deep.equal( { id: 109, name: "Merrist Wood Saturday Series", mapfile: "106.gif"} );
+      expect( ret.maps.length ).to.equal( 5 );
+      expect( ret.maps[1] ).to.deep.equal( { id: 109, name: "Merrist Wood Saturday Series", mapfile: "106.gif"} );
 
    } );
 
@@ -83,8 +83,8 @@ describe( 'Routegaedget', () => {
 
       const ret = rg.getRoutegadgetData( 'mErrist', 'SN' );
 
-      expect( ret.maps.length ).to.equal( 4 );
-      expect( ret.maps[0] ).to.deep.equal( { id: 109, name: "Merrist Wood Saturday Series", mapfile: "106.gif" } );
+      expect( ret.maps.length ).to.equal( 5 );
+      expect( ret.maps[0] ).to.deep.equal( { id: 173, name: "Merrist Woods Saturday Series", mapfile: "171.gif" } );
 
    } );
 
@@ -102,8 +102,8 @@ describe( 'Routegaedget', () => {
 
       // Southwood is found and country, part are ignored
       ret = rg.getRoutegadgetData( 'Southwood Country Park', 'SN' )
-      expect( ret.maps.length ).to.equal( 2 );
-      expect( ret.maps[1] ).to.deep.equal( { id: 140, name: 'Southwood Country Park', mapfile: "138.gif" } );
+      expect( ret.maps.length ).to.equal( 3 );
+      expect( ret.maps[2] ).to.deep.equal( { id: 140, name: 'Southwood Country Park', mapfile: "138.gif" } );
 
       // Two letter word is ignored.  
       expect( rg.getRoutegadgetData( 'Common st', 'SN' ).maps.length ).to.equal( 0 );
@@ -117,8 +117,8 @@ describe( 'Routegaedget', () => {
 
       const ret = rg.getRoutegadgetData( "Holyrood and Craigmillar", 'INT' );
 
-      //  5 events expected for interlopers containg Craigmillar
-      expect( ret.maps.length ).to.equal( 5 );
+      //  6 events expected for interlopers containg Craigmillar
+      expect( ret.maps.length ).to.equal( 6 );
 
    } );
 
@@ -130,8 +130,8 @@ describe( 'Routegaedget', () => {
 
       const ret = rg.getRoutegadgetData( 'Merrist Wisley', 'SN' );
 
-      //  11 events for both wisley and merrist
-      expect( ret.maps.length ).to.equal( 11 );
+      //  12 events for both wisley and merrist
+      expect( ret.maps.length ).to.equal( 12 );
 
    } );
 

@@ -1,5 +1,5 @@
 import * as cheerio from "cheerio";
-import * as request from "request-promise";
+import request from "request-promise";
 import { EntryData } from "./entry";
 import { } from "perf_hooks";
 import { EntryStatus } from "model/fixture";

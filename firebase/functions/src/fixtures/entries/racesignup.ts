@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
 import { raceSignupClubs } from "./racesignup_clubs";
-import * as request from "request-promise";
+import request from "request-promise";
 import { EntryData } from "./entry";
 import { EntryStatus } from "model/fixture";
 

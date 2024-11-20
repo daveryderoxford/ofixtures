@@ -1,11 +1,6 @@
 import * as admin from "firebase-admin";
-import * as functions from "firebase-functions";
+import * as functions from "firebase-functions/v1";
 import { Entry, FixtureEntryDetails } from "../model/entry";
-import * as builder from 'xmlbuilder';
-
-interface ExtendedElement extends builder.XMLElement {
-   controlCardElement?: any;
-}
 
 function userFacingMessage(err: Error): string {
    return "An error occurred saving this entry";

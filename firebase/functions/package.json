@@ -11,7 +11,7 @@
     "@types/cheerio": "^0.22.35",
     "@types/node": "^20.10.5",
     "@types/request": "^2.48.12",
-    "@types/request-promise": "^4.1.51",
+     "@types/request-promise": "^4.1.51",
     "@types/stripe": "^7.13.25",
     "cheerio": "1.0.0-rc.2",
     "date-fns": "^3.1.0",

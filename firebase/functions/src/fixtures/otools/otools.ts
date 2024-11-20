@@ -1,5 +1,5 @@
 import { Fixture } from 'model/fixture';
-import * as request from "request-promise";
+import request from "request-promise";
 
 interface OToolsEvent {
    id: string;
@@ -9,7 +9,7 @@ interface OToolsEvent {
    };
 }
 
-const OTOOLS_EVENTS_URL = 'https://www.otools.uk/api/events';
+const OTOOLS_EVENTS_URL = 'https://www.otools.uk/api/v2/events';
 
 export class OTools {
 

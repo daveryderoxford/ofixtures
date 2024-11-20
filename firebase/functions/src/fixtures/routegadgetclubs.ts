@@ -220,9 +220,9 @@ export const RGSITES: RGSite[] = [
       "name": "Forth Valley Orienteers",
       "shortName": "fvo",
       "rgUKPrifix": "",
-      "isNonStandard": true,
-      "baseURL": "https://routegadget.fvo.org.uk/",
-      "notes": "Namers and routegadget the other way round and no wwww (https://routegadget.fvo.org.uk/rg2/)"
+      "isNonStandard": null,
+      "baseURL": "https://www.fvo.routegadget.co.uk/",
+      "notes": ""
    },
    {
       "name": "Grampian Orienteers",

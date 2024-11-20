@@ -1,6 +1,6 @@
 import { LatLng } from "@googlemaps/google-maps-services-js";
 import { RGData } from "model/fixture";
-import * as request from "request-promise";
+import request from "request-promise";
 import { RGSITES, RGSite } from "./routegadgetclubs";
 
 type RGFormat = 'a' | 'b';
@@ -149,7 +149,7 @@ export class Routegadget {
 
          rawEvents = json?.data?.events;
 
-         //  console.log( "Routgadget: Club: " + site.shortName + " Number of events:" + rawEvents.length );
+          console.log( "Routgadget: Club: " + site.shortName + " Number of events:" + rawEvents.length );
       } catch ( e ) {
          console.error( "Routgadget: Error encountered reading routegadget events for " + site.shortName + "   (" + url + ")\n" );
          console.error( e.toString().slice( 0, 200 ) );
