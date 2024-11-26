@@ -11,7 +11,7 @@ import { GT_OSGB } from "./geo_conversion";
 import { googleLocationSearch } from "./google_search";
 import { LatLong as LatLongPIO, PostCodeLookup } from "./postcode";
 import { Routegadget } from "./routegadget";
-import { OTools } from './otools/otools';
+import { OTools } from './otools';
 
 export class Fixtures {
    readonly BOFPDAURL =
@@ -239,7 +239,7 @@ export class Fixtures {
 
    async addRoutegadgetMaps(fixtures: Fixture[]) {
       const rg = new Routegadget();
-      await rg.initialise();
+      await rg.initialiseFromCache();
 
       for (const fixture of fixtures) {
          fixture.rg = rg.getRoutegadgetData(fixture.area, fixture.club);

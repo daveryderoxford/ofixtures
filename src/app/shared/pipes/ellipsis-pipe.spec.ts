@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { EllipsisPipe } from './ellipsis-pipe';
 
 
-describe.only( 'LoggingService', () => {
+describe( 'LoggingService', () => {
    beforeEach( () => TestBed.configureTestingModule( {} ) );
 
    it( 'should return string if max lenght is not eceeded', () => {

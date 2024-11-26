@@ -35,7 +35,6 @@ export async function loadClubLocations(): Promise<ClubLocation[]> {
    return Promise.resolve(clubLOcationsDefault);
 }
 
-
 // ========================== Club Location calculation =========================
 
 /** Determine the location for a club based on the mean location for all current fixtures for the club

@@ -55,7 +55,7 @@
       [details]="calanderDetails()"></app-add-to-calendar>
 
     @if (fixture().otoolsId) {
-      <a mat-menu-item [href]="'https://www.otools.uk/seeding?eventId=' + fixture().otoolsId" target="_blank">
+      <a mat-menu-item [href]="'https://www.otools.uk/seeding/' + fixture().otoolsId" target="_blank">
         Entries (OTools)
         <app-external-link-icon></app-external-link-icon>
       </a>

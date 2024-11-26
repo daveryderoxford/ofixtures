@@ -4,7 +4,7 @@ import 'mocha';
 import { BOFPDParseData, BOFPDParser } from '../fixtures/bof_pda_parse';
 import { googleLocationBOFFixtures, testBOFPDAFile } from './BOFPDATestData.spec';
 
-describe.only( 'BOF PDA Fixtures fiile parser ', () => {
+describe( 'BOF PDA Fixtures fiile parser ', () => {
 
    it( 'Should parse all fields incluing a grid reference column', () => {
 
@@ -31,7 +31,7 @@ describe.only( 'BOF PDA Fixtures fiile parser ', () => {
       expect( bofFixtures[ 0 ].gridRefStr ).to.equal( 'SD393805' );
    } );
 
-   it.only('Should parse records in new format with Google location links rather than streetmap ', () => {
+   it('Should parse records in new format with Google location links rather than streetmap ', () => {
 
       const parser = new BOFPDParser();
       const bofFixtures: BOFPDParseData[] = parser.parseBOFPDAFile(googleLocationBOFFixtures);

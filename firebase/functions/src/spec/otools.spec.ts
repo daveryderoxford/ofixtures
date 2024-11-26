@@ -1,11 +1,11 @@
 import { expect, spy } from 'chai';
 import 'mocha';
-import {OTools} from '../fixtures/otools/otools';
+import {OTools} from '../fixtures/otools';
 import { fixtures } from './otools_fixtures';
 import { on } from 'chai-spies';
-import { otools_data } from './otools_data';
+import { otools_data_v2 } from './otools_data_v2';
 
-describe.only('OTools', () => {
+describe('OTools', () => {
 
    it('should read OTools events from actual site', async () => {
 
@@ -14,14 +14,15 @@ describe.only('OTools', () => {
       const events = await otools.readOToolsEvents();
 
       expect(events.length).greaterThan(100);
+      console.log('   OTools - Number of events: ' + events.length)
 
-   }).timeout(20000);
+   }).timeout(50000);
 
-   it.only('should read data correctly', async () => {
+   it('should read data correctly', async () => {
 
       const otools = new OTools();
 
-      spy.on(otools, 'readOToolsEvents', () => Promise.resolve(otools_data));
+      spy.on(otools, 'readOToolsEvents', () => Promise.resolve(otools_data_v2));
 
       const updated = await otools.addOToolsEventIds(fixtures);
 

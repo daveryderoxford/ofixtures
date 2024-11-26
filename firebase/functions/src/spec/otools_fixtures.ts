@@ -11,7 +11,7 @@ export const fixtures: Fixture[] = [
       "discipline": "Urban",
       "type": "Foot",
       "grade": "Club",
-      "name": "MLS HAWLEY",
+      "name": "No BOF data",
       "club": "BAOC",
       "webpage": "https://www.baoc.info/sites/default/files/2024/03/27/MLS/Hawley/MLS-Hawley-27-Mar-2024.pdf",
       "id": "Fo0K77qPrHFyelBnZccO",
@@ -31,7 +31,7 @@ export const fixtures: Fixture[] = [
    {
       "id": "bof-84169",
       "date": "2024-03-27T00:00:00.000Z",
-      "name": "Street-O (3/10)",
+      "name": "BOF data plus otools entry system",
       "club": "PFO",
       "clubURL": "http://www.pfo.org.uk",
       "area": "Briercliffe",

@@ -1,6 +1,4 @@
 
-
-
 export const fabianFile = `
 <!DOCTYPE html>
 <html lang="en">

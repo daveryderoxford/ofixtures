@@ -2,6 +2,8 @@ import { expect } from 'chai';
 import 'mocha';
 import { Routegadget } from '../fixtures/routegadget';
 import { RGSITES } from '../fixtures/routegadgetclubs';
+import { writeFileSync } from 'node:fs';
+import * as admin from "firebase-admin";
 
 const sn = {
    "name": "Southern Navigators",
@@ -21,130 +23,157 @@ const int = {
    "notes": ""
 };
 
-describe( 'Routegaedget', () => {
+describe.only('Routegaedget', () => {
 
-   it( 'should read routegadget events for specified clubs', async () => {
+   it('should read routegadget events for specified clubs', async () => {
 
       const gr = new Routegadget();
 
-      await gr.initialise();
+      await gr.initialise(
+
+      );
 
       /*  console.log( "=== Clubs Map details ====" );
         for ( const [key, events] of gr.clubs ) {
            console.log( key + "  Event count: " + events.length );
         } */
 
-      expect( gr.rgSitesMap.size ).to.equal( RGSITES.length );
+      expect(gr.rgSitesMap.size).to.equal(RGSITES.length);
 
-      const ret = gr.getRoutegadgetData( 'xxx', 'SN' );
-      expect( ret.baseURL ).to.equal( sn.baseURL );
+      const ret = gr.getRoutegadgetData('xxx', 'SN');
+      expect(ret.baseURL).to.equal(sn.baseURL);
 
-   } ).timeout( 20000 );
+      writeFileSync('routegadget_events.json', JSON.stringify(gr.rgSitesMap));
 
-   it( 'should return null if event does not exist in routegagdte', async () => {
-      const gr = new Routegadget();
+   }).timeout(20000);
 
-      await gr.initialise( [sn] );
-
-
-   } );
-
-   it( 'should read clubs events for routegadget', async () => {
-
-      const rg = new Routegadget();
-
-      await rg.initialise( [sn] );
-
-      const ret = rg.getRoutegadgetData( 'Merrist', 'XXX' );
-
-      expect( ret).to.equal(null);
-   } );
-
-
-   it( 'should load events for a specified area', async () => {
+   it.only('should read routegadget events from cache', async () => {
 
       const gr = new Routegadget();
 
-      await gr.initialise( [sn] );
+      const firebaseAdmin = admin.initializeApp({
+         storageBucket: 'ofixtures-2a7d5.appspot.com'
+      });
 
-      const ret = gr.getRoutegadgetData( 'Merrist', 'SN' );
+      await gr.initialiseFromCache();
 
-      expect( ret.baseURL ).to.equal( sn.baseURL );
-      expect( ret.maps.length ).to.equal( 5 );
-      expect( ret.maps[1] ).to.deep.equal( { id: 109, name: "Merrist Wood Saturday Series", mapfile: "106.gif"} );
+      /*  console.log( "=== Clubs Map details ====" );
+        for ( const [key, events] of gr.clubs ) {
+           console.log( key + "  Event count: " + events.length );
+        } */
 
-   } );
+      expect(gr.rgSitesMap.size).to.equal(RGSITES.length);
 
-   it( 'search should be case insensitive', async () => {
+      const ret = gr.getRoutegadgetData('xxx', 'SN');
+      expect(ret.baseURL).to.equal(sn.baseURL);
+
+      writeFileSync('routegadget_events.json', JSON.stringify(Array.from(gr.rgSitesMap).entries));
+
+   }).timeout(20000);
+
+   it('should return null if event does not exist in routegagdte', async () => {
+      const gr = new Routegadget();
+
+      await gr.initialise([sn]);
+
+   });
+
+   it('should read clubs events for routegadget', async () => {
 
       const rg = new Routegadget();
 
-      await rg.initialise( [sn] );
+      await rg.initialise([sn]);
 
-      const ret = rg.getRoutegadgetData( 'mErrist', 'SN' );
+      const ret = rg.getRoutegadgetData('Merrist', 'XXX');
 
-      expect( ret.maps.length ).to.equal( 5 );
-      expect( ret.maps[0] ).to.deep.equal( { id: 173, name: "Merrist Woods Saturday Series", mapfile: "171.gif" } );
+      expect(ret).to.equal(null);
+   });
 
-   } );
 
-   it( 'When finding events for area should ignore common keywords', async () => {
+   it('should load events for a specified area', async () => {
+
+      const gr = new Routegadget();
+
+      await gr.initialise([sn]);
+
+      const ret = gr.getRoutegadgetData('Merrist', 'SN');
+
+      expect(ret.baseURL).to.equal(sn.baseURL);
+      expect(ret.maps.length).to.equal(5);
+      expect(ret.maps[1]).to.deep.equal({ id: 109, name: "Merrist Wood Saturday Series", mapfile: "106.gif" });
+
+   });
+
+   it('search should be case insensitive', async () => {
+
+      const rg = new Routegadget();
+
+      await rg.initialise([sn]);
+
+      const ret = rg.getRoutegadgetData('mErrist', 'SN');
+
+      expect(ret.maps.length).to.equal(5);
+      expect(ret.maps[0]).to.deep.equal({ id: 173, name: "Merrist Woods Saturday Series", mapfile: "171.gif" });
+
+   });
+
+   it('When finding events for area should ignore common keywords', async () => {
 
       const rg = new Routegadget();
       let ret;
 
-      await rg.initialise( [sn] );
+      await rg.initialise([sn]);
 
       // Ignore common keywords
       //Note: the whole area string will still match so we specify multipe skipped words
-      expect( rg.getRoutegadgetData( 'Common Woods', 'SN' ).maps.length ).to.equal( 0 );
-      expect( rg.getRoutegadgetData( 'woods and', 'SN' ).maps.length ).to.equal( 0 );
+      expect(rg.getRoutegadgetData('Common Woods', 'SN').maps.length).to.equal(0);
+      expect(rg.getRoutegadgetData('woods and', 'SN').maps.length).to.equal(0);
 
       // Southwood is found and country, part are ignored
-      ret = rg.getRoutegadgetData( 'Southwood Country Park', 'SN' )
-      expect( ret.maps.length ).to.equal( 3 );
-      expect( ret.maps[2] ).to.deep.equal( { id: 140, name: 'Southwood Country Park', mapfile: "138.gif" } );
+      ret = rg.getRoutegadgetData('Southwood Country Park', 'SN');
+      expect(ret.maps.length).to.equal(3);
+      expect(ret.maps[2]).to.deep.equal({ id: 140, name: 'Southwood Country Park', mapfile: "138.gif" });
 
       // Two letter word is ignored.  
-      expect( rg.getRoutegadgetData( 'Common st', 'SN' ).maps.length ).to.equal( 0 );
-   } );
+      expect(rg.getRoutegadgetData('Common st', 'SN').maps.length).to.equal(0);
+   });
 
-   it( 'and should be excluded (Interlopers test)', async () => {
+   it('and should be excluded (Interlopers test)', async () => {
 
       const rg = new Routegadget();
 
-      await rg.initialise( [int] );
+      await rg.initialise([int]);
 
-      const ret = rg.getRoutegadgetData( "Holyrood and Craigmillar", 'INT' );
+      const ret = rg.getRoutegadgetData("Holyrood and Craigmillar", 'INT');
 
       //  6 events expected for interlopers containg Craigmillar
-      expect( ret.maps.length ).to.equal( 6 );
+      expect(ret.maps.length).to.equal(6);
 
-   } );
+   });
 
-   it( 'Two valid words returns events for both areas', async () => {
+   it('Two valid words returns events for both areas', async () => {
 
       const rg = new Routegadget();
 
-      await rg.initialise( [sn] );
+      await rg.initialise([sn]);
 
-      const ret = rg.getRoutegadgetData( 'Merrist Wisley', 'SN' );
+      const ret = rg.getRoutegadgetData('Merrist Wisley', 'SN');
 
       //  12 events for both wisley and merrist
-      expect( ret.maps.length ).to.equal( 12 );
+      expect(ret.maps.length).to.equal(12);
 
-   } );
+   });
 
-   it( 'Blank area should not find any maps', async () => {
+   it('Blank area should not find any maps', async () => {
 
       const rg = new Routegadget();
 
-      await rg.initialise( [sn] );
+      await rg.initialise([sn]);
 
-      const ret = rg.getRoutegadgetData( '', 'SN' );
+      const ret = rg.getRoutegadgetData('', 'SN');
 
-      expect( ret.maps.length ).to.equal( 0 );
+      expect(ret.maps.length).to.equal(0);
 
-   } );  
+   });
 
-} );
+});
