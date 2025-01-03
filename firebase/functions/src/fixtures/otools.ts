@@ -25,7 +25,7 @@ export class OTools {
             // Set otools id for fixtures where there is an entry system specified (so competitors can be found)
             if (found && found.entrySystemKey !== null) {
                fixture.otoolsId = found._id;
-               console.log(`OTools: OFixtures event Id:  ${fixture.id}   OTools Id:  ${fixture.otoolsId}`);
+           //    console.log(`OTools: OFixtures event Id:  ${fixture.id}   OTools Id:  ${fixture.otoolsId}`);
             }
          }
       }

@@ -57,7 +57,7 @@ function fixInUK( fix: Fixture ): boolean {
 /** Calculate the club's location from the average of current fixtures */
 export function clubLocationFromFixtures( fixtures: Fixture[] ): ClubLocation[] {
 
-   const fixturesWithAccurateLocation = fixtures.filter( fix => fix.club !== "" && ( fix.locSource === 'gridref' || fix.locSource === 'postcode' || fix.locSource === 'google' ) && fixInUK( fix ) );
+   const fixturesWithAccurateLocation = fixtures.filter(fix => fix.club !== "" && (fix.locSource === 'gridref' || fix.locSource === 'postcode' || fix.locSource === 'google' || fix.locSource === 'googleCache') && fixInUK( fix ) );
 
    const groupedByClub = groupBy( fixturesWithAccurateLocation, fix => fix.club );
 

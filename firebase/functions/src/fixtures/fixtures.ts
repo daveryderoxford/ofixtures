@@ -8,10 +8,10 @@ import { BOFPDParser } from "./bof_pda_parse";
 import { ClubLocation, loadClubLocations } from "./club_locations";
 import { Entries } from "./entries/entry";
 import { GT_OSGB } from "./geo_conversion";
-import { googleLocationSearch } from "./google_search";
+import { OTools } from './otools';
 import { LatLong as LatLongPIO, PostCodeLookup } from "./postcode";
 import { Routegadget } from "./routegadget";
-import { OTools } from './otools';
+import { findAddressLocation } from './address_search';
 
 export class Fixtures {
    readonly BOFPDAURL =
@@ -97,7 +97,7 @@ export class Fixtures {
       });
 
       await this.calcPostCodes(fixtures, bofFixtures);
-      await this.calcLatLongs(fixtures, bofFixtures);
+      await this.determineLatLongs(fixtures, bofFixtures);
 
       return fixtures as Fixture[];
    }
@@ -124,7 +124,7 @@ export class Fixtures {
             club: f.club
          };
       });
-      await this.calcLatLongs(fixtures, data2);
+      await this.determineLatLongs(fixtures, data2);
 
       return fixtures;
 
@@ -159,7 +159,7 @@ export class Fixtures {
    }
 
    /** Sets Fixture latlong for bof data for all values, calculating from postcode where necessary */
-   private async calcLatLongs(fixtures: Partial<Fixture>[], data: { postcode: string, gridRefStr: string, area: string, nearestTown: string, club: string; }[]) {
+   private async determineLatLongs(fixtures: Partial<Fixture>[], data: { postcode: string, gridRefStr: string, area: string, nearestTown: string, club: string; }[]) {
       console.log("     Calculating latlongs");
 
       const postcodesToCalc: string[] = [];
@@ -184,9 +184,10 @@ export class Fixtures {
             fixtuersToCalc.push(fix);
             fix.locSource = 'postcode';
          } else if (bof.area || bof.nearestTown) {
-            fix.latLong = await googleLocationSearch(bof.area, bof.nearestTown, this.latLngForClub(bof.club));
-            fix.locSource = fix.latLong ? 'google' : '';
-         }
+            const searchResult = await findAddressLocation(bof.area, bof.nearestTown, bof.club, this.latLngForClub(bof.club));
+            fix.latLong = searchResult.location;
+            fix.locSource  = searchResult.source;
+           } 
       }
 
       const locations = await this.lookup.postcodeToLocation(postcodesToCalc);
@@ -299,7 +300,8 @@ export class Fixtures {
 
       this.logLine('Position from gridref', this.locCount(fixtures, 'gridref'), 150);
       this.logLine('Position from postcode', this.locCount(fixtures, 'postcode'), 150);
-      this.logLine('Position from google', this.locCount(fixtures, 'google'), 300);
+      this.logLine('Position from google', this.locCount(fixtures, 'google'), 30);
+      this.logLine('Position from google cache', this.locCount(fixtures, 'googleCache'), 300);
       this.logLine('Position from club', this.locCount(fixtures, 'club'), 1);
       this.logLine('Position from not known', this.locCount(fixtures, ''), 0);
 

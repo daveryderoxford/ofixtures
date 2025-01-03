@@ -1,11 +1,10 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, ElementRef, forwardRef, Input, OnInit, ViewChild, output } from '@angular/core';
-import { FormControl, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
-import { AbstractControlValueAccessor } from './abstract-value-accessor';
+import { Component, ElementRef, forwardRef, input, OnInit, output, signal, ViewChild } from '@angular/core';
+import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
 import { MatLegacyInputModule } from '@angular/material/legacy-input';
-import { MatIconModule } from '@angular/material/icon';
-import { input } from "@angular/core";
+import { AbstractControlValueAccessor } from './abstract-value-accessor';
 
 @Component({
   selector: 'app-search-input',
@@ -41,19 +40,19 @@ export class SearchInputComponent extends AbstractControlValueAccessor<string> i
   onFocus = output<string>();
   onOpen = output<void>();
 
-  searchVisible = false;
+  searchVisible = signal(false);
   value = '';
 
   ngOnInit() {
 
     if (this.alwaysOpen()) {
-      this.searchVisible = true;
+      this.searchVisible.set(true);
     }
   }
 
   public close(): void {
     if (!this.alwaysOpen()!) {
-      this.searchVisible = false;
+      this.searchVisible.set(false);
     }
     this.value = '';
     this.updateChanges();
@@ -62,14 +61,14 @@ export class SearchInputComponent extends AbstractControlValueAccessor<string> i
   }
 
   public open(): void {
-    this.searchVisible = true;
+    this.searchVisible.set(true);
     this.inputElement.nativeElement.focus();
     this.onOpen.emit();
   }
 
   onBlurring(searchValue: string) {
     if (!searchValue && !this.alwaysOpen()!) {
-      this.searchVisible = false;
+      this.searchVisible.set(false);
     }
     this.onBlur.emit(searchValue);
   }
@@ -81,12 +80,4 @@ export class SearchInputComponent extends AbstractControlValueAccessor<string> i
   onFocussing(searchValue: string) {
     this.onFocus.emit(searchValue);
   }
-
-;
-;
-;
-;
-;
-;
-;
 }

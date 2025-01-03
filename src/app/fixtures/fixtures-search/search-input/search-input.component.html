@@ -1,4 +1,4 @@
-<mat-form-field class="mat-search_field" [@slideInOut]="searchVisible" appearance="outline">
+<mat-form-field class="mat-search_field" [@slideInOut]="searchVisible()" appearance="outline">
       <input 
           #input 
           matInput type="text"
@@ -12,7 +12,7 @@
          />
 </mat-form-field>
 
-<span class="mat-search_icons" [class.mat-search_icons--active]="searchVisible">
+<span class="mat-search_icons" [class.mat-search_icons--active]="searchVisible()">
    <mat-icon class="mat-search_icon-close" (click)="close()" matRipple>
       close
    </mat-icon>

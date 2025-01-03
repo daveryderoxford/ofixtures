@@ -16,7 +16,7 @@ export interface RGData {
    maps: { id: string; name: string, mapfile: string }[];
 }
 
-export type LocationSource = '' | 'gridref' | 'postcode' | 'google' | 'club';
+export type LocationSource = '' | 'gridref' | 'postcode' | 'google' | 'googleCache' | 'club';
 
 export type EntryStatus = 'Future' | 'Open' | 'Closed' | 'EOD' | 'Full' | 'NotEvent';
 

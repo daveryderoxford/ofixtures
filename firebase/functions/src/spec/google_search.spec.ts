@@ -20,14 +20,14 @@ describe( 'Convert place names to geographic coodrinated using Google Maps geoCo
          console.log( "ERROR: Set evnivroemnt variable with google maps key using 'export GOOGLE_MAPS_API_KEY=**********' before running test" );
       }
 
-      const results = await googleLocationSearch( 'Brentwood', null, brentwoodlocation );
+      const results = await googleLocationSearch( 'Brentwood',  brentwoodlocation );
       expect( results.lat ).to.be.closeTo( brentwoodlocation.lat, 0.00001 );
       expect( results.lng ).to.be.closeTo( brentwoodlocation.lng, 0.00001 );
 
    } ).timeout( 5000 );
 
    it( 'Return undefined if place is not known ', async () => {
-      const results = await googleLocationSearch( 'xxxxxx', null, null );
+      const results = await googleLocationSearch( 'xxxxxx', null );
       expect( results ).to.be.null;
    } ).timeout( 5000 );
 
@@ -56,7 +56,7 @@ describe( 'Convert place names to geographic coodrinated using Google Maps geoCo
 
       const searchSpy = spy.on( googleLocationService, 'geocode', () => Promise.resolve( multipleSearchResults ) );
 
-      const results = await googleLocationSearch( 'Brentwood', null, brentwoodlocation );
+      const results = await googleLocationSearch( 'Brentwood', brentwoodlocation );
       expect( results.lat ).to.be.closeTo( brentwoodlocation.lat, 0.00001 );
       expect( results.lng ).to.be.closeTo( brentwoodlocation.lng, 0.00001 );
 
@@ -68,7 +68,7 @@ describe( 'Convert place names to geographic coodrinated using Google Maps geoCo
 
       const searchSpy = spy.on( googleLocationService, 'geocode', () => Promise.resolve( multipleSearchResults ) );
 
-      const results = await googleLocationSearch( 'Brentwood', null, null );
+      const results = await googleLocationSearch( 'Brentwood', null );
       expect( results.lat ).to.be.closeTo( 30, 0.00001 );
       expect( results.lng ).to.be.closeTo( 10, 0.00001 );
 
