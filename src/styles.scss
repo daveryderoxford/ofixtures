@@ -11,10 +11,10 @@
 @include mat.all-component-typographies();
 @include mat.core();
 
-$my-primary: mat.define-palette(mat.$blue-palette);
-$my-accent: mat.define-palette(mat.$yellow-palette);
+$my-primary: mat.m2-define-palette(mat.$m2-blue-palette);
+$my-accent: mat.m2-define-palette(mat.$m2-yellow-palette);
 
-$my-theme: mat.define-light-theme((color: (primary: $my-primary, accent: $my-accent,)));
+$my-theme: mat.m2-define-light-theme((color: (primary: $my-primary, accent: $my-accent,)));
 
 @include mat.all-component-themes($my-theme);
 
@@ -22,7 +22,7 @@ $my-theme: mat.define-light-theme((color: (primary: $my-primary, accent: $my-acc
 @mixin mix-app-theme($my-theme) {
   /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
   .mat-button-toggle-checked {
-     background-color: mat.get-color-from-palette($my-primary, 50);
+     background-color: mat.m2-get-color-from-palette($my-primary, 50);
   }
 }
 
