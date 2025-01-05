@@ -31,37 +31,37 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(
       BrowserModule,
       ReactiveFormsModule,
-      ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+    //  ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
       AppRoutingModule,
-      provideFirebaseApp(() => initializeApp(firebaseConfig)),
-      provideAuth(() => {
-        const auth = getAuth();
-        if (environment.useEmulator) {
-          console.log('Auth emulator configured');
-          connectAuthEmulator(auth, 'http://localhost:9099');
-        }
-        return auth;
-      }),
-      provideFirestore(() => {
-        const firestore = getFirestore();
-        if (environment.useEmulator) {
-          console.log('Firestore emulator configured');
-          connectFirestoreEmulator(firestore, 'http://localhost', 8080);
-        }
-        return firestore;
-      }),
-      provideStorage(() => {
-        const storage = getStorage();
-        if (environment.useEmulator) {
-          console.log('Storage emulator configured');
-          connectStorageEmulator(storage, 'http://localhost', 9199);
-        }
-        return storage;
-      }),
-      provideAnalytics(() => getAnalytics()),
       SharedModule,
       LeagueModule
     ),
+    provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    provideAuth(() => {
+      const auth = getAuth();
+      if (environment.useEmulator) {
+        console.log('Auth emulator configured');
+        connectAuthEmulator(auth, 'http://localhost:9099');
+      }
+      return auth;
+    }),
+    provideFirestore(() => {
+      const firestore = getFirestore();
+      if (environment.useEmulator) {
+        console.log('Firestore emulator configured');
+        connectFirestoreEmulator(firestore, 'http://localhost', 8080);
+      }
+      return firestore;
+    }),
+    provideStorage(() => {
+      const storage = getStorage();
+      if (environment.useEmulator) {
+        console.log('Storage emulator configured');
+        connectStorageEmulator(storage, 'http://localhost', 9199);
+      }
+      return storage;
+    }),
+    provideAnalytics(() => getAnalytics()),
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
     ScreenTrackingService,
     UserTrackingService,

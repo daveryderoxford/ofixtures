@@ -7,9 +7,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { input } from "@angular/core";
 
 @Component({
-  selector: 'app-map-menu-items',
-
-  template: `
+    selector: 'app-map-menu-items',
+    template: `
       <!-- Exclude maps for fixtures where the location is just obtained from the club --> 
       @if (fixture().latLong && fixture().locSource !== 'club') {
 
@@ -45,10 +44,9 @@ import { input } from "@angular/core";
       </a>
       }
   `,
-  styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [MatMenuModule, ExternalLinkIconComponent, GoogleURLPipe, GoogleDirectionsURLPipe, BingURLPipe, StreetmapURLPipe]
+    styles: [],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [MatMenuModule, ExternalLinkIconComponent, GoogleURLPipe, GoogleDirectionsURLPipe, BingURLPipe, StreetmapURLPipe]
 })
 export class MapMenuItemsComponent implements OnInit {
 

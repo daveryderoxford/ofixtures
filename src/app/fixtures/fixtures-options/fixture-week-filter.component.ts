@@ -5,8 +5,7 @@ import { input } from "@angular/core";
 
 @Component({
     selector: 'app-fixture-week-filter',
-    
-        template: `
+    template: `
  <div>
     <mat-button-toggle-group multiple="true">
 
@@ -41,7 +40,6 @@ import { input } from "@angular/core";
                  padding: 0 8px !important;
               }`
     ],
-    standalone: true,
     imports: [MatButtonToggleModule]
 })
 export class FixtureWeekFilterComponent {

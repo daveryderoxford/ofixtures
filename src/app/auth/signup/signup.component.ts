@@ -14,7 +14,6 @@ import { ToolbarComponent } from '../../shared/components/toolbar.component';
     selector: 'app-signup',
     templateUrl: './signup.component.html',
     styleUrls: ['./signup.component.scss'],
-    standalone: true,
     imports: [ToolbarComponent, FlexModule, MatCardModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterLink]
 })
 export class SignupComponent {

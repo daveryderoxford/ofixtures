@@ -21,7 +21,6 @@ import { input } from "@angular/core";
     selector: 'app-fixtures-options',
     templateUrl: './fixtures-options.component.html',
     styleUrls: ['./fixtures-options.component.scss'],
-    standalone: true,
     imports: [FlexModule, MatButtonToggleModule, MatIconModule, NgClass, ExtendedModule, FixtureWeekFilterComponent, MatButtonModule, MatSlideToggleModule, ReactiveFormsModule]
 })
 export class FixturesOptionsComponent implements OnInit {

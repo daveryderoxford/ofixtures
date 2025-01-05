@@ -6,7 +6,6 @@ import { ToolbarComponent } from '../shared/components/toolbar.component';
     templateUrl: "./privacy-policy.component.html",
     styles: [],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [ToolbarComponent]
 })
 export class PrivacyPolicyComponent implements OnInit {

@@ -7,26 +7,25 @@ import { MatInputModule } from '@angular/material/input';
 import { AbstractControlValueAccessor } from './abstract-value-accessor';
 
 @Component({
-  selector: 'app-search-input',
-  templateUrl: './search-input.component.html',
-  styleUrls: ['./search-input.component.scss'],
-  standalone: true,
-  imports: [ ReactiveFormsModule, FormsModule, MatFormFieldModule, MatInputModule, MatIconModule],
-  animations: [
-    trigger('slideInOut', [
-      state('true', style({ width: '*' })),
-      state('false', style({ width: '0' })),
-      transition('true => false', animate('300ms ease-in')),
-      transition('false => true', animate('300ms ease-out'))
-    ])
-  ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => SearchInputComponent),
-      multi: true
-    }
-  ]
+    selector: 'app-search-input',
+    templateUrl: './search-input.component.html',
+    styleUrls: ['./search-input.component.scss'],
+    imports: [ReactiveFormsModule, FormsModule, MatFormFieldModule, MatInputModule, MatIconModule],
+    animations: [
+        trigger('slideInOut', [
+            state('true', style({ width: '*' })),
+            state('false', style({ width: '0' })),
+            transition('true => false', animate('300ms ease-in')),
+            transition('false => true', animate('300ms ease-out'))
+        ])
+    ],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => SearchInputComponent),
+            multi: true
+        }
+    ]
 })
 export class SearchInputComponent extends AbstractControlValueAccessor<string> implements OnInit {
 

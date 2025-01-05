@@ -25,25 +25,24 @@ import { FlexModule } from '@ngbracket/ngx-layout/flex';
     templateUrl: './fixture-select.component.html',
     styleUrls: ['./fixture-select.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-    MatDialogModule,
-    FlexModule,
-    MatSlideToggleModule,
-    ReactiveFormsModule,
-    MatDividerModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatListModule,
-    CdkVirtualScrollViewport,
-    CdkFixedSizeVirtualScroll,
-    CdkVirtualForOf,
-    MatLineModule,
-    MatButtonModule,
-    AsyncPipe,
-    DatePipe,
-    EllipsisPipe
-],
+        MatDialogModule,
+        FlexModule,
+        MatSlideToggleModule,
+        ReactiveFormsModule,
+        MatDividerModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatListModule,
+        CdkVirtualScrollViewport,
+        CdkFixedSizeVirtualScroll,
+        CdkVirtualForOf,
+        MatLineModule,
+        MatButtonModule,
+        AsyncPipe,
+        DatePipe,
+        EllipsisPipe
+    ]
 })
 export class FixtureSelectComponent implements OnInit {
 

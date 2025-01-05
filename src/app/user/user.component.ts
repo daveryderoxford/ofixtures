@@ -26,7 +26,6 @@ import { ToolbarComponent } from "../shared/components/toolbar.component";
     selector: "app-user",
     templateUrl: "./user.component.html",
     styleUrls: ["./user.component.scss"],
-    standalone: true,
     imports: [ToolbarComponent, FlexModule, MatCardModule, ReactiveFormsModule, MatProgressBarModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, NgStyle, ExtendedModule, MatSelectModule, MatOptionModule]
 })
 export class UserComponent implements OnInit {

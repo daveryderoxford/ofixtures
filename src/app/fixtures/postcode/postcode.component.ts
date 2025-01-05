@@ -10,7 +10,6 @@ import { input } from "@angular/core";
     templateUrl: './postcode.component.html',
     styleUrls: ['./postcode.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatButtonModule]
 })
 export class PostcodeComponent implements OnInit {

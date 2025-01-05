@@ -14,7 +14,6 @@ import { ToolbarComponent } from '../../shared/components/toolbar.component';
     selector: 'app-recover',
     templateUrl: './recover.component.html',
     styleUrls: ['./recover.component.scss'],
-    standalone: true,
     imports: [ToolbarComponent, FlexModule, MatCardModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterLink]
 })
 export class RecoverComponent implements OnInit {

@@ -14,7 +14,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     templateUrl: './grade-filter-dialog.component.html',
     styleUrls: ['./grade-filter-dialog.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [MatDialogModule, ReactiveFormsModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatButtonModule]
 })
 

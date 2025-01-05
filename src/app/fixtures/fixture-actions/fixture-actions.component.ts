@@ -23,16 +23,15 @@ import { input } from "@angular/core";
     selector: 'app-fixture-actions',
     templateUrl: './fixture-actions.component.html',
     styleUrls: ['./fixture-actions.component.scss'],
-    standalone: true,
     imports: [
-    MatButtonModule,
-    MatMenuModule,
-    MatIconModule,
-    ExternalLinkIconComponent,
-    MatDividerModule,
-    MapMenuItemsComponent,
-    AddToGoogleCalendarButtonComponent
-],
+        MatButtonModule,
+        MatMenuModule,
+        MatIconModule,
+        ExternalLinkIconComponent,
+        MatDividerModule,
+        MapMenuItemsComponent,
+        AddToGoogleCalendarButtonComponent
+    ]
 })
 export class FixtureActionsComponent implements AfterViewInit {
 

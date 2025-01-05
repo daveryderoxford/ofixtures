@@ -19,7 +19,6 @@ import { FixtureKeyComponent } from './fixture-key.component';
     styleUrls: ['./fixtures-map.component.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [FixtureKeyComponent]
 })
 /** Map of fixtures */

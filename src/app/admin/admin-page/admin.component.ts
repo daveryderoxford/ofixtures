@@ -9,7 +9,6 @@ import { ToolbarComponent } from '../../shared/components/toolbar.component';
     selector: 'app-admin',
     templateUrl: './admin.component.html',
     styleUrls: ['./admin.component.scss'],
-    standalone: true,
     imports: [ToolbarComponent, FlexModule, FixtureAdminCardComponent, LeagueAdminCardComponent, MatCardModule]
 })
 export class AdminComponent {

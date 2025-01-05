@@ -65,7 +65,6 @@ const DEFAULT_CONFIG: ImageViewerConfig = {
     selector: 'angular-image-viewer',
     templateUrl: './angular-image-viewer.component.html',
     styleUrls: ['./angular-image-viewer.component.scss'],
-    standalone: true,
     imports: [FullScreenDirective, NgStyle]
 })
 export class AngularImageViewerComponent implements OnInit, OnChanges {

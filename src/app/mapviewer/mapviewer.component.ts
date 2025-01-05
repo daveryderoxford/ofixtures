@@ -13,7 +13,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     selector: 'app-mapviewer',
     templateUrl: './mapviewer.component.html',
     styleUrls: ['./mapviewer.component.scss'],
-    standalone: true,
     imports: [MatToolbarModule, MatButtonModule, MatIconModule, FlexModule, AngularImageViewerComponent]
 })
 export class MapviewerComponent implements OnInit {

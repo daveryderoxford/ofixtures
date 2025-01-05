@@ -4,8 +4,7 @@ import { input } from "@angular/core";
 
 @Component({
     selector: 'app-spinner',
-    
-        template: `
+    template: `
      @if (loading()) {
        <div class="loading-spinner">
          <mat-spinner mode="indeterminate" color="accent" diameter="40" ></mat-spinner>
@@ -13,7 +12,6 @@ import { input } from "@angular/core";
      }
      `,
     styleUrls: ['./spinner.component.scss'],
-    standalone: true,
     imports: [MatProgressSpinnerModule]
 })
 export class SpinnerComponent implements OnInit {

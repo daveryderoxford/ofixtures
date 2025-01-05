@@ -10,7 +10,6 @@ import { LeagueFormComponent } from './league-form/league-form.component';
     <app-league-form (submitted)="submitted($event)"></app-league-form>
   `,
     styles: [],
-    standalone: true,
     imports: [LeagueFormComponent]
 })
 export class LeagueAddComponent {

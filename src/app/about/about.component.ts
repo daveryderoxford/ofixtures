@@ -9,7 +9,6 @@ import { ToolbarComponent } from "../shared/components/toolbar.component";
     selector: "app-about",
     templateUrl: "./about.component.html",
     styleUrls: ["./about.component.scss"],
-    standalone: true,
     imports: [ToolbarComponent, FlexModule, MatExpansionModule, AboutItemComponent]
 })
 export class AboutComponent implements OnInit {

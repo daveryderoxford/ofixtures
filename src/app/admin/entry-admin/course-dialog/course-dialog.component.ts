@@ -14,7 +14,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     templateUrl: './course-dialog.component.html',
     styleUrls: ['./course-dialog.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [MatDialogModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule]
 })
 export class CourseDialogComponent implements OnInit {

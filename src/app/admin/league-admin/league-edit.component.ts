@@ -13,7 +13,6 @@ import { AsyncPipe } from '@angular/common';
     <app-league-form [league]="league$ | async" (submitted)="submitted($event)"></app-league-form>
   `,
     styles: [],
-    standalone: true,
     imports: [LeagueFormComponent, AsyncPipe]
 })
 export class LeagueEditComponent implements OnInit {

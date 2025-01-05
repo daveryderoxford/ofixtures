@@ -12,7 +12,6 @@ import { input } from "@angular/core";
     templateUrl: './league-header.component.html',
     styleUrls: ['./league-header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [MatToolbarModule, FlexModule, MatButtonModule]
 })
 export class LeagueHeaderComponent  {

@@ -6,8 +6,7 @@ import { input } from "@angular/core";
 @Component({
     selector: 'app-add-to-calendar',
     template: '<button (click) = "addToCalendar()" mat-menu-item>Add To Google Calender</button>',
-    standalone: true,
-    imports: [MatMenuModule],
+    imports: [MatMenuModule]
 })
 export class AddToGoogleCalendarButtonComponent  {
 

@@ -19,17 +19,16 @@ import { ToolbarComponent } from '../../shared/components/toolbar.component';
     selector: 'app-entry-list',
     templateUrl: './entry-list.component.html',
     styleUrls: ['./entry-list.component.scss'],
-    standalone: true,
     imports: [
-    ToolbarComponent,
-    FlexModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatTableModule,
-    SpinnerComponent,
-    DatePipe
-],
+        ToolbarComponent,
+        FlexModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatTableModule,
+        SpinnerComponent,
+        DatePipe
+    ]
 })
 export class EntryListComponent implements OnInit {
 

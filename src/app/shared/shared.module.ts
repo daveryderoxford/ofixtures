@@ -14,7 +14,7 @@ import { NgLetDirective } from "./components/ngLetDirective";
 
 @NgModule({
     imports: [
-    AngularSplitModule.forRoot(),
+    AngularSplitModule,
 ],
     exports: [
     AngularSplitModule,

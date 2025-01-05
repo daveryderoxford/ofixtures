@@ -6,12 +6,11 @@ import { FixturesService } from 'app/fixtures/fixtures.service';
 import { debounce, debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-fixture-search',
-  standalone: true,
-  imports: [SearchInputComponent],
-  template: `<app-search-input  placeholder="Name, Club, Area, Location" (onStringChange)="updateSearch($event)">
+    selector: 'app-fixture-search',
+    imports: [SearchInputComponent],
+    template: `<app-search-input  placeholder="Name, Club, Area, Location" (onStringChange)="updateSearch($event)">
              </app-search-input>`,
-  styles: [],
+    styles: []
 })
 
 export class FixtureSearchComponent {

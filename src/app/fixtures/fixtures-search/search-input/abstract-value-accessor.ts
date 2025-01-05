@@ -1,7 +1,10 @@
 import { ChangeDetectorRef, Component, Injector, Type, inject } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 
-@Component({ template: '' })
+@Component({
+    template: '',
+    standalone: false
+})
 export abstract class AbstractControlValueAccessor<T>
    implements ControlValueAccessor {
       public injector = inject(Injector);

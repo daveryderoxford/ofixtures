@@ -7,10 +7,9 @@ import { MatInputModule } from '@angular/material/input';
 import { FixturesService } from 'app/fixtures/fixtures.service';
 
 @Component({
-  selector: 'app-postcode-dialog',
-  standalone: true,
-  templateUrl: './postcode-dialog.component.html',
-  imports: [MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule]
+    selector: 'app-postcode-dialog',
+    templateUrl: './postcode-dialog.component.html',
+    imports: [MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule]
 })
 export class PostcodeDialogComponent {
   private fs = inject(FixturesService);

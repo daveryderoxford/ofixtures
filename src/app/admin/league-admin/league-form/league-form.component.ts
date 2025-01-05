@@ -23,7 +23,6 @@ import { input } from "@angular/core";
     selector: 'app-league-form',
     templateUrl: './league-form.component.html',
     styleUrls: ['./league-form.component.scss'],
-    standalone: true,
     imports: [ToolbarComponent, FlexModule, MatCardModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatOptionModule, MatButtonModule, MatDividerModule]
 })
 export class LeagueFormComponent implements OnChanges {

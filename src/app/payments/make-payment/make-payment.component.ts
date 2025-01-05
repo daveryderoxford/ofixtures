@@ -7,9 +7,10 @@ declare var StripeCheckout;
 /** Button component that displays stripe payment dialog that captures card details and saves entry
      details on the headend that triggers charging the card */
 @Component( {
-   selector: 'make-payment',
-   templateUrl: './make-payment.component.html',
-   styleUrls: ['./make-payment.component.scss']
+    selector: 'make-payment',
+    templateUrl: './make-payment.component.html',
+    styleUrls: ['./make-payment.component.scss'],
+    standalone: false
 } )
 export class MakePaymentComponent implements OnInit {
    amount = input<number>();

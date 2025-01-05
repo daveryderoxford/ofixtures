@@ -31,27 +31,26 @@ import { CourseDialogComponent } from '../course-dialog/course-dialog.component'
 
 @UntilDestroy({ checkProperties: true })
 @Component({
-   selector: 'app-map-registration-admin',
-   templateUrl: './map-registration-admin.component.html',
-   styleUrls: ['./map-registration-admin.component.scss'],
-   standalone: true,
-   imports: [
-    ToolbarComponent,
-    FlexModule,
-    MatCardModule,
-    ReactiveFormsModule,
-    MatDividerModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatIconModule,
-    NgStyle,
-    ExtendedModule,
-    MatChipsModule,
-    DatePipe,
-    EllipsisPipe
-],
+    selector: 'app-map-registration-admin',
+    templateUrl: './map-registration-admin.component.html',
+    styleUrls: ['./map-registration-admin.component.scss'],
+    imports: [
+        ToolbarComponent,
+        FlexModule,
+        MatCardModule,
+        ReactiveFormsModule,
+        MatDividerModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatIconModule,
+        NgStyle,
+        ExtendedModule,
+        MatChipsModule,
+        DatePipe,
+        EllipsisPipe
+    ]
 })
 export class MapRegistrationAdminComponent implements OnInit {
       private route = inject(ActivatedRoute);

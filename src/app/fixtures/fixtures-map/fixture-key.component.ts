@@ -29,7 +29,6 @@ import { MatMenuModule } from '@angular/material/menu';
         ' .container { padding:8px; color: gray; }',
         ' .small { font-size: 10px; }'
     ],
-    standalone: true,
     imports: [MatMenuModule]
 })
 export class FixtureKeyComponent implements OnInit {

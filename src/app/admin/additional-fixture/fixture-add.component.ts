@@ -10,7 +10,6 @@ import { FixtureFormComponent } from './fixture-form/fixture-form.component';
     <app-fixture-form (submitted)="submitted($event)"></app-fixture-form>
   `,
     styles: [],
-    standalone: true,
     imports: [FixtureFormComponent]
 })
 export class FixtureAddComponent {

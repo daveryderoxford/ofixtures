@@ -1,4 +1,3 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, ViewChild, computed, input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Fixture } from 'app/model/fixture';
@@ -12,8 +11,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
     <app-fixture-form [fixture]="fixture()" (submitted)="submitted($event)"></app-fixture-form>
   `,
     styles: [],
-    standalone: true,
-    imports: [FixtureFormComponent, AsyncPipe]
+    imports: [FixtureFormComponent]
 })
 export class FixtureEditComponent {
 

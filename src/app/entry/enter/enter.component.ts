@@ -31,18 +31,17 @@ interface FormData {
     selector: 'app-enter',
     templateUrl: './enter.component.html',
     styleUrls: ['./enter.component.scss'],
-    standalone: true,
     imports: [
-    ToolbarComponent,
-    FlexModule,
-    MatCardModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatOptionModule,
-    MatButtonModule
-],
+        ToolbarComponent,
+        FlexModule,
+        MatCardModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatOptionModule,
+        MatButtonModule
+    ]
 })
 export class EnterComponent implements OnInit {
 

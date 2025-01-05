@@ -1,4 +1,4 @@
-import { AsyncPipe, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { MatLineModule } from '@angular/material/core';
@@ -19,8 +19,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
     selector: 'app-fixture-admin-card',
     templateUrl: './fixture-admin-card.component.html',
     styleUrls: ['./fixture-admin-card.component.scss'],
-    standalone: true,
-    imports: [MatCardModule, FlexModule, MatButtonModule, RouterLink, MatIconModule, MatExpansionModule, MatListModule, MatDividerModule, MatLineModule, AsyncPipe, DatePipe]
+    imports: [MatCardModule, FlexModule, MatButtonModule, RouterLink, MatIconModule, MatExpansionModule, MatListModule, MatDividerModule, MatLineModule, DatePipe]
 })
 export class FixtureAdminCardComponent  {
 

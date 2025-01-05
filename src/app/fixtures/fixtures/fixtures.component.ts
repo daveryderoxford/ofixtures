@@ -27,11 +27,10 @@ import { FixturesService } from '../fixtures.service';
 import { PostcodeComponent } from '../postcode/postcode.component';
 
 @Component({
-   selector: 'app-fixtures',
-   templateUrl: './fixtures.component.html',
-   styleUrls: ['./fixtures.component.scss'],
-   standalone: true,
-   imports: [NgLetDirective, FixtureSearchComponent, SidenavButtonComponent, PostcodeComponent, FixturesOptionsComponent, AngularSplitModule, FixturesMapComponent, LeagueHeaderComponent, FixturesGridComponent, FlexModule, ToolbarComponent, MatButtonModule, MatIconModule, MatDividerModule, AsyncPipe]
+    selector: 'app-fixtures',
+    templateUrl: './fixtures.component.html',
+    styleUrls: ['./fixtures.component.scss'],
+    imports: [NgLetDirective, FixtureSearchComponent, SidenavButtonComponent, PostcodeComponent, FixturesOptionsComponent, AngularSplitModule, FixturesMapComponent, LeagueHeaderComponent, FixturesGridComponent, FlexModule, ToolbarComponent, MatButtonModule, MatIconModule, MatDividerModule, AsyncPipe]
 })
 
 export class FixturesComponent implements OnInit {

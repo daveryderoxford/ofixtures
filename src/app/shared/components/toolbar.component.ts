@@ -9,7 +9,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
    <app-sidenav-button> </app-sidenav-button> <ng-content> </ng-content>
 </mat-toolbar>
     `,
-    standalone: true,
     imports: [MatToolbarModule, SidenavButtonComponent]
 })
 export class ToolbarComponent {

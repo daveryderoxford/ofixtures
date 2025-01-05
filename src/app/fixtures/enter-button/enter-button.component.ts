@@ -6,11 +6,10 @@ import { EntryStatus } from 'app/model/fixture';
 import { input } from "@angular/core";
 
 @Component({
-  selector: 'app-enter-button',
-  standalone: true,
-  imports: [MatButtonModule, MatIconModule],
-  templateUrl: './enter-button.component.html',
-  styleUrls: ['./enter-button.component.scss'],
+    selector: 'app-enter-button',
+    imports: [MatButtonModule, MatIconModule],
+    templateUrl: './enter-button.component.html',
+    styleUrls: ['./enter-button.component.scss']
 })
 
 export class EnterButtonComponent {

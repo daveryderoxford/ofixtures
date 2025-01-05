@@ -20,7 +20,6 @@ import { MatCardModule } from '@angular/material/card';
     selector: 'app-league-admin-card',
     templateUrl: './league-admin-card.component.html',
     styleUrls: ['./league-admin-card.component.scss'],
-    standalone: true,
     imports: [MatCardModule, FlexModule, MatButtonModule, RouterLink, MatIconModule, MatExpansionModule, MatListModule, MatDividerModule, MatLineModule, AsyncPipe, DatePipe]
 })
 export class LeagueAdminCardComponent {

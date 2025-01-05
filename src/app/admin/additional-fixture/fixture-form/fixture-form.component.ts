@@ -22,8 +22,7 @@ import { input } from "@angular/core";
     selector: 'app-fixture-form',
     templateUrl: './fixture-form.component.html',
     styleUrls: ['./fixture-form.component.scss'],
-    standalone: true,
-    imports: [ToolbarComponent, FlexModule, MatCardModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatOptionModule, MatButtonModule],
+    imports: [ToolbarComponent, FlexModule, MatCardModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatOptionModule, MatButtonModule]
 })
 export class FixtureFormComponent  implements OnChanges {
 

@@ -11,7 +11,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
     selector: 'app-league-menu',
     templateUrl: './league-menu.component.html',
     styleUrls: ['./league-menu.component.scss'],
-    standalone: true,
     imports: [MatExpansionModule, MatListModule, MatDividerModule, AsyncPipe, DatePipe]
 })
 export class LeagueMenuComponent {

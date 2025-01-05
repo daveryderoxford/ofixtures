@@ -21,12 +21,10 @@ import { SidenavService } from './shared/services/sidenav.service';
 
 @UntilDestroy()
 @Component({
-   selector: 'app-root',
-   templateUrl: './app.component.html',
-   styleUrls: ['app.component.scss'],
-   standalone: true,
-   imports: [SpinnerComponent, MatSidenavModule, MatDividerModule, MatListModule, LeagueMenuComponent, RouterOutlet]
-
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['app.component.scss'],
+    imports: [SpinnerComponent, MatSidenavModule, MatDividerModule, MatListModule, LeagueMenuComponent, RouterOutlet]
 })
 export class AppComponent implements OnInit {
       private router = inject(Router);
