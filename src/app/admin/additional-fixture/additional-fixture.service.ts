@@ -23,7 +23,7 @@ export class AdditionalFixtureService {
   */
   public get fixtures$() {
     if ( !this._fixtures$ ) {
-      const fixturesRef = collection( this.fs, "fixtures" ) as CollectionReference<any>;
+      const fixturesRef = collection(this.fs, "fixtures") as CollectionReference<AdditionalFixture>;
       const queryStart = startOfDay(subDays(new Date(), 1)).toISOString();
       const q = query( fixturesRef, 
         where( "userId", "==", this.auth.currentUser.uid ),

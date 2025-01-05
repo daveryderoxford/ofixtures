@@ -75,13 +75,13 @@ export class EntryService {
    }
 
    getEntries(): Observable<FixtureEntryDetails[]> {
-      const c = collection( this.fs, "entry" ) as CollectionReference<any>;
+      const c = collection(this.fs, "entry") as CollectionReference<FixtureEntryDetails>;
       return collectionData( c );
    }
 
    /** Gets an observable for an existing entry */
    getEntryDetails( id: string ): Observable<FixtureEntryDetails> {
-      const d = doc( this.fs, "entry/" + id ) as DocumentReference<any>;
+      const d = doc(this.fs, "entry/" + id) as DocumentReference<FixtureEntryDetails>;
       return docData( d )
    }
 
@@ -151,11 +151,11 @@ export class EntryService {
       );
    }
 
-   private _entriesCollection( fixtureId: string ): CollectionReference<any> {
+   private _entriesCollection(fixtureId: string): CollectionReference<Entry> {
       return collection( this.fs, `entry/${fixtureId}/entries` ) as CollectionReference<Entry>;
    }
 
-   private _entryDoc( fixtureId: string, id: string ): DocumentReference<any> {
+   private _entryDoc(fixtureId: string, id: string): DocumentReference<Entry> {
       return doc( this.fs, `entry/${fixtureId}/entries/${id}` ) as DocumentReference<Entry>
    }
 }

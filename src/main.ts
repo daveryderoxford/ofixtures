@@ -62,7 +62,7 @@ bootstrapApplication(AppComponent, {
       return storage;
     }),
     provideAnalytics(() => getAnalytics()),
-    { provide: ErrorHandler, useClass: GlobalErrorHandler },
+   // { provide: ErrorHandler, useClass: GlobalErrorHandler },
     ScreenTrackingService,
     UserTrackingService,
     provideAnimations(),
