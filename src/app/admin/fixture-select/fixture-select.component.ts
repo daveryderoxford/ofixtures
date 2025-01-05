@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { ChangeDetectionStrategy, Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, viewChild, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatSelectionList, MatSelectionListChange, MatListModule } from '@angular/material/list';
@@ -45,6 +45,14 @@ import { FlexModule } from '@ngbracket/ngx-layout/flex';
     ]
 })
 export class FixtureSelectComponent implements OnInit {
+  fs = inject(FixturesService);
+  dialogRef = inject<MatDialogRef<FixtureSelectComponent, Fixture[]>>(MatDialogRef);
+  data = inject<{
+    multiselect: boolean;
+    initialFilter: string;
+    selectedIds: string[];
+}>(MAT_DIALOG_DATA);
+
 
   fixtures$: Observable<Fixture[]>;
   filter: FormControl;
@@ -59,11 +67,7 @@ export class FixtureSelectComponent implements OnInit {
   selectedOnlyControl;
   selectedOnly$: Observable<boolean>;
 
-  @ViewChild( MatSelectionList ) list;
-
-  constructor ( public fs: FixturesService,
-    public dialogRef: MatDialogRef<FixtureSelectComponent, Fixture[]>,
-    @Inject( MAT_DIALOG_DATA ) public data: { multiselect: boolean, initialFilter: string, selectedIds: string[] } ) { }
+  readonly list = viewChild(MatSelectionList);
 
   ngOnInit(): void {
     this.multiselect = this.data.multiselect;

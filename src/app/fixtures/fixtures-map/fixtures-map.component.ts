@@ -1,12 +1,5 @@
  // @ts-nocheck
- import {
-   AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component,
-   NgZone,
-   OnDestroy, OnInit,
-   ViewEncapsulation, effect,
-   input,
-   output
-} from '@angular/core';
+ import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit, ViewEncapsulation, effect, input, output, inject } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { Fixture, LatLong } from 'app/model/fixture';
 import { Canvas, Circle, CircleMarker, FeatureGroup, Map, TileLayer, Util, circle, control, tileLayer } from "leaflet/dist/leaflet-src.esm";
@@ -23,6 +16,9 @@ import { FixtureKeyComponent } from './fixture-key.component';
 })
 /** Map of fixtures */
 export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
+   private ref = inject(ChangeDetectorRef);
+   private zone = inject(NgZone);
+
 
    private _selectedFixtureMarker: FixtureMarker = null;
    private _homeLocation: LatLong = { "lat": 51.43116, "lng": -0.508227, };
@@ -61,9 +57,6 @@ export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
    map: Map = null;
 
    tileLayer: TileLayer;
-
-   constructor ( private ref: ChangeDetectorRef,
-      private zone: NgZone ) { }
 
    ngOnInit() {
       this._loadMap();

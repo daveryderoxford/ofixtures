@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Input } from '@angular/core';
+import { Component, OnInit, HostListener, Input, inject } from '@angular/core';
 import { PaymentService } from '../payment.service';
 import { input } from "@angular/core";
 
@@ -13,11 +13,11 @@ declare var StripeCheckout;
     standalone: false
 } )
 export class MakePaymentComponent implements OnInit {
+   private paymentSvc = inject(PaymentService);
+
    amount = input<number>();
 
    handler: any;
-
-   constructor ( private paymentSvc: PaymentService ) { }
 
    ngOnInit() {
       this.handler = StripeCheckout.configure( {

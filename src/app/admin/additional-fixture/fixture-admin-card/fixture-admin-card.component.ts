@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { MatLineModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
@@ -22,13 +22,13 @@ import { toSignal } from '@angular/core/rxjs-interop';
     imports: [MatCardModule, FlexModule, MatButtonModule, RouterLink, MatIconModule, MatExpansionModule, MatListModule, MatDividerModule, MatLineModule, DatePipe]
 })
 export class FixtureAdminCardComponent  {
+  protected fs = inject(AdditionalFixtureService);
+  private auth = inject(Auth);
+  private router = inject(Router);
+  private ds = inject(DialogsService);
+
 
   fixtures = toSignal(this.fs.fixtures$);
-
-  constructor ( protected fs: AdditionalFixtureService,
-    private auth: Auth,
-    private router: Router,
-    private ds: DialogsService ) {}
 
   async delete ( fixture: AdditionalFixture ) {
 

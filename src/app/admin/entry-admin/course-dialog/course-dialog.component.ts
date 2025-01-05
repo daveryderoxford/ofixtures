@@ -1,5 +1,5 @@
 /** Entry course dialog  */
-import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { EntryCourse } from 'app/model/entry';
@@ -17,13 +17,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     imports: [MatDialogModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule]
 })
 export class CourseDialogComponent implements OnInit {
+  private formBuilder = inject(UntypedFormBuilder);
+  dialogRef = inject<MatDialogRef<CourseDialogComponent>>(MatDialogRef);
+  data = inject<{
+    hasAgeClasses: boolean;
+    course: EntryCourse;
+}>(MAT_DIALOG_DATA);
+
 
   form: UntypedFormGroup;
   hasAgeClasses: boolean;
-
-  constructor ( private formBuilder: UntypedFormBuilder,
-    public dialogRef: MatDialogRef<CourseDialogComponent>,
-    @Inject( MAT_DIALOG_DATA ) public data: { hasAgeClasses: boolean, course: EntryCourse } ) { }
 
   ngOnInit() {
     const course = this.data.course;

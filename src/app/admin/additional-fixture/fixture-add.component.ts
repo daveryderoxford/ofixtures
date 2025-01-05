@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, viewChild, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Fixture } from 'app/model/fixture';
 import { AdditionalFixtureService } from './additional-fixture.service';
@@ -13,11 +13,11 @@ import { FixtureFormComponent } from './fixture-form/fixture-form.component';
     imports: [FixtureFormComponent]
 })
 export class FixtureAddComponent {
+  private fs = inject(AdditionalFixtureService);
+  private router = inject(Router);
 
-  @ViewChild( FixtureFormComponent ) fixtureForm;
 
-  constructor ( private fs: AdditionalFixtureService,
-    private router: Router ) { }
+  readonly fixtureForm = viewChild(FixtureFormComponent);
 
   async submitted( fixture: Partial<Fixture> ) {
     await this.fs.add( fixture );
@@ -25,7 +25,7 @@ export class FixtureAddComponent {
   }
 
   canDeactivate(): boolean {
-    return this.fixtureForm.canDeactivate();
+    return this.fixtureForm().canDeactivate();
   }
 
 }

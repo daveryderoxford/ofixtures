@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { EntryService } from 'app/entry/entry.service';
@@ -31,14 +31,14 @@ import { ToolbarComponent } from '../../shared/components/toolbar.component';
     ]
 })
 export class EntryListComponent implements OnInit {
+   private route = inject(ActivatedRoute);
+   private es = inject(EntryService);
+
 
    fixture: FixtureDetailsAndEntries;
    entries: Entry[];
 
-   displayedColumns = ["id", "name", "club", "class", ]; 
-
-   constructor ( private route: ActivatedRoute,
-      private es: EntryService ) { }
+   displayedColumns = ["id", "name", "club", "class", ];
 
    ngOnInit() {
 

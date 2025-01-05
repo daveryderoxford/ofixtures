@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Storage, ref } from "@angular/fire/storage";
 import { UserData } from 'app/model';
 import { Fixture, LatLong } from 'app/model/fixture';
@@ -20,6 +20,10 @@ function anyWordStartsWith( str: string, search: string): boolean {
    providedIn: 'root'
 } )
 export class FixturesService {
+   protected usd = inject(UserDataService);
+   protected storage = inject(Storage);
+   protected http = inject(HttpClient);
+
 
    static DEFAULT_FILTER = {
       time: { sat: true, sun: true, weekday: true },
@@ -54,10 +58,7 @@ export class FixturesService {
    private _selectedFixture$ = new BehaviorSubject<Fixture | null>( null );
    readonly selectedFixture$ = this._selectedFixture$.asObservable();
 
-   constructor (
-      protected usd: UserDataService,
-      protected storage: Storage,
-      protected http: HttpClient ) {
+   constructor () {
 
       const grades = getFromLocalStorage( 'grades' ) as GradeFilter[];
       if ( grades ) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, viewChild, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LeagueService } from 'app/league/league-service';
 import { League } from 'app/model/league';
@@ -16,14 +16,14 @@ import { AsyncPipe } from '@angular/common';
     imports: [LeagueFormComponent, AsyncPipe]
 })
 export class LeagueEditComponent implements OnInit {
+  private ls = inject(LeagueService);
+  private route = inject(ActivatedRoute);
+
 
   league$: Observable<League>;
   id: string;
 
-  @ViewChild( LeagueFormComponent ) LeagueForm;
-
-  constructor (private ls: LeagueService,
-    private route: ActivatedRoute ) { }
+  readonly LeagueForm = viewChild(LeagueFormComponent);
 
   ngOnInit(): void {
     this.league$ = this.route.paramMap.pipe(
@@ -41,7 +41,7 @@ export class LeagueEditComponent implements OnInit {
   }
 
   canDeactivate(): boolean {
-    return this.LeagueForm.canDeactivate();
+    return this.LeagueForm().canDeactivate();
   }
 
 }

@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, ElementRef, forwardRef, input, OnInit, output, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, forwardRef, input, OnInit, output, signal, viewChild } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -29,7 +29,7 @@ import { AbstractControlValueAccessor } from './abstract-value-accessor';
 })
 export class SearchInputComponent extends AbstractControlValueAccessor<string> implements OnInit {
 
-  @ViewChild('input') inputElement: ElementRef;
+  readonly inputElement = viewChild<ElementRef>('input');
 
   placeholder = input('');
   alwaysOpen = input<boolean>(false);
@@ -61,7 +61,7 @@ export class SearchInputComponent extends AbstractControlValueAccessor<string> i
 
   public open(): void {
     this.searchVisible.set(true);
-    this.inputElement.nativeElement.focus();
+    this.inputElement().nativeElement.focus();
     this.onOpen.emit();
   }
 

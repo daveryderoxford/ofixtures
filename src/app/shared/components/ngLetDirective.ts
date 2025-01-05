@@ -1,4 +1,4 @@
-import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, Input, TemplateRef, ViewContainerRef, inject } from '@angular/core';
 import { input } from "@angular/core";
 
 interface NgLetContext<T> {
@@ -42,11 +42,12 @@ interface NgLetContext<T> {
     standalone: true
 })
 export class NgLetDirective<T> {
+   private viewContainer = inject(ViewContainerRef);
+   private templateRef = inject<TemplateRef<NgLetContext<T>>>(TemplateRef);
+
 
    private context: NgLetContext<T | null> = { ngLet: null, $implicit: null };
    private hasView = false;
-
-   constructor ( private viewContainer: ViewContainerRef, private templateRef: TemplateRef<NgLetContext<T>> ) { }
 
    @Input()
    set ngLet( value: T ) {

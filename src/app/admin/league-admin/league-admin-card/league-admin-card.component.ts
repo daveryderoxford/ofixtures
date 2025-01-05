@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { Router, RouterLink } from '@angular/router';
 import { LeagueService } from 'app/league/league-service';
@@ -23,13 +23,15 @@ import { MatCardModule } from '@angular/material/card';
     imports: [MatCardModule, FlexModule, MatButtonModule, RouterLink, MatIconModule, MatExpansionModule, MatListModule, MatDividerModule, MatLineModule, AsyncPipe, DatePipe]
 })
 export class LeagueAdminCardComponent {
+  private ls = inject(LeagueService);
+  private auth = inject(Auth);
+  private router = inject(Router);
+  private ds = inject(DialogsService);
+
 
   leagues$: Observable<League[]>;
 
-  constructor ( private ls: LeagueService, 
-                private auth: Auth,
-                private router: Router,
-                private ds: DialogsService ) { 
+  constructor () { 
    
     this.leagues$ = this.ls.leagues$.pipe( 
       map( arr => arr.filter( league => league.userId === this.auth.currentUser.uid )),

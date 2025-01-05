@@ -1,6 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 
-import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, OnInit, inject, viewChild } from '@angular/core';
 import { Auth, User, authState } from '@angular/fire/auth';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialog } from '@angular/material/dialog';
@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
       private breakpointObserver = inject(BreakpointObserver);
       private ls = inject(LeagueService);
       private dialog = inject(MatDialog);
-   @ViewChild(MatSidenav, { static: true }) sidenav: MatSidenav;
+   readonly sidenav = viewChild(MatSidenav);
 
    loading = false;
    authorised = false;
@@ -68,7 +68,7 @@ export class AppComponent implements OnInit {
             this.user = user;
          });
 
-      this.sidebarService.setSidenav(this.sidenav);
+      this.sidebarService.setSidenav(this.sidenav());
       this.cookieConsent();
       this.postcodeWarning();
    }
@@ -114,7 +114,7 @@ export class AppComponent implements OnInit {
    }
 
    async closeSidenav(target: Array<any>) {
-      this.sidenav.close();
+      this.sidenav().close();
       if (target) {
          this.router.navigate(target);
       }
@@ -122,11 +122,11 @@ export class AppComponent implements OnInit {
 
    async adminMenu() {
       if (!this.authorised) {
-         await this.sidenav.close();
+         await this.sidenav().close();
          this.loginSnackBar.open('Must be logged in manage fixtures/leagues');
       } else {
          await this.router.navigate(['/admin']);
-         await this.sidenav.close();
+         await this.sidenav().close();
       }
    }
 
@@ -137,16 +137,16 @@ export class AppComponent implements OnInit {
       } else {
          this.router.navigate(["/fixtures"]);
       }
-      this.sidenav.close();
+      this.sidenav().close();
    }
 
    async leagueSelected(l: League) {
-      await this.sidenav.close();
+      await this.sidenav().close();
       await this.router.navigate(["/fixtures"]);
    }
 
    async contact() {
-      await this.sidenav.close();
+      await this.sidenav().close();
       window.location.href = "mailto:support@ofixtures.co.uk";
    }
 
@@ -156,7 +156,7 @@ export class AppComponent implements OnInit {
          await this.router.navigate(["/"]);
       }
       await this.afAuth.signOut();
-      await this.sidenav.close();
+      await this.sidenav().close();
    }
 
    // Detects if device is on iOS

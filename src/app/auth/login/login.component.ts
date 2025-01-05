@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Auth, FacebookAuthProvider, GoogleAuthProvider, UserCredential, getRedirectResult, 
          signInWithEmailAndPassword, signInWithPopup, signInWithRedirect } from '@angular/fire/auth';
 import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -27,15 +27,15 @@ const googleAuthProvider = new GoogleAuthProvider();
     imports: [ToolbarComponent, FlexModule, MatCardModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterLink]
 })
 export class LoginComponent implements OnInit {
+   private route = inject(ActivatedRoute);
+   private router = inject(Router);
+   private formBuilder = inject(UntypedFormBuilder);
+   private afAuth = inject(Auth);
+
    loginForm: UntypedFormGroup;
    error: string;
    loading = false;
    returnUrl: string;
-
-   constructor (private route: ActivatedRoute,
-      private router: Router,
-      private formBuilder: UntypedFormBuilder,
-      private afAuth: Auth) { }
 
    ngOnInit() {
       this.route.queryParams.subscribe( params => {

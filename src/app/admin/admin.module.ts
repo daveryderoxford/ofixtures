@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
-import { SharedModule } from 'app/shared/shared.module';
+
 import { AdminComponent } from './admin-page/admin.component';
 import { LeagueAdminCardComponent } from './league-admin/league-admin-card/league-admin-card.component';
 import { LeagueFormComponent } from './league-admin/league-form/league-form.component';
@@ -19,22 +19,21 @@ import { FixtureAdminCardComponent } from './additional-fixture/fixture-admin-ca
 
 @NgModule({
     imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        AdminRoutingModule,
-        SharedModule,
-        AdminComponent,
-        LeagueAdminCardComponent,
-        LeagueFormComponent,
-        LeagueEditComponent,
-        LeagueAddComponent,
-        MapRegistrationAdminComponent,
-        FixtureSelectComponent,
-        CourseDialogComponent,
-        FixtureFormComponent,
-        FixtureAddComponent,
-        FixtureEditComponent,
-        FixtureAdminCardComponent
-    ]
+    CommonModule,
+    ReactiveFormsModule,
+    AdminRoutingModule,
+    AdminComponent,
+    LeagueAdminCardComponent,
+    LeagueFormComponent,
+    LeagueEditComponent,
+    LeagueAddComponent,
+    MapRegistrationAdminComponent,
+    FixtureSelectComponent,
+    CourseDialogComponent,
+    FixtureFormComponent,
+    FixtureAddComponent,
+    FixtureEditComponent,
+    FixtureAdminCardComponent
+]
 })
 export class AdminModule { }

@@ -1,6 +1,6 @@
 import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, ViewChild, computed, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, computed, input, output, viewChild, inject } from '@angular/core';
 import { MatLineModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
@@ -41,6 +41,12 @@ interface StyledFixture extends Fixture {
     imports: [CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, FlexModule, CdkVirtualForOf, NgClass, ExtendedModule, MatButtonModule, MatTooltipModule, MatIconModule, ExternalLinkIconComponent, MatMenuModule, MapMenuItemsComponent, FixtureActionsComponent, MatListModule, MatLineModule, MatDividerModule, EllipsisPipe, LocationPipe, FixtureDatePipe, FixtureDistancePipe, FixtureDistanceColorPipe, GradeIconNamePipe, EnterButtonComponent]
 })
 export class FixturesGridComponent implements OnInit, OnChanges {
+   private usd = inject(UserDataService);
+   private es = inject(EntryService);
+   private router = inject(Router);
+   private loginSnackBar = inject(LoginSnackbarService);
+   private snackBar = inject(MatSnackBar);
+
 
    private _selectedFixture: Fixture;
 
@@ -79,17 +85,14 @@ export class FixturesGridComponent implements OnInit, OnChanges {
 
    fixtureSelected = output<Fixture>();
 
-   @ViewChild( CdkVirtualScrollViewport ) viewPort: CdkVirtualScrollViewport;
+   readonly viewPort = viewChild(CdkVirtualScrollViewport);
 
    likedEvents: string[] = [];
 
-   constructor ( private usd: UserDataService,
-      private es: EntryService,
-      private router: Router,
-      private loginSnackBar: LoginSnackbarService,
-      private snackBar: MatSnackBar,
-      iconRegistry: MatIconRegistry,
-      sanitizer: DomSanitizer ) {
+   constructor () {
+      const iconRegistry = inject(MatIconRegistry);
+      const sanitizer = inject(DomSanitizer);
+
       this._registerGradeIcons( iconRegistry, sanitizer );
    }
 
@@ -162,8 +165,9 @@ export class FixturesGridComponent implements OnInit, OnChanges {
    private showElement( fixture: Fixture ) {
       const index = this.fixtures().findIndex( f => f === fixture );
 
-      if ( index !== -1 && this.viewPort ) {
-         this.viewPort.scrollToIndex( index );
+      const viewPort = this.viewPort();
+      if ( index !== -1 && viewPort ) {
+         viewPort.scrollToIndex( index );
       }
    }
 

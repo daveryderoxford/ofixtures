@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, viewChild, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { LeagueService } from 'app/league/league-service';
 import { League } from 'app/model/league';
@@ -13,11 +13,11 @@ import { LeagueFormComponent } from './league-form/league-form.component';
     imports: [LeagueFormComponent]
 })
 export class LeagueAddComponent {
+private ls = inject(LeagueService);
+private router = inject(Router);
 
-@ViewChild( LeagueFormComponent ) LeagueForm;
 
-  constructor ( private ls: LeagueService,
-                private router: Router ) { }
+readonly LeagueForm = viewChild(LeagueFormComponent);
 
   async submitted(league: Partial<League>) {
     await this.ls.add( league );
@@ -25,7 +25,7 @@ export class LeagueAddComponent {
   }
 
   canDeactivate(): boolean {
-    return this.LeagueForm.canDeactivate();
+    return this.LeagueForm().canDeactivate();
   }
 
 }

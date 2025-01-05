@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
@@ -44,6 +44,13 @@ interface FormData {
     ]
 })
 export class EnterComponent implements OnInit {
+   private route = inject(ActivatedRoute);
+   private router = inject(Router);
+   private formBuilder = inject(UntypedFormBuilder);
+   private snackbar = inject(MatSnackBar);
+   private es = inject(EntryService);
+   private usd = inject(UserDataService);
+
 
    form: UntypedFormGroup;
 
@@ -53,13 +60,6 @@ export class EnterComponent implements OnInit {
    fixture: FixtureEntryDetails;
    user: UserData;
    busy = false;
-
-   constructor ( private route: ActivatedRoute,
-      private router: Router,
-      private formBuilder: UntypedFormBuilder,
-      private snackbar: MatSnackBar,
-      private es: EntryService,
-      private usd: UserDataService ) { }
 
    ngOnInit() {
 

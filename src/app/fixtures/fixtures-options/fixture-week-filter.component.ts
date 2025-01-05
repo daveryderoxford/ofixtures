@@ -7,7 +7,7 @@ import { input } from "@angular/core";
     selector: 'app-fixture-week-filter',
     template: `
  <div>
-    <mat-button-toggle-group multiple="true">
+    <mat-button-toggle-group hideMultipleSelectionIndicator multiple="true">
 
       <mat-button-toggle disableRipple class="toggelebutton" [checked]="timeFilter().sat"
         (click)="timeFilterClicked('sat')">
@@ -27,14 +27,12 @@ import { input } from "@angular/core";
   `,
     styles: [
         `
-        /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
         mat-button-toggle {
                  height: 38px;
                  line-height: 38px;
                  padding: 0 8px;
               }`,
         `
-        /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
         ::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
                  line-height: 35px !important;
                  padding: 0 8px !important;

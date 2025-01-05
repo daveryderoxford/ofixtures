@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { CollectionReference, Firestore, collection, collectionData, deleteDoc, doc, setDoc } from '@angular/fire/firestore';
 import { League } from 'app/model/league';
@@ -15,6 +15,10 @@ export function createLeague( data: Partial<League> ): League {
   providedIn: 'root'
 } )
 export class LeagueService {
+  private fs = inject(Firestore);
+  private auth = inject(Auth);
+  private fixtureService = inject(FixturesService);
+
 
   private readonly _selectedLeague = new BehaviorSubject<League | null>( null );
   readonly selected$ = this._selectedLeague.asObservable();
@@ -22,9 +26,7 @@ export class LeagueService {
   /** All leagues with any fixtures in the future */
   leagues$: Observable<League[]>;
 
-  constructor ( private fs: Firestore,
-    private auth: Auth,
-    private fixtureService: FixturesService ) {
+  constructor () {
 
     const leagueCollection = collection( this.fs, 'leagues' ) as CollectionReference<League>;
 

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Auth, User } from '@angular/fire/auth';
 import { CollectionReference, Firestore, collection, collectionData, deleteDoc, doc, getDocs, query, setDoc, where } from '@angular/fire/firestore';
 import { AdditionalFixture } from 'app/model/fixture';
@@ -10,13 +10,14 @@ import { startOfDay, subDays } from 'date-fns';
   providedIn: 'root'
 } )
 export class AdditionalFixtureService {
+  private fs = inject(Firestore);
+  private auth = inject(Auth);
+
 
   private readonly _selectedFixture = new BehaviorSubject<AdditionalFixture | null>( null );
   readonly selected$ = this._selectedFixture.asObservable();
 
-  private _fixtures$: Observable<AdditionalFixture[]> = null; 
-
-  constructor ( private fs: Firestore, private auth: Auth ) { }
+  private _fixtures$: Observable<AdditionalFixture[]> = null;
 
   /** Observable of fixtures for the current user 
    *  Lazily instanciated so quey is only executed if required.

@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges, output } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, output, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { UntilDestroy } from '@ngneat/until-destroy';
@@ -26,6 +26,8 @@ import { input } from "@angular/core";
     imports: [ToolbarComponent, FlexModule, MatCardModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatOptionModule, MatButtonModule, MatDividerModule]
 })
 export class LeagueFormComponent implements OnChanges {
+  private dialog = inject(MatDialog);
+
   //form;
   selectedFixtureIds: string[] = [];
   start: string;
@@ -48,8 +50,6 @@ export class LeagueFormComponent implements OnChanges {
   } );
 
   cardclass = "";
-
-  constructor ( private dialog: MatDialog ) { }
 
   ngOnChanges( changes: SimpleChanges ) {
     if ( changes.league?.currentValue ) {

@@ -1,6 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { RGData } from 'app/model/fixture';
 import { AngularImageViewerComponent } from './angular-image_viewer/angular-image-viewer.component';
@@ -16,6 +16,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     imports: [MatToolbarModule, MatButtonModule, MatIconModule, FlexModule, AngularImageViewerComponent]
 })
 export class MapviewerComponent implements OnInit {
+    location = inject(Location);
+    private route = inject(ActivatedRoute);
+    private breakpointObserver = inject(BreakpointObserver);
+
 
     config = {
         btnClass: "hide",
@@ -36,10 +40,6 @@ export class MapviewerComponent implements OnInit {
     rgData: RGData = null;
     images: string[] = [];
     handset: boolean;
-
-    constructor ( public location: Location,
-        private route: ActivatedRoute,
-        private breakpointObserver: BreakpointObserver, ) { }
 
     ngOnInit() {
 

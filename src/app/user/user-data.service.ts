@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { Auth, authState } from "@angular/fire/auth";
 import { DocumentReference, Firestore, arrayRemove, arrayUnion, doc, docData, updateDoc } from "@angular/fire/firestore";
 import { UserData, UserInfo } from "app/model";
@@ -9,16 +9,16 @@ import { shareReplay, startWith, switchMap } from 'rxjs/operators';
   providedIn: "root"
 } )
 export class UserDataService {
+  private afAuth = inject(Auth);
+  private fs = inject(Firestore);
+
 
   public user$: Observable<UserData | null>;
 
   private currentUser: UserData | null = null;
   private uid: string;
 
-  constructor (
-    private afAuth: Auth,
-    private fs: Firestore,
-  ) {
+  constructor () {
 
     this.user$ = authState(this.afAuth).pipe(
       startWith( null ),

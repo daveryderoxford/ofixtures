@@ -1,5 +1,5 @@
 
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 
@@ -7,10 +7,13 @@ import { Firestore } from '@angular/fire/firestore';
   providedIn: 'root'
 } )
 export class PaymentService {
+  private afs = inject(Firestore);
+  private afAuth = inject(AngularFireAuth);
+
 
   userId: string;
 
-  constructor ( private afs: Firestore, private afAuth: AngularFireAuth ) {
+  constructor () {
     authState(this.afAuth).subscribe( ( auth ) => {
       if ( auth )  {
         this.userId = auth.uid;

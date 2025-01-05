@@ -1,4 +1,4 @@
-import { Component, output } from '@angular/core';
+import { Component, output, inject } from '@angular/core';
 import { League } from 'app/model/league';
 import { map } from 'rxjs/operators';
 import { LeagueService } from '../league-service';
@@ -14,6 +14,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     imports: [MatExpansionModule, MatListModule, MatDividerModule, AsyncPipe, DatePipe]
 })
 export class LeagueMenuComponent {
+  private ls = inject(LeagueService);
+
 
   selected = output<League>();
 
@@ -32,8 +34,6 @@ export class LeagueMenuComponent {
   club$ = this.ls.leagues$.pipe(
     map( leagues => leagues.filter( l => l.type === 'League' && l.level === 'Club' ) )
   );
-
-  constructor ( private ls: LeagueService ) { }
 
   selectLeague( league: League ) {
     this.selected.emit( league ); 

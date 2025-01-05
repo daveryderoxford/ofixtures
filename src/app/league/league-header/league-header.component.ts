@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core';
 import { League } from 'app/model/league';
 import { LeagueService } from '../league-service';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,8 +15,8 @@ import { input } from "@angular/core";
     imports: [MatToolbarModule, FlexModule, MatButtonModule]
 })
 export class LeagueHeaderComponent  {
+  ls = inject(LeagueService);
 
-  constructor ( public ls: LeagueService ) { }
 
   league = input<League>();
 ;

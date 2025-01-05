@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { Auth, User, authState } from "@angular/fire/auth";
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -29,6 +29,12 @@ import { ToolbarComponent } from "../shared/components/toolbar.component";
     imports: [ToolbarComponent, FlexModule, MatCardModule, ReactiveFormsModule, MatProgressBarModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, NgStyle, ExtendedModule, MatSelectModule, MatOptionModule]
 })
 export class UserComponent implements OnInit {
+  private formBuilder = inject(UntypedFormBuilder);
+  private afAuth = inject(Auth);
+  private router = inject(Router);
+  private usd = inject(UserDataService);
+  private fs = inject(FixturesService);
+
   originalUserData: UserData = null;
   userForm: UntypedFormGroup;
   ecardTypes = controlCardTypes;
@@ -41,13 +47,7 @@ export class UserComponent implements OnInit {
 
   cardclass: "mat-card-mobile";
 
-  constructor (
-    private formBuilder: UntypedFormBuilder,
-    private afAuth: Auth,
-    private router: Router,
-    private usd: UserDataService,
-    private fs: FixturesService,
-  ) {
+  constructor () {
     this.userForm = this.formBuilder.group( {
       firstname: [""],
       surname: [""],

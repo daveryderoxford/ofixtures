@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, viewChild, inject } from '@angular/core';
 import { Auth, authState } from '@angular/fire/auth';
 import { MatMenuTrigger, MatMenuModule } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -34,6 +34,13 @@ import { input } from "@angular/core";
     ]
 })
 export class FixtureActionsComponent implements AfterViewInit {
+   private afAuth = inject(Auth);
+   private router = inject(Router);
+   private usd = inject(UserDataService);
+   private es = inject(EntryService);
+   private snackBar = inject(MatSnackBar);
+   private loginSnackBar = inject(LoginSnackbarService);
+
 
    fixture = input<Fixture>();
    handset = input(false);
@@ -44,14 +51,9 @@ export class FixtureActionsComponent implements AfterViewInit {
    loggedIn: boolean;
    fixtureEntryDetails: FixtureEntryDetails[] = [];
 
-   @ViewChild( MatMenuTrigger ) menu: MatMenuTrigger;
+   readonly menu = viewChild(MatMenuTrigger);
 
-   constructor ( private afAuth: Auth,
-      private router: Router,
-      private usd: UserDataService,
-      private es: EntryService,
-      private snackBar: MatSnackBar,
-      private loginSnackBar: LoginSnackbarService ) {
+   constructor () {
 
       authState(this.afAuth).subscribe( user => this.loggedIn = ( user !== null ) );
 
@@ -62,12 +64,12 @@ export class FixtureActionsComponent implements AfterViewInit {
 
    ngAfterViewInit() {
       // dismiss menu on scroll to fix ios issue where menu scrolls incorrectly.
-      window.addEventListener( 'scroll', () => this.menu.closeMenu(), true );
+      window.addEventListener( 'scroll', () => this.menu().closeMenu(), true );
    }
 
    /** Open the menu from an external source */
    openMenu() {
-      this.menu.openMenu();
+      this.menu().openMenu();
    }
 
    liked(): boolean {

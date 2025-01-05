@@ -1,4 +1,4 @@
-import { Component, ViewChild, computed, input } from '@angular/core';
+import { Component, computed, input, viewChild, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Fixture } from 'app/model/fixture';
 import { AdditionalFixtureService } from './additional-fixture.service';
@@ -14,6 +14,10 @@ import { toSignal } from '@angular/core/rxjs-interop';
     imports: [FixtureFormComponent]
 })
 export class FixtureEditComponent {
+  private fs = inject(AdditionalFixtureService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+
 
   // Route parameter
   id = input<string>('');
@@ -22,11 +26,7 @@ export class FixtureEditComponent {
 
   fixture = computed(() => this.fixtures().find(l => l.id === this.id()) );
 
-  @ViewChild( FixtureFormComponent ) FixtureForm;
-
-  constructor ( private fs: AdditionalFixtureService,
-    private route: ActivatedRoute,
-    private router: Router ) { }
+  readonly FixtureForm = viewChild(FixtureFormComponent);
 
   async submitted( data: Partial<Fixture> ) {
     await this.fs.update( this.id(), data );
@@ -34,7 +34,7 @@ export class FixtureEditComponent {
   }
 
   canDeactivate(): boolean {
-    return this.FixtureForm.canDeactivate();
+    return this.FixtureForm().canDeactivate();
   }
 
 }
