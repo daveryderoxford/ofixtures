@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogModule } from '@angular/material/legacy-dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { eventGrades } from 'app/model';
 import { GradeFilter } from 'app/model/fixture-filter';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyInputModule } from '@angular/material/legacy-input';
-import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
-import { MatLegacyCheckboxModule } from '@angular/material/legacy-checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @Component({
@@ -15,7 +15,7 @@ import { MatLegacyCheckboxModule } from '@angular/material/legacy-checkbox';
     styleUrls: ['./grade-filter-dialog.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [MatLegacyDialogModule, ReactiveFormsModule, MatLegacyCheckboxModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatLegacyButtonModule]
+    imports: [MatDialogModule, ReactiveFormsModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatButtonModule]
 })
 
 export class GradeFilterComponent implements OnInit {

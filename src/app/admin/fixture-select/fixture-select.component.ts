@@ -1,21 +1,21 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { ChangeDetectionStrategy, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef, MatLegacyDialogModule } from '@angular/material/legacy-dialog';
-import { MatLegacySelectionList as MatSelectionList, MatLegacySelectionListChange as MatSelectionListChange, MatLegacyListModule } from '@angular/material/legacy-list';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { MatSelectionList, MatSelectionListChange, MatListModule } from '@angular/material/list';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { FixturesService } from 'app/fixtures/fixtures.service';
 import { Fixture } from 'app/model';
 import { Observable, combineLatest } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { EllipsisPipe } from '../../shared/pipes/ellipsis-pipe';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatLineModule } from '@angular/material/core';
 import { CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, CdkVirtualForOf } from '@angular/cdk/scrolling';
-import { MatLegacyInputModule } from '@angular/material/legacy-input';
-import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatLegacySlideToggleModule } from '@angular/material/legacy-slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 
@@ -27,19 +27,19 @@ import { FlexModule } from '@ngbracket/ngx-layout/flex';
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-    MatLegacyDialogModule,
+    MatDialogModule,
     FlexModule,
-    MatLegacySlideToggleModule,
+    MatSlideToggleModule,
     ReactiveFormsModule,
     MatDividerModule,
-    MatLegacyFormFieldModule,
-    MatLegacyInputModule,
-    MatLegacyListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatListModule,
     CdkVirtualScrollViewport,
     CdkFixedSizeVirtualScroll,
     CdkVirtualForOf,
     MatLineModule,
-    MatLegacyButtonModule,
+    MatButtonModule,
     AsyncPipe,
     DatePipe,
     EllipsisPipe

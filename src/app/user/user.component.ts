@@ -8,16 +8,16 @@ import { FixturesService } from "app/fixtures/fixtures.service";
 import { controlCardTypes, UserData } from "app/model";
 import { Subscription } from 'rxjs';
 import { UserDataService } from "./user-data.service";
-import { MatLegacyOptionModule } from "@angular/material/legacy-core";
-import { MatLegacySelectModule } from "@angular/material/legacy-select";
+import { MatOptionModule } from "@angular/material/core";
+import { MatSelectModule } from "@angular/material/select";
 import { ExtendedModule } from "@ngbracket/ngx-layout/extended";
 import { MatIconModule } from "@angular/material/icon";
-import { MatLegacyButtonModule } from "@angular/material/legacy-button";
-import { MatLegacyInputModule } from "@angular/material/legacy-input";
-import { MatLegacyFormFieldModule } from "@angular/material/legacy-form-field";
-import { MatLegacyProgressBarModule } from "@angular/material/legacy-progress-bar";
+import { MatButtonModule } from "@angular/material/button";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { NgStyle } from "@angular/common";
-import { MatLegacyCardModule } from "@angular/material/legacy-card";
+import { MatCardModule } from "@angular/material/card";
 import { FlexModule } from "@ngbracket/ngx-layout/flex";
 import { ToolbarComponent } from "../shared/components/toolbar.component";
 
@@ -27,7 +27,7 @@ import { ToolbarComponent } from "../shared/components/toolbar.component";
     templateUrl: "./user.component.html",
     styleUrls: ["./user.component.scss"],
     standalone: true,
-    imports: [ToolbarComponent, FlexModule, MatLegacyCardModule, ReactiveFormsModule, MatLegacyProgressBarModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatLegacyButtonModule, MatIconModule, NgStyle, ExtendedModule, MatLegacySelectModule, MatLegacyOptionModule]
+    imports: [ToolbarComponent, FlexModule, MatCardModule, ReactiveFormsModule, MatProgressBarModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, NgStyle, ExtendedModule, MatSelectModule, MatOptionModule]
 })
 export class UserComponent implements OnInit {
   originalUserData: UserData = null;

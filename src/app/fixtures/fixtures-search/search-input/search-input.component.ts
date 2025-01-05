@@ -2,8 +2,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, ElementRef, forwardRef, input, OnInit, output, signal, ViewChild } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
-import { MatLegacyInputModule } from '@angular/material/legacy-input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { AbstractControlValueAccessor } from './abstract-value-accessor';
 
 @Component({
@@ -11,7 +11,7 @@ import { AbstractControlValueAccessor } from './abstract-value-accessor';
   templateUrl: './search-input.component.html',
   styleUrls: ['./search-input.component.scss'],
   standalone: true,
-  imports: [ ReactiveFormsModule, FormsModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatIconModule],
+  imports: [ ReactiveFormsModule, FormsModule, MatFormFieldModule, MatInputModule, MatIconModule],
   animations: [
     trigger('slideInOut', [
       state('true', style({ width: '*' })),

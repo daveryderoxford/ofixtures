@@ -5,14 +5,14 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 import { EventDiscipline, EventGrade, EventType, eventDisciplines, eventGrades, eventTypes } from 'app/model';
 import { AdditionalFixture, Fixture } from 'app/model/fixture';
 import { formatISO } from 'date-fns';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyOptionModule } from '@angular/material/legacy-core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatOptionModule } from '@angular/material/core';
 
-import { MatLegacySelectModule } from '@angular/material/legacy-select';
+import { MatSelectModule } from '@angular/material/select';
 
-import { MatLegacyInputModule } from '@angular/material/legacy-input';
-import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
-import { MatLegacyCardModule } from '@angular/material/legacy-card';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { ToolbarComponent } from '../../../shared/components/toolbar.component';
 import { input } from "@angular/core";
@@ -23,7 +23,7 @@ import { input } from "@angular/core";
     templateUrl: './fixture-form.component.html',
     styleUrls: ['./fixture-form.component.scss'],
     standalone: true,
-    imports: [ToolbarComponent, FlexModule, MatLegacyCardModule, ReactiveFormsModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatLegacySelectModule, MatLegacyOptionModule, MatLegacyButtonModule],
+    imports: [ToolbarComponent, FlexModule, MatCardModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatOptionModule, MatButtonModule],
 })
 export class FixtureFormComponent  implements OnChanges {
 

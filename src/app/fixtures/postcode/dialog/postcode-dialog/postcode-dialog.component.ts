@@ -1,49 +1,46 @@
-import { Component, OnInit, inject } from '@angular/core';
-
-import { PostcodeComponent } from "../../postcode.component";
+import { Component, inject } from '@angular/core';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { FixturesService } from 'app/fixtures/fixtures.service';
-import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
-import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyInputModule } from '@angular/material/legacy-input';
-import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
 
 @Component({
-    selector: 'app-postcode-dialog',
-    standalone: true,
-    templateUrl: './postcode-dialog.component.html',
-    imports: [PostcodeComponent, MatDialogModule, MatButtonModule, MatLegacyFormFieldModule, MatLegacyInputModule, ReactiveFormsModule]
+  selector: 'app-postcode-dialog',
+  standalone: true,
+  templateUrl: './postcode-dialog.component.html',
+  imports: [MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule]
 })
 export class PostcodeDialogComponent {
-      private fs = inject(FixturesService);
+  private fs = inject(FixturesService);
   postcodeFormControl: FormControl;
   postcode: string;
 
   ngOnInit() {
-    this.postcodeFormControl = new FormControl<string>( "", [this.validatePostcode, Validators.required] );
+    this.postcodeFormControl = new FormControl<string>("", [this.validatePostcode, Validators.required]);
   }
 
   postcodeEntered() {
 
-    if ( !this.postcodeFormControl.valid ) {
+    if (!this.postcodeFormControl.valid) {
       return;
     }
     const portcode = this.postcodeFormControl.value.trim().toUpperCase();
     if (portcode) {
       this.fs.setPostcode(portcode);
-   }
+    }
   }
 
-  validatePostcode( input: FormControl ) {
+  validatePostcode(input: FormControl) {
     const text = input.value.trim();
 
-    if ( text === "" ) {
+    if (text === "") {
       return null;
     }
     const regex = /^[A-Z]{1,2}([0-9]{1,2}|[0-9][A-Z])\s*[0-9][A-Z]{2}$/gi;
 
-    return regex.test( text ) ? null : { postcodeInvalid: true };
+    return regex.test(text) ? null : { postcodeInvalid: true };
   }
 
 }

@@ -34,16 +34,16 @@
                   <mat-icon [ngStyle]="{'color':'green'}">add_circle</mat-icon>
                 </button>
               </div>
-              <mat-chip-list #chipList class="mat-chip-list-stacked">
+              <mat-chip-listbox #chipList class="mat-chip-list-stacked">
                 @for (course of courses; track course; let i = $index) {
-                  <mat-chip selected="true" selectable="true"
+                  <mat-chip-option selected="true" selectable="true"
                     removable="true" color="accent" (removed)="removeCourse(course)" (click)="editCourse(course, i)">
                     {{course.name}}
                     <span fxFlex></span>
                     <mat-icon matChipRemove>cancel</mat-icon>
-                  </mat-chip>
+                  </mat-chip-option>
                 }
-              </mat-chip-list>
+              </mat-chip-listbox>
             </div>
           </mat-card-content>
           <mat-card-actions>

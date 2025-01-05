@@ -8,13 +8,13 @@ import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators }
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyCardModule } from '@angular/material/legacy-card';
-import { MatLegacyChipsModule } from '@angular/material/legacy-chips';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
-import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
-import { MatLegacyInputModule } from '@angular/material/legacy-input';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialog } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ExtendedModule } from '@ngbracket/ngx-layout/extended';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
@@ -38,17 +38,17 @@ import { CourseDialogComponent } from '../course-dialog/course-dialog.component'
    imports: [
     ToolbarComponent,
     FlexModule,
-    MatLegacyCardModule,
+    MatCardModule,
     ReactiveFormsModule,
     MatDividerModule,
-    MatLegacyButtonModule,
-    MatLegacyFormFieldModule,
-    MatLegacyInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatDatepickerModule,
     MatIconModule,
     NgStyle,
     ExtendedModule,
-    MatLegacyChipsModule,
+    MatChipsModule,
     DatePipe,
     EllipsisPipe
 ],

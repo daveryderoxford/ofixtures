@@ -93,7 +93,7 @@
     <mat-list fxFill>
       <mat-list-item (click)="actions.openMenu()" *cdkVirtualFor="let fixture of styledFixtures()"
         [ngClass]="{ 'shaded': fixture?.shaded }">
-        <div mat-line>
+        <div matListItemLine>
           <span fxFlex=50>{{fixture.date | fixturedate }}</span>
           <span fxFlex=30> {{fixture.club}}</span>
           @if (fixture.distance !== -1;) {
@@ -102,7 +102,7 @@
             </span>
           }
         </div>
-        <p mat-line>
+        <p matListItemLine>
           {{fixture.name | ellipsis:35}}
         </p>
         <p mat-line>

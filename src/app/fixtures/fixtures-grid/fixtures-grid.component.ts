@@ -4,11 +4,11 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, ViewChild
 import { MatLineModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyListModule } from '@angular/material/legacy-list';
-import { MatLegacyMenuModule } from '@angular/material/legacy-menu';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
-import { MatLegacyTooltipModule } from '@angular/material/legacy-tooltip';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ExtendedModule } from '@ngbracket/ngx-layout/extended';
@@ -39,7 +39,7 @@ interface StyledFixture extends Fixture {
     styleUrls: ['./fixtures-grid.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, FlexModule, CdkVirtualForOf, NgClass, ExtendedModule, MatLegacyButtonModule, MatLegacyTooltipModule, MatIconModule, ExternalLinkIconComponent, MatLegacyMenuModule, MapMenuItemsComponent, FixtureActionsComponent, MatLegacyListModule, MatLineModule, MatDividerModule, EllipsisPipe, LocationPipe, FixtureDatePipe, FixtureDistancePipe, FixtureDistanceColorPipe, GradeIconNamePipe, EnterButtonComponent]
+    imports: [CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, FlexModule, CdkVirtualForOf, NgClass, ExtendedModule, MatButtonModule, MatTooltipModule, MatIconModule, ExternalLinkIconComponent, MatMenuModule, MapMenuItemsComponent, FixtureActionsComponent, MatListModule, MatLineModule, MatDividerModule, EllipsisPipe, LocationPipe, FixtureDatePipe, FixtureDistancePipe, FixtureDistanceColorPipe, GradeIconNamePipe, EnterButtonComponent]
 })
 export class FixturesGridComponent implements OnInit, OnChanges {
 

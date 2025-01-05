@@ -27,15 +27,19 @@ import { input } from "@angular/core";
   </div>
   `,
     styles: [
-        `mat-button-toggle {
-         height: 38px;
-         line-height: 38px;
-         padding: 0 8px;
-      }`,
-        `::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
-         line-height: 35px !important;
-         padding: 0 8px !important;
-      }`
+        `
+        /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
+        mat-button-toggle {
+                 height: 38px;
+                 line-height: 38px;
+                 padding: 0 8px;
+              }`,
+        `
+        /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
+        ::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+                 line-height: 35px !important;
+                 padding: 0 8px !important;
+              }`
     ],
     standalone: true,
     imports: [MatButtonToggleModule]

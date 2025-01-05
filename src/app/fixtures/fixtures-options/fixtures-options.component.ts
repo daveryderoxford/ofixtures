@@ -2,13 +2,13 @@ import { Component, Input, OnInit, output } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonToggleChange, MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { FixtureFilter, FixtureTimeFilter } from 'app/model/fixture-filter';
 import { LoginSnackbarService } from 'app/shared/services/login-snackbar.service';
 import { GradeFilterComponent } from '../grade-filter-dialog/grade-filter-dialog.component';
-import { MatLegacySlideToggleModule } from '@angular/material/legacy-slide-toggle';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonModule } from '@angular/material/button';
 import { FixtureWeekFilterComponent } from './fixture-week-filter.component';
 import { ExtendedModule } from '@ngbracket/ngx-layout/extended';
 import { NgClass } from '@angular/common';
@@ -22,7 +22,7 @@ import { input } from "@angular/core";
     templateUrl: './fixtures-options.component.html',
     styleUrls: ['./fixtures-options.component.scss'],
     standalone: true,
-    imports: [FlexModule, MatButtonToggleModule, MatIconModule, NgClass, ExtendedModule, FixtureWeekFilterComponent, MatLegacyButtonModule, MatLegacySlideToggleModule, ReactiveFormsModule]
+    imports: [FlexModule, MatButtonToggleModule, MatIconModule, NgClass, ExtendedModule, FixtureWeekFilterComponent, MatButtonModule, MatSlideToggleModule, ReactiveFormsModule]
 })
 export class FixturesOptionsComponent implements OnInit {
 

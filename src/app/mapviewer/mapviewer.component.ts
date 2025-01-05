@@ -6,7 +6,7 @@ import { RGData } from 'app/model/fixture';
 import { AngularImageViewerComponent } from './angular-image_viewer/angular-image-viewer.component';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
@@ -14,7 +14,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     templateUrl: './mapviewer.component.html',
     styleUrls: ['./mapviewer.component.scss'],
     standalone: true,
-    imports: [MatToolbarModule, MatLegacyButtonModule, MatIconModule, FlexModule, AngularImageViewerComponent]
+    imports: [MatToolbarModule, MatButtonModule, MatIconModule, FlexModule, AngularImageViewerComponent]
 })
 export class MapviewerComponent implements OnInit {
 

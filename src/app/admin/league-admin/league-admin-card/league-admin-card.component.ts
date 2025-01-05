@@ -8,20 +8,20 @@ import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { MatLineModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatLegacyListModule } from '@angular/material/legacy-list';
+import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
-import { MatLegacyCardModule } from '@angular/material/legacy-card';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
     selector: 'app-league-admin-card',
     templateUrl: './league-admin-card.component.html',
     styleUrls: ['./league-admin-card.component.scss'],
     standalone: true,
-    imports: [MatLegacyCardModule, FlexModule, MatLegacyButtonModule, RouterLink, MatIconModule, MatExpansionModule, MatLegacyListModule, MatDividerModule, MatLineModule, AsyncPipe, DatePipe]
+    imports: [MatCardModule, FlexModule, MatButtonModule, RouterLink, MatIconModule, MatExpansionModule, MatListModule, MatDividerModule, MatLineModule, AsyncPipe, DatePipe]
 })
 export class LeagueAdminCardComponent {
 

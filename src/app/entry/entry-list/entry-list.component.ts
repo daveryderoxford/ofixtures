@@ -5,10 +5,10 @@ import { EntryService } from 'app/entry/entry.service';
 import { Entry, EntryCourse, FixtureDetailsAndEntries } from 'app/model/entry';
 import { map, switchMap } from 'rxjs/operators';
 import { SpinnerComponent } from '../../shared/components/spinner/spinner.component';
-import { MatLegacyTableModule } from '@angular/material/legacy-table';
-import { MatLegacyInputModule } from '@angular/material/legacy-input';
-import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
-import { MatLegacyCardModule } from '@angular/material/legacy-card';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { DatePipe } from '@angular/common';
 import { ToolbarComponent } from '../../shared/components/toolbar.component';
@@ -23,10 +23,10 @@ import { ToolbarComponent } from '../../shared/components/toolbar.component';
     imports: [
     ToolbarComponent,
     FlexModule,
-    MatLegacyCardModule,
-    MatLegacyFormFieldModule,
-    MatLegacyInputModule,
-    MatLegacyTableModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
     SpinnerComponent,
     DatePipe
 ],

@@ -1,6 +1,6 @@
-import { MatLegacyDialogRef as MatDialogRef, MatLegacyDialogModule } from '@angular/material/legacy-dialog';
+import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { Component, inject } from '@angular/core';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
@@ -16,9 +16,9 @@ import { MatDividerModule } from '@angular/material/divider';
     `,
     standalone: true,
     imports: [
-        MatLegacyDialogModule,
+        MatDialogModule,
         MatDividerModule,
-        MatLegacyButtonModule,
+        MatButtonModule,
     ],
 })
 

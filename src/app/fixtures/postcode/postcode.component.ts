@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit, output } from '@angular/core';
 import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyInputModule } from '@angular/material/legacy-input';
-import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { input } from "@angular/core";
 
 @Component({
@@ -11,7 +11,7 @@ import { input } from "@angular/core";
     styleUrls: ['./postcode.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [MatLegacyFormFieldModule, MatLegacyInputModule, ReactiveFormsModule, MatLegacyButtonModule]
+    imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatButtonModule]
 })
 export class PostcodeComponent implements OnInit {
   postcode = input<string>();

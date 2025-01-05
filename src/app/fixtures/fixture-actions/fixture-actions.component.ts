@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { Auth, authState } from '@angular/fire/auth';
-import { MatLegacyMenuTrigger as MatMenuTrigger, MatLegacyMenuModule } from '@angular/material/legacy-menu';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatMenuTrigger, MatMenuModule } from '@angular/material/menu';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { EntryService } from 'app/entry/entry.service';
@@ -15,7 +15,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ExternalLinkIconComponent } from '../../shared/components/external-link-icon.component';
 
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { input } from "@angular/core";
 
 @UntilDestroy( { checkProperties: true } )
@@ -25,8 +25,8 @@ import { input } from "@angular/core";
     styleUrls: ['./fixture-actions.component.scss'],
     standalone: true,
     imports: [
-    MatLegacyButtonModule,
-    MatLegacyMenuModule,
+    MatButtonModule,
+    MatMenuModule,
     MatIconModule,
     ExternalLinkIconComponent,
     MatDividerModule,

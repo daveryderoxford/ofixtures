@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { League } from 'app/model/league';
 import { LeagueService } from '../league-service';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -13,7 +13,7 @@ import { input } from "@angular/core";
     styleUrls: ['./league-header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [MatToolbarModule, FlexModule, MatLegacyButtonModule]
+    imports: [MatToolbarModule, FlexModule, MatButtonModule]
 })
 export class LeagueHeaderComponent  {
 

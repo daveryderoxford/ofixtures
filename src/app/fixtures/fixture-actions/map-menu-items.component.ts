@@ -3,7 +3,7 @@ import { Fixture } from 'app/model';
 import { LatLong } from 'app/model/fixture';
 import { GoogleURLPipe, GoogleDirectionsURLPipe, BingURLPipe, StreetmapURLPipe } from '../fixture-pipes';
 import { ExternalLinkIconComponent } from '../../shared/components/external-link-icon.component';
-import { MatLegacyMenuModule } from '@angular/material/legacy-menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { input } from "@angular/core";
 
 @Component({
@@ -48,7 +48,7 @@ import { input } from "@angular/core";
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [MatLegacyMenuModule, ExternalLinkIconComponent, GoogleURLPipe, GoogleDirectionsURLPipe, BingURLPipe, StreetmapURLPipe]
+  imports: [MatMenuModule, ExternalLinkIconComponent, GoogleURLPipe, GoogleDirectionsURLPipe, BingURLPipe, StreetmapURLPipe]
 })
 export class MapMenuItemsComponent implements OnInit {
 

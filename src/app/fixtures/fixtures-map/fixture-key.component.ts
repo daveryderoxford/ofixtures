@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatLegacyMenuModule } from '@angular/material/legacy-menu';
+import { MatMenuModule } from '@angular/material/menu';
 
 /** button for fixture key */
 @Component({
@@ -30,7 +30,7 @@ import { MatLegacyMenuModule } from '@angular/material/legacy-menu';
         ' .small { font-size: 10px; }'
     ],
     standalone: true,
-    imports: [MatLegacyMenuModule]
+    imports: [MatMenuModule]
 })
 export class FixtureKeyComponent implements OnInit {
   ngOnInit() {

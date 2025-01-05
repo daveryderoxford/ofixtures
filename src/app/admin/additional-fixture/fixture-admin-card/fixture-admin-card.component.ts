@@ -5,9 +5,9 @@ import { MatLineModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyCardModule } from '@angular/material/legacy-card';
-import { MatLegacyListModule } from '@angular/material/legacy-list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
 import { Router, RouterLink } from '@angular/router';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { AdditionalFixture } from 'app/model/fixture';
@@ -20,7 +20,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
     templateUrl: './fixture-admin-card.component.html',
     styleUrls: ['./fixture-admin-card.component.scss'],
     standalone: true,
-    imports: [MatLegacyCardModule, FlexModule, MatLegacyButtonModule, RouterLink, MatIconModule, MatExpansionModule, MatLegacyListModule, MatDividerModule, MatLineModule, AsyncPipe, DatePipe]
+    imports: [MatCardModule, FlexModule, MatButtonModule, RouterLink, MatIconModule, MatExpansionModule, MatListModule, MatDividerModule, MatLineModule, AsyncPipe, DatePipe]
 })
 export class FixtureAdminCardComponent  {
 

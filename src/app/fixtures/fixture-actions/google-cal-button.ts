@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { addDays, format } from 'date-fns'
-import { MatLegacyMenuModule } from '@angular/material/legacy-menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { input } from "@angular/core";
 
 @Component({
     selector: 'app-add-to-calendar',
     template: '<button (click) = "addToCalendar()" mat-menu-item>Add To Google Calender</button>',
     standalone: true,
-    imports: [MatLegacyMenuModule],
+    imports: [MatMenuModule],
 })
 export class AddToGoogleCalendarButtonComponent  {
 

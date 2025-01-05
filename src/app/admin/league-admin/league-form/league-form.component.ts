@@ -1,19 +1,19 @@
 import { Component, OnChanges, OnInit, SimpleChanges, output } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { FixtureSelectComponent } from 'app/admin/fixture-select/fixture-select.component';
 import { Fixture } from 'app/model';
 import { League, LeagueLevel, LeagueType, leagueLevels, leagueTypes } from 'app/model/league';
 import { Observable } from 'rxjs';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyOptionModule } from '@angular/material/legacy-core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatOptionModule } from '@angular/material/core';
 
-import { MatLegacySelectModule } from '@angular/material/legacy-select';
-import { MatLegacyInputModule } from '@angular/material/legacy-input';
-import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
-import { MatLegacyCardModule } from '@angular/material/legacy-card';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { ToolbarComponent } from '../../../shared/components/toolbar.component';
 import { input } from "@angular/core";
@@ -24,7 +24,7 @@ import { input } from "@angular/core";
     templateUrl: './league-form.component.html',
     styleUrls: ['./league-form.component.scss'],
     standalone: true,
-    imports: [ToolbarComponent, FlexModule, MatLegacyCardModule, ReactiveFormsModule, MatLegacyFormFieldModule, MatLegacyInputModule, MatLegacySelectModule, MatLegacyOptionModule, MatLegacyButtonModule, MatDividerModule]
+    imports: [ToolbarComponent, FlexModule, MatCardModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatOptionModule, MatButtonModule, MatDividerModule]
 })
 export class LeagueFormComponent implements OnChanges {
   //form;

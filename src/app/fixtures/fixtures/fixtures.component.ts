@@ -5,9 +5,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { Auth, User, authState } from '@angular/fire/auth';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { AngularSplitModule } from 'angular-split';
@@ -31,7 +31,7 @@ import { PostcodeComponent } from '../postcode/postcode.component';
    templateUrl: './fixtures.component.html',
    styleUrls: ['./fixtures.component.scss'],
    standalone: true,
-   imports: [NgLetDirective, FixtureSearchComponent, SidenavButtonComponent, PostcodeComponent, FixturesOptionsComponent, AngularSplitModule, FixturesMapComponent, LeagueHeaderComponent, FixturesGridComponent, FlexModule, ToolbarComponent, MatLegacyButtonModule, MatIconModule, MatDividerModule, AsyncPipe]
+   imports: [NgLetDirective, FixtureSearchComponent, SidenavButtonComponent, PostcodeComponent, FixturesOptionsComponent, AngularSplitModule, FixturesMapComponent, LeagueHeaderComponent, FixturesGridComponent, FlexModule, ToolbarComponent, MatButtonModule, MatIconModule, MatDividerModule, AsyncPipe]
 })
 
 export class FixturesComponent implements OnInit {
