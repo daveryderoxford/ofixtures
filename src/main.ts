@@ -16,7 +16,8 @@ import { AppComponent } from './app/app.component';
 import { firebaseConfig } from './app/app.firebase-config';
 
 import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
-import { AppRoutingModule } from 'app/app-routing.module';
+import { PreloadAllModules, provideRouter, withPreloading } from '@angular/router';
+import { APP_ROUTES } from 'app/app.routes';
 
 if (environment.production) {
     enableProdMode();
@@ -59,7 +60,10 @@ bootstrapApplication(AppComponent, {
         importProvidersFrom(
             MatDialogModule,
             MatSnackBarModule,
-            AppRoutingModule
+        ),
+        provideRouter(APP_ROUTES,
+            withPreloading(PreloadAllModules),
+            //    withDebugTracing(),
         ),
     ]
 });
