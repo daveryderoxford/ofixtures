@@ -4,7 +4,6 @@ import { Component, OnInit, inject } from "@angular/core";
 import { Auth, User, authState } from "@angular/fire/auth";
 import { FormArray, FormBuilder, ReactiveFormsModule, UntypedFormArray, UntypedFormGroup, Validators } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
-import { MatCardModule } from "@angular/material/card";
 import { MatOptionModule } from "@angular/material/core";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
@@ -18,6 +17,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FixturesService } from "app/fixtures/fixtures.service";
 import { UserData, controlCardTypes } from "app/model";
 import { Subscription } from 'rxjs';
+import { FormContainerComponent } from "../shared/components/form-container/form-container.component";
 import { ToolbarComponent } from "../shared/components/toolbar.component";
 import { UserDataService } from "./user-data.service";
 
@@ -26,7 +26,7 @@ import { UserDataService } from "./user-data.service";
     selector: "app-user",
     templateUrl: "./user.component.html",
     styleUrls: ["./user.component.scss"],
-    imports: [ToolbarComponent, FlexModule, MatCardModule, ReactiveFormsModule, MatProgressBarModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, NgStyle, ExtendedModule, MatSelectModule, MatOptionModule]
+    imports: [ToolbarComponent, FlexModule, ReactiveFormsModule, MatProgressBarModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, NgStyle, ExtendedModule, MatSelectModule, MatOptionModule, FormContainerComponent]
 })
 export class UserComponent implements OnInit {
   private formBuilder = inject(FormBuilder);
