@@ -1,21 +1,21 @@
 <div scroll="none">
   <mat-toolbar>
 
-    <button mat-button (click)="imageViewer.prevImage(null)" [disabled]="imageViewer.index === 0">
+    <button mat-button (click)="imageViewer.prevImage(null)" [disabled]="imageViewer.index() === 0">
       <mat-icon>arrow_back</mat-icon>
     </button>
 
-    <button mat-button [disabled]="imageViewer.index >= rgData.maps.length-1" (click)="imageViewer.nextImage(null)">
+    <button mat-button [disabled]="imageViewer.index() >= rgData.maps.length-1" (click)="imageViewer.nextImage(null)">
       <mat-icon>arrow_forward</mat-icon>
     </button>
 
     @if (!handset) {
-      <span>{{rgData.maps[imageViewer.index].name}}</span>
+      <span>{{rgData.maps[imageViewer.index()].name}}</span>
     }
 
     <span fxFlex></span>
 
-    <a [href]="routegadgetURL(imageViewer.index)" mat-stroked-button color="primary" target="_blank">Routegadget</a>
+    <a [href]="routegadgetURL(imageViewer.index())" mat-stroked-button color="primary" target="_blank">Routegadget</a>
 
     <span fxFlex="20px"></span>
 

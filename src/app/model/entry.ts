@@ -44,7 +44,7 @@ export interface Entry {
 }
 
 export interface FixtureDetailsAndEntries {
-    details: FixtureEntryDetails;
+    details?: FixtureEntryDetails;
     entries: Entry[];
 }
 

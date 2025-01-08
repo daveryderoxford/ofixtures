@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, Input, OnInit, output } from '@angular/core';
 import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -12,26 +12,28 @@ import { input } from "@angular/core";
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatButtonModule]
 })
-export class PostcodeComponent implements OnInit {
-  postcode = input<string>();
+export class PostcodeComponent {
+  postcode = input.required<string>();
   postcodeChanged = output<string>();
 
-  postcodeFormControl: FormControl;
+  postcodeFormControl = new FormControl("TW18 2AB", [this.validatePostcode, Validators.required]);
 
-  ngOnInit() {
-    this.postcodeFormControl = new FormControl<string>( this.postcode(), [this.validatePostcode, Validators.required] );
+  constructor() {
+    effect( () => {
+      this.postcodeFormControl.setValue(this.postcode());
+    })
   }
 
   postcodeEntered() {
 
-    if ( !this.postcodeFormControl.valid ) {
+    if (!this.postcodeFormControl.valid || !this.postcodeFormControl.value) {
       return;
     }
-    const portcode = this.postcodeFormControl.value.trim().toUpperCase();
-    this.postcodeChanged.emit( portcode );
+    const postcode = this.postcodeFormControl.value.trim().toUpperCase();
+    this.postcodeChanged.emit( postcode );
   }
 
-  validatePostcode( input: FormControl ) {
+  validatePostcode( input: FormControl ): { [key: string]: boolean } | null {
     const text = input.value.trim();
 
     if ( text === "" ) {
@@ -41,7 +43,4 @@ export class PostcodeComponent implements OnInit {
 
     return regex.test( text ) ? null : { postcodeInvalid: true };
   }
-
-;
-;
 }

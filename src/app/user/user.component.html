@@ -8,7 +8,7 @@
 
     <div class=error>{{error}}</div>
 
-    <mat-card [class]=cardclass>
+    <mat-card class=mat-card-mobile>
 
       <form (ngSubmit)="save()" novalidate fxLayout="column" fxLayoutAlign="space-around" fxLayoutGap=10px
         [formGroup]="userForm">
@@ -59,7 +59,7 @@
           </button>
         </div>
 
-        @for (ecard of userForm.get('ecards')['controls']; track ecard; let i = $index) {
+        @for (ecard of _ecardsControl()['controls']; track ecard; let i = $index) {
           <div formArrayName="ecards">
             <div fxFlexLayout=row fxLayoutAlign="space-between" fxLayoutGap=20px>
               <div [formGroupName]="i">

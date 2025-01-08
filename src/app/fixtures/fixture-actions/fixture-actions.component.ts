@@ -42,16 +42,16 @@ export class FixtureActionsComponent implements AfterViewInit {
    private loginSnackBar = inject(LoginSnackbarService);
 
 
-   fixture = input<Fixture>();
+   fixture = input.required<Fixture>();
    handset = input(false);
-   homeLocation = input<LatLong>();
+   homeLocation = input.required<LatLong>();
 
    // TODO TEMP comment out map reservation
    mapReservationSupported = true;
-   loggedIn: boolean;
+   loggedIn = false;
    fixtureEntryDetails: FixtureEntryDetails[] = [];
 
-   readonly menu = viewChild(MatMenuTrigger);
+   readonly menu = viewChild.required(MatMenuTrigger);
 
    constructor () {
 
@@ -94,7 +94,7 @@ export class FixtureActionsComponent implements AfterViewInit {
                await this.usd.addFixtureReminder( this.fixture().id );
                this.snackBar.open( 'Event Liked', '', { duration: 2000 } );
             }
-         } catch ( e ) {
+         } catch ( e: any ) {
             this.snackBar.open( 'Error encountered liking event', '', { duration: 2000 } );
             console.log( "FixtureActions: Error liking/unliking event  " + e.message );
          }

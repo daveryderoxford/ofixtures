@@ -7,10 +7,6 @@ import { map, shareReplay } from 'rxjs/operators';
 import { isAfter } from 'date-fns';
 import { FixturesService } from 'app/fixtures/fixtures.service';
 
-export function createLeague( data: Partial<League> ): League {
-  return
-}
-
 @Injectable( {
   providedIn: 'root'
 } )
@@ -18,7 +14,6 @@ export class LeagueService {
   private fs = inject(Firestore);
   private auth = inject(Auth);
   private fixtureService = inject(FixturesService);
-
 
   private readonly _selectedLeague = new BehaviorSubject<League | null>( null );
   readonly selected$ = this._selectedLeague.asObservable();
@@ -47,7 +42,7 @@ export class LeagueService {
 
     // Get document ref for new document
     const d = doc( collection( this.fs, "leagues" ) );
-    league.userId = this.auth.currentUser.uid;
+    league.userId = this.auth.currentUser!.uid;
     league.id = d.id;
 
     await setDoc( d, league );
@@ -71,5 +66,4 @@ export class LeagueService {
       }
     }
   }
-
 }

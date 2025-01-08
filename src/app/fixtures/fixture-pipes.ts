@@ -50,7 +50,7 @@ export class LocationPipe implements PipeTransform {
 export class GoogleDirectionsURLPipe implements PipeTransform {
    transform( fixture: Fixture, homeLocation: LatLong ): string {
 
-      if ( !homeLocation || homeLocation === undefined || !fixture ) {
+      if ( !homeLocation || homeLocation === undefined || !fixture || !fixture.latLong) {
          return "";
       }
 
@@ -66,6 +66,10 @@ export class GoogleDirectionsURLPipe implements PipeTransform {
 })
 export class GoogleURLPipe implements PipeTransform {
    transform( fix: Fixture ): string {
+      if ( !fix || !fix.latLong ) {
+         return "";
+      }
+
       return "https://www.google.com/maps/search/?api=1&query=" +
          latLongStr( fix.latLong ) + "&query_place_id=" + fix.area + "&zoom=11";
    }
@@ -78,6 +82,10 @@ export class GoogleURLPipe implements PipeTransform {
 })
 export class BingURLPipe implements PipeTransform {
    transform( fix: Fixture ): string {
+      if (!fix || !fix.latLong) {
+         return "";
+      }
+
       return 'https://www.bing.com/maps/?cp=' + latLongStr( fix.latLong, '~' ) + "&lvl=15&style=s&sp=" +
          latLongStr( fix.latLong, '_' ) + "_" + fix.area;
    }
@@ -93,6 +101,11 @@ UR is of the form https://streetmap.co.uk/loc/N52.038333,W4.578611
 })
 export class StreetmapURLPipe implements PipeTransform {
    transform( fix: Fixture ): string {
+
+      if (!fix || !fix.latLong) {
+         return "";
+      }
+
       const l = fix.latLong;
       if ( l.lng < 0 ) {
          return `https://streetmap.co.uk/loc/N${l.lat.toString()},W${( -l.lng ).toString()}`;
@@ -116,14 +129,14 @@ export class FixtureDatePipe implements PipeTransform {
 
       const daysFrom = differenceInCalendarDays( d, new Date() );
 
-      if ( daysFrom >= 7 ) {
-         return format( d, "iii d MMM yy" );
-      } else if ( daysFrom <= 7 && daysFrom > 1 ) {
+      if ( daysFrom < 7 && daysFrom > 1 ) {
          return format( d, "iii do" );
       } else if ( daysFrom === 1 ) {
          return "TOMORROW ";
       } else if ( daysFrom === 0 ) {
          return "TODAY ";
+      } else {
+         return format(d, "iii d MMM yy");
       }
    }
 }
@@ -133,8 +146,8 @@ export class FixtureDatePipe implements PipeTransform {
     standalone: true
 })
 export class FixtureDistancePipe implements PipeTransform {
-   transform( distance: number ): string {
-      if ( distance === -1 ) {
+   transform( distance: number | undefined): string {
+      if ( !distance || distance === -1 ) {
          return "";
       } else {
          return distance.toString();
@@ -148,9 +161,11 @@ export class FixtureDistancePipe implements PipeTransform {
     standalone: true
 })
 export class FixtureDistanceColorPipe implements PipeTransform {
-   transform( distance: number ): string {
+   transform( distance: number | undefined ): string {
 
-      if ( distance === -1 ) {
+      if (!distance) {
+         return "";
+      } else if ( distance === -1 ) {
          return "#000000";
       } else if ( distance < 20 ) {
          return "#FF0000";
@@ -161,7 +176,6 @@ export class FixtureDistanceColorPipe implements PipeTransform {
       }
    }
 }
-
 
 @Pipe({
     name: 'liked',

@@ -17,28 +17,29 @@
           Show/Edit additional fixtures
         </mat-panel-title>
       </mat-expansion-panel-header>
-        <mat-list>
+      <mat-list>
+        <mat-divider></mat-divider>
+        @for (fixture of fixtures(); track fixture) {
+        <mat-list-item>
+          <div matListItemTitle>{{fixture.name}}</div>
+          <div matListItemLine>
+            {{fixture.date | date }}  {{fixture.club}}
+          </div>
+          <div matListItemLine> {{fixture.area }}</div>
+          <span matListItemMeta>
+            <button mat-icon-button color="primary" (click)="edit(fixture)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            &nbsp;&nbsp;
+            <button mat-icon-button color="warn" (click)="delete(fixture)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </span>
           <mat-divider></mat-divider>
-          @for (fixture of fixtures(); track fixture) {
-            <mat-list-item>
-              <h3 matLine>{{fixture.name}}</h3>
-              <div mat-line>
-                <span fxFlex=50>{{fixture.date | date }}</span>
-                <span fxFlex=50> {{fixture.club}}</span>
-              </div>
-              <p matLine> {{fixture.area }}</p>
-              <button mat-icon-button color="primary" (click)="edit(fixture)">
-                <mat-icon>edit</mat-icon>
-              </button>
-              &nbsp;&nbsp;
-              <button mat-icon-button color="warn" (click)="delete(fixture)">
-                <mat-icon>delete</mat-icon>
-              </button>
-              <mat-divider></mat-divider>
-            </mat-list-item>
-          }
-        </mat-list>
-      
+        </mat-list-item>
+        }
+      </mat-list>
+
     </mat-expansion-panel>
-  </mat-card-content>
+  </mat-card-content> 
 </mat-card>

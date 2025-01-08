@@ -17,7 +17,6 @@ import { input } from "@angular/core";
 export class LeagueHeaderComponent  {
   ls = inject(LeagueService);
 
+  league = input.required<League>();
 
-  league = input<League>();
-;
 }

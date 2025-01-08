@@ -7,7 +7,7 @@ import { FixtureFilter, GradeFilter } from 'app/model/fixture-filter';
 import { UserDataService } from 'app/user/user-data.service';
 import { differenceInMonths, isFuture, isSaturday, isSunday, isToday, isWeekend } from 'date-fns';
 import { getDownloadURL } from 'rxfire/storage';
-import { BehaviorSubject, Observable, combineLatest, of } from 'rxjs';
+import { BehaviorSubject, Observable, combineLatest, of, firstValueFrom} from 'rxjs';
 import { catchError, map, shareReplay, startWith, switchMap, tap } from 'rxjs/operators';
 
 function anyWordStartsWith( str: string, search: string): boolean {
@@ -88,7 +88,7 @@ export class FixturesService {
    }
 
    allFixtues(): Observable<Fixture[]> {
-      return this._fileContents$;
+      return this._fileContents$!;
    }
 
    getFixtures(): Observable<Fixture[]> {
@@ -112,7 +112,7 @@ export class FixturesService {
       return fixturesObs$;
    }
 
-   setSelectedFixture( fixture: Fixture ) {
+   setSelectedFixture( fixture: Fixture | null ) {
       this._selectedFixture$.next( fixture );
    }
 
@@ -121,7 +121,7 @@ export class FixturesService {
     */
    async setPostcode( postcode: string ): Promise<LatLong | null> {
 
-      const latlng = await this._calcLatLong( postcode ).toPromise();
+      const latlng = await firstValueFrom( this._calcLatLong( postcode ));
 
       if ( latlng ) {
          this._postcode$.next( postcode );
@@ -132,7 +132,6 @@ export class FixturesService {
       }
 
       return ( latlng );
-
    }
 
    setFilter( f: FixtureFilter ) {
@@ -147,7 +146,7 @@ export class FixturesService {
    /** Calculate lat long from postcode, returning null if lat/long could not be calculated */
    private _calcLatLong( postcode: string ): Observable<LatLong | null> {
       const obs = this.http.get<any>( "https://api.postcodes.io/postcodes/" + postcode ).pipe(
-         catchError( this.handleError<LatLong>( 'FixturesService: Postcode location failed', null ) ),
+         catchError( this.handleError<LatLong>( 'FixturesService: Postcode location failed' ) ),
          map( obj => {
             if ( obj === null || obj.result === null || obj.result.latitude === null ) {
                return null;
@@ -230,7 +229,7 @@ function futureFixtures( fixtures: Fixture[] ): Fixture[] {
    } );
 }
 
-function isFixtureShown( fix: Fixture, userdata: UserData, ftr: FixtureFilter, search: string): boolean {
+function isFixtureShown( fix: Fixture, userdata: UserData | null, ftr: FixtureFilter, search: string): boolean {
 
    const fixdate = new Date( fix.date );
 
@@ -240,18 +239,18 @@ function isFixtureShown( fix: Fixture, userdata: UserData, ftr: FixtureFilter, s
 
    let gradeOFilterPassed: boolean;
    if ( ftr.gradesEnabled ) {
-      const gradeFilter = ftr.grades.find( ( grade ) => grade.name === fix.grade );
+      const gradeFilter = ftr.grades.find( ( grade ) => grade.name === fix.grade )!;
 
       gradeOFilterPassed = gradeFilter.enabled &&
          differenceInMonths( fixdate, new Date() ) <= gradeFilter.time &&
-         fix.distance < gradeFilter.distance;
+         (fix.distance !==undefined && fix.distance < gradeFilter.distance);
    } else {
       gradeOFilterPassed = true;
    }
 
    let isLiked = false;
    const likedOnly = ftr.likedOnly;
-   isLiked = userdata?.reminders.includes( fix.id );
+   isLiked = userdata ? userdata.reminders.includes( fix.id ) : true;
 
    const s = search.toLocaleLowerCase();
 
@@ -276,8 +275,8 @@ function saveToLocalStorage( key: LocalStorageKey, data: LocalStorageLocationDat
    if ( data ) {
       try {
          localStorage.setItem( key, JSON.stringify( data ) );
-      } catch ( e ) {
-         console.log( 'FixtureService: Error saving to local storage Key: ' + key + '   ' + e.message );
+      } catch ( e: any ) {
+         console.log( `FixtureService: Error saving to local storage Key: ${key}   ${e.message}` );
       }
    }
 }
@@ -285,9 +284,13 @@ function saveToLocalStorage( key: LocalStorageKey, data: LocalStorageLocationDat
 function getFromLocalStorage( key: LocalStorageKey ): LocalStorageLocationData | GradeFilter[] | null {
    try {
       const str = localStorage.getItem( key );
-      return JSON.parse( str );
-   } catch ( e ) {
-      console.log( 'FixtureService: Error reading from local storage.  Key: ' + key + '   ' + e.message );
+      if ( !str ) {
+         return null;
+      } else {
+         return JSON.parse( str );
+      }
+   } catch ( e: any ) {
+      console.log( `FixtureService: Error reading from local storage.  Key: ${key}` + '   ' + e.message );
       return null;
    }
 }

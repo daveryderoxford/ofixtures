@@ -1,8 +1,14 @@
+
+
+@let ind = index();
+@let img = src()[ind];
+@let conf = config();
+
 <div [appScreenfull]="fullscreen" class="img-container" [style.height]="styleHeight"
-  [style.backgroundColor]="config.containerBackgroundColor" (wheel)="scrollZoom($event)"
+  [style.backgroundColor]="conf.containerBackgroundColor" (wheel)="scrollZoom($event)"
   (dragover)="onDragOver($event)">
-  <img [src]="src[index]" [ngStyle]="style" alt="Image not found..." (dragstart)="onDragStart($event)"
-    (load)="onLoad(src[index])" (error)="imageNotFound(src[index])" (loadstart)="onLoadStart(src[index])" />
+  <img [src]="img" [ngStyle]="style" alt="Image not found..." (dragstart)="onDragStart($event)"
+    (load)="onLoad(img)" (error)="imageNotFound(img)" (loadstart)="onLoadStart(img)" />
   <!-- Div below will be used to hide the 'ghost' image when dragging -->
   <div></div>
   @if (loading) {
@@ -12,102 +18,100 @@
   }
 
   <!-- Button Container -->
-  <div class="btn-container" [class]="config.btnContainerClass">
+  <div class="btn-container" [class]="conf.btnContainerClass">
     <!-- Rotate Counter Clockwise -->
-    @if (config.btnShow.rotateCounterClockwise) {
-      @if (config.btnIcons.rotateCounterClockwise.classes) {
-        <button type="button" [class]="config.btnClass"
-          (click)="rotateCounterClockwise()" >
-          <span [class]="config.btnIcons.rotateCounterClockwise.classes"></span>
+    @if (conf.btnShow.rotateCounterClockwise) {
+      @if (conf.btnIcons.rotateCounterClockwise.classes) {
+        <button type="button" [class]="conf.btnClass" (click)="rotateCounterClockwise()"
+          >
+          <span [class]="conf.btnIcons.rotateCounterClockwise.classes"></span>
         </button>
       }
-      @if (config.btnIcons.rotateCounterClockwise.text) {
-        <a [class]="config.btnClass" (click)="rotateCounterClockwise()">
-          <span [class]="config.btnSubClass">{{config.btnIcons.rotateCounterClockwise.text}}</span>
+      @if (conf.btnIcons.rotateCounterClockwise.text) {
+        <a [class]="conf.btnClass"
+          (click)="rotateCounterClockwise()">
+          <span [class]="conf.btnSubClass">{{conf.btnIcons.rotateCounterClockwise.text}}</span>
         </a>
       }
     }
 
     <!-- Rotate Clockwise -->
-    @if (config.btnShow.rotateClockwise) {
-      @if (config.btnIcons.rotateClockwise.classes) {
-        <button type="button" [class]="config.btnClass"
-          (click)="rotateClockwise()" >
-          <span [class]="config.btnIcons.rotateClockwise.classes"></span>
+    @if (conf.btnShow.rotateClockwise) {
+      @if (conf.btnIcons.rotateClockwise.classes) {
+        <button type="button" [class]="conf.btnClass" (click)="rotateClockwise()"
+          >
+          <span [class]="conf.btnIcons.rotateClockwise.classes"></span>
         </button>
       }
-      @if (config.btnIcons.rotateClockwise.text) {
-        <a [class]="config.btnClass" (click)="rotateClockwise()">
-          <span [class]="config.btnSubClass">{{config.btnIcons.rotateClockwise.text}}</span>
+      @if (conf.btnIcons.rotateClockwise.text) {
+        <a [class]="conf.btnClass" (click)="rotateClockwise()">
+          <span [class]="conf.btnSubClass">{{conf.btnIcons.rotateClockwise.text}}</span>
         </a>
       }
     }
 
     <!-- Zoom Out -->
-    @if (config.btnShow.zoomOut) {
-      @if (config.btnIcons.zoomOut.classes) {
-        <button type="button" [class]="config.btnClass"
-          (click)="zoomOut()" >
-          <span [class]="config.btnIcons.zoomOut.classes"></span>
+    @if (conf.btnShow.zoomOut) {
+      @if (conf.btnIcons.zoomOut.classes) {
+        <button type="button" [class]="conf.btnClass" (click)="zoomOut()">
+          <span [class]="conf.btnIcons.zoomOut.classes"></span>
         </button>
       }
-      @if (config.btnIcons.zoomOut.text) {
-        <a [class]="config.btnClass" (click)="zoomOut()">
-          <span [class]="config.btnSubClass">{{config.btnIcons.zoomOut.text}}</span>
+      @if (conf.btnIcons.zoomOut.text) {
+        <a [class]="conf.btnClass" (click)="zoomOut()">
+          <span [class]="conf.btnSubClass">{{conf.btnIcons.zoomOut.text}}</span>
         </a>
       }
     }
 
     <!-- Zoom In -->
-    @if (config.btnShow.zoomIn) {
-      @if (config.btnIcons.zoomIn.classes) {
-        <button type="button" [class]="config.btnClass"
-          (click)="zoomIn()" >
-          <span [class]="config.btnIcons.zoomIn.classes"></span>
+    @if (conf.btnShow.zoomIn) {
+      @if (conf.btnIcons.zoomIn.classes) {
+        <button type="button" [class]="conf.btnClass" (click)="zoomIn()">
+          <span [class]="conf.btnIcons.zoomIn.classes"></span>
         </button>
       }
-      @if (config.btnIcons.zoomIn.text) {
-        <a [class]="config.btnClass" (click)="zoomIn()">
-          <span [class]="config.btnSubClass">{{config.btnIcons.zoomIn.text}}</span>
+      @if (conf.btnIcons.zoomIn.text) {
+        <a [class]="conf.btnClass" (click)="zoomIn()">
+          <span [class]="conf.btnSubClass">{{conf.btnIcons.zoomIn.text}}</span>
         </a>
       }
     }
 
     <!-- Fullscreen -->
-    @if (config.allowFullscreen) {
-      @if (config.btnIcons.fullscreen.classes) {
-        <button type="button" [class]="config.btnClass"
-          (click)="toggleFullscreen()" >
-          <span [class]="config.btnIcons.fullscreen.classes"></span>
+    @if (conf.allowFullscreen) {
+      @if (conf.btnIcons.fullscreen.classes) {
+        <button type="button" [class]="conf.btnClass" (click)="toggleFullscreen()"
+          >
+          <span [class]="conf.btnIcons.fullscreen.classes"></span>
         </button>
       }
-      @if (config.btnIcons.fullscreen.text) {
-        <a [class]="config.btnClass" (click)="toggleFullscreen()">
-          <span [class]="config.btnSubClass">{{config.btnIcons.fullscreen.text}}</span>
+      @if (conf.btnIcons.fullscreen.text) {
+        <a [class]="conf.btnClass" (click)="toggleFullscreen()">
+          <span [class]="conf.btnSubClass">{{conf.btnIcons.fullscreen.text}}</span>
         </a>
       }
     }
 
     <!-- Reset -->
-    @if (config.btnShow.reset) {
-      @if (config.btnIcons.reset.classes) {
-        <button type="button" [class]="config.btnClass"
-          (click)="reset()" >
-          <span [class]="config.btnIcons.reset.classes"></span>
+    @if (conf.btnShow.reset) {
+      @if (conf.btnIcons.reset.classes) {
+        <button type="button" [class]="conf.btnClass" (click)="reset()">
+          <span [class]="conf.btnIcons.reset.classes"></span>
         </button>
       }
-      @if (config.btnIcons.reset.text) {
-        <a [class]="config.btnClass" (click)="reset()">
-          <span [class]="config.btnSubClass">{{config.btnIcons.reset.text}}</span>
+      @if (conf.btnIcons.reset.text) {
+        <a [class]="conf.btnClass" (click)="reset()">
+          <span [class]="conf.btnSubClass">{{conf.btnIcons.reset.text}}</span>
         </a>
       }
     }
 
     <!-- Custom Buttons -->
-    @for (cBtn of config.customBtns; track cBtn) {
+    @for (cBtn of conf.customBtns; track cBtn) {
       @if (cBtn.icon.classes) {
-        <button type="button" [class]="config.btnClass"
-          (click)="fireCustomEvent(cBtn.name, index)">
+        <button type="button" [class]="conf.btnClass"
+          (click)="fireCustomEvent(cBtn.name, ind)">
           @if (cBtn.icon.classes) {
             <span [class]="cBtn.icon.classes"></span>
           }
@@ -115,8 +119,8 @@
       }
       @if (cBtn.icon.text) {
         @if (cBtn.icon.text) {
-          <a [class]="config.btnClass" (click)="fireCustomEvent(cBtn.name, index)">
-            <span [class]="config.btnSubClass">{{cBtn.icon.text}}</span>
+          <a [class]="conf.btnClass" (click)="fireCustomEvent(cBtn.name, ind)">
+            <span [class]="conf.btnSubClass">{{cBtn.icon.text}}</span>
           </a>
         }
       }
@@ -126,29 +130,30 @@
   <!-- Prev / Next Nav Container -->
   @if (src.length > 1) {
     <div class="nav-button-container">
-      @if (config.btnShow.next) {
-        <button type="button" [class]="config.btnClass" (click)="prevImage($event)" [disabled]="index === 0">
-          @if (config.btnIcons.prev.classes) {
-            <span [class]="config.btnIcons.prev.classes"></span>
+      @if (conf.btnShow.next) {
+        <button type="button" [class]="conf.btnClass" (click)="prevImage($event)"
+          [disabled]="ind === 0">
+          @if (conf.btnIcons.prev.classes) {
+            <span [class]="conf.btnIcons.prev.classes"></span>
           }
         </button>
       }
-      @if (config.btnIcons.prev.text) {
-        <a [class]="config.btnClass" (click)="prevImage($event)">
-          <span [class]="config.btnSubClass">{{config.btnIcons.prev.text}}</span>
+      @if (conf.btnIcons.prev.text) {
+        <a [class]="conf.btnClass" (click)="prevImage($event)">
+          <span [class]="conf.btnSubClass">{{conf.btnIcons.prev.text}}</span>
         </a>
       }
-      @if (config.btnShow.next) {
-        <button type="button" [class]="config.btnClass" (click)="nextImage($event)"
-          [disabled]="index === src.length - 1">
-          @if (config.btnIcons.next.classes) {
-            <span [class]="config.btnIcons.next.classes"></span>
+      @if (conf.btnShow.next) {
+        <button type="button" [class]="conf.btnClass" (click)="nextImage($event)"
+          [disabled]="ind === src.length - 1">
+          @if (conf.btnIcons.next.classes) {
+            <span [class]="conf.btnIcons.next.classes"></span>
           }
         </button>
       }
-      @if (config.btnIcons.next.text) {
-        <a [class]="config.btnClass" (click)="nextImage($event)">
-          <span [class]="config.btnSubClass">{{config.btnIcons.next.text}}</span>
+      @if (conf.btnIcons.next.text) {
+        <a [class]="conf.btnClass" (click)="nextImage($event)">
+          <span [class]="conf.btnSubClass">{{conf.btnIcons.next.text}}</span>
         </a>
       }
     </div>

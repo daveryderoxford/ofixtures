@@ -85,7 +85,7 @@ export class EntryService {
    }
 
    /** Gets an observable for an existing entry */
-   getEntryDetails( id: string ): Observable<FixtureEntryDetails> {
+   getEntryDetails( id: string ): Observable<FixtureEntryDetails | undefined> {
       const d = doc(this.fs, "entry/" + id) as DocumentReference<FixtureEntryDetails>;
       return docData( d )
    }
@@ -128,8 +128,8 @@ export class EntryService {
       return;
    }
 
-   getEntry$( fixtureId: string, id: string ): Observable<Entry> {
-      return docData( this._entryDoc( fixtureId , id) );
+   getEntry$( fixtureId: string, id: string ): Observable<Entry | undefined> {
+      return docData( this._entryDoc( fixtureId , id) )
    }
 
    /** Update entry details */
@@ -151,6 +151,9 @@ export class EntryService {
 
       return forkJoin( [details$, entries$] ).pipe(
          map( ( [d, e] ) => {
+            if ( !d || !e ) {
+               return { details: undefined, entries: [] };
+            }
             return { details: d, entries: e };
          } )
       );

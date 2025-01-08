@@ -36,11 +36,11 @@ export class AppComponent implements OnInit {
       private breakpointObserver = inject(BreakpointObserver);
       private ls = inject(LeagueService);
       private dialog = inject(MatDialog);
-   readonly sidenav = viewChild(MatSidenav);
+   readonly sidenav = viewChild.required(MatSidenav);
 
    loading = false;
    authorised = false;
-   user: User;
+   user: User | null = null;
    handset = false;
    firstWarning = true;
 
@@ -63,7 +63,7 @@ export class AppComponent implements OnInit {
 
       authState(this.afAuth)
          .pipe(untilDestroyed(this))
-         .subscribe((user: User) => {
+         .subscribe(user => {
             this.authorised = (user !== null);
             this.user = user;
          });
@@ -193,7 +193,7 @@ function saveToLocalStorage(key: LocalStorageKey, data: boolean) {
    if (data) {
       try {
          localStorage.setItem(key, data.toString());
-      } catch (e) {
+      } catch (e: any) {
          console.log('App component: Error saving to local storage Key: ' + key + '   ' + e.message);
       }
    }
@@ -203,7 +203,7 @@ function existsInLocalStorage(key: LocalStorageKey): boolean {
    try {
       const str = localStorage.getItem(key);
       return str !== null;
-   } catch (e) {
+   } catch (e: any) {
       console.log('App component: Error reading from local storage.  Key: ' + key + '   ' + e.message);
       return false;
    }

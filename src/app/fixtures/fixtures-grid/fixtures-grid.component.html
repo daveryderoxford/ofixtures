@@ -1,4 +1,4 @@
-<cdk-virtual-scroll-viewport fxFill [itemSize]="itemSize">
+<cdk-virtual-scroll-viewport fxFill [itemSize]="itemsize()">
 
   <!-- Large Screen -->
   @if (!handset()) {
@@ -48,7 +48,7 @@
           <td class="club">
             @if (fixture.clubURL) {
               <a mat-button color=link href={{fixture.clubURL}} target="_blank">
-                {{fixture.club}}<app-external-link-icon></app-external-link-icon>
+                {{fixture.club}}<app-external-link-icon/>
               </a>
             } @else {
               {{fixture.club}}
@@ -63,7 +63,7 @@
           </td>
           <td class="maps">
             @if (fixture.latLong && fixture.locSource !== 'club') {
-              <a mat-button color=link [matMenuTriggerFor]="mapMenu">Maps
+              <a mat-button iconPositionEnd color=link [matMenuTriggerFor]="mapMenu">Maps
                 <mat-icon class=mat-link>arrow_drop_down</mat-icon>
               </a>
               <mat-menu #mapMenu="matMenu">
@@ -76,11 +76,11 @@
           </td>
           <td class="omaps">
             @if (fixture.rg && fixture.rg.maps.length > 0;) {
-              <a mat-button color=link (click)="mapView(fixture.rg)">O Maps</a>
+              <a mat-button color="link" (click)="mapView(fixture.rg)">O Maps</a>
             }
           </td>
           <td class="admin">
-            <app-fixture-actions [fixture]="fixture" [handset]="handset()"></app-fixture-actions>
+            <app-fixture-actions [fixture]="fixture" [handset]="handset()" [homeLocation]="homeLocation()"></app-fixture-actions>
           </td>
         </tr>
       </tbody>
@@ -105,7 +105,7 @@
         <p matListItemLine>
           {{fixture.name | ellipsis:35}}
         </p>
-        <p mat-line>
+        <p matListItemLine>
           {{fixture.area | ellipsis: 30}}
           <span fxFlex></span>
           @if (fixture.entryURL) {
@@ -116,7 +116,7 @@
           }
           <mat-icon [svgIcon]="fixture.grade | gradeIconName" class="handset-icon-size"></mat-icon>
         </p>
-        <app-fixture-actions #actions [handset]="handset()" [fixture]="fixture"></app-fixture-actions>
+        <app-fixture-actions #actions [handset]="handset()" [fixture]="fixture" [homeLocation]="homeLocation()"></app-fixture-actions>
         <mat-divider></mat-divider>
       </mat-list-item>
     </mat-list>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Fixture } from 'app/model';
 import { LatLong } from 'app/model/fixture';
 import { GoogleURLPipe, GoogleDirectionsURLPipe, BingURLPipe, StreetmapURLPipe } from '../fixture-pipes';
@@ -22,7 +22,7 @@ import { input } from "@angular/core";
 
         <a  mat-menu-item href="{{fixture() | bingURL}}" target="_blank">
           OS map
-          <app-external-link-icon></app-external-link-icon>
+          <app-external-link-icon/>
         </a>
         }
 
@@ -40,7 +40,7 @@ import { input } from "@angular/core";
       @if (fixture().what3words) {
       <a mat-menu-item [href]="'https://what3words.com/' + fixture().what3words" target="_blank">
         What 3 Words
-        <app-external-link-icon></app-external-link-icon>
+        <app-external-link-icon/>
       </a>
       }
   `,
@@ -48,12 +48,10 @@ import { input } from "@angular/core";
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [MatMenuModule, ExternalLinkIconComponent, GoogleURLPipe, GoogleDirectionsURLPipe, BingURLPipe, StreetmapURLPipe]
 })
-export class MapMenuItemsComponent implements OnInit {
+export class MapMenuItemsComponent {
 
-  fixture = input<Fixture>();
-  homeLocation = input<LatLong>();
-  handset = input<boolean>();
+  fixture = input.required<Fixture>();
+  homeLocation = input.required<LatLong>();
+  handset = input.required<boolean>();
 
-  ngOnInit(): void {
-  }
 }

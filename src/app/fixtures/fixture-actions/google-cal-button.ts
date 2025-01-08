@@ -10,16 +10,12 @@ import { input } from "@angular/core";
 })
 export class AddToGoogleCalendarButtonComponent  {
 
-   date = input<Date>(null);
-   title = input("");
+   date = input.required<Date>();
+   title = input.required();
    details = input("");
    location = input("");
 
    addToCalendar() {
-      if ( !this.date() || this.title() === "" ) {
-         throw ( new Error( "Date and Title are required" ) );
-      }
-
       // for all day event specifty date and dates+1 day
       // format for dates is 20201231/20210101
       const startDate = new Date(this.date());
@@ -30,9 +26,4 @@ export class AddToGoogleCalendarButtonComponent  {
       console.log( "Added Google calander apointmant.  URL:  " + href);
       window.open( href, '_blank'); 
    }
-
-;
-;
-;
-;
 }

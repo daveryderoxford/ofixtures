@@ -5,10 +5,9 @@ import { ControlValueAccessor } from '@angular/forms';
     template: '',
     standalone: false
 })
-export abstract class AbstractControlValueAccessor<T>
-   implements ControlValueAccessor {
+export abstract class AbstractControlValueAccessor<T>implements ControlValueAccessor {
       public injector = inject(Injector);
-   value: string;
+   value: string = '';
 
    protected cdRef: ChangeDetectorRef;
 

@@ -14,18 +14,14 @@ import { input } from "@angular/core";
 
 export class EnterButtonComponent {
 
-  buttonText: string;
-
-
   url = input.required<string>();
-  status = input.required<EntryStatus>();
+  status = input<EntryStatus>();
 
   selectColor(): string {
-    if (this.status() === 'Open') {
+    if (this.status && this.status() === 'Open') {
       return 'enter'
     } else {
       return 'other'
     }
   }
-
 }

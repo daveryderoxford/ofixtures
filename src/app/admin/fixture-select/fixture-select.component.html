@@ -20,11 +20,11 @@
       <cdk-virtual-scroll-viewport class="viewport" itemSize="72">
         <mat-list-option *cdkVirtualFor="let fixture of fixtures" [value]="fixture"
           [selected]="selection.isSelected(fixture)" checkboxPosition="before">
-          <div mat-line>
+          <div matListItemLine>
             <span fxFlex=50%>{{fixture.date | date:'mediumDate' }}</span>
             <span fxFlex=30%> {{fixture.club}}</span>
           </div>
-          <p mat-line>
+          <p matListItemLine>
             {{fixture.name | ellipsis: 30}}
           </p>
           <mat-divider></mat-divider>

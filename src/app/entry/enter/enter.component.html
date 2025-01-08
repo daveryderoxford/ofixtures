@@ -1,9 +1,7 @@
 <app-toolbar>Event entry</app-toolbar>
 
-<!-- Put form in middle of page -->
-<div fxLayout="row" fxLayoutAlign="center space-around">
+<app-form-container>
 
-  <mat-card>
     @if (form) {
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <mat-card-content>
@@ -48,5 +46,4 @@
       </form>
     }
 
-  </mat-card>
-</div>
+</app-form-container>

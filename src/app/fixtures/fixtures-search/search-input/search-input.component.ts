@@ -29,7 +29,7 @@ import { AbstractControlValueAccessor } from './abstract-value-accessor';
 })
 export class SearchInputComponent extends AbstractControlValueAccessor<string> implements OnInit {
 
-  readonly inputElement = viewChild<ElementRef>('input');
+  readonly inputElement = viewChild.required<ElementRef>('input');
 
   placeholder = input('');
   alwaysOpen = input<boolean>(false);

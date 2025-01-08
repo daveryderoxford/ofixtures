@@ -16,8 +16,7 @@ export class FixtureAddComponent {
   private fs = inject(AdditionalFixtureService);
   private router = inject(Router);
 
-
-  readonly fixtureForm = viewChild(FixtureFormComponent);
+  readonly fixtureForm = viewChild.required(FixtureFormComponent);
 
   async submitted( fixture: Partial<Fixture> ) {
     await this.fs.add( fixture );
@@ -27,6 +26,5 @@ export class FixtureAddComponent {
   canDeactivate(): boolean {
     return this.fixtureForm().canDeactivate();
   }
-
 }
 

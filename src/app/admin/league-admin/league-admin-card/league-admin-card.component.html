@@ -8,14 +8,13 @@
     </mat-card-subtitle>
   </mat-card-header>
 
-
-  <mat-card-content>
-    <p>
-      <a mat-flat-button color=primary [routerLink]="['/admin/league/add']">
-        <mat-icon>add</mat-icon> Add
-      </a>
-    </p>
-    @if (leagues$ | async; as leagues) {
+    <mat-card-content>
+      <p>
+        <a mat-flat-button color=primary [routerLink]="['/admin/league/add']">
+          <mat-icon>add</mat-icon> Add
+        </a>
+      </p>
+      @if (leagues$ | async; as leagues) {
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -26,10 +25,12 @@
           <mat-list>
             <mat-divider></mat-divider>
             @for (league of leagues; track league) {
-              <mat-list-item>
-                <h3 matLine>{{league.name}}</h3>
-                <p matLine>{{league.fixtureIds.length}} fixtures</p>
-                <p matLine> {{league.startDate | date:'mediumDate'}} to {{league.endDate | date:'mediumDate'}} </p>
+            <mat-list-item>
+              <div matListItemTitle>{{league.name}}</div>
+              <div matListItemLine>{{league.fixtureIds.length}} fixtures</div>
+              <div matListItemLine> {{league.startDate | date:'mediumDate'}} to {{league.endDate | date:'mediumDate'}}
+              </div>
+              <span matListItemMeta>
                 <button mat-icon-button color="primary" (click)="edit(league)">
                   <mat-icon>edit</mat-icon>
                 </button>
@@ -37,12 +38,13 @@
                 <button mat-icon-button color="warn" (click)="delete(league)">
                   <mat-icon>delete</mat-icon>
                 </button>
-                <mat-divider></mat-divider>
-              </mat-list-item>
+              </span>
+              <mat-divider></mat-divider>
+            </mat-list-item>
             }
           </mat-list>
         </mat-expansion-panel>
       </mat-accordion>
-    }
-  </mat-card-content>
+      }
+    </mat-card-content>
 </mat-card>

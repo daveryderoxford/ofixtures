@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { EntryService } from 'app/entry/entry.service';
 import { Entry, EntryCourse, FixtureDetailsAndEntries } from 'app/model/entry';
-import { map, switchMap } from 'rxjs/operators';
+import { filter, map, switchMap } from 'rxjs/operators';
 import { SpinnerComponent } from '../../shared/components/spinner/spinner.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
@@ -34,21 +34,20 @@ export class EntryListComponent implements OnInit {
    private route = inject(ActivatedRoute);
    private es = inject(EntryService);
 
-
-   fixture: FixtureDetailsAndEntries;
-   entries: Entry[];
+   fixture!: FixtureDetailsAndEntries;
+   entries!: Entry[];
 
    displayedColumns = ["id", "name", "club", "class", ];
 
    ngOnInit() {
 
       this.route.paramMap.pipe(
-         map( params => params.get( 'id' ) ),
+         map( params => params.get( 'id' )! ),
          switchMap( fixtureId => this.es.getEntries$( fixtureId ) ),
+         filter(fixture => fixture.details !== undefined),
          untilDestroyed(this)
       ).subscribe( entry => {
          this.fixture = entry;
-         this.applyFilter( "" );
          this.entries = this.fixture.entries;
       } );
    }
@@ -63,7 +62,7 @@ export class EntryListComponent implements OnInit {
       this.entries = this.fixture.entries.filter( ( entry ) => {
          return entry.firstname.toLowerCase().startsWith( str ) ||
             entry.surname.toLowerCase().startsWith( str ) ||
-            entry.club.toLowerCase().startsWith( str );
+            entry.club?.toLowerCase().startsWith( str );
       } );
    }
 

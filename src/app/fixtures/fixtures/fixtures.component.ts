@@ -34,6 +34,7 @@ import { PostcodeComponent } from '../postcode/postcode.component';
 })
 
 export class FixturesComponent implements OnInit {
+
       private auth = inject(Auth);
       public fs = inject(FixturesService);
       public ls = inject(LeagueService);
@@ -42,18 +43,19 @@ export class FixturesComponent implements OnInit {
       public dialog = inject(MatDialog);
       public snackbar = inject(MatSnackBar);
       public route = inject(ActivatedRoute);
-   homeLocation = toSignal(this.fs.homeLocation$);
-   postcode = toSignal(this.fs.postcode$);
-   filter = toSignal(this.fs.filter$);
 
-   selectedFixture = toSignal(this.fs.selectedFixture$);
+   homeLocation = toSignal(this.fs.homeLocation$, { requireSync: true });
+   postcode = toSignal(this.fs.postcode$, { requireSync: true });
+   filter = toSignal(this.fs.filter$, { requireSync: true });
 
-   entries = toSignal(this.es.fixtureEntryDetails$);
-   userEntries = toSignal(this.es.userEntries$);
+   selectedFixture = toSignal(this.fs.selectedFixture$, {initialValue: null});
 
-   selectedLeague = toSignal(this.ls.selected$);
-   allFixtures = toSignal(this.fs.allFixtues());
-   filteredFixtures = toSignal(this.fs.getFixtures());
+   entries = toSignal(this.es.fixtureEntryDetails$, { initialValue: []});
+   userEntries = toSignal(this.es.userEntries$, { initialValue: [] })
+
+   selectedLeague = toSignal(this.ls.selected$, { requireSync: true });
+   allFixtures = toSignal(this.fs.allFixtues(), { initialValue: [] });
+   filteredFixtures = toSignal(this.fs.getFixtures(), { initialValue: [] });
 
    fixtures = computed(() => {
       const league = this.selectedLeague();
@@ -70,9 +72,9 @@ export class FixturesComponent implements OnInit {
 
    handset = false;
    mapview = false;
-   loggedIn: boolean;
+   loggedIn: boolean = false;
 
-   currentRow: number;
+   currentRow: number = 0;
 
    ngOnInit() {
 
@@ -87,7 +89,7 @@ export class FixturesComponent implements OnInit {
          this.mapview = params.has('mapview');
       });
 
-      authState(this.auth).subscribe((user: User) => {
+      authState(this.auth).subscribe((user: User | null) => {
          this.loggedIn = (user !== null);
       });
 

@@ -2,17 +2,17 @@
  *  Takes fixture id as a route parameter.
  *  Uses EntryService to create FixtureEntryDetails for the fixture of they do not already exist
 */
-import { DatePipe, NgFor, NgIf, NgStyle } from '@angular/common';
+import { DatePipe, NgStyle } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
@@ -59,26 +59,26 @@ export class MapRegistrationAdminComponent implements OnInit {
       private dialog = inject(MatDialog);
       private snackbar = inject(MatSnackBar);
       private es = inject(EntryService);
-   form: UntypedFormGroup;
+   form!: UntypedFormGroup;
    error = '';
    coursesChanged = false;
    readonly minDate = new Date();
 
    // Edit date
-   courses: EntryCourse[];
-   id: string;
+   courses!: EntryCourse[];
+   id!: string;
    new = false;
-   fixture: Fixture = null;
+   fixture?: Fixture;
    busy = false;
 
    ngOnInit() {
 
       this.route.paramMap.subscribe((params: ParamMap) => {
-         this.id = params.get('id');
-         this.new = params.has('new');
+         this.id = params.get('id')!;
+         this.new = params.has('new')!;
 
          if (params.has('fixture')) {
-            this.fixture = JSON.parse(params.get('fixture'));
+            this.fixture = JSON.parse(params.get('fixture')!);
          }
 
          if (this.new) {
@@ -87,14 +87,16 @@ export class MapRegistrationAdminComponent implements OnInit {
          } else {
             this.es.getEntryDetails(this.id).pipe(take(1))
                .subscribe(details => {
-                  this._createForm(details);
-                  this.courses = JSON.parse(JSON.stringify(details.courses));
+                  if (details) {
+                     this._createForm(details);
+                     this.courses = JSON.parse(JSON.stringify(details.courses));
+                  }
                });
          }
       });
    }
 
-   private _createForm(data) {
+   private _createForm(data: any) {
       this.form = this.formBuilder.group({
          closingDate: [data.closingDate, [Validators.required]],
       });
@@ -185,13 +187,13 @@ export class MapRegistrationAdminComponent implements OnInit {
 
       // TODO Make the control return an ISO string
       // Temp workaround
-      const closingDate = new Date(this.form.get('closingDate').value).toISOString();
+      const closingDate = new Date(this.form.get('closingDate')!.value).toISOString();
 
       this.busy = true;
 
       try {
 
-         if (this.new) {
+         if (this.new && this.fixture) {
             // Create new instance and save it
             const details = this.es.createNewEntryDetails(this.fixture.id, this.fixture);
             details.closingDate = closingDate;

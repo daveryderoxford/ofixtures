@@ -7,22 +7,20 @@ import { MatInputModule } from '@angular/material/input';
 import { FixturesService } from 'app/fixtures/fixtures.service';
 
 @Component({
-    selector: 'app-postcode-dialog',
-    templateUrl: './postcode-dialog.component.html',
-    imports: [MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule]
+  selector: 'app-postcode-dialog',
+  templateUrl: './postcode-dialog.component.html',
+  imports: [MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule]
 })
 export class PostcodeDialogComponent {
   private fs = inject(FixturesService);
-  postcodeFormControl: FormControl;
-  postcode: string;
 
-  ngOnInit() {
-    this.postcodeFormControl = new FormControl<string>("", [this.validatePostcode, Validators.required]);
-  }
+  postcode: string = "";
+
+  postcodeFormControl = new FormControl("", [this.validatePostcode, Validators.required]);
 
   postcodeEntered() {
 
-    if (!this.postcodeFormControl.valid) {
+    if (!this.postcodeFormControl.valid || !this.postcodeFormControl.value) {
       return;
     }
     const portcode = this.postcodeFormControl.value.trim().toUpperCase();
@@ -31,7 +29,7 @@ export class PostcodeDialogComponent {
     }
   }
 
-  validatePostcode(input: FormControl) {
+  validatePostcode(input: FormControl): { [key: string]: boolean; } | null {
     const text = input.value.trim();
 
     if (text === "") {

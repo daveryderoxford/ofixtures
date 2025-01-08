@@ -33,20 +33,21 @@ export class MapviewerComponent implements OnInit {
             zoomIn: false,
             zoomOut: false,
             rotateClockwise: false,
-            rotateCounterClockwise: false
+            rotateCounterClockwise: false,
+            reset: false
         }
     };
 
-    rgData: RGData = null;
+    rgData!: RGData;
     images: string[] = [];
-    handset: boolean;
+    handset!: boolean;
 
     ngOnInit() {
 
         this.breakpointObserver.observe( ['(min-width: 500px) and (min-height: 400px)'] ).subscribe( state => this.handset = !state.matches );
 
         this.route.queryParamMap.subscribe( ( params: ParamMap ) => {
-            this.rgData = JSON.parse( params.get( 'rgdata' ) );
+            this.rgData = JSON.parse( params.get( 'rgdata' )! );
             this.images = this.rgData.maps.map( m => this.rgData.baseURL + "kartat/" + m.mapfile );
         } );
     }

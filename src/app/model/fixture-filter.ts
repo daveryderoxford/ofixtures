@@ -1,3 +1,5 @@
+export type FixtureTimeFilterKey = 'sat' | 'sun' | 'weekday';
+
 export interface FixtureTimeFilter {
    sat: boolean;
    sun: boolean;

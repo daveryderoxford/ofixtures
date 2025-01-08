@@ -23,7 +23,6 @@ import { MatDividerModule } from '@angular/material/divider';
 export class ConfirmDialogComponent {
     dialogRef = inject<MatDialogRef<ConfirmDialogComponent>>(MatDialogRef);
 
-
-    public title: string;
-    public message: string;
+    public title = '';
+    public message = '';
 }

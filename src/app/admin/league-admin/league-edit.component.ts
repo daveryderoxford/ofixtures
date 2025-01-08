@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { LeagueService } from 'app/league/league-service';
 import { League } from 'app/model/league';
 import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map, startWith, switchMap } from 'rxjs/operators';
 import { LeagueFormComponent } from './league-form/league-form.component';
 import { AsyncPipe } from '@angular/common';
 
@@ -19,21 +19,21 @@ export class LeagueEditComponent implements OnInit {
   private ls = inject(LeagueService);
   private route = inject(ActivatedRoute);
 
+  league$!: Observable<League | undefined>;
+  id!: string;
 
-  league$: Observable<League>;
-  id: string;
-
-  readonly LeagueForm = viewChild(LeagueFormComponent);
+  readonly LeagueForm = viewChild.required(LeagueFormComponent);
 
   ngOnInit(): void {
     this.league$ = this.route.paramMap.pipe(
       switchMap( params => {
-        this.id = params.get( 'id' );
+        this.id = params.get( 'id' )!;
         return this.ls.leagues$.pipe(
-          map( leagues => leagues.find( l => l.id === this.id))
+          map( leagues => leagues.find( l => l.id === this.id)),
+          map( league => league ? league : undefined)
         );
       } )
-    );
+    )
   }
 
   async submitted(data: Partial<League>) {
@@ -43,5 +43,4 @@ export class LeagueEditComponent implements OnInit {
   canDeactivate(): boolean {
     return this.LeagueForm().canDeactivate();
   }
-
 }

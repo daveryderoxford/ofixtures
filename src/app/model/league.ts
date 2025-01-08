@@ -7,12 +7,12 @@ export type LeagueLevel = typeof leagueLevels[number];
 
 export interface League {
    id: string;
-   userId; string;
+   userId: string;
    name: string;
    url: string;
    type: LeagueType;
    level: LeagueLevel;
    fixtureIds: string[];
-   startDate: string | null;
-   endDate: string | null;
+   startDate: string;
+   endDate: string;
 }

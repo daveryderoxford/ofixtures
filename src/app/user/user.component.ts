@@ -1,25 +1,25 @@
 
+import { NgStyle } from "@angular/common";
 import { Component, OnInit, inject } from "@angular/core";
 import { Auth, User, authState } from "@angular/fire/auth";
-import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
+import { FormArray, FormBuilder, ReactiveFormsModule, UntypedFormArray, UntypedFormGroup, Validators } from "@angular/forms";
+import { MatButtonModule } from "@angular/material/button";
+import { MatCardModule } from "@angular/material/card";
+import { MatOptionModule } from "@angular/material/core";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatIconModule } from "@angular/material/icon";
+import { MatInputModule } from "@angular/material/input";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { MatSelectModule } from "@angular/material/select";
 import { Router } from "@angular/router";
+import { ExtendedModule } from "@ngbracket/ngx-layout/extended";
+import { FlexModule } from "@ngbracket/ngx-layout/flex";
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FixturesService } from "app/fixtures/fixtures.service";
-import { controlCardTypes, UserData } from "app/model";
+import { UserData, controlCardTypes } from "app/model";
 import { Subscription } from 'rxjs';
-import { UserDataService } from "./user-data.service";
-import { MatOptionModule } from "@angular/material/core";
-import { MatSelectModule } from "@angular/material/select";
-import { ExtendedModule } from "@ngbracket/ngx-layout/extended";
-import { MatIconModule } from "@angular/material/icon";
-import { MatButtonModule } from "@angular/material/button";
-import { MatInputModule } from "@angular/material/input";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatProgressBarModule } from "@angular/material/progress-bar";
-import { NgStyle } from "@angular/common";
-import { MatCardModule } from "@angular/material/card";
-import { FlexModule } from "@ngbracket/ngx-layout/flex";
 import { ToolbarComponent } from "../shared/components/toolbar.component";
+import { UserDataService } from "./user-data.service";
 
 @UntilDestroy()
 @Component({
@@ -29,35 +29,32 @@ import { ToolbarComponent } from "../shared/components/toolbar.component";
     imports: [ToolbarComponent, FlexModule, MatCardModule, ReactiveFormsModule, MatProgressBarModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, NgStyle, ExtendedModule, MatSelectModule, MatOptionModule]
 })
 export class UserComponent implements OnInit {
-  private formBuilder = inject(UntypedFormBuilder);
+  private formBuilder = inject(FormBuilder);
   private afAuth = inject(Auth);
   private router = inject(Router);
   private usd = inject(UserDataService);
   private fs = inject(FixturesService);
 
-  originalUserData: UserData = null;
-  userForm: UntypedFormGroup;
+  originalUserData: UserData | null = null;
   ecardTypes = controlCardTypes;
 
   error = "";
-  subscription: Subscription;
+  subscription!: Subscription;
 
   showProgressBar = false;
   busy = false;
 
-  cardclass: "mat-card-mobile";
+   protected userForm = this.formBuilder.group({
+        firstname: [""],
+        surname: [""],
+        club: ["", [Validators.minLength(2), Validators.maxLength(10)]],
+        postcode: [""],
+        nationalId: [""],
+        yearOfBirth: [""],
+        ecards: this.formBuilder.array([]) as UntypedFormArray
+      });
 
-  constructor () {
-    this.userForm = this.formBuilder.group( {
-      firstname: [""],
-      surname: [""],
-      club: ["", [Validators.minLength( 2 ), Validators.maxLength( 10 )]],
-      postcode: [""],
-      nationalId: [""],
-      yearOfBirth: [""],
-      ecards: this.formBuilder.array( [] ) as UntypedFormArray
-    } );
-  }
+  constructor () {}
 
   ngOnInit() {
     authState(this.afAuth)
@@ -69,17 +66,17 @@ export class UserComponent implements OnInit {
       .subscribe( userData => this.userChanged( userData ) );
   }
 
-  private _ecardsControl(): UntypedFormArray {
-    return this.userForm.controls['ecards'] as UntypedFormArray;
+  protected _ecardsControl(): FormArray {
+    return this.userForm.controls['ecards'] as FormArray;
   }
 
-  loginChanged( loggedIn: User ) {
+  loginChanged( loggedIn: User | null ) {
     if ( !loggedIn ) {
       this.router.navigate( ["/"] );
     }
   }
 
-  private userChanged( userData: UserData ) {
+  private userChanged( userData: UserData | null) {
     this.originalUserData = userData;
     if ( userData ) {
 
@@ -91,7 +88,7 @@ export class UserComponent implements OnInit {
         firstname: userData.firstname,
         surname: userData.surname,
         club: userData.club,
-        yearOfBirth: userData.yearOfBirth,
+        yearOfBirth: userData.yearOfBirth.toString(),
         postcode: userData.postcode,
         nationalId: userData.nationalId,
         ecards: [],
@@ -126,20 +123,14 @@ export class UserComponent implements OnInit {
 
   }
 
-  ecardControls() {
-    return this.userForm.get( 'ecards' )['controls'];
-  }
-
   async save() {
-
-    const updatedUserData: UserData = null;
-
+    
     this.busy = true;
     try {
       // nationality id hard coded to GBR to simplify UI for the moment ng serve
-      await this.usd.updateDetails( { ...this.userForm.value, nationality: 'GBR' } );
+      await this.usd.updateDetails( { ...this.userForm.getRawValue, nationality: 'GBR' } );
       console.log( 'UserComponnet: User results saved' );
-      this.fs.setPostcode( this.userForm.value.postcode );
+      this.fs.setPostcode( this.userForm.value.postcode! );  
     } finally {
       this.busy = false;
       this.router.navigate( ["/"] );

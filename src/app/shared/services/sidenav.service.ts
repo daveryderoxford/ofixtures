@@ -6,7 +6,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 } )
 export class SidenavService {
 
-   private sidenav: MatSidenav;
+   private sidenav!: MatSidenav;
 
    constructor () { }
 

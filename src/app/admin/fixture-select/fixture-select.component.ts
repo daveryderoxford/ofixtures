@@ -53,21 +53,20 @@ export class FixtureSelectComponent implements OnInit {
     selectedIds: string[];
 }>(MAT_DIALOG_DATA);
 
-
-  fixtures$: Observable<Fixture[]>;
-  filter: FormControl;
-  filter$: Observable<string>;
+  fixtures$!: Observable<Fixture[]>;
+  filter!: FormControl;
+  filter$!: Observable<string>;
 
   multiselect = false;
   selectedOnly = false;
   initialFilter = "";
 
-  selection: SelectionModel<Fixture>;
+  selection!: SelectionModel<Fixture>;
 
-  selectedOnlyControl;
-  selectedOnly$: Observable<boolean>;
+  selectedOnlyControl!: FormControl;
+  selectedOnly$!: Observable<boolean>;
 
-  readonly list = viewChild(MatSelectionList);
+  readonly list = viewChild.required(MatSelectionList);
 
   ngOnInit(): void {
     this.multiselect = this.data.multiselect;

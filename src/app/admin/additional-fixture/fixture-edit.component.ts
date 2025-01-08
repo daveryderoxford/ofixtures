@@ -1,9 +1,9 @@
-import { Component, computed, input, viewChild, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, computed, effect, inject, input, viewChild } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 import { Fixture } from 'app/model/fixture';
 import { AdditionalFixtureService } from './additional-fixture.service';
 import { FixtureFormComponent } from './fixture-form/fixture-form.component';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-fixture-edit',
@@ -15,18 +15,22 @@ import { toSignal } from '@angular/core/rxjs-interop';
 })
 export class FixtureEditComponent {
   private fs = inject(AdditionalFixtureService);
-  private route = inject(ActivatedRoute);
   private router = inject(Router);
-
 
   // Route parameter
   id = input<string>('');
 
-  fixtures = toSignal(this.fs.fixtures$);
+  fixtures = toSignal(this.fs.fixtures$, {initialValue: []});
 
-  fixture = computed(() => this.fixtures().find(l => l.id === this.id()) );
+  fixture = computed(() => this.fixtures().find(l => l.id === this.id())! );
 
-  readonly FixtureForm = viewChild(FixtureFormComponent);
+  readonly FixtureForm = viewChild.required(FixtureFormComponent);
+
+  constructor() {
+    effect(() => {
+      console.log('Fixture in add: ' + this.fixture());
+  });
+}
 
   async submitted( data: Partial<Fixture> ) {
     await this.fs.update( this.id(), data );
@@ -36,5 +40,4 @@ export class FixtureEditComponent {
   canDeactivate(): boolean {
     return this.FixtureForm().canDeactivate();
   }
-
 }

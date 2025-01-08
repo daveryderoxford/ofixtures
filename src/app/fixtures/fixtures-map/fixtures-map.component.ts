@@ -42,12 +42,12 @@ export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
       }   
    });
 
-   selectedFixture = input<Fixture>(null);
+   selectedFixture = input.required<Fixture | null>();
    selectedFixtureEffect = effect(() => {
       this.selectFixture(this.selectedFixture());
    });
 
-    homeLocation = input<LatLong>(null);
+    homeLocation = input.required<LatLong>();
     homeLocationEffect = effect(() => {
       this.setHomeLocation(this.homeLocation());
    });

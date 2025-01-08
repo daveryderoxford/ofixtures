@@ -28,7 +28,7 @@ export class FixtureAdminCardComponent  {
   private ds = inject(DialogsService);
 
 
-  fixtures = toSignal(this.fs.fixtures$);
+  fixtures = toSignal(this.fs.fixtures$, {initialValue: []});
 
   async delete ( fixture: AdditionalFixture ) {
 

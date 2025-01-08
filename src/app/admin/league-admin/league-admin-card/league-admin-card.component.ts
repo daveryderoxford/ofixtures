@@ -34,7 +34,7 @@ export class LeagueAdminCardComponent {
   constructor () { 
    
     this.leagues$ = this.ls.leagues$.pipe( 
-      map( arr => arr.filter( league => league.userId === this.auth.currentUser.uid )),
+      map( arr => arr.filter( league => league.userId === this.auth.currentUser?.uid )),
       tap(arr => console.log("Leagues filtered count: " + arr.length))
     );
   }

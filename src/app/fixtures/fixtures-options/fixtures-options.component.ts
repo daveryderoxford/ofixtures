@@ -1,6 +1,6 @@
-import { Component, Input, OnInit, output, inject } from '@angular/core';
+import { Component, Input, OnInit, output } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormControl, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { MatButtonToggleChange, MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog } from '@angular/material/dialog';
 import { UntilDestroy } from '@ngneat/until-destroy';
@@ -24,27 +24,27 @@ import { input } from "@angular/core";
     imports: [FlexModule, MatButtonToggleModule, MatIconModule, NgClass, ExtendedModule, FixtureWeekFilterComponent, MatButtonModule, MatSlideToggleModule, ReactiveFormsModule]
 })
 export class FixturesOptionsComponent implements OnInit {
-   private dialog = inject(MatDialog);
-   private auth = inject(Auth);
-   private loginSnackBar = inject(LoginSnackbarService);
 
+   outputFilter!: FixtureFilter;
 
-   outputFilter: FixtureFilter;
-
-   @Input()
+   @Input({required: true})
    set filter( f: FixtureFilter ) {
       this.outputFilter = Object.assign( f );
    }
 
    filterChanged = output<FixtureFilter>();
 
-   gradesEnabledControl: UntypedFormControl;
+   gradesEnabledControl = new FormControl(true);
+
+   constructor ( private dialog: MatDialog,
+      private auth: Auth,
+      private loginSnackBar: LoginSnackbarService ) { }
 
    ngOnInit() {
-      this.gradesEnabledControl = new UntypedFormControl( this.outputFilter.gradesEnabled );
+      this.gradesEnabledControl.setValue( this.outputFilter.gradesEnabled );
 
       this.gradesEnabledControl.valueChanges.subscribe( ( val ) => {
-         this.outputFilter.gradesEnabled = val;
+         this.outputFilter.gradesEnabled = val!;
          this.filterChanged.emit( this.outputFilter );
       } );
    }
@@ -81,6 +81,4 @@ export class FixturesOptionsComponent implements OnInit {
          }
       } );
    }
-
-;
 }

@@ -1,117 +1,114 @@
 <app-toolbar>Additional Fixture details</app-toolbar>
 
-<!-- Put form in middle of page -->
-<div fxLayout="row" fxLayoutAlign="center space-around">
+<app-form-container>
 
-  <!-- layout elements vertically with  10px gaps-->
-  <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap=10px>
+  <form (ngSubmit)="submit()" [formGroup]="form" novalidate fxLayout="column" fxLayoutAlign="space-around"
+    fxLayoutGap=10px>
 
-    <mat-card>
+    <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input matInput formControlName="date" [matDatepicker]="picker">
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
 
-      <form (ngSubmit)="submit()" [formGroup]="form" novalidate fxLayout="column" fxLayoutAlign="space-around"
-        fxLayoutGap=10px>
- 
-        <mat-form-field>
-          <mat-label>Date</mat-label>
-          <input matInput formControlName="date">
-          <mat-hint>DD/MM/YYYY</mat-hint>
-        </mat-form-field>
-  
-  <!-- 
-      <mat-form-field>
-        <mat-label>Date</mat-label>
-        <input matInput formControlName="date" [matDatepicker]="picker">
-        <mat-hint>DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker> -->
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">
+      <mat-error>Name required</mat-error>
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput formControlName="name" placeholder="Name">
-        <mat-error>Name required</mat-error>
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>Club</mat-label>
+      <input matInput formControlName="club">
+      <mat-error>Club required</mat-error>
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput formControlName="club" placeholder="Club">
-        <mat-error>Club required</mat-error>
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>Club URL</mat-label>
+      <input matInput formControlName="clubURL">
+      <mat-hint>A fully formed URL with http/https</mat-hint>
+      <mat-error>Valid URL required</mat-error>
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput formControlName="clubURL" placeholder="Club URL">
-        <mat-hint>A fully formed URL with http/https</mat-hint>
-        <mat-error>Valid URL required</mat-error>
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>Post code</mat-label>
+      <input matInput formControlName="postcode">
+      <mat-error>Invalid post code</mat-error>
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput formControlName="postcode" placeholder="Post code">
-        <mat-error>Invalid post code</mat-error>
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>Grid reference</mat-label>
+      <input matInput formControlName="gridRefString">
+      <mat-error>Invalid grid reference</mat-error>
+      <mat-hint>6 figures with 2 letter prefix</mat-hint>
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput formControlName="gridRefString" placeholder="Grid reference">
-        <mat-error>Invalid grid reference</mat-error>
-        <mat-hint>6 figures with 2 letter prefix</mat-hint>
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>What 3 Words</mat-label>
+      <input matInput formControlName="what3words">
+      <mat-error>What 3 words invalid</mat-error>
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput formControlName="what3words" placeholder="What 3 Words">
-        <mat-error>What 3 words invalid</mat-error>
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>Event Grade</mat-label>
+      <mat-select formControlName="grade">
+        @for (grade of grades; track grade) {
+        <mat-option [value]="grade">
+          {{ grade }}
+        </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
 
-      <mat-form-field>
-        <mat-select formControlName="grade" placeholder="Event Grade">
-          @for (grade of grades; track grade) {
-            <mat-option [value]="grade">
-              {{ grade }}
-            </mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type">
+        @for (type of types; track type) {
+        <mat-option [value]="type">
+          {{ type }}
+        </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
 
-      <mat-form-field>
-        <mat-select formControlName="type" placeholder="Type">
-          @for (type of types; track type) {
-            <mat-option [value]="type">
-              {{ type }}
-            </mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>Discipline</mat-label>
+      <mat-select formControlName="discipline">
+        @for (discipline of disciplines; track discipline) {
+        <mat-option [value]="discipline">
+          {{ discipline }}
+        </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
 
-      <mat-form-field>
-        <mat-select formControlName="discipline" placeholder="Discipline">
-          @for (discipline of disciplines; track discipline) {
-            <mat-option [value]="discipline">
-              {{ discipline }}
-            </mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>Web page</mat-label>
+      <input matInput formControlName="webpage">
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput formControlName="webpage" placeholder="Web page">
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>Map/area"</mat-label>
+      <input matInput formControlName="area">
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput formControlName="area" placeholder="Map/area">
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>Nearest town</mat-label>
+      <input matInput formControlName="nearestTown">
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput formControlName="nearestTown" placeholder="Nearest town">
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>Association</mat-label>
+      <input matInput formControlName="association" placeholder="Association">
+      <mat-error>Association required</mat-error>
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput formControlName="association" placeholder="Association">
-        <mat-error>Association required</mat-error>
-      </mat-form-field>
-
-      <div fxLayout="row" fxLayoutAlign="space-between center">
-        <button [disabled]="form.invalid || !form.dirty" mat-raised-button color=primary type="submit"
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <button [disabled]="form.invalid || !form.dirty" mat-raised-button color=primary type="submit"
         aria-label="submit">Save</button>
-      </div>
+    </div>
 
-    </form>
-  </mat-card>
-
-</div>
-
-</div>
+  </form>
+</app-form-container>

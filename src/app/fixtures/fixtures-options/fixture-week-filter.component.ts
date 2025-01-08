@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, output } from '@angular/core';
-import { FixtureTimeFilter } from 'app/model/fixture-filter';
+import { FixtureTimeFilter, FixtureTimeFilterKey } from 'app/model/fixture-filter';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { input } from "@angular/core";
 
@@ -42,12 +42,12 @@ import { input } from "@angular/core";
 })
 export class FixtureWeekFilterComponent {
 
-   timeFilter = input<FixtureTimeFilter>();
+   timeFilter = input.required<FixtureTimeFilter>();
    filterChanged = output<FixtureTimeFilter>();
 
    constructor () { }
 
-   timeFilterClicked( key: string ) {
+  timeFilterClicked(key: FixtureTimeFilterKey ) {
       this.timeFilter()[ key ] = !this.timeFilter()[ key ];
       this.filterChanged.emit( this.timeFilter());
    }

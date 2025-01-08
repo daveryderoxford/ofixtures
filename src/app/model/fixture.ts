@@ -46,6 +46,6 @@ export interface Fixture {
 }
 
 export interface AdditionalFixture extends Fixture {
-   userId; string;
+   userId: string;
    gridRefString: string;
 }

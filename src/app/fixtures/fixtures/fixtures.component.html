@@ -16,12 +16,15 @@
       <!-- Large Map -->
       <as-split-area>
         @defer {
-        <app-fixtures-map [fixtures]="fixtures()" [homeLocation]="homeLocation()"
-          [selectedFixture]="selectedFixture()" [zoomBounds]="zoomBounds()"
-          (fixtureSelected)="onFixtureSelected($event)">
+        <app-fixtures-map  
+          [fixtures]="fixtures()" 
+           [homeLocation]="homeLocation()" 
+           [selectedFixture]="selectedFixture()"
+           [zoomBounds]="zoomBounds()" 
+           (fixtureSelected)="onFixtureSelected($event)">
         </app-fixtures-map>
         } @placeholder {
-          <div>Map Loading</div>
+        <div>Map Loading</div>
         }
       </as-split-area>
       <!-- Large table -->
@@ -31,9 +34,15 @@
           <app-league-header [league]="league"></app-league-header>
         </div>
         }
-        <app-fixtures-grid [fixtures]="fixtures()" [entries]="entries()" [userEntries]="userEntries()"
-          [homeLocation]="homeLocation()" [selectedFixture]="selectedFixture()" [handset]='false'
-          [loggedIn]='loggedIn' (fixtureSelected)="onFixtureSelected($event)">
+        <app-fixtures-grid 
+            [fixtures]="fixtures()" 
+            [entries]="entries()" 
+            [userEntries]="userEntries()"
+            [homeLocation]="homeLocation()" 
+            [selectedFixture]="selectedFixture()" 
+            [handset]='false' 
+            [loggedIn]='loggedIn'
+            (fixtureSelected)="onFixtureSelected($event)">
         </app-fixtures-grid>
       </as-split-area>
     </as-split>
@@ -77,8 +86,12 @@
     }
     <!-- Mobile List view -->
     @if (!mapview) {
-    <app-fixtures-grid fxFlex [fixtures]="fixtures()" [homeLocation]="homeLocation()"
-      [selectedFixture]="selectedFixture()" [handset]='true' (fixtureSelected)="onFixtureSelected($event)">
+    <app-fixtures-grid fxFlex 
+      [fixtures]="fixtures()" 
+      [homeLocation]="homeLocation()"
+      [selectedFixture]="selectedFixture()" 
+      [handset]='true' 
+      (fixtureSelected)="onFixtureSelected($event)">
     </app-fixtures-grid>
     }
     <!-- Mobile map view-->
@@ -86,16 +99,23 @@
     <div fxFlex fxLayout="column">
       <mat-divider></mat-divider>
       @if (selectedFixture()) {
-      <app-fixtures-grid fxFlex="96px" [fixtures]="[selectedFixture()]" [homeLocation]="homeLocation()"
-        [selectedFixture]="selectedFixture()" [handset]='true' (fixtureSelected)="onFixtureSelected($event)">
+      <app-fixtures-grid fxFlex="96px" 
+        [fixtures]="[selectedFixture()!]" 
+        [homeLocation]="homeLocation()"
+        [selectedFixture]="selectedFixture()" 
+        [handset]='true' 
+        (fixtureSelected)="onFixtureSelected($event)">
       </app-fixtures-grid>
       } @else {
       <div fxFlex="30px" fxLayoutAlign="center center">
         Select fixture to display its details
       </div>
       }
-      <app-fixtures-map fxFlex [fixtures]="fixtures()" [homeLocation]="homeLocation()"
-        [selectedFixture]="selectedFixture()" (fixtureSelected)="onFixtureSelected($event)">
+      <app-fixtures-map fxFlex 
+         [fixtures]="fixtures()" 
+         [homeLocation]="homeLocation()"
+         [selectedFixture]="selectedFixture()" 
+         (fixtureSelected)="onFixtureSelected($event)">
       </app-fixtures-map>
     </div>
     }

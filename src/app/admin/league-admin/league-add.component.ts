@@ -17,7 +17,7 @@ private ls = inject(LeagueService);
 private router = inject(Router);
 
 
-readonly LeagueForm = viewChild(LeagueFormComponent);
+readonly LeagueForm = viewChild.required(LeagueFormComponent);
 
   async submitted(league: Partial<League>) {
     await this.ls.add( league );

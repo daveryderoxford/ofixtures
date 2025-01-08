@@ -1,39 +1,37 @@
-import { Component, OnChanges, OnInit, SimpleChanges, output, inject } from '@angular/core';
-import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Component, OnChanges, SimpleChanges, inject, input, output } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatOptionModule } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { FixtureSelectComponent } from 'app/admin/fixture-select/fixture-select.component';
 import { Fixture } from 'app/model';
 import { League, LeagueLevel, LeagueType, leagueLevels, leagueTypes } from 'app/model/league';
 import { Observable } from 'rxjs';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatButtonModule } from '@angular/material/button';
-import { MatOptionModule } from '@angular/material/core';
-
-import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatCardModule } from '@angular/material/card';
-import { FlexModule } from '@ngbracket/ngx-layout/flex';
+import { FormContainerComponent } from "../../../shared/components/form-container/form-container.component";
 import { ToolbarComponent } from '../../../shared/components/toolbar.component';
-import { input } from "@angular/core";
 
 @UntilDestroy( { checkProperties: true } )
 @Component({
     selector: 'app-league-form',
     templateUrl: './league-form.component.html',
     styleUrls: ['./league-form.component.scss'],
-    imports: [ToolbarComponent, FlexModule, MatCardModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatOptionModule, MatButtonModule, MatDividerModule]
+    imports: [ToolbarComponent, FlexModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatOptionModule, MatButtonModule, MatDividerModule, FormContainerComponent]
 })
 export class LeagueFormComponent implements OnChanges {
   private dialog = inject(MatDialog);
 
   //form;
   selectedFixtureIds: string[] = [];
-  start: string;
-  end: string;
+  start!: string;
+  end!: string;
 
-  league = input<League>();
+  league = input<League | undefined | null>();
   submitted = output<Partial<League>>();
 
   leagueTypes = leagueTypes;
@@ -53,10 +51,11 @@ export class LeagueFormComponent implements OnChanges {
 
   ngOnChanges( changes: SimpleChanges ) {
     if ( changes.league?.currentValue ) {
-      this.form.patchValue( this.league() );
-      this.selectedFixtureIds = this.league().fixtureIds;
-      this.start = this.league().startDate;
-      this.end = this.league().endDate;
+      const update = this.league()!
+      this.form.patchValue(update);
+      this.selectedFixtureIds = update.fixtureIds;
+      this.start = update.startDate!;
+      this.end = update.endDate!;
     }
   }
 
@@ -98,7 +97,4 @@ export class LeagueFormComponent implements OnChanges {
   public canDeactivate(): boolean {
     return !this.form.dirty;
   }
-
-;
-;
 }
