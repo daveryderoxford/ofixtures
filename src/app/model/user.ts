@@ -16,7 +16,6 @@ export interface UserInfo {
     club: string;
     nationality: string;  // short nationality code
     nationalId: string;
-    yearOfBirth: number;
     ecards: ECard[];
     postcode: string;
     fixtureGradeFilters?: GradeFilter[];

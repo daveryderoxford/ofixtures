@@ -41,7 +41,7 @@
             [homeLocation]="homeLocation()" 
             [selectedFixture]="selectedFixture()" 
             [handset]='false' 
-            [loggedIn]='loggedIn'
+            [loggedIn]='auth.loggedIn()'
             (fixtureSelected)="onFixtureSelected($event)">
         </app-fixtures-grid>
       </as-split-area>

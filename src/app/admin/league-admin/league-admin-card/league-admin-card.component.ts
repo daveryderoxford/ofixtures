@@ -1,5 +1,4 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
 import { Router, RouterLink } from '@angular/router';
 import { LeagueService } from 'app/league/league-service';
 import { League } from 'app/model/league';
@@ -15,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { MatCardModule } from '@angular/material/card';
+import { AuthService } from 'app/auth/auth.service';
 
 @Component({
     selector: 'app-league-admin-card',
@@ -24,17 +24,16 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class LeagueAdminCardComponent {
   private ls = inject(LeagueService);
-  private auth = inject(Auth);
+  private auth = inject(AuthService);
   private router = inject(Router);
   private ds = inject(DialogsService);
-
 
   leagues$: Observable<League[]>;
 
   constructor () { 
    
     this.leagues$ = this.ls.leagues$.pipe( 
-      map( arr => arr.filter( league => league.userId === this.auth.currentUser?.uid )),
+      map( arr => arr.filter( league => league.userId === this.auth.user()?.uid )),
       tap(arr => console.log("Leagues filtered count: " + arr.length))
     );
   }

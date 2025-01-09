@@ -1,6 +1,5 @@
 import { DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
 import { MatLineModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -14,6 +13,7 @@ import { AdditionalFixture } from 'app/model/fixture';
 import { DialogsService } from 'app/shared';
 import { AdditionalFixtureService } from '../additional-fixture.service';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { AuthService } from 'app/auth/auth.service';
 
 @Component({
     selector: 'app-fixture-admin-card',
@@ -23,10 +23,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
 })
 export class FixtureAdminCardComponent  {
   protected fs = inject(AdditionalFixtureService);
-  private auth = inject(Auth);
+  private auth = inject(AuthService);
   private router = inject(Router);
   private ds = inject(DialogsService);
-
 
   fixtures = toSignal(this.fs.fixtures$, {initialValue: []});
 

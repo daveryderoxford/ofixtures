@@ -24,11 +24,6 @@
     </div>
 
     <mat-form-field>
-      <mat-label>Year of brith</mat-label>
-      <input matInput type="number" formControlName="yearOfBirth">
-    </mat-form-field>
-
-    <mat-form-field>
         <mat-label>Postcode</mat-label>
       <input matInput required formControlName="postcode"
         oninput="this.value = this.value.toUpperCase()">
@@ -51,7 +46,7 @@
 
       <span fxFlex></span>
 
-      <button mat-button (click)="addEcard()">
+      <button type="button" mat-button (click)="addEcard()">
         ADD
         <mat-icon [ngStyle]="{'color':'green'}">add_circle</mat-icon>
       </button>
@@ -77,7 +72,7 @@
           </mat-form-field>
         </div>
         <span fxFlex></span>
-        <button mat-button (click)="removeEcard(i)">
+        <button mat-button type="button" (click)="removeEcard(i)">
           <mat-icon [ngStyle]="{'color':'red'}">remove_circle</mat-icon>
         </button>
       </div>

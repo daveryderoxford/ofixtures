@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth, user } from '@angular/fire/auth';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { CollectionReference, DocumentReference, Firestore, Query, addDoc, collection, collectionData, 
          collectionGroup, deleteDoc, doc, docData, orderBy, query, setDoc, updateDoc, where } from '@angular/fire/firestore';
+import { AuthService } from 'app/auth/auth.service';
 import { Fixture } from 'app/model';
 import { Entry, FixtureDetailsAndEntries, FixtureEntryDetails } from 'app/model/entry';
 import { Observable, forkJoin, of } from 'rxjs';
@@ -11,27 +12,23 @@ import { map, shareReplay, startWith, switchMap, take, tap } from 'rxjs/operator
    providedIn: 'root'
 } )
 export class EntryService {
-   private auth = inject(Auth);
+   private auth = inject(AuthService);
    private fs = inject(Firestore);
 
 
    fixtureEntryDetails$: Observable<FixtureEntryDetails[]>;
    userEntries$: Observable<Entry[]>;
 
-   user: any = null;
+   user$ = toObservable(this.auth.user);
 
    constructor () {
       const auth = this.auth;
       const fs = this.fs;
 
-
-      user( auth).subscribe( user => this.user = user );
-
-      this.userEntries$ = user( auth ).pipe(
+      this.userEntries$ = this.user$.pipe(
          switchMap( ( user ) => {
             if ( user ) {
                const q = query( collectionGroup( fs, "entries" ), where( 'userId', '==', user.uid ), orderBy( 'fixtureDate' ) ) as Query<Entry>;
-
                return collectionData( q );
             } else {
                return of( [] );
@@ -62,7 +59,7 @@ export class EntryService {
          closingDate: new Date().toISOString(),
          hasAgeClasses: false,
          courses: [],
-         userId: this.user.uid,
+         userId: this.auth.user()!.uid,
          createdAt: new Date().toISOString(),
          latestEntry: 0,
       };
@@ -114,11 +111,11 @@ export class EntryService {
    /** Enter or reserve a map for an event */
    async enter( fixture: FixtureEntryDetails, entry: Partial<Entry> ): Promise<void> {
 
-      if ( !this.user) {
+      if ( !this.auth.user()) {
          throw new Error( "Must be logged on to add map reservation" );
       }
 
-      entry.userId = this.user.uid;
+      entry.userId = this.auth.user()!.uid;
       entry.madeAt = new Date().toISOString();
       entry.fixtureId = fixture.fixtureId;
       entry.fixtureDate = fixture.date;

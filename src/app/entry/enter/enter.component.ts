@@ -78,8 +78,8 @@ export class EnterComponent implements OnInit {
                }
                this.fixture = fix;
 
-               if (this.usd.currentUserData) {
-                  const user = this.usd.currentUserData;
+               const user = this.usd.userdata();
+               if (user) {
                   this._createForm({
                      firstname: user.firstname,
                      surname: user.surname,

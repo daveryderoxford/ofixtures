@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
 import { CollectionReference, Firestore, collection, collectionData, deleteDoc, doc, query, setDoc, where } from '@angular/fire/firestore';
+import { AuthService } from 'app/auth/auth.service';
 import { AdditionalFixture } from 'app/model/fixture';
 import { startOfDay, subDays } from 'date-fns';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -11,8 +11,7 @@ import { map, shareReplay } from 'rxjs/operators';
 } )
 export class AdditionalFixtureService {
   private fs = inject(Firestore);
-  private auth = inject(Auth);
-
+  private auth = inject(AuthService);
 
   private readonly _selectedFixture = new BehaviorSubject<AdditionalFixture | null>( null );
   readonly selected$ = this._selectedFixture.asObservable();
@@ -27,7 +26,7 @@ export class AdditionalFixtureService {
       const fixturesRef = collection(this.fs, "fixtures") as CollectionReference<AdditionalFixture>;
       const queryStart = startOfDay(subDays(new Date(), 1)).toISOString();
       const q = query( fixturesRef, 
-        where( "userId", "==", this.auth.currentUser!.uid ),
+        where( "userId", "==", this.auth.user()!.uid ),
         where( "date", ">", queryStart)
       );
       this._fixtures$ = collectionData( q ).pipe(
@@ -47,7 +46,7 @@ export class AdditionalFixtureService {
 
     // Get document ref for new document
     const d = doc( collection( this.fs, "fixtures" ) );
-    fixture.userId = this.auth.currentUser!.uid;
+    fixture.userId = this.auth.user()!.uid;
     fixture.id = d.id;
 
     await setDoc( d, fixture );

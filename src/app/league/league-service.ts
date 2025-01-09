@@ -1,18 +1,18 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
 import { CollectionReference, Firestore, collection, collectionData, deleteDoc, doc, setDoc } from '@angular/fire/firestore';
 import { League } from 'app/model/league';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { isAfter } from 'date-fns';
 import { FixturesService } from 'app/fixtures/fixtures.service';
+import { AuthService } from 'app/auth/auth.service';
 
 @Injectable( {
   providedIn: 'root'
 } )
 export class LeagueService {
   private fs = inject(Firestore);
-  private auth = inject(Auth);
+  private auth = inject(AuthService);
   private fixtureService = inject(FixturesService);
 
   private readonly _selectedLeague = new BehaviorSubject<League | null>( null );
@@ -42,7 +42,7 @@ export class LeagueService {
 
     // Get document ref for new document
     const d = doc( collection( this.fs, "leagues" ) );
-    league.userId = this.auth.currentUser!.uid;
+    league.userId = this.auth.user()!.uid;
     league.id = d.id;
 
     await setDoc( d, league );

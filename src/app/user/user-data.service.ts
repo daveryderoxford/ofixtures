@@ -1,84 +1,60 @@
-import { Injectable, inject } from "@angular/core";
+import { Injectable, Signal, inject } from "@angular/core";
+import { toSignal } from "@angular/core/rxjs-interop";
 import { Auth, authState } from "@angular/fire/auth";
 import { DocumentReference, Firestore, arrayRemove, arrayUnion, doc, docData, updateDoc } from "@angular/fire/firestore";
-import { UserData, UserInfo } from "app/model";
-import { Observable, of } from 'rxjs';
-import { map, shareReplay, startWith, switchMap } from 'rxjs/operators';
+import { UserData } from 'app/model';
+import { of } from 'rxjs';
+import { shareReplay, startWith, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: "root"
 })
 export class UserDataService {
-  private afAuth = inject(Auth);
+  private auth = inject(Auth);
   private fs = inject(Firestore);
 
-  public user$: Observable<UserData | null>;
-
-  private currentUser: UserData | null = null;
-  private uid: string = '';
-
-  constructor() {
-
-    this.user$ = authState(this.afAuth).pipe(
-      switchMap(user => {
-        if (!user) {
-          console.log("UserData: Firebase user null.  Stop monitoring user date  ");
-          return of(null);
-        } else {
-          console.log(`UserData: monitoring uid: ${user.uid}`);
-          return docData(this._doc(user.uid));
-        }
-      }),
-      map(u => u == undefined ? null : u as UserData),
-      startWith(null),
-      shareReplay(1)
-    );
-
-    /* Subscribe to update local cache - remove at some point */
-    this.user$.subscribe(user => {
-      if (!user) {
-        console.log("UserData: Local cache updated to nll ");
-        this.currentUser = null;
-        this.uid = '';
+  private userdata$ = authState(this.auth).pipe(
+    switchMap((u) => {
+      if (!u) {
+        console.log("UserData: Firebase user null.  Stop monitoring user date  ");
+        return of(null);
       } else {
-        console.log("UserData: Local cache updated to new value ");
-        this.currentUser = user;
-        this.uid = user.key;
+        console.log(`UserData: monitoring uid: ${u.uid}`);
+        return docData(this._doc(u.uid));
       }
-    });
+    }),
+    startWith(null),
 
-  }
+    shareReplay(1)
+  );
 
-  /** Get current user data  */
-  get currentUserData(): UserData | null {
-    return this.currentUser;
-  }
+  userdata = toSignal(this.userdata$);
 
   /** Update the user info.  Returning the modified user details */
-  async updateDetails(details: Partial<UserInfo>): Promise<void> {
-    return updateDoc(this._getUserDoc(), details);
+  async updateDetails(details: Partial<UserData>): Promise<void> {
+    if (this.userdata()) {
+      console.log('UserDataService: Saving user' + this.userdata()!.key);
+      const doc = this._doc(this.userdata()!.key);
+      return updateDoc(doc, details);
+    } else {
+      console.log('UserDataService: Saving user: Unexectly null');
+      throw Error('UserDataService: Saving user: Unexectly null');
+    }
   }
 
   private _doc(uid: string): DocumentReference<UserData> {
     return doc(this.fs, "users/" + uid) as DocumentReference<UserData>;
   }
 
-  /** Get the database documents associated with the user
-   * The user must be logged in to use this function.
-   */
-  private _getUserDoc(): DocumentReference<UserData> {
-    return this._doc(this.uid);
-  }
-
   /** Reserve a map for the user */
   async addFixtureReminder(eventId: string): Promise<void> {
-    await updateDoc(this._getUserDoc(), {
+    await updateDoc(this._doc(this.userdata()!.key), {
       reminders: arrayUnion(eventId) as any
     });
   }
 
   async removeFixtureReminder(eventId: string): Promise<void> {
-    await updateDoc(this._getUserDoc(), {
+    await updateDoc(this._doc(this.userdata()!.key), {
       reminders: arrayRemove(eventId) as any
     });
   }

@@ -2,7 +2,6 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { AsyncPipe } from '@angular/common';
 import { Component, OnInit, computed, signal, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Auth, User, authState } from '@angular/fire/auth';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,6 +24,7 @@ import { FixturesOptionsComponent } from '../fixtures-options/fixtures-options.c
 import { FixtureSearchComponent } from '../fixtures-search/fixture-search.component';
 import { FixturesService } from '../fixtures.service';
 import { PostcodeComponent } from '../postcode/postcode.component';
+import { AuthService } from 'app/auth/auth.service';
 
 @Component({
     selector: 'app-fixtures',
@@ -35,7 +35,7 @@ import { PostcodeComponent } from '../postcode/postcode.component';
 
 export class FixturesComponent implements OnInit {
 
-      private auth = inject(Auth);
+      protected auth = inject(AuthService);
       public fs = inject(FixturesService);
       public ls = inject(LeagueService);
       private es = inject(EntryService);
@@ -72,7 +72,6 @@ export class FixturesComponent implements OnInit {
 
    handset = false;
    mapview = false;
-   loggedIn: boolean = false;
 
    currentRow: number = 0;
 
@@ -88,11 +87,6 @@ export class FixturesComponent implements OnInit {
       this.route.paramMap.subscribe((params: ParamMap) => {
          this.mapview = params.has('mapview');
       });
-
-      authState(this.auth).subscribe((user: User | null) => {
-         this.loggedIn = (user !== null);
-      });
-
 
       /* Array of of entries expanded for the fixtures */
       /* this.entries$ = combineLatest([this.fixtures$, this.es.fixtureEntryDetails$]).pipe(

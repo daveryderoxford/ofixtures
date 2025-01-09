@@ -1,4 +1,4 @@
-<app-spinner [loading]="loading"> </app-spinner>
+<app-spinner [loading]="loading"></app-spinner>
 
 <mat-sidenav-container class="fullscreen">
 
@@ -18,13 +18,11 @@
 
       <mat-divider></mat-divider>
 
-      @if (authorised) {
+      @if (afAuth.loggedIn()) {
         <button mat-list-item (click)='closeSidenav(["/user"])'>User settings</button>
         <button mat-list-item (click)='closeSidenav(["/auth/change-password"])'>Change password</button>
         <button mat-list-item (click)="logout()">Logout</button>
-      }
-
-      @if (!authorised) {
+      } @else {
         <button mat-list-item (click)='closeSidenav(["/auth/login"])'>Login</button>
       }
 
@@ -41,3 +39,5 @@
   <mat-sidenav-content class="fullscreen">
     <router-outlet></router-outlet>
   </mat-sidenav-content>
+
+</mat-sidenav-container>

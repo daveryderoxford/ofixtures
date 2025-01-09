@@ -1,8 +1,7 @@
 
 import { NgStyle } from "@angular/common";
-import { Component, OnInit, inject } from "@angular/core";
-import { Auth, User, authState } from "@angular/fire/auth";
-import { FormArray, FormBuilder, ReactiveFormsModule, UntypedFormArray, UntypedFormGroup, Validators } from "@angular/forms";
+import { Component, effect, inject } from "@angular/core";
+import { FormArray, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, UntypedFormArray, Validators } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatOptionModule } from "@angular/material/core";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -13,110 +12,92 @@ import { MatSelectModule } from "@angular/material/select";
 import { Router } from "@angular/router";
 import { ExtendedModule } from "@ngbracket/ngx-layout/extended";
 import { FlexModule } from "@ngbracket/ngx-layout/flex";
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { AuthService } from 'app/auth/auth.service';
 import { FixturesService } from "app/fixtures/fixtures.service";
-import { UserData, controlCardTypes } from "app/model";
-import { Subscription } from 'rxjs';
+import { controlCardTypes } from "app/model";
 import { FormContainerComponent } from "../shared/components/form-container/form-container.component";
 import { ToolbarComponent } from "../shared/components/toolbar.component";
 import { UserDataService } from "./user-data.service";
 
-@UntilDestroy()
 @Component({
-    selector: "app-user",
-    templateUrl: "./user.component.html",
-    styleUrls: ["./user.component.scss"],
-    imports: [ToolbarComponent, FlexModule, ReactiveFormsModule, MatProgressBarModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, NgStyle, ExtendedModule, MatSelectModule, MatOptionModule, FormContainerComponent]
+  selector: "app-user",
+  templateUrl: "./user.component.html",
+  styleUrls: ["./user.component.scss"],
+  imports: [ToolbarComponent, FlexModule, ReactiveFormsModule, MatProgressBarModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, NgStyle, ExtendedModule, MatSelectModule, MatOptionModule, FormContainerComponent]
 })
-export class UserComponent implements OnInit {
-  private formBuilder = inject(FormBuilder);
-  private afAuth = inject(Auth);
-  private router = inject(Router);
+export class UserComponent {
+  protected afAuth = inject(AuthService);
   private usd = inject(UserDataService);
   private fs = inject(FixturesService);
+  private formBuilder = inject(NonNullableFormBuilder);
+  private router = inject(Router);
 
-  originalUserData: UserData | null = null;
   ecardTypes = controlCardTypes;
 
   error = "";
-  subscription!: Subscription;
 
   showProgressBar = false;
   busy = false;
 
-   protected userForm = this.formBuilder.group({
-        firstname: [""],
-        surname: [""],
-        club: ["", [Validators.minLength(2), Validators.maxLength(10)]],
-        postcode: [""],
-        nationalId: [""],
-        yearOfBirth: [""],
-        ecards: this.formBuilder.array([]) as UntypedFormArray
-      });
-
-  constructor () {}
-
-  ngOnInit() {
-    authState(this.afAuth)
-      .pipe( untilDestroyed( this ) )
-      .subscribe( loggedIn => this.loginChanged( loggedIn ) );
-
-    this.usd.user$
-      .pipe( untilDestroyed( this ) )
-      .subscribe( userData => this.userChanged( userData ) );
-  }
+  protected userForm = this.formBuilder.group({
+    firstname: [""],
+    surname: [""],
+    club: ["", [Validators.minLength(2), Validators.maxLength(10)]],
+    postcode: [""],
+    nationalId: [""],
+    ecards: this.formBuilder.array([]) as FormArray
+  });
 
   protected _ecardsControl(): FormArray {
     return this.userForm.controls['ecards'] as FormArray;
   }
 
-  loginChanged( loggedIn: User | null ) {
-    if ( !loggedIn ) {
-      this.router.navigate( ["/"] );
-    }
-  }
+  constructor() {
 
-  private userChanged( userData: UserData | null) {
-    this.originalUserData = userData;
-    if ( userData ) {
+    effect(() => {
+      const userData = this.usd.userdata();
 
-      // Clear form by removing ecards and resetting
-      this.userForm.setControl( 'ecards', new UntypedFormArray( [] ) );
-      this.userForm.reset();
+      if (userData) {
 
-      this.userForm.setValue( {
-        firstname: userData.firstname,
-        surname: userData.surname,
-        club: userData.club,
-        yearOfBirth: userData.yearOfBirth.toString(),
-        postcode: userData.postcode,
-        nationalId: userData.nationalId,
-        ecards: [],
-      } );
+        this.userForm.patchValue({
+          firstname: userData.firstname,
+          surname: userData.surname,
+          club: userData.club,
+          postcode: userData.postcode,
+          nationalId: userData.nationalId,
+        });
 
-      for ( const ecard of userData.ecards ) {
-        this._ecardsControl().push( this._createEcard( ecard.id, ecard.type ) );
+        for (const card of userData.ecards) {
+            this._ecardsControl().push(this._createEcardControl(card.id, card.type));
+        }
       }
-    }
+    });
+
+    // Navigate away if we aare logged out
+    effect(() => {
+      if (!this.afAuth.loggedIn()) {
+        this.router.navigate(["/"]);
+      }
+    });
   }
 
-  private _createEcard( id: string, type: string ): UntypedFormGroup {
-    return this.formBuilder.group( {
-      id: [id, [Validators.required, Validators.pattern( "[0-9]+" )]],
+  private _createEcardControl(id: string, type: string): FormGroup {
+    return this.formBuilder.group({
+      id: [id, [Validators.required, Validators.pattern("[0-9]+")]],
       type: [type, [Validators.required]]
-    } );
+    });
   }
 
   addEcard(): void {
-    this._ecardsControl().push( this._createEcard( '', '' ) );
+    this._ecardsControl().push(this._createEcardControl('', ''));
 
     // Need to explicitly mark the form as diirty as removing an element in code does not mark it as dirty.
     this.userForm.markAsDirty();
   }
 
-  removeEcard( i: number ) {
+  removeEcard(i: number) {
     // remove address from the list
-    this._ecardsControl().removeAt( i );
+    this._ecardsControl().removeAt(i);
 
     // Need to explicitly mark the form as diirty as removing an element in code does not mark it as dirty.
     this.userForm.markAsDirty();
@@ -124,16 +105,20 @@ export class UserComponent implements OnInit {
   }
 
   async save() {
-    
+
     this.busy = true;
     try {
-      // nationality id hard coded to GBR to simplify UI for the moment ng serve
-      await this.usd.updateDetails( { ...this.userForm.getRawValue, nationality: 'GBR' } );
-      console.log( 'UserComponnet: User results saved' );
-      this.fs.setPostcode( this.userForm.value.postcode! );  
+      // nationality is hard coded to GBR to simplify UI for the moment ng serve
+      await this.usd.updateDetails({ ...this.userForm.value, nationality: 'GBR',  });
+      console.log('UserComponnet: User results saved');
+      this.fs.setPostcode(this.userForm.value.postcode!);
+
+      this.userForm.reset();
+      this.userForm.setControl('ecards', new FormArray<any>([]));
+
+      this.router.navigate(["/"]);
     } finally {
       this.busy = false;
-      this.router.navigate( ["/"] );
     }
   }
 

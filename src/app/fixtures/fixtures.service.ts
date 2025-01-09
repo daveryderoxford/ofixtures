@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable, effect, inject } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { Storage, ref } from "@angular/fire/storage";
 import { UserData } from 'app/model';
 import { Fixture, LatLong } from 'app/model/fixture';
@@ -58,6 +59,9 @@ export class FixturesService {
    private _selectedFixture$ = new BehaviorSubject<Fixture | null>( null );
    readonly selectedFixture$ = this._selectedFixture$.asObservable();
 
+   // TO DO until we moved completely to signals
+   private user$ = toObservable( this.usd.userdata );
+
    constructor () {
 
       const grades = getFromLocalStorage( 'grades' ) as GradeFilter[];
@@ -72,7 +76,8 @@ export class FixturesService {
       }
       
       /* When user changes - set filters to reflect user details and unset liked only */
-      this.usd.user$.subscribe( user => {
+      effect( () => {
+          const user = this.usd.userdata();
          if ( user ) {
             if ( user.postcode && user.postcode !== "" ) {
                this.setPostcode( user.postcode );
@@ -105,7 +110,7 @@ export class FixturesService {
          shareReplay( 1 ),
       );
 
-      const fixturesObs$ = combineLatest( [fixturesWithDistance$, this.usd.user$, this._filter$, this._search$] ).pipe(
+      const fixturesObs$ = combineLatest( [fixturesWithDistance$, this.user$, this._filter$, this._search$] ).pipe(
          map( ( [fixtures, userdata, ftr, search] ) => fixtures.filter( fix => isFixtureShown( fix, userdata, ftr, search ) ) )
       );
 
@@ -229,7 +234,7 @@ function futureFixtures( fixtures: Fixture[] ): Fixture[] {
    } );
 }
 
-function isFixtureShown( fix: Fixture, userdata: UserData | null, ftr: FixtureFilter, search: string): boolean {
+function isFixtureShown( fix: Fixture, userdata: UserData | null | undefined, ftr: FixtureFilter, search: string): boolean {
 
    const fixdate = new Date( fix.date );
 

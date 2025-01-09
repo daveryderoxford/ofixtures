@@ -1,15 +1,14 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-
 import { Component, OnInit, inject, viewChild } from '@angular/core';
-import { Auth, User, authState } from '@angular/fire/auth';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatDialog } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterOutlet } from "@angular/router";
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { first, tap } from 'rxjs/operators';
+import { AuthService } from './auth/auth.service';
 import { FixturesService } from './fixtures/fixtures.service';
 import { PostcodeDialogComponent } from './fixtures/postcode/dialog/postcode-dialog/postcode-dialog.component';
 import { LeagueMenuComponent } from './league/league-menu/league-menu.component';
@@ -28,7 +27,7 @@ import { SidenavService } from './shared/services/sidenav.service';
 })
 export class AppComponent implements OnInit {
       private router = inject(Router);
-      private afAuth = inject(Auth);
+      protected afAuth = inject(AuthService);
       private fixtureService = inject(FixturesService);
       private sidebarService = inject(SidenavService);
       private snackBar = inject(MatSnackBar);
@@ -39,8 +38,6 @@ export class AppComponent implements OnInit {
    readonly sidenav = viewChild.required(MatSidenav);
 
    loading = false;
-   authorised = false;
-   user: User | null = null;
    handset = false;
    firstWarning = true;
 
@@ -60,13 +57,6 @@ export class AppComponent implements OnInit {
             tap(state => console.log('AppComponnet: state: ' + state.matches.toString()))
          )
          .subscribe(state => this.handset = !state.matches);
-
-      authState(this.afAuth)
-         .pipe(untilDestroyed(this))
-         .subscribe(user => {
-            this.authorised = (user !== null);
-            this.user = user;
-         });
 
       this.sidebarService.setSidenav(this.sidenav());
       this.cookieConsent();
@@ -121,7 +111,7 @@ export class AppComponent implements OnInit {
    }
 
    async adminMenu() {
-      if (!this.authorised) {
+      if (!this.afAuth.loggedIn()) {
          await this.sidenav().close();
          this.loginSnackBar.open('Must be logged in manage fixtures/leagues');
       } else {

@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, viewChild, inject } from '@angular/core';
-import { Auth, authState } from '@angular/fire/auth';
 import { MatMenuTrigger, MatMenuModule } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -17,6 +16,7 @@ import { ExternalLinkIconComponent } from '../../shared/components/external-link
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { input } from "@angular/core";
+import { AuthService } from 'app/auth/auth.service';
 
 @UntilDestroy( { checkProperties: true } )
 @Component({
@@ -34,7 +34,7 @@ import { input } from "@angular/core";
     ]
 })
 export class FixtureActionsComponent implements AfterViewInit {
-   private afAuth = inject(Auth);
+   protected afAuth = inject(AuthService);
    private router = inject(Router);
    private usd = inject(UserDataService);
    private es = inject(EntryService);
@@ -48,14 +48,11 @@ export class FixtureActionsComponent implements AfterViewInit {
 
    // TODO TEMP comment out map reservation
    mapReservationSupported = true;
-   loggedIn = false;
    fixtureEntryDetails: FixtureEntryDetails[] = [];
 
    readonly menu = viewChild.required(MatMenuTrigger);
 
    constructor () {
-
-      authState(this.afAuth).subscribe( user => this.loggedIn = ( user !== null ) );
 
       this.es.fixtureEntryDetails$.subscribe( arr => {
          this.fixtureEntryDetails = arr;
@@ -73,7 +70,7 @@ export class FixtureActionsComponent implements AfterViewInit {
    }
 
    liked(): boolean {
-      const userData = this.usd.currentUserData;
+      const userData = this.usd.userdata();
       if ( userData ) {
          return userData.reminders.includes( this.fixture().id );
       } else {
@@ -82,7 +79,7 @@ export class FixtureActionsComponent implements AfterViewInit {
    }
 
    async toggleReminder() {
-      if ( !this.loggedIn ) {
+      if ( !this.afAuth.loggedIn() ) {
          this.loginSnackBar.open( 'Must be logged in to like fixture' );
       } else {
          try {
@@ -106,7 +103,7 @@ export class FixtureActionsComponent implements AfterViewInit {
    }
 
    async reserveMap(): Promise<void> {
-      if ( !this.loggedIn ) {
+      if (!this.afAuth.loggedIn() ) {
          this.loginSnackBar.open( "Must be logged in to add map reservation" );
       } else {
          this.router.navigate( ["/entry/enter", this.fixture().id] );

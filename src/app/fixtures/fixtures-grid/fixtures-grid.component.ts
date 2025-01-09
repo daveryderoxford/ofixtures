@@ -40,7 +40,7 @@ interface StyledFixture extends Fixture {
    changeDetection: ChangeDetectionStrategy.OnPush,
    imports: [CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, FlexModule, CdkVirtualForOf, NgClass, ExtendedModule, MatButtonModule, MatTooltipModule, MatIconModule, ExternalLinkIconComponent, MatMenuModule, MapMenuItemsComponent, FixtureActionsComponent, MatListModule, MatLineModule, MatDividerModule, EllipsisPipe, LocationPipe, FixtureDatePipe, FixtureDistancePipe, FixtureDistanceColorPipe, GradeIconNamePipe, EnterButtonComponent]
 })
-export class FixturesGridComponent implements OnInit {
+export class FixturesGridComponent {
    private usd = inject(UserDataService);
    private es = inject(EntryService);
    private router = inject(Router);
@@ -86,26 +86,15 @@ export class FixturesGridComponent implements OnInit {
       return styled;
    });
 
-   readonly viewPort = viewChild.required(CdkVirtualScrollViewport);
+   likedEvents = computed(() => this.usd.userdata() ? this.usd.userdata()!.reminders : []);
 
-   likedEvents: string[] = [];
+   readonly viewPort = viewChild.required(CdkVirtualScrollViewport);
 
    constructor() {
       const iconRegistry = inject(MatIconRegistry);
       const sanitizer = inject(DomSanitizer);
 
       this._registerGradeIcons(iconRegistry, sanitizer);
-   }
-
-   ngOnInit() {
-
-      this.usd.user$.subscribe(userdata => {
-         if (userdata) {
-            this.likedEvents = userdata.reminders;
-         } else {
-            this.likedEvents = [];
-         }
-      });
    }
 
    eventClicked(row: Fixture) {
@@ -165,8 +154,7 @@ export class FixturesGridComponent implements OnInit {
    }
 
    isLiked(fixture: Fixture): boolean {
-      if (!this.likedEvents) { return false; }
-      return this.likedEvents.includes(fixture.id);
+      return this.likedEvents().includes(fixture.id);
    }
 
    mapView(rg: RGData) {
