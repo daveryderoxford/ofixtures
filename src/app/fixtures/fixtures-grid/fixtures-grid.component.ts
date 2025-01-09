@@ -1,10 +1,10 @@
 import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, computed, input, output, viewChild, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, output, viewChild } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatLineModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -47,26 +47,13 @@ export class FixturesGridComponent {
    private loginSnackBar = inject(LoginSnackbarService);
    private snackBar = inject(MatSnackBar);
 
-   private _selectedFixture: Fixture | null = null;
-
-   displayData: Array<any> = [];
-
    fixtures = input.required<Fixture[]>();
-   entries = input<FixtureEntryDetails[]>([]);    // not used in mobile view
-   userEntries = input<Entry[]>([]);              // not used in mobile view
-
-   
-
-   @Input() set selectedFixture(f: Fixture | null) {
-      if (f && f !== this._selectedFixture) {
-         this.showElement(f);
-      }
-      this._selectedFixture = f;
-   }
-
+   entries = input<FixtureEntryDetails[]>([]);    // not used in mobile view so not required
+   userEntries = input<Entry[]>([]);              // not used in mobile view so not required
+   selectedFixture = input.required<Fixture | null>();
    homeLocation = input.required<LatLong>();
    handset = input.required<boolean>();
-   loggedIn = input<boolean>(false);  // not used in mobile view
+   loggedIn = input<boolean>(false);              // not used in mobile view so not required
    fixtureSelected = output<Fixture>();
 
    itemsize = computed(() => (this.handset()) ? 88 : 38);
@@ -88,30 +75,35 @@ export class FixturesGridComponent {
 
    likedEvents = computed(() => this.usd.userdata() ? this.usd.userdata()!.reminders : []);
 
+   selectEffect = effect(() => {
+      const fix = this.selectedFixture();
+      if (fix) {
+         this.showElement(fix);
+      }
+   });
+
    readonly viewPort = viewChild.required(CdkVirtualScrollViewport);
 
    constructor() {
       const iconRegistry = inject(MatIconRegistry);
       const sanitizer = inject(DomSanitizer);
-
       this._registerGradeIcons(iconRegistry, sanitizer);
    }
 
    eventClicked(row: Fixture) {
-      this._selectedFixture = row;
       this.fixtureSelected.emit(row);
    }
 
-   selected(fixture: Fixture): boolean {
-      if (this._selectedFixture && fixture) {
-         return this._selectedFixture.id === fixture.id;
+   isSelected(fixture: Fixture): boolean {
+      if (this.selectedFixture() && fixture) {
+         return this.selectedFixture()!.id === fixture.id;
       } else {
          return false;
       }
    }
 
    rowClass(fixture: StyledFixture): string {
-      if (this.selected(fixture)) {
+      if (this.isSelected(fixture)) {
          return 'selected';
       } else {
          return fixture.shaded ? 'shaded' : '';
