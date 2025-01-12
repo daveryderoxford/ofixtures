@@ -1,5 +1,13 @@
 .admin-card {
+   width: 100%;
    max-width: 400px;
-   min-width: 300px;
+}
+
+.warning {
+   color: var(--mat-sys-error)
+}
+
+.primary {
+   color: var(--mat-sys-primary)
 }
 

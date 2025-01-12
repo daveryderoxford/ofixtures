@@ -102,10 +102,10 @@
             </span>
           }
         </div>
-        <p matListItemLine>
+        <div matListItemLine>
           {{fixture.name | ellipsis:35}}
-        </p>
-        <p matListItemLine>
+        </div>
+        <div matListItemLine>
           {{fixture.area | ellipsis: 30}}
           <span fxFlex></span>
           @if (fixture.entryURL) {
@@ -115,8 +115,14 @@
             <mat-icon class="red handset-icon-size">favorite</mat-icon>
           }
           <mat-icon [svgIcon]="fixture.grade | gradeIconName" class="handset-icon-size"></mat-icon>
-        </p>
-        <app-fixture-actions #actions [handset]="handset()" [fixture]="fixture" [homeLocation]="homeLocation()"></app-fixture-actions>
+        </div>
+        <div matListItemMeta> 
+        <app-fixture-actions #actions 
+            [handset]="handset()" 
+            [fixture]="fixture" 
+            [homeLocation]="homeLocation()">
+          </app-fixture-actions>
+          </div>
         <mat-divider></mat-divider>
       </mat-list-item>
     </mat-list>

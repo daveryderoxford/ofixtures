@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { versions } from 'environments/versions';
 import { AboutItemComponent } from "./about-item.component";
 import { MatExpansionModule } from "@angular/material/expansion";
@@ -11,10 +11,7 @@ import { ToolbarComponent } from "../shared/components/toolbar.component";
     styleUrls: ["./about.component.scss"],
     imports: [ToolbarComponent, FlexModule, MatExpansionModule, AboutItemComponent]
 })
-export class AboutComponent implements OnInit {
+export class AboutComponent {
   ver = versions;
-
-  ngOnInit() {
-  }
 
 }

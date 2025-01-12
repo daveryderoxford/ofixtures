@@ -25,8 +25,9 @@
               "src/manifest.json"
             ],
             "styles": [
-              "src/styles.scss",
-              "./node_modules/leaflet/dist/leaflet.css"
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "./node_modules/leaflet/dist/leaflet.css",
+              "src/styles.scss"
             ],
             "scripts": [],
             "aot": false,

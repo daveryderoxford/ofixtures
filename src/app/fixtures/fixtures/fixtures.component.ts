@@ -25,12 +25,13 @@ import { FixtureSearchComponent } from '../fixtures-search/fixture-search.compon
 import { FixturesService } from '../fixtures.service';
 import { PostcodeComponent } from '../postcode/postcode.component';
 import { AuthService } from 'app/auth/auth.service';
+import { ControlPanelComponent } from './control-panel.component';
 
 @Component({
     selector: 'app-fixtures',
     templateUrl: './fixtures.component.html',
     styleUrls: ['./fixtures.component.scss'],
-    imports: [NgLetDirective, FixtureSearchComponent, SidenavButtonComponent, PostcodeComponent, FixturesOptionsComponent, AngularSplitModule, FixturesMapComponent, LeagueHeaderComponent, FixturesGridComponent, FlexModule, ToolbarComponent, MatButtonModule, MatIconModule, MatDividerModule, AsyncPipe]
+   imports: [NgLetDirective, FixtureSearchComponent, SidenavButtonComponent, PostcodeComponent, FixturesOptionsComponent, AngularSplitModule, FixturesMapComponent, LeagueHeaderComponent, FixturesGridComponent, FlexModule, ToolbarComponent, MatButtonModule, MatIconModule, MatDividerModule, AsyncPipe, ControlPanelComponent]
 })
 
 export class FixturesComponent implements OnInit {

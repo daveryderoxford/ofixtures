@@ -1,3 +1,11 @@
+@use '@angular/material' as mat;
+
+:host {
+  @include mat.button-overrides(
+      (outlined-horizontal-padding: 10px)
+    );
+}
+
 .container {
   padding-top: 10px;
   padding-left: 5px;
@@ -12,4 +20,3 @@
 .gray {
   color: rgb(180, 180, 180);
 }
-

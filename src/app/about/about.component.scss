@@ -1,0 +1,6 @@
+@use '@angular/material' as mat;
+
+.about-container {
+   background: var(--mat-sys-surface-container);
+   margin-top: 20px;
+}

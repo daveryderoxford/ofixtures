@@ -4,13 +4,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { input } from "@angular/core";
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
     selector: 'app-postcode',
     templateUrl: './postcode.component.html',
     styleUrls: ['./postcode.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatButtonModule]
+    imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatButtonModule, MatCardModule]
 })
 export class PostcodeComponent {
   postcode = input.required<string>();

@@ -7,8 +7,8 @@
 
   <mat-card-content>
     <p>
-      <a mat-flat-button color=primary [routerLink]="['/admin/fixture/add']">
-        <mat-icon>add</mat-icon> Add
+      <a mat-flat-button [routerLink]="['/admin/fixture/add']">
+        <mat-icon>add</mat-icon>Add
       </a>
     </p>
     <mat-expansion-panel>
@@ -27,11 +27,11 @@
           </div>
           <div matListItemLine> {{fixture.area }}</div>
           <span matListItemMeta>
-            <button mat-icon-button color="primary" (click)="edit(fixture)">
+            <button mat-icon-button class=primary (click)="edit(fixture)">
               <mat-icon>edit</mat-icon>
             </button>
             &nbsp;&nbsp;
-            <button mat-icon-button color="warn" (click)="delete(fixture)">
+            <button mat-icon-button class="warning" (click)="delete(fixture)">
               <mat-icon>delete</mat-icon>
             </button>
           </span>

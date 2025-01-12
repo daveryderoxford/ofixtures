@@ -37,25 +37,24 @@
     </mat-form-field>
 
     <mat-form-field>
-              <mat-label>National ID numbe</mat-label>
+        <mat-label>National ID numbe</mat-label>
       <input matInput formControlName="nationalId" type="number">
     </mat-form-field>
 
-    <div fxLayout="row" fxLayoutAlign="start">
-      <b> ECards </b>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <span class="title">E-Cards</span>
 
       <span fxFlex></span>
 
       <button type="button" mat-button (click)="addEcard()">
         ADD
-        <mat-icon [ngStyle]="{'color':'green'}">add_circle</mat-icon>
+        <mat-icon class=icon [ngStyle]="{'color':'green'}">add_circle</mat-icon>
       </button>
     </div>
 
     @for (ecard of _ecardsControl()['controls']; track ecard; let i = $index) {
     <div formArrayName="ecards">
-      <div fxFlexLayout=row fxLayoutAlign="space-between" fxLayoutGap=20px>
-        <div [formGroupName]="i">
+        <div fxFlexLayout=row fxLayoutAlign="space-between" fxLayoutGap=20px [formGroupName]="i">
           <mat-form-field fxFlex=100px>
             <mat-label>Number</mat-label>
             <input matInput formControlName="id" min=0>
@@ -73,14 +72,13 @@
         </div>
         <span fxFlex></span>
         <button mat-button type="button" (click)="removeEcard(i)">
-          <mat-icon [ngStyle]="{'color':'red'}">remove_circle</mat-icon>
+          <mat-icon class=icon [ngStyle]="{'color':'red'}">remove_circle</mat-icon>
         </button>
       </div>
-    </div>
     }
 
     <div fxLayout="row" fxLayoutAlign="space-between center">
-      <button [disabled]="userForm.invalid || !userForm.dirty" mat-raised-button color=primary type="submit"
+      <button [disabled]="userForm.invalid || !userForm.dirty" mat-flat-button type="submit"
         aria-label="login">Save</button>
     </div>
 

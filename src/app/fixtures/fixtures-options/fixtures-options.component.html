@@ -11,8 +11,8 @@
 
   <div>
 
-    <button mat-stroked-button (click)="displayGrades()">Event Grade Filter</button>&nbsp;&nbsp;
-    <mat-slide-toggle labelPosition=before [formControl]="gradesEnabledControl">on/off</mat-slide-toggle>
+    <button mat-stroked-button class="grades-button" (click)="displayGrades()">Event Grade Filter</button>&nbsp;&nbsp;
+    <mat-checkbox labelPosition=before [formControl]="gradesEnabledControl">on/off</mat-checkbox>
 
   </div>
 

@@ -14,13 +14,14 @@ import { FixtureFilter, FixtureTimeFilter } from 'app/model/fixture-filter';
 import { LoginSnackbarService } from 'app/shared/services/login-snackbar.service';
 import { GradeFilterComponent } from '../grade-filter-dialog/grade-filter-dialog.component';
 import { FixtureWeekFilterComponent } from './fixture-week-filter.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @UntilDestroy( { checkProperties: true } )
 @Component({
     selector: 'app-fixtures-options',
     templateUrl: './fixtures-options.component.html',
     styleUrls: ['./fixtures-options.component.scss'],
-    imports: [FlexModule, MatButtonToggleModule, MatIconModule, NgClass, ExtendedModule, FixtureWeekFilterComponent, MatButtonModule, MatSlideToggleModule, ReactiveFormsModule]
+    imports: [FlexModule, MatButtonToggleModule, MatIconModule, NgClass, ExtendedModule, FixtureWeekFilterComponent, MatButtonModule, MatSlideToggleModule, ReactiveFormsModule, MatCheckboxModule]
 })
 export class FixturesOptionsComponent implements OnInit {
 
