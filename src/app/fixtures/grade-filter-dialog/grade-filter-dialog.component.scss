@@ -1,24 +1,41 @@
 
+@use '@angular/material' as mat;
+
+:host {
+  @include mat.form-field-overrides((filled-caret-color: orange,
+      filled-focus-active-indicator-color: red,
+    ));
+}
+
 mat-form-field {
-  margin-left: 2.5rem;
-  width: 45px;
+   width: 80px;
 }
 
 td {
-  margin: 0;
-  border: 0;
+  margin: 0px;
+  padding: 3px;
+  vertical-align: middle;
 }
 
 tr {
   margin: 0;
-  border: 0;
+  padding: 0;
 }
 
 .overflowy {
   overflow-y: auto;
 }
 
+/* Hide spinners on number inputs to save space*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0;
+  /* <-- Apparently some margin are still there even though it's hidden */
+}
 
-
-
-
+input[type=number] {
+  -moz-appearance: textfield;
+  /* Firefox */
+}

@@ -1,13 +1,15 @@
 <h1 mat-dialog-title>Filter Fixtures</h1>
 
-<div mat-dialog-content>
+
+<mat-dialog-content>
+  Filter fixtures shown by distance from postcode and time in the future for event grades
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <table>
       <tr>
-        <th style="text-align: right">Display</th>
-        <th> </th>
-        <th>Distance <br>(miles)</th>
+        <th style="text-align: right"></th>
+        <th>Show<br>grade</th>
+        <th>Distance<br>(miles)</th>
         <th>Time <br>(months) </th>
       </tr>
 
@@ -15,19 +17,19 @@
         <tr formArrayName="items">
           <ng-container [formGroupName]="i">
             <td style="text-align: right">
-              {{grade}}
+              {{gradeName[i]}}
             </td>
             <td>
               <mat-checkbox formControlName="enabled"> </mat-checkbox>
             </td>
             <td>
-              <mat-form-field>
-                <input matInput [style.fontSize.px]=15 formControlName="distance" type="number">
+              <mat-form-field class="dense-form-field" subscriptSizing="dynamic">
+                <input matInput formControlName="distance" type="number">
               </mat-form-field>
             </td>
             <td>
-              <mat-form-field>
-                <input matInput [style.fontSize.px]=15 formControlName="time" type="number">
+              <mat-form-field  class="dense-form-field" subscriptSizing="dynamic">
+                <input matInput formControlName="time" type=numeric>
               </mat-form-field>
             </td>
           </ng-container>
@@ -37,11 +39,11 @@
     </table>
 
   </form>
-</div>
+</mat-dialog-content> 
 
-<div mat-dialog-actions>
+<mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancel</button>
   <button mat-flat-button	color="primary" type="submit" (click)="onSubmit()" cdkFocusInitial>OK</button>
-</div>
+</mat-dialog-actions>
 
 

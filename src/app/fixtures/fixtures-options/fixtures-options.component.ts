@@ -12,7 +12,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 import { AuthService } from 'app/auth/auth.service';
 import { FixtureFilter, FixtureTimeFilter } from 'app/model/fixture-filter';
 import { LoginSnackbarService } from 'app/shared/services/login-snackbar.service';
-import { GradeFilterComponent } from '../grade-filter-dialog/grade-filter-dialog.component';
+import { GradeFilterDialog } from '../grade-filter-dialog/grade-filter-dialog.component';
 import { FixtureWeekFilterComponent } from './fixture-week-filter.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
@@ -66,7 +66,7 @@ export class FixturesOptionsComponent implements OnInit {
    displayGrades() {
       // Display grade dialog
 
-      const dialogRef = this.dialog.open( GradeFilterComponent, {
+      const dialogRef = this.dialog.open( GradeFilterDialog, {
          width: '320px',
          maxWidth: '100vw',
          maxHeight: '100vh',

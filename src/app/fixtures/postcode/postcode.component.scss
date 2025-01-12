@@ -3,9 +3,14 @@
 // Customize the entire app. Change :root to your selector if you want to scope the styles.
 :host {
   @include mat.form-field-overrides((
-    container-height: 20px,
-    container-vertical-padding: 8px,
-  ));
+      container-height: 15px,
+      container-vertical-padding: 8px,
+      outlined-outline-width: 0px
+    ));
+
+  @include mat.button-overrides((
+       text-horizontal-padding: 15px,
+    ));
 }
 
 .container {
