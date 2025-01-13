@@ -1,22 +1,20 @@
-import { AfterViewInit, Component, viewChild, inject } from '@angular/core';
-import { MatMenuTrigger, MatMenuModule } from '@angular/material/menu';
+import { AfterViewInit, Component, inject, input, viewChild } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
+import { AuthService } from 'app/auth/auth.service';
 import { EntryService } from 'app/entry/entry.service';
 import { FixtureEntryDetails } from 'app/model/entry';
 import { Fixture, LatLong } from 'app/model/fixture';
 import { LoginSnackbarService } from 'app/shared/services/login-snackbar.service';
 import { UserDataService } from 'app/user/user-data.service';
+import { ExternalLinkIconComponent } from '../../shared/components/external-link-icon.component';
 import { AddToGoogleCalendarButtonComponent } from './google-cal-button';
 import { MapMenuItemsComponent } from './map-menu-items.component';
-import { MatDividerModule } from '@angular/material/divider';
-import { ExternalLinkIconComponent } from '../../shared/components/external-link-icon.component';
-
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { input } from "@angular/core";
-import { AuthService } from 'app/auth/auth.service';
 
 @UntilDestroy( { checkProperties: true } )
 @Component({
@@ -40,7 +38,6 @@ export class FixtureActionsComponent implements AfterViewInit {
    private es = inject(EntryService);
    private snackBar = inject(MatSnackBar);
    private loginSnackBar = inject(LoginSnackbarService);
-
 
    fixture = input.required<Fixture>();
    handset = input(false);

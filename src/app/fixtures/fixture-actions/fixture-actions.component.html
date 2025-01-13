@@ -10,8 +10,8 @@
         Enter
         <app-external-link-icon></app-external-link-icon>
       </a>
+      <mat-divider></mat-divider>
     }
-    <mat-divider></mat-divider>
 
     @if (handset()) {
       @if (fixture().clubURL) {
@@ -52,19 +52,16 @@
     <mat-divider></mat-divider>
 
     <app-add-to-calendar [date]="fixtureDate()" [title]=fixture().name [location]="calanderlocation()"
-      [details]="calanderDetails()"></app-add-to-calendar>
+      [details]="calanderDetails()"/>
 
     @if (fixture().otoolsId) {
       <a mat-menu-item [href]="'https://www.otools.uk/seeding/' + fixture().otoolsId" target="_blank">
         Entries (OTools)
-        <app-external-link-icon></app-external-link-icon>
+        <app-external-link-icon/>
       </a>
     }
 
     @if (hasMapReservation()) {
-      <div>
-
-        <mat-divider></mat-divider>
 
         <button (click)="reserveMap()" mat-menu-item>
           Reserve Map
@@ -73,8 +70,6 @@
         <button (click)="viewEntries()" mat-menu-item>
           Entry List
         </button>
-
-      </div>
     }
 
   </ng-template>

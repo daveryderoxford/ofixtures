@@ -1,6 +1,6 @@
 <ng-container *ngLet="ls.selected$ | async as league">
   <!-- Large Screen -->
-  @if (!handset) {
+  @if (!handset()) {
   <div class="large-screen">
     <app-sidenav-button class="top-left"> </app-sidenav-button>
     <app-control-panel class="top-left-2">
@@ -39,30 +39,29 @@
   </div>
   }
   <!-- Handset -->
-  @if (handset) {
+  @if (handset()) {
   <div fxLayout="column" class=hset>
     <!-- Mobile Toolbar -->
-    <app-toolbar>
+    <app-toolbar title="">
       <span fxFlex></span>
-      <button mat-button (click)="mapview=false">
+      <button mat-button (click)="mobileView.set('grid')">
         <mat-icon>list</mat-icon>
       </button>
-      <button mat-button (click)="mapview=true">
+      <button mat-button (click)="mobileView.set('map')">
         <mat-icon>map</mat-icon>
       </button>
       <button mat-button (click)="toggleMobileFilter()">
         FILTER
-        @if (hideMobleFilter()) {
-        <mat-icon>arrow_drop_down</mat-icon>
-        }
-        @if (!hideMobleFilter()) {
-        <mat-icon>arrow_drop_up</mat-icon>
+        @if (showMobleFilter()) {
+          <mat-icon>arrow_drop_up</mat-icon>
+        } @else {
+          <mat-icon>arrow_drop_down</mat-icon>
         }
       </button>
     </app-toolbar>
     <!-- Mobile filter -->
-    @if (!hideMobleFilter()) {
-    <div fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="7px" class="mat-elevation-z2">
+    @if (showMobleFilter()) {
+    <div fxLayout="column" class="mat-elevation-z2 mobile-filter">
       <app-postcode [postcode]="postcode()" (postcodeChanged)="postcodeChanged($event)"></app-postcode>
       @if (!league) {
       <app-fixtures-options [filter]="filter()" (filterChanged)="filterChanged($event)"></app-fixtures-options>
@@ -74,14 +73,13 @@
       <app-league-header [league]="league"></app-league-header>
     </div>
     }
+    @if (mobileView() === 'grid') {
     <!-- Mobile List view -->
-    @if (!mapview) {
     <app-fixtures-grid fxFlex [fixtures]="fixtures()" [homeLocation]="homeLocation()"
       [selectedFixture]="selectedFixture()" [handset]='true' (fixtureSelected)="onFixtureSelected($event)">
     </app-fixtures-grid>
-    }
+    } @else {
     <!-- Mobile map view-->
-    @if (mapview) {
     <div fxFlex fxLayout="column">
       <mat-divider></mat-divider>
       @if (selectedFixture()) {
