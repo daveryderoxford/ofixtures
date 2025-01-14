@@ -10,7 +10,7 @@
         Enter
         <app-external-link-icon></app-external-link-icon>
       </a>
-      <mat-divider></mat-divider>
+      <mat-divider/>
     }
 
     @if (handset()) {
@@ -20,15 +20,15 @@
           <app-external-link-icon></app-external-link-icon>
         </a>
       }
-      <mat-divider></mat-divider>
+      <mat-divider/>
       <app-map-menu-items [fixture]="fixture()" [homeLocation]="homeLocation()"
-        [handset]="handset()"></app-map-menu-items>
-      <mat-divider></mat-divider>
+        [handset]="handset()"/>
+      <mat-divider/>
     }
 
     @if (fixture().rg; as rg) {
       @if (rg.maps.length>0 && handset()) {
-        <button (click)="mapView()" mat-menu-item>
+        <button mat-menu-item (click)="mapView()" >
           O Maps
         </button>
       }
@@ -36,20 +36,20 @@
         Club Routegadget
         <app-external-link-icon></app-external-link-icon>
       </a>
-      <mat-divider></mat-divider>
+      <mat-divider/>
     }
 
     @if (!liked()) {
-      <button (click)="toggleReminder()" mat-menu-item>
+      <button mat-menu-item (click)="toggleReminder()">
         Like
       </button>
     } @else {
-      <button (click)="toggleReminder()" mat-menu-item>
+      <button  mat-menu-item (click)="toggleReminder()">
         UnLike
       </button>
     }
 
-    <mat-divider></mat-divider>
+    <mat-divider/>
 
     <app-add-to-calendar [date]="fixtureDate()" [title]=fixture().name [location]="calanderlocation()"
       [details]="calanderDetails()"/>

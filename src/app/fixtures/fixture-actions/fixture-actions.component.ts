@@ -44,7 +44,6 @@ export class FixtureActionsComponent implements AfterViewInit {
    homeLocation = input.required<LatLong>();
 
    // TODO TEMP comment out map reservation
-   mapReservationSupported = true;
    fixtureEntryDetails: FixtureEntryDetails[] = [];
 
    readonly menu = viewChild.required(MatMenuTrigger);
@@ -58,7 +57,7 @@ export class FixtureActionsComponent implements AfterViewInit {
 
    ngAfterViewInit() {
       // dismiss menu on scroll to fix ios issue where menu scrolls incorrectly.
-      window.addEventListener( 'scroll', () => this.menu().closeMenu(), true );
+     // window.addEventListener( 'scroll', () => this.menu().closeMenu(), true );
    }
 
    /** Open the menu from an external source */

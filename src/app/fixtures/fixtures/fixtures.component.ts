@@ -1,6 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal, viewChild } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
@@ -81,6 +81,8 @@ export class FixturesComponent implements OnInit {
       map(state => !state.matches)
    ), { initialValue: false });
 
+   grid = viewChild.required(FixturesGridComponent);
+
    ngOnInit() {
 
       /* Array of of entries expanded for the fixtures */
@@ -94,9 +96,15 @@ export class FixturesComponent implements OnInit {
        ); */
    }
 
-   onFixtureSelected(fixture: Fixture) {
+   gridFixtureSelected(fixture: Fixture) {
       this.fs.setSelectedFixture(fixture);
    }
+
+   mapFixtureSelected(fixture: Fixture) {
+      this.fs.setSelectedFixture(fixture);
+      this.grid().scrollToFixture(fixture);
+   }
+
 
    async postcodeChanged(p: string) {
       const latlong = await this.fs.setPostcode(p);
@@ -107,6 +115,13 @@ export class FixturesComponent implements OnInit {
 
    filterChanged(f: FixtureFilter) {
       this.fs.setFilter(f);
+   }
+
+   mobileGridView() {
+      this.mobileView.set('grid');
+      if (this.selectedFixture()) {
+         this.grid().scrollToFixture(this.selectedFixture()!);
+      }
    }
 
    toggleMobileFilter() {

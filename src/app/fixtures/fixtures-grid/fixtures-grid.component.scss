@@ -14,6 +14,7 @@ table {
 
 tr {
   height: $mat-row-height;
+  width: 100%;
 }
 
 th, td {
@@ -127,7 +128,7 @@ mat-icon {
 
 
 .selected {
-  background: #90caf9 //  #E3F2FD; 
+  background: #90caf9;
 }
 
 .handset-icon-size {
@@ -136,6 +137,10 @@ mat-icon {
 
 .shaded {
   background-color: rgb(235, 235, 235);
+}
+
+.white {
+  background-color: rgb(255, 255, 255);
 }
 
 .mat-link {
@@ -147,17 +152,5 @@ mat-icon {
   color: rgb(30, 30, 30)
 }
 
-mat-primary {
-  &.mat-mdc-button-base {
-    --mat-fab-foreground-color: #fff;
-    --mdc-filled-button-label-text-color: #fff;
-    --mdc-protected-button-label-text-color: #fff;
-  }
-
-  &.mat-mdc-fab,
-  &.mat-mdc-mini-fab {
-    --mat-icon-color: #fff;
-  }
-}
 
 

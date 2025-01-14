@@ -1,6 +1,6 @@
-import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, effect, inject, input, output, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatLineModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
@@ -38,7 +38,7 @@ interface StyledFixture extends Fixture {
    templateUrl: './fixtures-grid.component.html',
    styleUrls: ['./fixtures-grid.component.scss'],
    changeDetection: ChangeDetectionStrategy.OnPush,
-   imports: [CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, FlexModule, CdkVirtualForOf, NgClass, ExtendedModule, MatButtonModule, MatTooltipModule, MatIconModule, ExternalLinkIconComponent, MatMenuModule, MapMenuItemsComponent, FixtureActionsComponent, MatListModule, MatLineModule, MatDividerModule, EllipsisPipe, LocationPipe, FixtureDatePipe, FixtureDistancePipe, FixtureDistanceColorPipe, GradeIconNamePipe, EnterButtonComponent]
+   imports: [ScrollingModule, FlexModule, NgClass, ExtendedModule, MatButtonModule, MatTooltipModule, MatIconModule, ExternalLinkIconComponent, MatMenuModule, MapMenuItemsComponent, FixtureActionsComponent, MatListModule, MatLineModule, MatDividerModule, EllipsisPipe, LocationPipe, FixtureDatePipe, FixtureDistancePipe, FixtureDistanceColorPipe, GradeIconNamePipe, EnterButtonComponent]
 })
 export class FixturesGridComponent {
    private usd = inject(UserDataService);
@@ -75,13 +75,6 @@ export class FixturesGridComponent {
 
    likedEvents = computed(() => this.usd.userdata() ? this.usd.userdata()!.reminders : []);
 
-   selectEffect = effect(() => {
-      const fix = this.selectedFixture();
-      if (fix) {
-         this.showElement(fix);
-      }
-   });
-
    readonly viewPort = viewChild.required(CdkVirtualScrollViewport);
 
    constructor() {
@@ -90,11 +83,20 @@ export class FixturesGridComponent {
       this._registerGradeIcons(iconRegistry, sanitizer);
    }
 
-   eventClicked(row: Fixture) {
+   public scrollToFixture(fixture: Fixture) {
+      const index = this.fixtures().findIndex(f => f === fixture);
+
+      const viewPort = this.viewPort();
+      if (index !== -1 && viewPort) {
+         viewPort.scrollToIndex(index);
+      }
+   }
+
+   protected eventClicked(row: Fixture) {
       this.fixtureSelected.emit(row);
    }
 
-   isSelected(fixture: Fixture): boolean {
+   protected isSelected(fixture: Fixture): boolean {
       if (this.selectedFixture() && fixture) {
          return this.selectedFixture()!.id === fixture.id;
       } else {
@@ -102,17 +104,18 @@ export class FixturesGridComponent {
       }
    }
 
-   rowClass(fixture: StyledFixture): string {
+   protected rowClass(fixture: StyledFixture): string {
       if (this.isSelected(fixture)) {
          return 'selected';
       } else {
-         return fixture.shaded ? 'shaded' : '';
+         return fixture.shaded ? 'shaded' : 'white';
       }
    }
 
-   trackBy(fix: Fixture) {
+   protected trackBy(index: number, fix: Fixture) {
       return fix.id;
    }
+
 
    /** Load icons svg for event grades */
    private _registerGradeIcons(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
@@ -136,25 +139,16 @@ export class FixturesGridComponent {
       );
    }
 
-   private showElement(fixture: Fixture) {
-      const index = this.fixtures().findIndex(f => f === fixture);
-
-      const viewPort = this.viewPort();
-      if (index !== -1 && viewPort) {
-         viewPort.scrollToIndex(index);
-      }
-   }
-
-   isLiked(fixture: Fixture): boolean {
+   protected isLiked(fixture: Fixture): boolean {
       return this.likedEvents().includes(fixture.id);
    }
 
-   mapView(rg: RGData) {
+   protected mapView(rg: RGData) {
       this.router.navigate(["/mapviewer"], { queryParams: { rgdata: JSON.stringify(rg) } });
    }
 
    // TODO temp
-   isEntryAvalaible(fixture: Fixture): boolean {
+   protected isEntryAvalaible(fixture: Fixture): boolean {
       if (!this.entries()) {
          return false;
       }
@@ -162,7 +156,7 @@ export class FixturesGridComponent {
       return index !== -1;
    }
 
-   async toggleReminder(fixture: Fixture) {
+   protected async toggleReminder(fixture: Fixture) {
       if (!this.loggedIn()) {
          this.loginSnackBar.open('Must be logged in to like fixture');
       } else {
@@ -181,7 +175,7 @@ export class FixturesGridComponent {
       }
    }
 
-   async enter(fixture: Fixture) {
+   protected async enter(fixture: Fixture) {
       if (!this.loggedIn()) {
          this.loginSnackBar.open("Must be logged in to add map reservation");
       } else {
@@ -190,17 +184,17 @@ export class FixturesGridComponent {
    }
 
    /** retuns observable of css class to apply  */
-   isEntered(fixture: Fixture): boolean {
+   protected isEntered(fixture: Fixture): boolean {
       if (!this.userEntries()) { return false; }
       const index = this.userEntries().findIndex(entry => entry.fixtureId === fixture.id);
       return index !== -1;
    }
 
-   async editEntry(fixture: Fixture) {
+   protected async editEntry(fixture: Fixture) {
       this.router.navigate(["/entry/enter", fixture.id]);
    }
 
-   async viewEntries(fixture: Fixture) {
+   protected async viewEntries(fixture: Fixture) {
       this.router.navigate(["/entry/entrylist", fixture.id]);
    }
 }

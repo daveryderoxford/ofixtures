@@ -10,6 +10,7 @@ import { differenceInMonths, isFuture, isSaturday, isSunday, isToday, isWeekend 
 import { getDownloadURL } from 'rxfire/storage';
 import { BehaviorSubject, Observable, combineLatest, of, firstValueFrom} from 'rxjs';
 import { catchError, map, shareReplay, startWith, switchMap, tap } from 'rxjs/operators';
+import { getFromLocalStorage, LocalStorageLocationData, saveToLocalStorage } from './local-storage';
 
 function anyWordStartsWith( str: string, search: string): boolean {
    if (!str) return false;
@@ -74,6 +75,7 @@ export class FixturesService {
          this._postcode$.next( location.postcode );
          this._homeLocation$.next( location.latlng );
       }
+
       
       /* When user changes - set filters to reflect user details and unset liked only */
       effect( () => {
@@ -268,36 +270,3 @@ function isFixtureShown( fix: Fixture, userdata: UserData | null | undefined, ft
    return likedOnly ? isLiked : timeFilterPassed && gradeOFilterPassed && searchPassed;
 
 }
-
-type LocalStorageKey = 'grades' | 'location';
-
-interface LocalStorageLocationData {
-   postcode: string,
-   latlng: LatLong
-}
-
-function saveToLocalStorage( key: LocalStorageKey, data: LocalStorageLocationData | GradeFilter[] ) {
-   if ( data ) {
-      try {
-         localStorage.setItem( key, JSON.stringify( data ) );
-      } catch ( e: any ) {
-         console.log( `FixtureService: Error saving to local storage Key: ${key}   ${e.message}` );
-      }
-   }
-}
-
-function getFromLocalStorage( key: LocalStorageKey ): LocalStorageLocationData | GradeFilter[] | null {
-   try {
-      const str = localStorage.getItem( key );
-      if ( !str ) {
-         return null;
-      } else {
-         return JSON.parse( str );
-      }
-   } catch ( e: any ) {
-      console.log( `FixtureService: Error reading from local storage.  Key: ${key}` + '   ' + e.message );
-      return null;
-   }
-}
-
-

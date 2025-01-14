@@ -1,10 +1,10 @@
-<cdk-virtual-scroll-viewport fxFill [itemSize]="itemsize()">
+<cdk-virtual-scroll-viewport fxFill [itemSize]="itemsize()" minBufferPx="380" maxBufferPx="380">
 
   <!-- Large Screen -->
   @if (!handset()) {
     <table class="table">
       <thead>
-        <tr>
+        <tr class="white">
           <th class="actions">Actions</th>
           <th class="date">Date</th>
           <th class="distance">Distance</th>
@@ -18,8 +18,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *cdkVirtualFor="let fixture of styledFixtures()" style="width:100%; min-height: 30px;" (click)=eventClicked(fixture)
-          [ngClass]="rowClass(fixture)">
+        <tr *cdkVirtualFor="let fixture of styledFixtures(); ;trackBy: trackBy" (click)=eventClicked(fixture) [ngClass]="rowClass(fixture)">
           <td class="actions">
             <button mat-icon-button matTooltip="Like/Unlike fixture" (click)="toggleReminder(fixture)">
               <mat-icon [class.red]="isLiked(fixture)">favorite</mat-icon>
