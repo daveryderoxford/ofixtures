@@ -1,4 +1,3 @@
-
 $mat-row-height: 38px;
 $mat-row-horizontal-padding: 8px;
 
@@ -8,8 +7,10 @@ $mat-row-horizontal-padding: 8px;
 table {
   table-layout: fixed;
   border-spacing: 0;
-  font-family: Roboto,"Helvetica Neue",sans-serif;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   width: 100%;
+  min-width: 866px;
+  overflow-x: auto;
 }
 
 tr {
@@ -17,42 +18,49 @@ tr {
   width: 100%;
 }
 
-th, td {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+th,
+td {
   padding: 0;
   border: none;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: rgba(220,220,220);
+  border-bottom-color: rgba(220, 220, 220);
   padding-left: $mat-row-horizontal-padding;
   padding-right: $mat-row-horizontal-padding;
+  vertical-align: middle;
+}
+
+.text-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 th {
   text-align: left;
   font-size: 12px;
   font-weight: 500;
-  color: rgba(0,0,0,.54);
+  color: rgba(0, 0, 0, .54);
 }
 
 td {
   font-size: 13px;
-  color: rgba(0,0,0,.87);
+  color: rgba(0, 0, 0, .87);
 }
 
 
 // Individual column styles
- .center {
+.center {
   text-align: center;
 }
 
 .actions {
-  width: 50px;
-  max-width: 50px;
-  min-width: 50px;
+  width: 100px;
+  max-width: 100px;
+  min-width: 100px;
   padding-left: 10px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .date {
@@ -68,15 +76,17 @@ td {
 }
 
 .name {
-  width: 100px;
+  width: 100%;
   max-width: 400px;
   min-width: 50px;
 }
 
 .club {
-  width: 70px;
-  max-width: 700px;
-  min-width: 50px;
+  width: 100px;
+  max-width: 100px;
+  min-width: 70px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .level {
@@ -86,28 +96,27 @@ td {
 }
 
 .location {
-  width: 100px;
+  width: 100%;
   max-width: 300px;
   min-width: 50px;
 }
 
 .maps {
-  width: 50px;
-  max-width: 50px;
+  width: 70px;
+  max-width: 70px;
   min-width: 50px;
 }
 
 .omaps {
-  width: 50px;
-  max-width: 50px;
-  min-width: 50px;
+  width: 80px;
+  max-width: 80px;
+  min-width: 80px;
 }
 
 .admin {
   width: 30px;
   max-width: 30px;
   min-width: 30px;
-  padding-right: 5px;
 }
 
 mat-icon {
@@ -119,13 +128,12 @@ mat-icon {
 }
 
 .green {
-  color: rgb(0,255,0)
+  color: rgb(0, 255, 0)
 }
 
 .black {
   color: black;
 }
-
 
 .selected {
   background: #90caf9;
@@ -151,6 +159,3 @@ mat-icon {
   transform: scale(0.55);
   color: rgb(30, 30, 30)
 }
-
-
-

@@ -42,13 +42,13 @@
       </mat-select>
     </mat-form-field>
 
-    <button mat-flat-button color=primary type="button" (click)="selectFixtures()">Select Events</button>
+    <button mat-flat-button type="button" (click)="selectFixtures()">Select Events</button>
     {{selectedFixtureIds.length}} fixtures selected
     <mat-divider></mat-divider>
     <br>
 
     <div fxLayout="row" fxLayoutAlign="space-between center">
-      <button [disabled]="form.invalid || (!form.dirty && !eventsEdited)" mat-raised-button color=primary type="submit"
+      <button [disabled]="form.invalid || (!form.dirty && !eventsEdited)" mat-flat-button type="submit"
         aria-label="submit">Save</button>
     </div>
 

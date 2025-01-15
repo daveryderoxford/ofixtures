@@ -15,7 +15,7 @@
 
     <span fxFlex></span>
 
-    <a [href]="routegadgetURL(imageViewer.index())" mat-stroked-button color="primary" target="_blank">Routegadget</a>
+    <a [href]="routegadgetURL(imageViewer.index())" mat-stroked-button target="_blank">Routegadget</a>
 
     <span fxFlex="20px"></span>
 
@@ -28,15 +28,15 @@
   <div>
     <div class="top-left" fxLayout="column" fxLayoutAlign="space-around" fxLayoutGap=15px>
 
-      <button mat-fab color=primary (click)="imageViewer.zoomIn()">
+      <button mat-fab (click)="imageViewer.zoomIn()">
         <mat-icon>zoom_in</mat-icon>
       </button>
 
-      <button mat-fab color=primary (click)="imageViewer.zoomOut()">
+      <button mat-fab (click)="imageViewer.zoomOut()">
         <mat-icon>zoom_out</mat-icon>
       </button>
 
-      <button mat-fab color=primary (click)="imageViewer.reset()">
+      <button mat-fab (click)="imageViewer.reset()">
         <mat-icon>crop_free</mat-icon>
       </button>
 

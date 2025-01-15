@@ -10,3 +10,11 @@ mat-card {
    width: 100vw !important;
    min-width: 150px !important;
 }
+
+.accent {
+  color: var(--mat-sys-tertiary);
+  background-color: var(--mat-sys-on-tertiary);
+}
+
+
+

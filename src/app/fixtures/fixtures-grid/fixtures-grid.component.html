@@ -41,9 +41,9 @@
               </button>
             }
           </td>
-          <td class="date"> {{fixture.date | fixturedate }} </td>
-          <td class="distance" [style.color]="fixture.distance | distancecolor"> {{fixture.distance | distance }}</td>
-          <td class="name"> {{fixture.name}} </td>
+          <td class="date text-cell"> {{fixture.date | fixturedate }} </td>
+          <td class="distance text-cell" [style.color]="fixture.distance | distancecolor"> {{fixture.distance | distance }}</td>
+          <td class="name text-cell"> {{fixture.name}} </td>
           <td class="club">
             @if (fixture.clubURL) {
               <a mat-button color=link href={{fixture.clubURL}} target="_blank">
@@ -56,14 +56,14 @@
           <td class="level">
             <mat-icon [svgIcon]="fixture.grade | gradeIconName" class="handset-icon-size"></mat-icon>
           </td>
-          <td class="location">
+          <td class="location text-cell">
             <!-- to allow multipe spaces -->
             <span [innerHTML]="fixture | location"></span>
           </td>
           <td class="maps">
             @if (fixture.latLong && fixture.locSource !== 'club') {
               <a mat-button iconPositionEnd color=link [matMenuTriggerFor]="mapMenu">Maps
-                <mat-icon class=mat-link>arrow_drop_down</mat-icon>
+                <mat-icon iconPositionEnd class=mat-link>arrow_drop_down</mat-icon>
               </a>
               <mat-menu #mapMenu="matMenu">
                 <ng-template matMenuContent>
@@ -73,7 +73,7 @@
               </mat-menu>
             }
           </td>
-          <td class="omaps">
+          <td class="omaps center">
             @if (fixture.rg && fixture.rg.maps.length > 0;) {
               <a mat-button color="link" (click)="mapView(fixture.rg)">O Maps</a>
             }

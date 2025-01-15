@@ -1,4 +1,5 @@
-<ng-container *ngLet="ls.selected$ | async as league">
+  @let league = ls.selected$ | async;
+
   <!-- Large Screen -->
   @if (!handset()) {
   <div class="large-screen">
@@ -98,4 +99,3 @@
     }
   </div>
   }
-</ng-container>

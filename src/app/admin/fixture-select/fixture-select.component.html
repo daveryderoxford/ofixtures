@@ -16,8 +16,8 @@
   </mat-form-field>
 
   @if (fixtures$ | async; as fixtures) {
-    <mat-selection-list [multiple]="multiselect" (selectionChange)="onSelectionChange($event)">
-      <cdk-virtual-scroll-viewport class="viewport" itemSize="72">
+    <mat-selection-list class="viewport" [multiple]="multiselect" (selectionChange)="onSelectionChange($event)">
+      <cdk-virtual-scroll-viewport class="viewport" itemSize="30" minBufferPx="600" maxBufferPx="600">
         <mat-list-option *cdkVirtualFor="let fixture of fixtures" [value]="fixture"
           [selected]="selection.isSelected(fixture)" checkboxPosition="before">
           <div matListItemLine>
@@ -37,5 +37,5 @@
 
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button type="OK" (click)="onSubmit()">OK</button>
+  <button mat-flat-button type="OK" (click)="onSubmit()">OK</button>
 </div>

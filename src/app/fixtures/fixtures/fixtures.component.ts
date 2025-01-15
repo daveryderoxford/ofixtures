@@ -17,7 +17,6 @@ import { Fixture } from 'app/model';
 import { FixtureFilter } from 'app/model/fixture-filter';
 import { map } from 'rxjs';
 import { LeagueHeaderComponent } from '../../league/league-header/league-header.component';
-import { NgLetDirective } from '../../shared/components/ngLetDirective';
 import { SidenavButtonComponent } from '../../shared/components/sidenav-button.component';
 import { ToolbarComponent } from '../../shared/components/toolbar.component';
 import { FixturesGridComponent } from '../fixtures-grid/fixtures-grid.component';
@@ -35,7 +34,7 @@ type MobileView = 'map' | 'grid';
    templateUrl: './fixtures.component.html',
    styleUrls: ['./fixtures.component.scss'],
    changeDetection: ChangeDetectionStrategy.OnPush,
-   imports: [NgLetDirective, FixtureSearchComponent, SidenavButtonComponent, PostcodeComponent, FixturesOptionsComponent, AngularSplitModule, FixturesMapComponent, LeagueHeaderComponent, FixturesGridComponent, FlexModule, ToolbarComponent, MatButtonModule, MatIconModule, MatDividerModule, AsyncPipe, ControlPanelComponent]
+   imports: [FixtureSearchComponent, SidenavButtonComponent, PostcodeComponent, FixturesOptionsComponent, AngularSplitModule, FixturesMapComponent, LeagueHeaderComponent, FixturesGridComponent, FlexModule, ToolbarComponent, MatButtonModule, MatIconModule, MatDividerModule, AsyncPipe, ControlPanelComponent]
 })
 
 export class FixturesComponent implements OnInit {

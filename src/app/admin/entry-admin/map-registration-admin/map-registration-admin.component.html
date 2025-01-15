@@ -18,7 +18,7 @@
                 <br> {{ fixture.name | ellipsis: 40 }}
                 </p>
               }
-              <button mat-flat-button color="primary" type=button (click)="selectFixture()">Select Fixture</button>
+              <button mat-flat-button type=button (click)="selectFixture()">Select Fixture</button>
               <mat-divider></mat-divider>
               <mat-form-field>
                 <input matInput formControlName="closingDate" [min]="minDate" [matDatepicker]="picker"
@@ -37,7 +37,7 @@
               <mat-chip-listbox #chipList class="mat-chip-list-stacked">
                 @for (course of courses; track course; let i = $index) {
                   <mat-chip-option selected="true" selectable="true"
-                    removable="true" color="accent" (removed)="removeCourse(course)" (click)="editCourse(course, i)">
+                    removable="true" class="accent" (removed)="removeCourse(course)" (click)="editCourse(course, i)">
                     {{course.name}}
                     <span fxFlex></span>
                     <mat-icon matChipRemove>cancel</mat-icon>
@@ -48,8 +48,8 @@
           </mat-card-content>
           <mat-card-actions>
             <div fxLayout="row" fxLayoutAlign="space-between center">
-              <button [disabled]="form.invalid || (!form.dirty && !coursesChanged) || busy" mat-raised-button
-              color=primary type="submit">Save</button>
+              <button [disabled]="form.invalid || (!form.dirty && !coursesChanged) || busy" mat-flat-button
+              type="submit">Save</button>
             </div>
           </mat-card-actions>
         </form>
