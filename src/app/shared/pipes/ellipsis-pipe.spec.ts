@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { EllipsisPipe } from './ellipsis-pipe';
-
+import { } from "jasmine";
+import 'jasmine-expect';
 
 describe( 'LoggingService', () => {
    beforeEach( () => TestBed.configureTestingModule( {} ) );
@@ -8,7 +9,7 @@ describe( 'LoggingService', () => {
    it( 'should return string if max lenght is not eceeded', () => {
       const pipe = new EllipsisPipe();
       const result = pipe.transform( '123456789', 10 );
-      expect( result ).toBeEqual( '123456789' );
+      expect( result ).toEqual( '123456789' );
 
    } );
    it( 'should terminate string with ellipsis if max lenght is exceeded', () => {

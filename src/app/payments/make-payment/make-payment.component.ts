@@ -1,8 +1,8 @@
-import { Component, OnInit, HostListener, Input, inject } from '@angular/core';
+import { Component, OnInit, HostListener, inject } from '@angular/core';
 import { PaymentService } from '../payment.service';
 import { input } from "@angular/core";
 
-declare var StripeCheckout;
+declare var StripeCheckout: StripeCheckoutStatic;
 
 /** Button component that displays stripe payment dialog that captures card details and saves entry
      details on the headend that triggers charging the card */
@@ -15,7 +15,7 @@ declare var StripeCheckout;
 export class MakePaymentComponent implements OnInit {
    private paymentSvc = inject(PaymentService);
 
-   amount = input<number>();
+   amount = input.required<number>();
 
    handler: any;
 
@@ -42,6 +42,4 @@ export class MakePaymentComponent implements OnInit {
    onPopstate() {
       this.handler.close();
    }
-
-;
 }

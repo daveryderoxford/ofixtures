@@ -23,7 +23,7 @@ const int = {
    "notes": ""
 };
 
-describe.only('Routegaedget', () => {
+describe('Routegaedget', () => {
 
    it('should read routegadget events for specified clubs', async () => {
 
@@ -47,7 +47,7 @@ describe.only('Routegaedget', () => {
 
    }).timeout(20000);
 
-   it.only('should read routegadget events from cache', async () => {
+   it('should read routegadget events from cache', async () => {
 
       const gr = new Routegadget();
 

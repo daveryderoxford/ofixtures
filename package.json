@@ -44,14 +44,13 @@
     "zone.js": "^0.15.0"
   },
   "devDependencies": {
-    "@angular-devkit/architect": "0.1900.6",
     "@angular-devkit/build-angular": "^19.0.6",
     "@angular/cli": "19.0.6",
     "@angular/compiler-cli": "19.0.5",
     "@types/jasmine": "^3.5.11",
     "@types/jasmine-expect": "^3.8.1",
     "@types/leaflet": "^1.4.3",
-    "@types/node": "^14.15.0",
+    "@types/node": "^22.10.2",
     "@types/stripe-checkout": "^1.0.3",
     "@types/stripe-v3": "^3.1.9",
     "@typescript-eslint/eslint-plugin": "4.28.2",
@@ -66,6 +65,7 @@
     "karma": "~6.4.1",
     "karma-chrome-launcher": "~3.1.0",
     "karma-cli": "^2.0.0",
+    "karma-coverage": "^2.2.1",
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~3.3.0",
     "karma-jasmine-html-reporter": "1.5.0",

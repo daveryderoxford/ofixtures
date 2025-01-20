@@ -538,6 +538,11 @@ export function testFixtures(): Fixture[] {
       association: "SOA",
       nearestTown: "Woking",
       grade: "Local",
+      locSource: "postcode",
+      rg: {
+        baseURL: '',
+        maps: []
+      },
     };
     fixtures.push( fixture );
     i++;

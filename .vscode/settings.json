@@ -1,4 +1,6 @@
 {
    "typescript.tsdk": "node_modules/typescript/lib",
-   "explorer.compactFolders": false
+   "explorer.compactFolders": false,
+   "testExplorer.useNativeTesting": true,
+   "testing.followRunningTest": true
 }
