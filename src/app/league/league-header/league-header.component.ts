@@ -1,22 +1,36 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { League } from 'app/model/league';
 import { LeagueService } from '../league-service';
-import { MatButtonModule } from '@angular/material/button';
-
-import { FlexModule } from '@ngbracket/ngx-layout/flex';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { input } from "@angular/core";
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { FlexModule } from '@ngbracket/ngx-layout/flex';
+import { Club } from 'app/model/club';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-league-header',
-    templateUrl: './league-header.component.html',
-    styleUrls: ['./league-header.component.scss'],
+    template: `
+    <mat-toolbar>
+       {{league().name}}
+       <span fxFlex></span>
+       @if (league().url) {
+          <a mat-button href="{{league().url}}">Website</a>
+       }
+      <button mat-button (click)="clear()">Clear</button>
+      </mat-toolbar>
+    `,
+    styles: [],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [MatToolbarModule, FlexModule, MatButtonModule]
 })
 export class LeagueHeaderComponent  {
   ls = inject(LeagueService);
+  router = inject(Router);
 
-  league = input.required<League>();
+  league = input.required<League | Club>();
 
+  clear() {
+    this.router.navigate(["/fixtures"]);
+  }
 }

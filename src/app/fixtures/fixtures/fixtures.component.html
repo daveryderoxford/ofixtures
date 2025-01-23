@@ -1,4 +1,3 @@
-  @let league = ls.selected$ | async;
 
   <!-- Large Screen -->
   @if (!handset()) {
@@ -8,7 +7,7 @@
       <app-postcode [postcode]="postcode()" (postcodeChanged)="postcodeChanged($event)"></app-postcode>
     </app-control-panel>
     <app-fixture-search #search class="search-position mat-elevation-z"></app-fixture-search>
-    @if (!league) {
+    @if (!fixtureGroup()) {
     <app-fixtures-options class="top-right mat-elevation-z2" [filter]="filter()"
       (filterChanged)="filterChanged($event)">
     </app-fixtures-options>
@@ -26,9 +25,9 @@
       </as-split-area>
       <!-- Large table -->
       <as-split-area>
-        @if (league) {
+        @if (fixtureGroup()) {
         <div>
-          <app-league-header [league]="league"></app-league-header>
+          <app-league-header [league]="fixtureGroup()!"></app-league-header>
         </div>
         }
         <app-fixtures-grid [fixtures]="fixtures()" [entries]="entries()" [userEntries]="userEntries()"
@@ -64,14 +63,14 @@
     @if (showMobleFilter()) {
     <div fxLayout="column" class="mat-elevation-z2 mobile-filter">
       <app-postcode [postcode]="postcode()" (postcodeChanged)="postcodeChanged($event)"></app-postcode>
-      @if (!league) {
+      @if (!fixtureGroup()) {
       <app-fixtures-options [filter]="filter()" (filterChanged)="filterChanged($event)"></app-fixtures-options>
       }
     </div>
     }
-    @if (league) {
+    @if (fixtureGroup()) {
     <div>
-      <app-league-header [league]="league"></app-league-header>
+      <app-league-header [league]="fixtureGroup()!"></app-league-header>
     </div>
     }
     @if (mobileView() === 'grid') {

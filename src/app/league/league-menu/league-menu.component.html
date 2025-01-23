@@ -8,7 +8,7 @@
 
     <ng-template matExpansionPanelContent>
       <mat-action-list>
-        @for (l of (multiday$ | async); track l) {
+        @for (l of multiday(); track l) {
           <button mat-list-item class="menubutton" (click)="selectLeague(l)">
             {{l.name}} - {{l.startDate | date:'yyyy'}}
           </button>
@@ -27,7 +27,7 @@
       <mat-action-list>
         <span matSubheader>National</span>
 
-        @for (l of (national$ | async); track l) {
+        @for (l of national(); track l) {
           <button mat-list-item class="menubutton" (click)="selectLeague(l)">
             {{l.name}} - {{l.startDate | date:'yyyy'}}
           </button>
@@ -36,7 +36,7 @@
 
         <span matSubheader>Regional</span>
 
-        @for (l of (regional$ | async); track l) {
+        @for (l of regional(); track l) {
           <button mat-list-item class="menubutton" (click)="selectLeague(l)">
             {{l.name}} - {{l.startDate | date:'yyyy'}}
           </button>
@@ -44,7 +44,7 @@
         <mat-divider></mat-divider>
 
         <span matSubheader>Club</span>
-        @for (l of (club$ | async); track l) {
+        @for (l of club(); track l) {
           <button mat-list-item class="menubutton" (click)="selectLeague(l)">
             {{l.name}} - {{l.startDate | date:'yyyy'}}
           </button>

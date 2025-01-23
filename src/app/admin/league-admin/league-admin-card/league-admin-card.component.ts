@@ -1,26 +1,24 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, computed, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatLineModule } from '@angular/material/core';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { Router, RouterLink } from '@angular/router';
+import { FlexModule } from '@ngbracket/ngx-layout/flex';
+import { AuthService } from 'app/auth/auth.service';
 import { LeagueService } from 'app/league/league-service';
 import { League } from 'app/model/league';
 import { DialogsService } from 'app/shared';
-import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
-import { MatLineModule } from '@angular/material/core';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatListModule } from '@angular/material/list';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { AsyncPipe, DatePipe } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { FlexModule } from '@ngbracket/ngx-layout/flex';
-import { MatCardModule } from '@angular/material/card';
-import { AuthService } from 'app/auth/auth.service';
 
 @Component({
-    selector: 'app-league-admin-card',
-    templateUrl: './league-admin-card.component.html',
-    styleUrls: ['./league-admin-card.component.scss'],
-    imports: [MatCardModule, FlexModule, MatButtonModule, RouterLink, MatIconModule, MatExpansionModule, MatListModule, MatDividerModule, MatLineModule, AsyncPipe, DatePipe]
+  selector: 'app-league-admin-card',
+  templateUrl: './league-admin-card.component.html',
+  styleUrls: ['./league-admin-card.component.scss'],
+  imports: [MatCardModule, FlexModule, MatButtonModule, RouterLink, MatIconModule, MatExpansionModule, MatListModule, MatDividerModule, MatLineModule, DatePipe]
 })
 export class LeagueAdminCardComponent {
   private ls = inject(LeagueService);
@@ -28,25 +26,17 @@ export class LeagueAdminCardComponent {
   private router = inject(Router);
   private ds = inject(DialogsService);
 
-  leagues$: Observable<League[]>;
+  leagues = computed(() => this.ls.leagues().filter(league => league.userId === this.auth.user()?.uid));
 
-  constructor () { 
-   
-    this.leagues$ = this.ls.leagues$.pipe( 
-      map( arr => arr.filter( league => league.userId === this.auth.user()?.uid )),
-      tap(arr => console.log("Leagues filtered count: " + arr.length))
-    );
+  async delete(league: League) {
+
+    if (await this.ds.confirm('Delete league', 'Delete leauge?.')) {
+      await this.ls.delete(league.id);
+    }
   }
 
- async delete(league: League) {
-
-   if ( await this.ds.confirm( 'Delete league', 'Delete leauge?.' )) {
-      await this.ls.delete( league.id );
-   }
-  }
-
-  async edit( league: League ) {
-    this.router.navigate( ['/admin/league/edit', league.id])
+  async edit(league: League) {
+    this.router.navigate(['/admin/league/edit', league.id]);
   }
 
 }

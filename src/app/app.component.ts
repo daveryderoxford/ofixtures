@@ -17,13 +17,14 @@ import { League } from './model/league';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { LoginSnackbarService } from './shared/services/login-snackbar.service';
 import { SidenavService } from './shared/services/sidenav.service';
+import { SelectClubComponent } from "./club/select-club.component";
 
 @UntilDestroy()
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['app.component.scss'],
-    imports: [SpinnerComponent, MatSidenavModule, MatDividerModule, MatListModule, LeagueMenuComponent, RouterOutlet]
+    imports: [SpinnerComponent, MatSidenavModule, MatDividerModule, MatListModule, LeagueMenuComponent, RouterOutlet, SelectClubComponent]
 })
 export class AppComponent implements OnInit {
       private router = inject(Router);
@@ -121,7 +122,6 @@ export class AppComponent implements OnInit {
    }
 
    async showFixtures(mapView: boolean) {
-      this.ls.setSelected(null);
       if (mapView) {
          this.router.navigate(["/fixtures", { mapview: true }]);
       } else {
@@ -132,8 +132,14 @@ export class AppComponent implements OnInit {
 
    async leagueSelected(l: League) {
       await this.sidenav().close();
-      await this.router.navigate(["/fixtures"]);
+      await this.router.navigate(["/fixtures", { leagueId: l.id}]);
    }
+
+   async clubSelected(clubName: string) {
+      await this.sidenav().close();
+      await this.router.navigate(["/fixtures", { clubName: clubName }]);
+   }
+
 
    async contact() {
       await this.sidenav().close();

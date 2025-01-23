@@ -1,9 +1,7 @@
 import { Component, inject } from '@angular/core';
 
-import { SearchInputComponent } from './search-input/search-input.component';
-import { FormControl } from '@angular/forms';
 import { FixturesService } from 'app/fixtures/fixtures.service';
-import { debounce, debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { SearchInputComponent } from './search-input/search-input.component';
 
 @Component({
     selector: 'app-fixture-search',

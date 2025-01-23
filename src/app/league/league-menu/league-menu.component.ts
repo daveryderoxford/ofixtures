@@ -1,44 +1,30 @@
-import { Component, output, inject } from '@angular/core';
-import { League } from 'app/model/league';
-import { map } from 'rxjs/operators';
-import { LeagueService } from '../league-service';
+import { DatePipe } from '@angular/common';
+import { Component, computed, inject, output } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
-import { AsyncPipe, DatePipe } from '@angular/common';
-import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatListModule } from '@angular/material/list';
+import { Router } from '@angular/router';
+import { League } from 'app/model/league';
+import { LeagueService } from '../league-service';
 
 @Component({
     selector: 'app-league-menu',
     templateUrl: './league-menu.component.html',
     styleUrls: ['./league-menu.component.scss'],
-    imports: [MatExpansionModule, MatListModule, MatDividerModule, AsyncPipe, DatePipe]
+    imports: [MatExpansionModule, MatListModule, MatDividerModule, DatePipe]
 })
 export class LeagueMenuComponent {
   private ls = inject(LeagueService);
-
+  private router = inject(Router);
 
   selected = output<League>();
 
-  multiday$ = this.ls.leagues$.pipe(
-    map( leagues => leagues.filter( l => l.type === 'Multiday' ) )
-  )
-
-  national$ = this.ls.leagues$.pipe(
-    map( leagues => leagues.filter( l => l.type === 'League' && l.level === 'National' ) )
-  );
-
-  regional$ = this.ls.leagues$.pipe(
-    map( leagues => leagues.filter( l => l.type === 'League' && l.level === 'Regional' ) )
-  );
-
-  club$ = this.ls.leagues$.pipe(
-    map( leagues => leagues.filter( l => l.type === 'League' && l.level === 'Club' ) )
-  );
+  multiday = computed( () => this.ls.leagues().filter( l => l.type === 'Multiday' ) );
+  national = computed(() => this.ls.leagues().filter(l => l.type === 'League' && l.level === 'National'))
+  regional = computed(() => this.ls.leagues().filter(l => l.type === 'League' && l.level === 'Regional'))
+  club = computed(() => this.ls.leagues().filter(l => l.type === 'League' && l.level === 'Club'))
 
   selectLeague( league: League ) {
-    this.selected.emit( league ); 
-    this.ls.setSelected( league );
+     this.selected.emit( league );
   }
-
-;
 }

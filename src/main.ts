@@ -16,55 +16,55 @@ import { AppComponent } from './app/app.component';
 import { firebaseConfig } from './app/app.firebase-config';
 
 import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
-import { PreloadAllModules, provideRouter, withComponentInputBinding, withPreloading } from '@angular/router';
+import { PreloadAllModules, provideRouter, withComponentInputBinding, withDebugTracing, withPreloading } from '@angular/router';
 import { APP_ROUTES } from 'app/app.routes';
 
 if (environment.production) {
-    enableProdMode();
+   enableProdMode();
 }
 
 bootstrapApplication(AppComponent, {
-    providers: [
-        provideFirebaseApp(() => initializeApp(firebaseConfig)),
-        provideAuth(() => {
-            const auth = getAuth();
-            if (environment.useEmulator) {
-                console.log('Auth emulator configured');
-                connectAuthEmulator(auth, 'http://localhost:9099');
-            }
-            return auth;
-        }),
-        provideFirestore(() => {
-            const firestore = getFirestore();
-            if (environment.useEmulator) {
-                console.log('Firestore emulator configured');
-                connectFirestoreEmulator(firestore, 'http://localhost', 8080);
-            }
-            return firestore;
-        }),
-        provideStorage(() => {
-            const storage = getStorage();
-            if (environment.useEmulator) {
-                console.log('Storage emulator configured');
-                connectStorageEmulator(storage, 'http://localhost', 9199);
-            }
-            return storage;
-        }),
-        provideAnalytics(() => getAnalytics()),
-        // { provide: ErrorHandler, useClass: GlobalErrorHandler },
-        ScreenTrackingService,
-        UserTrackingService,
+   providers: [
+      provideFirebaseApp(() => initializeApp(firebaseConfig)),
+      provideAuth(() => {
+         const auth = getAuth();
+         if (environment.useEmulator) {
+            console.log('Auth emulator configured');
+            connectAuthEmulator(auth, 'http://localhost:9099');
+         }
+         return auth;
+      }),
+      provideFirestore(() => {
+         const firestore = getFirestore();
+         if (environment.useEmulator) {
+            console.log('Firestore emulator configured');
+            connectFirestoreEmulator(firestore, 'http://localhost', 8080);
+         }
+         return firestore;
+      }),
+      provideStorage(() => {
+         const storage = getStorage();
+         if (environment.useEmulator) {
+            console.log('Storage emulator configured');
+            connectStorageEmulator(storage, 'http://localhost', 9199);
+         }
+         return storage;
+      }),
+      provideAnalytics(() => getAnalytics()),
+      // { provide: ErrorHandler, useClass: GlobalErrorHandler },
+      ScreenTrackingService,
+      UserTrackingService,
 
-        provideAnimations(),
-        provideHttpClient(withInterceptorsFromDi()),
-        importProvidersFrom(
-            MatDialogModule,
-            MatSnackBarModule,
-        ),
-        provideRouter(APP_ROUTES,
-            withPreloading(PreloadAllModules),
-            withComponentInputBinding(),
-            //    withDebugTracing(),
-        ),
-    ]
+      provideAnimations(),
+      provideHttpClient(withInterceptorsFromDi()),
+      importProvidersFrom(
+         MatDialogModule,
+         MatSnackBarModule,
+      ),
+      provideRouter(APP_ROUTES,
+         withPreloading(PreloadAllModules),
+         withComponentInputBinding(),
+         withDebugTracing(),
+      ),
+   ]
 });

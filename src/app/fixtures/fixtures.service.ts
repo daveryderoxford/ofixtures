@@ -26,7 +26,6 @@ export class FixturesService {
    protected storage = inject(Storage);
    protected http = inject(HttpClient);
 
-
    static DEFAULT_FILTER = {
       time: { sat: true, sun: true, weekday: true },
       gradesEnabled: true,

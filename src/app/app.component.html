@@ -8,7 +8,7 @@
       <button mat-list-item (click)='showFixtures(false)'>Fixtures</button>
 
       @if (handset) {
-        <button mat-list-item (click)='showFixtures(true)'>Fixtures
+      <button mat-list-item (click)='showFixtures(true)'>Fixtures
         Map</button>
       }
 
@@ -17,13 +17,18 @@
       <app-league-menu (selected)="leagueSelected($event)"></app-league-menu>
 
       <mat-divider></mat-divider>
+      
+      <app-select-club (selected)="clubSelected($event)"></app-select-club>
+
+      <mat-divider></mat-divider>
+
 
       @if (afAuth.loggedIn()) {
-        <button mat-list-item (click)='closeSidenav(["/user"])'>User settings</button>
-        <button mat-list-item (click)='closeSidenav(["/auth/change-password"])'>Change password</button>
-        <button mat-list-item (click)="logout()">Logout</button>
+      <button mat-list-item (click)='closeSidenav(["/user"])'>User settings</button>
+      <button mat-list-item (click)='closeSidenav(["/auth/change-password"])'>Change password</button>
+      <button mat-list-item (click)="logout()">Logout</button>
       } @else {
-        <button mat-list-item (click)='closeSidenav(["/auth/login"])'>Login</button>
+      <button mat-list-item (click)='closeSidenav(["/auth/login"])'>Login</button>
       }
 
       <mat-divider></mat-divider>

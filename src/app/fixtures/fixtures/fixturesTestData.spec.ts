@@ -1,4 +1,4 @@
-import { Fixture, Nation } from 'app/model';
+import { Fixture } from 'app/model';
 
 const points = new Array();
 points.push( [ 0, 52.157792558339, 0.1811280448097, -0 ] );

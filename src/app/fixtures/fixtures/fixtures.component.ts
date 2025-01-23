@@ -1,6 +1,5 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, computed, inject, input, signal, viewChild } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
@@ -26,6 +25,7 @@ import { FixtureSearchComponent } from '../fixtures-search/fixture-search.compon
 import { FixturesService } from '../fixtures.service';
 import { PostcodeComponent } from '../postcode/postcode.component';
 import { ControlPanelComponent } from './control-panel.component';
+import { ClubService } from 'app/club/club-service';
 
 type MobileView = 'map' | 'grid';
 
@@ -34,7 +34,7 @@ type MobileView = 'map' | 'grid';
    templateUrl: './fixtures.component.html',
    styleUrls: ['./fixtures.component.scss'],
    changeDetection: ChangeDetectionStrategy.OnPush,
-   imports: [FixtureSearchComponent, SidenavButtonComponent, PostcodeComponent, FixturesOptionsComponent, AngularSplitModule, FixturesMapComponent, LeagueHeaderComponent, FixturesGridComponent, FlexModule, ToolbarComponent, MatButtonModule, MatIconModule, MatDividerModule, AsyncPipe, ControlPanelComponent]
+   imports: [FixtureSearchComponent, SidenavButtonComponent, PostcodeComponent, FixturesOptionsComponent, AngularSplitModule, FixturesMapComponent, LeagueHeaderComponent, FixturesGridComponent, FlexModule, ToolbarComponent, MatButtonModule, MatIconModule, MatDividerModule, ControlPanelComponent]
 })
 
 export class FixturesComponent implements OnInit {
@@ -42,6 +42,7 @@ export class FixturesComponent implements OnInit {
    protected auth = inject(AuthService);
    public fs = inject(FixturesService);
    public ls = inject(LeagueService);
+   public cs = inject(ClubService);
    private es = inject(EntryService);
    private breakpointObserver = inject(BreakpointObserver);
    public dialog = inject(MatDialog);
@@ -57,20 +58,32 @@ export class FixturesComponent implements OnInit {
    entries = toSignal(this.es.fixtureEntryDetails$, { initialValue: [] });
    userEntries = toSignal(this.es.userEntries$, { initialValue: [] });
 
-   selectedLeague = toSignal(this.ls.selected$, { requireSync: true });
    allFixtures = toSignal(this.fs.allFixtues(), { initialValue: [] });
    filteredFixtures = toSignal(this.fs.getFixtures(), { initialValue: [] });
 
+   clubName = input<string | undefined>(undefined)       // route parameter
+   leagueId = input<string | undefined>(undefined) // route parameter
+
+   league = computed(() => this.ls.findById(this.leagueId()));
+   club = computed(() => this.cs.find(this.clubName()));
+
+   fixtureGroup = computed( () => {
+      if (this.leagueId()) return this.league();
+      if (this.club()) return this.club();
+      return undefined;
+   });
+
    fixtures = computed(() => {
-      const league = this.selectedLeague();
-      if (league) {
-         return this.allFixtures().filter(fix => league?.fixtureIds.includes(fix.id));
+      if (this.league()) {
+         return this.allFixtures().filter(fix => this.league()?.fixtureIds.includes(fix.id));
+      } else if (this.club()) {
+         return this.allFixtures().filter(fix => fix.club === this.club()?.name);
       } else {
          return this.filteredFixtures();
       }
    });
 
-   zoomBounds = computed(() => this.selectedLeague() !== null);
+   zoomBounds = computed(() => this.league() !== undefined || this.club() !== undefined);
 
    mobileView = signal<MobileView>('grid');
 

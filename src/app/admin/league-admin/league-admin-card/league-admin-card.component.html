@@ -14,7 +14,6 @@
           <mat-icon>add</mat-icon> Add
         </a>
       </p>
-      @if (leagues$ | async; as leagues) {
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -24,7 +23,7 @@
           </mat-expansion-panel-header>
           <mat-list>
             <mat-divider></mat-divider>
-            @for (league of leagues; track league) {
+            @for (league of leagues(); track league.id) {
             <mat-list-item>
               <div matListItemTitle>{{league.name}}</div>
               <div matListItemLine>{{league.fixtureIds.length}} fixtures</div>
@@ -45,6 +44,5 @@
           </mat-list>
         </mat-expansion-panel>
       </mat-accordion>
-      }
     </mat-card-content>
 </mat-card>
