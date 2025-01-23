@@ -20,7 +20,7 @@ import { ToolbarComponent } from '../../../shared/components/toolbar.component';
 @Component({
     selector: 'app-league-form',
     templateUrl: './league-form.component.html',
-    styleUrls: ['./league-form.component.scss'],
+    styles: '',
     imports: [ToolbarComponent, FlexModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatOptionModule, MatButtonModule, MatDividerModule, FormContainerComponent]
 })
 export class LeagueFormComponent implements OnChanges {
