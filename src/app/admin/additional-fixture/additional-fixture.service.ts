@@ -65,5 +65,4 @@ export class AdditionalFixtureService {
       this._selectedFixture.next( null );
     }
   }
-
 }
