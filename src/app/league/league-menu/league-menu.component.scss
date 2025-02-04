@@ -1,3 +1,13 @@
+@use '@angular/material' as mat;
+
+
+// Style expansion header as menu button
+:host {
+  @include mat.expansion-overrides((
+    header-text-font: var(--mat-sys-body-large-font),
+    header-text-weight: var(--mat-sys-body-large-weight)));
+}
+
 .menubutton {
   font-size: 14px;
   height: 33px;
