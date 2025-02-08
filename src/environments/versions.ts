@@ -3,6 +3,6 @@
 export const versions = {
   name: 'Club support',
   version: 'v3.1.0',
-  revision: '02b307f',
+  revision: 'b7acfe8',
   branch: 'master'
 };
