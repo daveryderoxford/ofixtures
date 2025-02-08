@@ -12,7 +12,6 @@ import { Component } from '@angular/core';
          box-shadow: var(--mat-sys-level1);
          border-radius: 25px;
          padding: 7px;
-         background-color: green;
       } 
   `]
 })

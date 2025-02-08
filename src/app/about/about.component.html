@@ -1,4 +1,4 @@
-<app-toolbar title="About OFixtures"/>
+<app-toolbar title="About OFixtures" />
 
 <div fxLayout="row" fxLayoutAlign="center" class="about-container">
   <mat-accordion fxFlex="0 1 800px">
@@ -16,6 +16,7 @@
         <li>Google, Ordnance survey and What3Words maps</li>
         <li>Add event to google calander (Google)</li>
         <li>Support for displaying event series and multi-day events (JK/British etc)</li>
+        <li>Display events for a club</li>
       </ul>
 
       <p>User functionality</p>
@@ -49,6 +50,18 @@
       <ul>
         <li>Additional event sources (MBO/Army/Mountain marathons)</li>
       </ul>
+
+    </app-about-item>
+
+    <app-about-item title="Display club's fixtures">
+      OFixture can display all a club's registered fixtures.
+      <p>
+        The club's fixtures may be displayed via a URL as below.
+      <div class=indent> https://ofixtures.co.uk/fixtures;clubName=XXXX</div>
+      <div class=indent>where XXXX is the BOF abbrivation of the club.</div>
+
+      <p>All the event information is obtained from the BOF website once per day (at 16:00) so
+        this should be updated to ensure information is up-to-date</p>
 
     </app-about-item>
 
@@ -107,6 +120,7 @@
     </app-about-item>
 
     <app-about-item title="Version">
+      Name: {{ver.name}} <br>
       Version: {{ver.version}} <br>
       Revision: {{ver.revision}} <br>
       Branch: {{ver.branch}} <br>

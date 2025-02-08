@@ -13,9 +13,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
     <ng-content></ng-content>
   </mat-expansion-panel>
   `,
-    styles: [],
+    styles: `
+    `,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatExpansionModule]
+    imports: [MatExpansionModule],
 })
 export class AboutItemComponent  {
 

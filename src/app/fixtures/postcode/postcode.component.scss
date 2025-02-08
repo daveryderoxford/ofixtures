@@ -5,17 +5,6 @@
   @include mat.form-field-overrides((
       outlined-outline-width: 0px
     ));
-
-  @include mat.button-overrides((
-       text-horizontal-padding: 5px,
-    ));
-}
-
-.container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
 }
 
 mat-form-field {

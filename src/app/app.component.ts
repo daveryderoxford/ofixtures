@@ -1,63 +1,51 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit, inject, viewChild } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterOutlet } from "@angular/router";
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { first, tap } from 'rxjs/operators';
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterOutlet } from "@angular/router";
+import { filter, first, map } from 'rxjs/operators';
 import { AuthService } from './auth/auth.service';
+import { SelectClubComponent } from "./club/select-club.component";
 import { FixturesService } from './fixtures/fixtures.service';
 import { PostcodeDialogComponent } from './fixtures/postcode/dialog/postcode-dialog/postcode-dialog.component';
 import { LeagueMenuComponent } from './league/league-menu/league-menu.component';
-import { LeagueService } from './league/league-service';
 import { League } from './model/league';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
+import { BreakpointService } from './shared/services/breakpoint.service';
 import { LoginSnackbarService } from './shared/services/login-snackbar.service';
 import { SidenavService } from './shared/services/sidenav.service';
-import { SelectClubComponent } from "./club/select-club.component";
 
-@UntilDestroy()
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['app.component.scss'],
-    imports: [SpinnerComponent, MatSidenavModule, MatDividerModule, MatListModule, LeagueMenuComponent, RouterOutlet, SelectClubComponent]
+   selector: 'app-root',
+   templateUrl: './app.component.html',
+   styleUrls: ['app.component.scss'],
+   imports: [SpinnerComponent, MatSidenavModule, MatDividerModule, MatListModule, LeagueMenuComponent, RouterOutlet, SelectClubComponent]
 })
 export class AppComponent implements OnInit {
-      private router = inject(Router);
-      protected afAuth = inject(AuthService);
-      private fixtureService = inject(FixturesService);
-      private sidebarService = inject(SidenavService);
-      private snackBar = inject(MatSnackBar);
-      private loginSnackBar = inject(LoginSnackbarService);
-      private breakpointObserver = inject(BreakpointObserver);
-      private ls = inject(LeagueService);
-      private dialog = inject(MatDialog);
+   private router = inject(Router);
+   protected afAuth = inject(AuthService);
+   private fixtureService = inject(FixturesService);
+   private sidebarService = inject(SidenavService);
+   private snackBar = inject(MatSnackBar);
+   private loginSnackBar = inject(LoginSnackbarService);
+   protected layout = inject(BreakpointService);
+   private dialog = inject(MatDialog);
+
    readonly sidenav = viewChild.required(MatSidenav);
 
-   loading = false;
-   handset = false;
+   private navStates = [NavigationStart, NavigationEnd, NavigationCancel, NavigationError];
+
+   loading = toSignal(this.router.events.pipe(
+      filter ( event => this.navStates.some( state => (event instanceof(state)))),
+      map(event => (event instanceof NavigationStart) ? true : false),
+   ), {initialValue: false});
+  
    firstWarning = true;
 
-   constructor() {
-
-      // Send google analytics message when navigating to any route succeeds.
-      this.router.events.subscribe(event => {
-         this.setLoading(event);
-      });
-   }
-
    ngOnInit() {
-
-      this.breakpointObserver.observe(['(min-width: 500px) and (min-height: 400px)'])
-         .pipe(
-            untilDestroyed(this),
-            tap(state => console.log('AppComponnet: state: ' + state.matches.toString()))
-         )
-         .subscribe(state => this.handset = !state.matches);
 
       this.sidebarService.setSidenav(this.sidenav());
       this.cookieConsent();
@@ -69,7 +57,7 @@ export class AppComponent implements OnInit {
 
       if (!existsInLocalStorage('cookieConsent')) {
          this.snackBar.open("This site uses cookies for analytics purposes.", "Accept").afterDismissed().subscribe(() => {
-            saveToLocalStorage('cookieConsent', true)
+            saveToLocalStorage('cookieConsent', true);
          });
       }
    }
@@ -85,23 +73,11 @@ export class AppComponent implements OnInit {
             });
 
             dialogRef.afterClosed().subscribe(() => {
-               saveToLocalStorage('postCodeWarning', true)
+               saveToLocalStorage('postCodeWarning', true);
                this.firstWarning = false;
             });
          }
-      })
-   }
-
-   private setLoading(routerEvent: Event): void {
-      if (routerEvent instanceof NavigationStart) {
-         this.loading = true;
-      }
-
-      if (routerEvent instanceof NavigationEnd ||
-         routerEvent instanceof NavigationCancel ||
-         routerEvent instanceof NavigationError) {
-         this.loading = false;
-      }
+      });
    }
 
    async closeSidenav(target: Array<any>) {
@@ -132,7 +108,7 @@ export class AppComponent implements OnInit {
 
    async leagueSelected(l: League) {
       await this.sidenav().close();
-      await this.router.navigate(["/fixtures", { leagueId: l.id}]);
+      await this.router.navigate(["/fixtures", { leagueId: l.id }]);
    }
 
    async clubSelected(clubName: string) {
@@ -164,7 +140,6 @@ export class AppComponent implements OnInit {
    isInStandaloneMode(): boolean {
       const nav: any = window.navigator;
       return ('standalone' in nav) && nav.standalone;
-
    }
 
    async showIosInstallBanner() {
@@ -178,7 +153,6 @@ export class AppComponent implements OnInit {
          snackBarRef.afterDismissed().subscribe(() => {
             localStorage.setItem('isBannerShown', 'true');
          });
-
       }
    }
 }

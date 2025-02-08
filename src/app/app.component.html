@@ -1,4 +1,4 @@
-<app-spinner [loading]="loading"></app-spinner>
+<app-spinner [loading]="loading()"></app-spinner>
 
 <mat-sidenav-container class="fullscreen">
 
@@ -7,7 +7,7 @@
     <mat-action-list>
       <button mat-list-item (click)='showFixtures(false)'>Fixtures</button>
 
-      @if (handset) {
+      @if (layout.handset()) {
       <button mat-list-item (click)='showFixtures(true)'>Fixtures
         Map</button>
       }
@@ -21,7 +21,6 @@
       <app-select-club (selected)="clubSelected($event)"></app-select-club>
 
       <mat-divider></mat-divider>
-
 
       @if (afAuth.loggedIn()) {
       <button mat-list-item (click)='closeSidenav(["/user"])'>User settings</button>

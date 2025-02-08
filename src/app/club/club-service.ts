@@ -14,7 +14,9 @@ export class ClubService {
    selected = signal<string | null>(null);
 
    clubs = computed(() => {
-      const allClubs = this.allFixtures().map(fix => {
+      const allClubs = this.allFixtures()
+      .filter( (fix => fix.club && fix.club.trim() !== ''))
+      .map(fix => {
          return {
             name: fix.club,
             url: fix.clubURL

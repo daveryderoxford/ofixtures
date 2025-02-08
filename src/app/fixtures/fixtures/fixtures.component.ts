@@ -1,4 +1,3 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
 import { ChangeDetectionStrategy, Component, OnInit, computed, inject, input, signal, viewChild } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,6 +25,7 @@ import { FixturesService } from '../fixtures.service';
 import { PostcodeComponent } from '../postcode/postcode.component';
 import { ControlPanelComponent } from './control-panel.component';
 import { ClubService } from 'app/club/club-service';
+import { BreakpointService } from 'app/shared/services/breakpoint.service';
 
 type MobileView = 'map' | 'grid';
 
@@ -44,7 +44,7 @@ export class FixturesComponent implements OnInit {
    public ls = inject(LeagueService);
    public cs = inject(ClubService);
    private es = inject(EntryService);
-   private breakpointObserver = inject(BreakpointObserver);
+   private breakpointObserver = inject(BreakpointService);
    public dialog = inject(MatDialog);
    public snackbar = inject(MatSnackBar);
    public route = inject(ActivatedRoute);
@@ -61,7 +61,7 @@ export class FixturesComponent implements OnInit {
    allFixtures = toSignal(this.fs.allFixtues(), { initialValue: [] });
    filteredFixtures = toSignal(this.fs.getFixtures(), { initialValue: [] });
 
-   clubName = input<string | undefined>(undefined)       // route parameter
+   clubName = input<string | undefined>(undefined) // route parameter
    leagueId = input<string | undefined>(undefined) // route parameter
 
    league = computed(() => this.ls.findById(this.leagueId()));
@@ -83,15 +83,18 @@ export class FixturesComponent implements OnInit {
       }
    });
 
+   displayedSelection = computed(() => {
+      const f = this.fixtures().find(fix => fix.id === this.selectedFixture()?.id);
+      return f === undefined ? null : f;
+   });
+
    zoomBounds = computed(() => this.league() !== undefined || this.club() !== undefined);
 
    mobileView = signal<MobileView>('grid');
 
    showMobleFilter = signal(false);
 
-   handset = toSignal(this.breakpointObserver.observe(['(min-width: 500px) and (min-height: 400px)']).pipe(
-      map(state => !state.matches)
-   ), { initialValue: false });
+   handset = this.breakpointObserver.handset;
 
    grid = viewChild.required(FixturesGridComponent);
 

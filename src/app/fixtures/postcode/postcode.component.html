@@ -1,9 +1,5 @@
-<div class="container">
   <mat-form-field class="dense-form-field" appearance="outline" subscriptSizing="dynamic">
-      <mat-label>Postcode</mat-label>
+    <mat-label>Postcode</mat-label>
     <input matInput required [formControl]="postcodeFormControl" [value]="postcode()"
-      (keydown.enter)="postcodeEntered()">
+      (keydown.enter)="postcodeEntered()" (blur)="leave()">
   </mat-form-field>
-
-  <button mat-button (click)="postcodeEntered()">GO</button>
-</div>

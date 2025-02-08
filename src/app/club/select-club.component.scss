@@ -15,6 +15,6 @@
 }
 
 .select {
-   @include mat.form-field-density(-4);
    width: 120px;
+   @include mat.form-field-density(-4);
 }

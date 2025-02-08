@@ -30,6 +30,13 @@ html {
   @include mat.toolbar-overrides((container-background-color: var(--mat-sys-primary-container),
       container-text-color: var(--mat-sys-primary),
     ));
+
+
+  @include mat.button-toggle-overrides((
+    text-color: var(--mat-sys-primary),
+      height: 35px,
+      selected-state-text-color: var(--mat-sys-primary),
+    ));
 }
 
 body {
