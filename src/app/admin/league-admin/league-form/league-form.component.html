@@ -48,7 +48,7 @@
     <br>
 
     <div fxLayout="row" fxLayoutAlign="space-between center">
-      <button [disabled]="form.invalid || (!form.dirty && !eventsEdited)" mat-flat-button type="submit"
+      <button type="submit" [disabled]="form.invalid || (!form.dirty && !eventsEdited)" mat-flat-button type="submit"
         aria-label="submit">Save</button>
     </div>
 

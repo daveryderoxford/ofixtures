@@ -6,7 +6,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterOutlet } from "@angular/router";
-import { filter, first, map } from 'rxjs/operators';
+import { filter, first, map, tap } from 'rxjs/operators';
 import { AuthService } from './auth/auth.service';
 import { SelectClubComponent } from "./club/select-club.component";
 import { FixturesService } from './fixtures/fixtures.service';
@@ -17,6 +17,7 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
 import { BreakpointService } from './shared/services/breakpoint.service';
 import { LoginSnackbarService } from './shared/services/login-snackbar.service';
 import { SidenavService } from './shared/services/sidenav.service';
+import { RouteState } from './app.route-state';
 
 @Component({
    selector: 'app-root',
@@ -26,6 +27,7 @@ import { SidenavService } from './shared/services/sidenav.service';
 })
 export class AppComponent implements OnInit {
    private router = inject(Router);
+   protected routeState = inject(RouteState);
    protected afAuth = inject(AuthService);
    private fixtureService = inject(FixturesService);
    private sidebarService = inject(SidenavService);
@@ -39,10 +41,10 @@ export class AppComponent implements OnInit {
    private navStates = [NavigationStart, NavigationEnd, NavigationCancel, NavigationError];
 
    loading = toSignal(this.router.events.pipe(
-      filter ( event => this.navStates.some( state => (event instanceof(state)))),
+      filter(event => this.navStates.some(state => (event instanceof (state)))),
       map(event => (event instanceof NavigationStart) ? true : false),
-   ), {initialValue: false});
-  
+   ), { initialValue: false });
+
    firstWarning = true;
 
    ngOnInit() {
@@ -108,14 +110,19 @@ export class AppComponent implements OnInit {
 
    async leagueSelected(l: League) {
       await this.sidenav().close();
-      await this.router.navigate(["/fixtures", { leagueId: l.id }]);
+      await this.router.navigate(
+         ["/fixtures"],
+         { queryParams: { league: l.id } }
+      );
    }
 
    async clubSelected(clubName: string) {
       await this.sidenav().close();
-      await this.router.navigate(["/fixtures", { clubName: clubName }]);
+      await this.router.navigate(
+         ["/fixtures"],
+         { queryParams: { club: clubName } }
+      );
    }
-
 
    async contact() {
       await this.sidenav().close();

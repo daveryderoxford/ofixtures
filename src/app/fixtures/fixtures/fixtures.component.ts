@@ -61,8 +61,8 @@ export class FixturesComponent implements OnInit {
    allFixtures = toSignal(this.fs.allFixtues(), { initialValue: [] });
    filteredFixtures = toSignal(this.fs.getFixtures(), { initialValue: [] });
 
-   clubName = input<string | undefined>(undefined) // route parameter
-   leagueId = input<string | undefined>(undefined) // route parameter
+   clubName = input<string | undefined>(undefined, {alias: 'club'}) // route parameter
+   leagueId = input<string | undefined>(undefined, {alias: 'league' }) // route parameter
 
    league = computed(() => this.ls.findById(this.leagueId()));
    club = computed(() => this.cs.find(this.clubName()));

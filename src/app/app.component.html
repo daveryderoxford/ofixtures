@@ -18,7 +18,7 @@
 
       <mat-divider></mat-divider>
       
-      <app-select-club (selected)="clubSelected($event)"></app-select-club>
+      <app-select-club [club]="routeState.club()" (selected)="clubSelected($event)"></app-select-club>
 
       <mat-divider></mat-divider>
 

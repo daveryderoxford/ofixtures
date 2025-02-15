@@ -1,15 +1,25 @@
 
-
 mat-card {
    width: 100%;
     max-width: 500px;
     margin-top: 15px;
     margin-bottom: 10px;
-    background-color: var(--mat-sys-surface)
+    background-color: var(--mat-sys-surface);
+    overflow: auto;
+ }
+
+ :host {
+   background-color: var(--mat-sys-surface-container-low);
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
  }
 
 .screen-bg {
-    background-color: var(--mat-sys-surface-container-low)
+    background-color: var(--mat-sys-surface-container-low);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
  }
 
  .error {

@@ -45,6 +45,11 @@
 <!-- Handset -->
 @if (handset()) {
 <div fxLayout="column" class=hset>
+    @if (fixtureGroup()) {
+    <div>
+      <app-league-header [league]="fixtureGroup()!" />
+    </div>
+    }
   <!-- Mobile Toolbar -->
   <app-toolbar title="">
     <span fxFlex></span>
@@ -71,11 +76,7 @@
     <app-fixtures-options [filter]="filter()" (filterChanged)="filterChanged($event)" />
     }
   </div>
-  }
-  @if (fixtureGroup()) {
-  <div>
-    <app-league-header [league]="fixtureGroup()!" />
-  </div>
+  <mat-divider/>
   }
   @if (mobileView() === 'grid') {
   <!-- Mobile List view -->
