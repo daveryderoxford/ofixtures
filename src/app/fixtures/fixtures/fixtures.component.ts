@@ -9,11 +9,12 @@ import { ActivatedRoute } from '@angular/router';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { AngularSplitModule } from 'angular-split';
 import { AuthService } from 'app/auth/auth.service';
+import { ClubService } from 'app/club/club-service';
 import { EntryService } from 'app/entry/entry.service';
 import { LeagueService } from 'app/league/league-service';
 import { Fixture } from 'app/model';
 import { FixtureFilter } from 'app/model/fixture-filter';
-import { map } from 'rxjs';
+import { BreakpointService } from 'app/shared/services/breakpoint.service';
 import { LeagueHeaderComponent } from '../../league/league-header/league-header.component';
 import { SidenavButtonComponent } from '../../shared/components/sidenav-button.component';
 import { ToolbarComponent } from '../../shared/components/toolbar.component';
@@ -24,8 +25,6 @@ import { FixtureSearchComponent } from '../fixtures-search/fixture-search.compon
 import { FixturesService } from '../fixtures.service';
 import { PostcodeComponent } from '../postcode/postcode.component';
 import { ControlPanelComponent } from './control-panel.component';
-import { ClubService } from 'app/club/club-service';
-import { BreakpointService } from 'app/shared/services/breakpoint.service';
 
 type MobileView = 'map' | 'grid';
 

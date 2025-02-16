@@ -6,7 +6,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterOutlet } from "@angular/router";
-import { filter, first, map, tap } from 'rxjs/operators';
+import { filter, first, map } from 'rxjs/operators';
+import { RouteState } from './app.route-state';
 import { AuthService } from './auth/auth.service';
 import { SelectClubComponent } from "./club/select-club.component";
 import { FixturesService } from './fixtures/fixtures.service';
@@ -17,7 +18,6 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
 import { BreakpointService } from './shared/services/breakpoint.service';
 import { LoginSnackbarService } from './shared/services/login-snackbar.service';
 import { SidenavService } from './shared/services/sidenav.service';
-import { RouteState } from './app.route-state';
 
 @Component({
    selector: 'app-root',
