@@ -8,88 +8,41 @@
     </mat-card-subtitle>
   </mat-card-header>
 
-    <mat-card-content>
-      <p>
-        <a mat-flat-button [routerLink]="['/admin/league/add']">
-          <mat-icon>add</mat-icon> Add
-        </a>
-      </p>
-      <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Show/Edit Leagues
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <mat-list>
+  <mat-card-content>
+    <p>
+      <a mat-flat-button [routerLink]="['/admin/league/add']">
+        <mat-icon>add</mat-icon> Add
+      </a>
+    </p>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Show/Edit Leagues
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list>
+          <mat-divider />
+          @for (league of leagues(); track league.id) {
+          <mat-list-item>
+            <div matListItemTitle>{{league.name}}</div>
+            <div matListItemLine>{{league.fixtureIds.length}} fixtures</div>
+            <div matListItemLine> {{league.startDate | date:'mediumDate'}} to {{league.endDate | date:'mediumDate'}}
+            </div>
+            <span matListItemMeta>
+              <button mat-icon-button class="primary" (click)="edit(league)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              &nbsp;&nbsp;
+              <button mat-icon-button class="warning" (click)="delete(league)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </span>
             <mat-divider />
-            @for (league of leagues(); track league.id) {
-            <mat-list-item>
-              <div matListItemTitle>{{league.name}}</div>
-              <div matListItemLine>{{league.fixtureIds.length}} fixtures</div>
-              <div matListItemLine> {{league.startDate | date:'mediumDate'}} to {{league.endDate | date:'mediumDate'}}
-              </div>
-              <span matListItemMeta>
-                <button mat-icon-button class="primary" (click)="edit(league)">
-                  <mat-icon>edit</mat-icon>
-                </button>
-                &nbsp;&nbsp;
-                <button mat-icon-button class="warning" (click)="delete(league)">
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </span>
-              <mat-divider />
-            </mat-list-item>
-            }
-          </mat-list>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </mat-card-content>
-</mat-card><mat-card fxFlex=400px fxFlex-sm=100%>
-
-  <mat-card-header>
-    <mat-card-title>League/Multi-Day</mat-card-title>
-    <mat-card-subtitle>Collections of fixtures. Either national/regional/club leagues of events (eg UKOL) or
-      multiday
-      events (eg White Rose)
-    </mat-card-subtitle>
-  </mat-card-header>
-
-    <mat-card-content>
-      <p>
-        <a mat-flat-button [routerLink]="['/admin/league/add']">
-          <mat-icon>add</mat-icon> Add
-        </a>
-      </p>
-      <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Show/Edit Leagues
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <mat-list>
-            <mat-divider />
-            @for (league of leagues(); track league.id) {
-            <mat-list-item>
-              <div matListItemTitle>{{league.name}}</div>
-              <div matListItemLine>{{league.fixtureIds.length}} fixtures</div>
-              <div matListItemLine> {{league.startDate | date:'mediumDate'}} to {{league.endDate | date:'mediumDate'}}
-              </div>
-              <span matListItemMeta>
-                <button mat-icon-button class="primary" (click)="edit(league)">
-                  <mat-icon>edit</mat-icon>
-                </button>
-                &nbsp;&nbsp;
-                <button mat-icon-button class="warning" (click)="delete(league)">
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </span>
-              <mat-divider />
-            </mat-list-item>
-            }
-          </mat-list>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </mat-card-content>
+          </mat-list-item>
+          }
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
 </mat-card>
