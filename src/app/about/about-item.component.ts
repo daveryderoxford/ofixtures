@@ -10,7 +10,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
         {{title()}}
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <ng-content></ng-content>
+    <ng-content />
   </mat-expansion-panel>
   `,
     styles: `

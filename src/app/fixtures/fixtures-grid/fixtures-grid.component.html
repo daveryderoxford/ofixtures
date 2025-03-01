@@ -89,9 +89,9 @@
 
   <!-- Handset -->
   @if (handset()) {
-    <mat-list fxFill>
+    <mat-list fxFill class="white">
       <mat-list-item (click)="actions.openMenu()" *cdkVirtualFor="let fixture of styledFixtures()"
-        [ngClass]="{ 'shaded': fixture?.shaded }">
+        [class.shaded]="fixture?.shaded">
         <div matListItemLine>
           <span fxFlex=50>{{fixture.date | fixturedate }}</span>
           <span fxFlex=30> {{fixture.club}}</span>
@@ -122,7 +122,7 @@
             [homeLocation]="homeLocation()">
           </app-fixture-actions>
           </div>
-        <mat-divider></mat-divider>
+        <mat-divider />
       </mat-list-item>
     </mat-list>
   }

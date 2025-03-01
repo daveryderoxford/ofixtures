@@ -183,7 +183,6 @@ export class FixturesGridComponent {
       }
    }
 
-   /** retuns observable of css class to apply  */
    protected isEntered(fixture: Fixture): boolean {
       if (!this.userEntries()) { return false; }
       const index = this.userEntries().findIndex(entry => entry.fixtureId === fixture.id);

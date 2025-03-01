@@ -1,4 +1,4 @@
-<app-spinner [loading]="loading()"></app-spinner>
+<app-spinner [loading]="loading()" />
 
 <mat-sidenav-container class="fullscreen">
 
@@ -12,15 +12,15 @@
         Map</button>
       }
 
-      <mat-divider></mat-divider>
+      <mat-divider />
 
-      <app-league-menu (selected)="leagueSelected($event)"></app-league-menu>
+      <app-league-menu (selected)="leagueSelected($event)" />
 
-      <mat-divider></mat-divider>
+      <mat-divider />
       
-      <app-select-club [club]="routeState.club()" (selected)="clubSelected($event)"></app-select-club>
+      <app-select-club [club]="routeState.club()" (selected)="clubSelected($event)" />
 
-      <mat-divider></mat-divider>
+      <mat-divider />
 
       @if (afAuth.loggedIn()) {
       <button mat-list-item (click)='closeSidenav(["/user"])'>User settings</button>
@@ -30,7 +30,7 @@
       <button mat-list-item (click)='closeSidenav(["/auth/login"])'>Login</button>
       }
 
-      <mat-divider></mat-divider>
+      <mat-divider />
       <button mat-list-item (click)='closeSidenav(["/about"])'>About</button>
       <button mat-list-item (click)='contact()'>Contact</button>
 
@@ -41,7 +41,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="fullscreen">
-    <router-outlet></router-outlet>
+    <router-outlet />
   </mat-sidenav-content>
 
 </mat-sidenav-container>

@@ -7,7 +7,7 @@ import { LeagueFormComponent } from './league-form/league-form.component';
 @Component({
     selector: 'app-league-add',
     template: `
-    <app-league-form (submitted)="submitted($event)"></app-league-form>
+    <app-league-form (submitted)="submitted($event)" />
   `,
     styles: [],
     imports: [LeagueFormComponent]

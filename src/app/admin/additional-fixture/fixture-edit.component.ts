@@ -8,7 +8,7 @@ import { FixtureFormComponent } from './fixture-form/fixture-form.component';
 @Component({
     selector: 'app-fixture-edit',
     template: `
-    <app-fixture-form [fixture]="fixture()" (submitted)="submitted($event)"></app-fixture-form>
+    <app-fixture-form [fixture]="fixture()" (submitted)="submitted($event)" />
   `,
     styles: [],
     imports: [FixtureFormComponent]
