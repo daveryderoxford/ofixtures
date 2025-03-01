@@ -6,12 +6,7 @@
 
     <mat-action-list>
       <button mat-list-item (click)='showFixtures(false)'>Fixtures</button>
-
-      @if (layout.handset()) {
-      <button mat-list-item (click)='showFixtures(true)'>Fixtures
-        Map</button>
-      }
-
+      
       <mat-divider />
 
       <app-league-menu (selected)="leagueSelected($event)" />

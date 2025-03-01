@@ -1,7 +1,12 @@
-<cdk-virtual-scroll-viewport fxFill [itemSize]="itemsize()" minBufferPx="380" maxBufferPx="380">
 
-  <!-- Large Screen -->
-  @if (!handset()) {
+@if (styledFixtures().length === 0) {
+    <span class="loading">Loading fixtures</span>
+} @else {
+
+  <cdk-virtual-scroll-viewport fxFill [itemSize]="itemsize()" minBufferPx="380" maxBufferPx="380">
+
+    <!-- Large Screen -->
+    @if (!handset()) {
     <table class="table">
       <thead>
         <tr class="white">
@@ -18,39 +23,41 @@
         </tr>
       </thead>
       <tbody>
-        <tr *cdkVirtualFor="let fixture of styledFixtures(); ;trackBy: trackBy" (click)=eventClicked(fixture) [ngClass]="rowClass(fixture)">
+        <tr *cdkVirtualFor="let fixture of styledFixtures(); ;trackBy: trackBy" (click)=eventClicked(fixture)
+          [ngClass]="rowClass(fixture)">
           <td class="actions">
             <button mat-icon-button matTooltip="Like/Unlike fixture" (click)="toggleReminder(fixture)">
               <mat-icon [class.red]="isLiked(fixture)">favorite</mat-icon>
             </button>
             @if (fixture.entryURL) {
-              <app-enter-button [url]="fixture.entryURL" [status]="fixture.entryStatus"></app-enter-button>
+            <app-enter-button [url]="fixture.entryURL" [status]="fixture.entryStatus"></app-enter-button>
             }
             @if (isEntryAvalaible(fixture)) {
-              @if (isEntered(fixture)) {
-                <button mat-icon-button matTooltip="Edit entry" (click)="editEntry(fixture)">
-                  <mat-icon class="red">event_available</mat-icon>
-                </button>
-              } @else {
-                <button mat-icon-button matTooltip="Enter" (click)="enter(fixture)">
-                  <mat-icon class="green">event_available</mat-icon>
-                </button>
-              }
-              <button mat-icon-button matTooltip="Entry list" (click)="viewEntries(fixture)">
-                <mat-icon>list</mat-icon>
-              </button>
+            @if (isEntered(fixture)) {
+            <button mat-icon-button matTooltip="Edit entry" (click)="editEntry(fixture)">
+              <mat-icon class="red">event_available</mat-icon>
+            </button>
+            } @else {
+            <button mat-icon-button matTooltip="Enter" (click)="enter(fixture)">
+              <mat-icon class="green">event_available</mat-icon>
+            </button>
+            }
+            <button mat-icon-button matTooltip="Entry list" (click)="viewEntries(fixture)">
+              <mat-icon>list</mat-icon>
+            </button>
             }
           </td>
           <td class="date text-cell"> {{fixture.date | fixturedate }} </td>
-          <td class="distance text-cell" [style.color]="fixture.distance | distancecolor"> {{fixture.distance | distance }}</td>
+          <td class="distance text-cell" [style.color]="fixture.distance | distancecolor"> {{fixture.distance | distance
+            }}</td>
           <td class="name text-cell"> {{fixture.name}} </td>
           <td class="club">
             @if (fixture.clubURL) {
-              <a mat-button color=link href={{fixture.clubURL}} target="_blank">
-                {{fixture.club}}<app-external-link-icon/>
-              </a>
+            <a mat-button color=link href={{fixture.clubURL}} target="_blank">
+              {{fixture.club}}<app-external-link-icon />
+            </a>
             } @else {
-              {{fixture.club}}
+            {{fixture.club}}
             }
           </td>
           <td class="level">
@@ -62,33 +69,34 @@
           </td>
           <td class="maps">
             @if (fixture.latLong && fixture.locSource !== 'club') {
-              <a mat-button iconPositionEnd color=link [matMenuTriggerFor]="mapMenu">Maps
-                <mat-icon iconPositionEnd class=mat-link>arrow_drop_down</mat-icon>
-              </a>
-              <mat-menu #mapMenu="matMenu">
-                <ng-template matMenuContent>
-                  <app-map-menu-items [fixture]="fixture" [homeLocation]="homeLocation()"
+            <a mat-button iconPositionEnd color=link [matMenuTriggerFor]="mapMenu">Maps
+              <mat-icon iconPositionEnd class=mat-link>arrow_drop_down</mat-icon>
+            </a>
+            <mat-menu #mapMenu="matMenu">
+              <ng-template matMenuContent>
+                <app-map-menu-items [fixture]="fixture" [homeLocation]="homeLocation()"
                   [handset]="handset()"></app-map-menu-items>
-                </ng-template>
-              </mat-menu>
+              </ng-template>
+            </mat-menu>
             }
           </td>
           <td class="omaps center">
             @if (fixture.rg && fixture.rg.maps.length > 0;) {
-              <a mat-button color="link" (click)="mapView(fixture.rg)">O Maps</a>
+            <a mat-button color="link" (click)="mapView(fixture.rg)">O Maps</a>
             }
           </td>
           <td class="admin">
-            <app-fixture-actions [fixture]="fixture" [handset]="handset()" [homeLocation]="homeLocation()"></app-fixture-actions>
+            <app-fixture-actions [fixture]="fixture" [handset]="handset()"
+              [homeLocation]="homeLocation()"></app-fixture-actions>
           </td>
         </tr>
       </tbody>
     </table>
-  }
+    }
 
 
-  <!-- Handset -->
-  @if (handset()) {
+    <!-- Handset -->
+    @if (handset()) {
     <mat-list fxFill class="white">
       <mat-list-item (click)="actions.openMenu()" *cdkVirtualFor="let fixture of styledFixtures()"
         [class.shaded]="fixture?.shaded">
@@ -96,9 +104,9 @@
           <span fxFlex=50>{{fixture.date | fixturedate }}</span>
           <span fxFlex=30> {{fixture.club}}</span>
           @if (fixture.distance !== -1;) {
-            <span fxFlex [style.color]="fixture.distance | distancecolor">
-              {{fixture.distance}}miles
-            </span>
+          <span fxFlex [style.color]="fixture.distance | distancecolor">
+            {{fixture.distance}}miles
+          </span>
           }
         </div>
         <div matListItemLine>
@@ -108,23 +116,21 @@
           {{fixture.area | ellipsis: 30}}
           <span fxFlex></span>
           @if (fixture.entryURL) {
-            <mat-icon  class="black handset-icon-size">person</mat-icon>
+          <mat-icon class="black handset-icon-size">person</mat-icon>
           }
           @if (isLiked(fixture)) {
-            <mat-icon class="red handset-icon-size">favorite</mat-icon>
+          <mat-icon class="red handset-icon-size">favorite</mat-icon>
           }
           <mat-icon [svgIcon]="fixture.grade | gradeIconName" class="handset-icon-size"></mat-icon>
         </div>
-        <div matListItemMeta> 
-        <app-fixture-actions #actions 
-            [handset]="handset()" 
-            [fixture]="fixture" 
-            [homeLocation]="homeLocation()">
+        <div matListItemMeta>
+          <app-fixture-actions #actions [handset]="handset()" [fixture]="fixture" [homeLocation]="homeLocation()">
           </app-fixture-actions>
-          </div>
+        </div>
         <mat-divider />
       </mat-list-item>
     </mat-list>
-  }
+    }
 
-</cdk-virtual-scroll-viewport>
+  </cdk-virtual-scroll-viewport>
+}
