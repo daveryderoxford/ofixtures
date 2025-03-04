@@ -31,10 +31,6 @@ import { input } from "@angular/core";
           <app-external-link-icon></app-external-link-icon>
         </a>
         
-        <a mat-menu-item href="{{fixture() | googleDirectionsURL:homeLocation()}}" target="_blank">
-          Directions
-          <app-external-link-icon></app-external-link-icon>
-        </a>
       }
 
       @if (fixture().what3words) {

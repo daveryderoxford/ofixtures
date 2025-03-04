@@ -53,10 +53,10 @@
   <!-- Mobile Toolbar -->
   <app-toolbar title="">
     <span fxFlex></span>
-    <button mat-icon-button (click)="mobileGridView()">
+    <button mat-icon-button matTooltip="List View" (click)="mobileGridView()">
       <mat-icon>list</mat-icon>
     </button>
-    <button mat-icon-button (click)="mobileView.set('map')">
+    <button mat-icon-button  matTooltip="Map View" (click)="mobileView.set('map')">
       <mat-icon>map</mat-icon>
     </button>
     <button mat-button (click)="toggleMobileFilter()">

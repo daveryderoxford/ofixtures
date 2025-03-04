@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute } from '@angular/router';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { AngularSplitModule } from 'angular-split';
@@ -33,7 +34,7 @@ type MobileView = 'map' | 'grid';
    templateUrl: './fixtures.component.html',
    styleUrls: ['./fixtures.component.scss'],
    changeDetection: ChangeDetectionStrategy.OnPush,
-   imports: [FixtureSearchComponent, SidenavButtonComponent, PostcodeComponent, FixturesOptionsComponent, AngularSplitModule, FixturesMapComponent, LeagueHeaderComponent, FixturesGridComponent, FlexModule, ToolbarComponent, MatButtonModule, MatIconModule, MatDividerModule, ControlPanelComponent]
+   imports: [FixtureSearchComponent, SidenavButtonComponent, PostcodeComponent, FixturesOptionsComponent, AngularSplitModule, FixturesMapComponent, LeagueHeaderComponent, FixturesGridComponent, FlexModule, ToolbarComponent, MatButtonModule, MatIconModule, MatDividerModule, ControlPanelComponent, MatTooltipModule]
 })
 
 export class FixturesComponent implements OnInit {

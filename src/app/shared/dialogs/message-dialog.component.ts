@@ -13,14 +13,6 @@ import { MatDividerModule } from '@angular/material/divider';
         <button type="button" mat-raised-button
             (click)="dialogRef.close(true)">OK</button>
         </div>
-    
-        <h3 mat-dialog-title>{{ title }}</h3>
-        <p mat-dialog-content>{{ message }}</p>
-        <mat-divider />
-        <div mat-dialog-actions>
-        <button type="button" mat-raised-button
-            (click)="dialogRef.close(true)">OK</button>
-        </div>
     `,
     imports: [
         MatDialogModule,

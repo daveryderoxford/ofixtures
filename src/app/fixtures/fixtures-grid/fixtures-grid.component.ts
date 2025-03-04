@@ -86,9 +86,8 @@ export class FixturesGridComponent {
    public scrollToFixture(fixture: Fixture) {
       const index = this.fixtures().findIndex(f => f === fixture);
 
-      const viewPort = this.viewPort();
-      if (index !== -1 && viewPort) {
-         viewPort.scrollToIndex(index);
+      if (index !== -1) {
+         this.viewPort().scrollToIndex(index);
       }
    }
 

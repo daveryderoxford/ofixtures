@@ -6,7 +6,9 @@ import { SearchInputComponent } from './search-input/search-input.component';
 @Component({
     selector: 'app-fixture-search',
     imports: [SearchInputComponent],
-    template: `<app-search-input placeholder="Name, Club, Area, Location" (onStringChange)="updateSearch($event)" />`,
+    template: `
+      <app-search-input placeholder="Name, Club, Area, Location" (onStringChange)="updateSearch($event)" />
+    `,
     styles: []
 })
 

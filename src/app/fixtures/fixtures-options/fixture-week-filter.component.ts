@@ -25,19 +25,6 @@ import { input } from "@angular/core";
     </mat-button-toggle-group>
   </div>
   `,
-    styles: [
-        `
-        mat-button-toggle {
-                 height: 38px;
-                 line-height: 38px;
-                 padding: 0 8px;
-              }`,
-        `
-        ::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
-                 line-height: 35px !important;
-                 padding: 0 8px !important;
-              }`
-    ],
     imports: [MatButtonToggleModule]
 })
 export class FixtureWeekFilterComponent {

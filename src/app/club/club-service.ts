@@ -18,11 +18,11 @@ export class ClubService {
       .filter( (fix => fix.club && fix.club.trim() !== ''))
       .map(fix => {
          return {
-            name: fix.club,
+            name: fix.club.trim(),
             url: fix.clubURL
          };
       });
-      return uniqueObjects(allClubs).sort((a, b) => a.name.localeCompare(b.name));
+      return uniqueNames(allClubs).sort((a, b) => a.name.localeCompare(b.name));
    });
 
    fixtures = computed(() => this.allFixtures().filter(fix => fix.name === this.selected()));
@@ -33,8 +33,13 @@ export class ClubService {
    }
 }
 
-/** Returns unique objects in an array a based on object properties (rather than references) */
-function uniqueObjects<T>(a: T[]): T[] {
-   const set = new Set<string>(a.map(obj => JSON.stringify(obj)));
-   return Array.from(set).map(s => JSON.parse(s)) as T[];
+/** Returns  clubs with unique names */
+function uniqueNames(clubs: Club[]): Club[] {
+   const dist = clubs.reduce<Club[]>((acc, obj) => {
+      if (!acc.some(item => item.name === obj.name)) {
+         acc.push(obj);
+      }
+      return acc;
+   }, []);
+   return dist;
 }
