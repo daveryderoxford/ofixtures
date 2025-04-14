@@ -42,7 +42,7 @@ import { input } from "@angular/core";
   `,
     styles: [],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatMenuModule, ExternalLinkIconComponent, GoogleURLPipe, GoogleDirectionsURLPipe, BingURLPipe, StreetmapURLPipe]
+    imports: [MatMenuModule, ExternalLinkIconComponent, GoogleURLPipe, BingURLPipe, StreetmapURLPipe]
 })
 export class MapMenuItemsComponent {
 

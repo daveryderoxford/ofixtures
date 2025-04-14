@@ -1,131 +1,134 @@
-<app-toolbar title="About OFixtures" />
+<div class="container">
+  <app-toolbar title="About OFixtures" />
 
-<div fxLayout="row" fxLayoutAlign="center" class="about-container">
-  <mat-accordion fxFlex="0 1 800px">
+  <div class="accordion-container">
+    <mat-accordion>
 
-    <app-about-item title="Introduction">
-      <p>Orientering fixture browsing</p>
+      <app-about-item title="Introduction">
 
-      <p><b>Key features</b></p>
+        <p>Orientering fixture browsing</p>
 
-      <p>Fixture information</p>
-      <ul>
-        <li>Linked map and grid/list view of fixturess</li>
-        <li>Event location from grid references, postcode, Google search on area, or nominal club location</li>
-        <li>Routegadget maps for the area</li>
-        <li>Google, Ordnance survey and What3Words maps</li>
-        <li>Add event to google calander (Google)</li>
-        <li>Support for displaying event series and multi-day events (JK/British etc)</li>
-        <li>Display events for a club</li>
-      </ul>
+        <p><b>Key features</b></p>
 
-      <p>User functionality</p>
-      <ul>
-        <li>Mark 'liked' events of interest</li>
-      </ul>
+        <p>Fixture information</p>
+        <ul>
+          <li>Linked map and grid/list view of fixturess</li>
+          <li>Event location from grid references, postcode, Google search on area, or nominal club location</li>
+          <li>Routegadget maps for the area</li>
+          <li>Google, Ordnance survey and What3Words maps</li>
+          <li>Add event to google calander (Google)</li>
+          <li>Support for displaying event series and multi-day events (JK/British etc)</li>
+          <li>Display events for a club</li>
+        </ul>
 
-      <p>Search/Filtering</p>
+        <p>User functionality</p>
+        <ul>
+          <li>Mark 'liked' events of interest</li>
+        </ul>
 
-      Search/Filtering
-      Fixture filtering based on:
-      <ul>
-        <li>Distance from postcode/grade</li>
-        <li>Day of week</li>
-        <li>User 'liked' events</li>
-        <li>Search string of title/club/area</li>
-      </ul>
+        <p>Search/Filtering</p>
 
-      <p>Entries</p>
-      <ul>
-        <li>Enter events registered with Racesignup, Fabian4 and SIEntries</li>
-      </ul>
+        Search/Filtering
+        Fixture filtering based on:
+        <ul>
+          <li>Distance from postcode/grade</li>
+          <li>Day of week</li>
+          <li>User 'liked' events</li>
+          <li>Search string of title/club/area</li>
+        </ul>
 
-      <p>Application</p>
-      <ul>
-        <li>Optimised for desktop and mobile</li>
-        <li>Fixture data avalaible offline</li>
-      </ul>
+        <p>Entries</p>
+        <ul>
+          <li>Enter events registered with Racesignup, Fabian4 and SIEntries</li>
+        </ul>
 
-      <p>Additional events</p>
-      <ul>
-        <li>Additional event sources (MBO/Army/Mountain marathons)</li>
-      </ul>
+        <p>Application</p>
+        <ul>
+          <li>Optimised for desktop and mobile</li>
+          <li>Fixture data avalaible offline</li>
+        </ul>
 
-    </app-about-item>
+        <p>Additional events</p>
+        <ul>
+          <li>Additional event sources (MBO/Army/Mountain marathons)</li>
+        </ul>
+      </app-about-item>
 
-    <app-about-item title="Display club's fixtures">
-      OFixture can display all a club's registered fixtures.
-      <p>
-        The club's fixtures may be displayed via a URL as below.
-      <div class=indent> https://ofixtures.co.uk/fixtures?club=XXXX</div>
-      <div class=indent>where XXXX is the BOF abbrivation of the club.</div>
+      <app-about-item title="Display club's fixtures">
 
-      <p>All the event information is obtained from the BOF website once per day (at 16:00) so
-        this should be updated to ensure information is up-to-date</p>
+        OFixture can display all a club's registered fixtures.
+        <p>
+          The club's fixtures may be displayed via a URL as below.
+        <div class=indent> https://ofixtures.co.uk/fixtures?club=XXXX</div>
+        <div class=indent>where XXXX is the BOF abbrivation of the club.</div>
 
-    </app-about-item>
+        <p>All the event information is obtained from the BOF website once per day (at 16:00) so
+          this should be updated to ensure information is up-to-date</p>
 
-    <app-about-item title="Install as Application">
-      <p>OFixtures may be installed as an application on the desktop on both mobile, tablet and desktop devices.
-        Select instrictions below for installation instructions.</p>
+      </app-about-item>
 
-      <mat-accordion>
-        <app-about-item title="Laptop/desktop with Chrome">
-          To install as an application on the desktp on either Mac or PC from Chrome select "Install OFixtures
-          from Chrome's main menu"
-        </app-about-item>
+      <app-about-item title="Install as Application">
+        <p>OFixtures may be installed as an application on the desktop on both mobile, tablet and desktop devices.
+          Select instrictions below for installation instructions.</p>
 
-        <app-about-item title="Android mobile/tablet">
-          TBC
-        </app-about-item>
+        <mat-accordion>
+          <app-about-item title="Laptop/desktop with Chrome">
+            To install as an application on the desktp on either Mac or PC from Chrome select "Install OFixtures
+            from Chrome's main menu"
+          </app-about-item>
 
-        <app-about-item title="Apple mobile/tablet">
-          The support for progressive web applications is not mature as on Android devices.
-          It is only recomented to install as an application if you are running iOS verson 13 or higher.
-        </app-about-item>
+          <app-about-item title="Android mobile/tablet">
+            TBC
+          </app-about-item>
 
-        <app-about-item title="Laptop/desktop with Safari">
-          TBC
-        </app-about-item>
+          <app-about-item title="Apple mobile/tablet">
+            The support for progressive web applications is not mature as on Android devices.
+            It is only recomented to install as an application if you are running iOS verson 13 or higher.
+          </app-about-item>
 
-        <app-about-item title="Laptop/desktop  with Edge">
-          TBC
-        </app-about-item>
+          <app-about-item title="Laptop/desktop with Safari">
+            TBC
+          </app-about-item>
 
-        <app-about-item title="PC with Firefox">
-          TBC
-        </app-about-item>
+          <app-about-item title="Laptop/desktop  with Edge">
+            TBC
+          </app-about-item>
 
-      </mat-accordion>
+          <app-about-item title="PC with Firefox">
+            TBC
+          </app-about-item>
 
-    </app-about-item>
+        </mat-accordion>
 
-    <app-about-item title="Acknowledgements">
-      The fixture map is based on mp by Ollie O'Brien <a href="https://map.oobrien.com/">https://map.oobrien.com/</a>
-      <br>
-    </app-about-item>
+      </app-about-item>
 
-    <app-about-item title="Contact details">
-      Please mail <a href="support@ofixtures.org.uk">support&#64;ofixtures.org.uk</a> with any comment problems or
-      issues.
-    </app-about-item>
+      <app-about-item title="Acknowledgements">
+        The fixture map is based on mp by Ollie O'Brien <a href="https://map.oobrien.com/">https://map.oobrien.com/</a>
+        <br>
+      </app-about-item>
 
-    <app-about-item title="Development">
-      Source code is located at <a href="https://github.com/daveryderoxford/ofixtures">Github</a>
-      It make use of the following open source packages:
-      <ul>
-        <li>Leaflet is used for map display</li>
-        <li>Angular web development framework</li>
-      </ul>
-    </app-about-item>
+      <app-about-item title="Contact details">
+        Please mail <a href="support@ofixtures.org.uk">support&#64;ofixtures.org.uk</a> with any comment problems or
+        issues.
+      </app-about-item>
 
-    <app-about-item title="Version">
-      Name: {{ver.name}} <br>
-      Version: {{ver.version}} <br>
-      Revision: {{ver.revision}} <br>
-      Branch: {{ver.branch}} <br>
-    </app-about-item>
+      <app-about-item title="Development">
+        Source code is located at <a href="https://github.com/daveryderoxford/ofixtures">Github</a>
+        It make use of the following open source packages:
+        <ul>
+          <li>Leaflet is used for map display</li>
+          <li>Angular web development framework</li>
+        </ul>
+      </app-about-item>
 
-  </mat-accordion>
+      <app-about-item title="Version">
+        Name: {{ver.name}} <br>
+        Version: {{ver.version}} <br>
+        Revision: {{ver.revision}} <br>
+        Branch: {{ver.branch}} <br>
+      </app-about-item>
 
+    </mat-accordion>
+
+  </div>
 </div>

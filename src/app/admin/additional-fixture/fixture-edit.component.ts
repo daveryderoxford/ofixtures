@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, input, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, viewChild } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { Fixture } from 'app/model/fixture';
@@ -11,7 +11,8 @@ import { FixtureFormComponent } from './fixture-form/fixture-form.component';
     <app-fixture-form [fixture]="fixture()" (submitted)="submitted($event)" />
   `,
     styles: [],
-    imports: [FixtureFormComponent]
+    imports: [FixtureFormComponent],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FixtureEditComponent {
   private fs = inject(AdditionalFixtureService);

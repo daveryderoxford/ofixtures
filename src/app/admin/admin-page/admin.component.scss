@@ -1,3 +1,14 @@
+.container {
+   display: flex;
+   flex-direction: column;
+   height: 100vh;
+   overflow: hidden;
+}
+
+.admin-card-container {
+   overflow-y: auto;
+}
+
 .admin-card {
    width: 100%;
    max-width: 400px;

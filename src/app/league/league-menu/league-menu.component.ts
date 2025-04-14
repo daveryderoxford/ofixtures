@@ -19,10 +19,12 @@ export class LeagueMenuComponent {
 
   selected = output<League>();
 
-  multiday = computed( () => this.ls.leagues().filter( l => l.type === 'Multiday' ) );
-  national = computed(() => this.ls.leagues().filter(l => l.type === 'League' && l.level === 'National'))
-  regional = computed(() => this.ls.leagues().filter(l => l.type === 'League' && l.level === 'Regional'))
-  club = computed(() => this.ls.leagues().filter(l => l.type === 'League' && l.level === 'Club'))
+  all = computed( () => this.ls.leagues.value());
+
+  multiday = computed(() => this.all().filter( l => l.type === 'Multiday' ) );
+  national = computed(() => this.all().filter(l => l.type === 'League' && l.level === 'National'))
+  regional = computed(() => this.all().filter(l => l.type === 'League' && l.level === 'Regional'))
+  club = computed(() => this.all().filter(l => l.type === 'League' && l.level === 'Club'))
 
   selectLeague( league: League ) {
      this.selected.emit( league );

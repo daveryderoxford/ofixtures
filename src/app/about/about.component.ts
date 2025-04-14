@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { versions } from 'environments/versions';
 import { AboutItemComponent } from "./about-item.component";
 import { MatExpansionModule } from "@angular/material/expansion";
@@ -9,7 +9,8 @@ import { ToolbarComponent } from "../shared/components/toolbar.component";
     selector: "app-about",
     templateUrl: "./about.component.html",
     styleUrls: ["./about.component.scss"],
-    imports: [ToolbarComponent, FlexModule, MatExpansionModule, AboutItemComponent]
+    imports: [ToolbarComponent, FlexModule, MatExpansionModule, AboutItemComponent],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AboutComponent {
   ver = versions;

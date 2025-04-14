@@ -20,7 +20,7 @@ export class LeagueEditComponent {
 
   id = input.required<string>(); // Route parameter
 
-  league = computed(() => this.ls.leagues().find(l => l.id === this.id()));
+  league = computed(() => this.ls.leagues.value().find(l => l.id === this.id()));
 
   async submitted(data: Partial<League>) {
     await this.ls.update( this.id(), data );

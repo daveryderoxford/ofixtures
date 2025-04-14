@@ -1,8 +1,9 @@
-import { Injectable, Signal, inject } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { Auth, authState } from "@angular/fire/auth";
-import { DocumentReference, Firestore, arrayRemove, arrayUnion, doc, docData, updateDoc } from "@angular/fire/firestore";
+import { DocumentReference, arrayRemove, arrayUnion, doc, docData, updateDoc } from "@angular/fire/firestore";
 import { UserData } from 'app/model';
+import { FirestoreProvider } from 'app/shared/services/firestore-provider';
 import { of } from 'rxjs';
 import { shareReplay, startWith, switchMap } from 'rxjs/operators';
 
@@ -11,7 +12,7 @@ import { shareReplay, startWith, switchMap } from 'rxjs/operators';
 })
 export class UserDataService {
   private auth = inject(Auth);
-  private fs = inject(Firestore);
+  private fs = inject(FirestoreProvider).getFirestore();
 
   private userdata$ = authState(this.auth).pipe(
     switchMap((u) => {

@@ -26,7 +26,7 @@ export class LeagueAdminCardComponent {
   private router = inject(Router);
   private ds = inject(DialogsService);
 
-  leagues = computed(() => this.ls.leagues().filter(league => league.userId === this.auth.user()?.uid));
+  leagues = computed(() => this.ls.leagues.value().filter(league => league.userId === this.auth.user()?.uid));
 
   async delete(league: League) {
 

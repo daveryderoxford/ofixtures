@@ -1,22 +1,25 @@
-<app-toolbar title="Fixture Admin"/>
+<div class="container">
 
-<!-- Put form in middle of page -->
-<div fxLayout="row" fxLayoutAlign="center space-around">
+   <app-toolbar title="Fixture Admin" />
 
-   <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap=20px style="margin-top: 20px;">
+   <!-- Put form in middle of page -->
+   <div fxLayout="row" fxLayoutAlign="center space-around" class="admin-card-container">
 
-      <app-fixture-admin-card/>
+      <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap=20px style="margin-top: 20px;">
 
-      <app-league-admin-card/>
+         <app-fixture-admin-card />
 
-      <mat-card appearance="outlined" class="admin-card">
-         <mat-card-header>
-            <mat-card-title>Map registration</mat-card-title>
-         </mat-card-header>
-         <mat-card-content>
-            Under development - comming soon
-         </mat-card-content>
-      </mat-card>
+         <app-league-admin-card />
 
+         <mat-card appearance="outlined" class="admin-card">
+            <mat-card-header>
+               <mat-card-title>Map registration</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+               Under development - comming soon
+            </mat-card-content>
+         </mat-card>
+
+      </div>
    </div>
 </div>

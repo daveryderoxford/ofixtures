@@ -1,8 +1,17 @@
 @use '@angular/material' as mat;
 
-.about-container {
-   background: var(--mat-sys-surface-container);
-   margin-top: 20px;
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.accordion-container {
+  background: var(--mat-sys-surface-container);
+  margin-top: 20px;
+  margin-bottom: 10px;
+  overflow: auto;
 }
 
 .indent {

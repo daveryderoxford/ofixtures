@@ -1,4 +1,4 @@
-import { Component, viewChild, inject } from '@angular/core';
+import { Component, viewChild, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Fixture } from 'app/model/fixture';
 import { AdditionalFixtureService } from './additional-fixture.service';
@@ -10,7 +10,8 @@ import { FixtureFormComponent } from './fixture-form/fixture-form.component';
     <app-fixture-form (submitted)="submitted($event)" />
   `,
     styles: [],
-    imports: [FixtureFormComponent]
+    imports: [FixtureFormComponent],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FixtureAddComponent {
   private fs = inject(AdditionalFixtureService);

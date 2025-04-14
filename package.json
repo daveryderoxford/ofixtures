@@ -30,7 +30,7 @@
     "@angular/service-worker": "19.2.0",
     "@ngbracket/ngx-layout": "^19.0.0",
     "@ngneat/until-destroy": "^9.2.3",
-    "angular-split": "^18.0.0",
+    "angular-split": "^19.0.0",
     "core-js": "^3.6.5",
     "date-fns": "^2.14.0",
     "leaflet": "^1.4.0",

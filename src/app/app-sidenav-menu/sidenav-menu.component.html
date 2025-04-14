@@ -1,0 +1,28 @@
+<mat-action-list>
+   <button mat-list-item (click)='showFixtures(false)'>Fixtures</button>
+
+   <mat-divider />
+
+   <app-league-menu (selected)="leagueSelected($event)" />
+
+   <mat-divider />
+
+   <app-select-club [club]="routeState.club()" (selected)="clubSelected($event)" />
+
+   <mat-divider />
+
+   @if (auth.loggedIn()) {
+   <button mat-list-item (click)='closeSidenav(["/user"])'>User settings</button>
+   <button mat-list-item (click)='closeSidenav(["/auth/change-password"])'>Change password</button>
+   <button mat-list-item (click)="logout()">Logout</button>
+   } @else {
+   <button mat-list-item (click)='closeSidenav(["/auth/login"])'>Login</button>
+   }
+
+   <mat-divider />
+   <button mat-list-item (click)='closeSidenav(["/about"])'>About</button>
+   <button mat-list-item (click)='contact()'>Contact</button>
+
+   <button mat-list-item (click)='adminMenu()'>Admin</button>
+
+</mat-action-list>

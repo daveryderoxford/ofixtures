@@ -13,8 +13,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ExtendedModule } from '@ngbracket/ngx-layout/extended';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
-import { UntilDestroy } from '@ngneat/until-destroy';
-import { EntryService } from 'app/entry/entry.service';
 import { Fixture } from 'app/model';
 import { Entry, FixtureEntryDetails } from 'app/model/entry';
 import { LatLong, RGData } from 'app/model/fixture';
@@ -32,7 +30,6 @@ interface StyledFixture extends Fixture {
    shaded?: boolean;
 }
 
-@UntilDestroy({ checkProperties: true })
 @Component({
    selector: 'app-fixtures-grid',
    templateUrl: './fixtures-grid.component.html',
@@ -42,7 +39,6 @@ interface StyledFixture extends Fixture {
 })
 export class FixturesGridComponent {
    private usd = inject(UserDataService);
-   private es = inject(EntryService);
    private router = inject(Router);
    private loginSnackBar = inject(LoginSnackbarService);
    private snackBar = inject(MatSnackBar);

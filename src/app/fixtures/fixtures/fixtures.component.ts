@@ -65,6 +65,7 @@ export class FixturesComponent implements OnInit {
    leagueId = input<string | undefined>(undefined, {alias: 'league' }) // route parameter
 
    league = computed(() => this.ls.findById(this.leagueId()));
+
    club = computed(() => this.cs.find(this.clubName()));
 
    fixtureGroup = computed( () => {

@@ -1,12 +1,13 @@
-import { ChangeDetectionStrategy, Component, effect, inject, Input, OnInit, output, signal } from '@angular/core';
-import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, effect, inject, input, output } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { input } from "@angular/core";
 import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { debounceTime, tap } from 'rxjs';
 
 @Component({
    selector: 'app-postcode',
@@ -27,14 +28,21 @@ export class PostcodeComponent {
       effect(() => {
          this.postcodeFormControl.setValue(this.postcode());
       });
+
+      this.postcodeFormControl.valueChanges.pipe(
+         takeUntilDestroyed(),
+         debounceTime(500),
+         tap((value) => this.postcodeEntered(value))
+      ).subscribe();
+
    }
 
-   postcodeEntered() {
+   postcodeEntered(value: string | null) {
 
-      if (!this.postcodeFormControl.valid || !this.postcodeFormControl.value) {
+      if (!this.postcodeFormControl.valid || !value) {
          return;
       }
-      const postcode = this.postcodeFormControl.value.trim().toUpperCase();
+      const postcode = value.trim().toUpperCase();
       this.postcodeChanged.emit(postcode);
    }
 

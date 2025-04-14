@@ -3,7 +3,7 @@
  *  Uses EntryService to create FixtureEntryDetails for the fixture of they do not already exist
 */
 import { DatePipe, NgStyle } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -50,7 +50,8 @@ import { CourseDialogComponent } from '../course-dialog/course-dialog.component'
       MatChipsModule,
       DatePipe,
       EllipsisPipe
-   ]
+   ],
+   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MapRegistrationAdminComponent implements OnInit {
    private route = inject(ActivatedRoute);
@@ -60,8 +61,7 @@ export class MapRegistrationAdminComponent implements OnInit {
    private snackbar = inject(MatSnackBar);
    private es = inject(EntryService);
    form!: UntypedFormGroup;
-   error = '';
-   coursesChanged = false;
+   coursesChanged = signal(false);
    readonly minDate = new Date();
 
    // Edit date
@@ -131,7 +131,7 @@ export class MapRegistrationAdminComponent implements OnInit {
       this._displayCourseDialog(course).subscribe(c => {
          if (c) {
             this.courses.push(c);
-            this.coursesChanged = true;
+            this.coursesChanged.set(true);
          }
       });
    }
@@ -141,7 +141,7 @@ export class MapRegistrationAdminComponent implements OnInit {
 
       if (index >= 0) {
          this.courses.splice(index, 1);
-         this.coursesChanged = true;
+         this.coursesChanged.set(true);
       }
    }
 
@@ -149,7 +149,7 @@ export class MapRegistrationAdminComponent implements OnInit {
       this._displayCourseDialog(course).subscribe(c => {
          if (c) {
             this.courses[index] = c;
-            this.coursesChanged = true;
+            this.coursesChanged.set(true);
          }
       });
    }

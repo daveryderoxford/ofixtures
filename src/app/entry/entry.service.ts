@@ -1,10 +1,11 @@
 import { Injectable, inject } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { CollectionReference, DocumentReference, Firestore, Query, addDoc, collection, collectionData, 
+import { CollectionReference, DocumentReference, Query, addDoc, collection, collectionData, 
          collectionGroup, deleteDoc, doc, docData, orderBy, query, setDoc, updateDoc, where } from '@angular/fire/firestore';
 import { AuthService } from 'app/auth/auth.service';
 import { Fixture } from 'app/model';
 import { Entry, FixtureDetailsAndEntries, FixtureEntryDetails } from 'app/model/entry';
+import { FirestoreProvider } from 'app/shared/services/firestore-provider';
 import { Observable, forkJoin, of } from 'rxjs';
 import { map, shareReplay, startWith, switchMap, take, tap } from 'rxjs/operators';
 
@@ -13,8 +14,7 @@ import { map, shareReplay, startWith, switchMap, take, tap } from 'rxjs/operator
 } )
 export class EntryService {
    private auth = inject(AuthService);
-   private fs = inject(Firestore);
-
+   private fs = inject(FirestoreProvider).getFirestore();
 
    fixtureEntryDetails$: Observable<FixtureEntryDetails[]>;
    userEntries$: Observable<Entry[]>;

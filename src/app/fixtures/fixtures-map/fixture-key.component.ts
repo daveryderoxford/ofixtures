@@ -31,15 +31,4 @@ import { MatMenuModule } from '@angular/material/menu';
     ],
     imports: [MatMenuModule]
 })
-export class FixtureKeyComponent implements OnInit {
-  ngOnInit() {
-  }
-
-}
-
-
-
-
-
-
-
+export class FixtureKeyComponent  {}

@@ -16,16 +16,12 @@
         (filterChanged)="filterChanged($event)" />
       <app-fixture-search #search class="search-position mat-elevation-z" />
       }
-      @defer {
       <app-fixtures-map 
          [fixtures]="fixtures()" 
          [homeLocation]="homeLocation()" 
          [selectedFixture]="selectedFixture()"
          [zoomBounds]="zoomBounds()" 
-         (fixtureSelected)="mapFixtureSelected($event)"/>
-      } @placeholder {
-      <div>Map Loading</div>
-      }
+         (fixtureSelected)="mapFixtureSelected($event)"/> 
     </as-split-area>
     <!-- Large table -->
     <as-split-area>

@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatLineModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -19,7 +19,8 @@ import { AuthService } from 'app/auth/auth.service';
     selector: 'app-fixture-admin-card',
     templateUrl: './fixture-admin-card.component.html',
     styleUrls: ['./fixture-admin-card.component.scss'],
-    imports: [MatCardModule, FlexModule, MatButtonModule, RouterLink, MatIconModule, MatExpansionModule, MatListModule, MatDividerModule, MatLineModule, DatePipe]
+    imports: [MatCardModule, FlexModule, MatButtonModule, RouterLink, MatIconModule, MatExpansionModule, MatListModule, MatDividerModule, MatLineModule, DatePipe],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FixtureAdminCardComponent  {
   protected fs = inject(AdditionalFixtureService);

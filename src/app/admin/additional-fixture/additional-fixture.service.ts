@@ -1,16 +1,17 @@
 import { Injectable, inject } from '@angular/core';
-import { CollectionReference, Firestore, collection, collectionData, deleteDoc, doc, query, setDoc, where } from '@angular/fire/firestore';
+import { CollectionReference, collection, collectionData, deleteDoc, doc, query, setDoc, where } from '@angular/fire/firestore';
 import { AuthService } from 'app/auth/auth.service';
 import { AdditionalFixture } from 'app/model/fixture';
 import { startOfDay, subDays } from 'date-fns';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { FirestoreProvider } from '../../shared/services/firestore-provider';
 
 @Injectable( {
   providedIn: 'root'
 } )
 export class AdditionalFixtureService {
-  private fs = inject(Firestore);
+  private fs = inject(FirestoreProvider).getFirestore();
   private auth = inject(AuthService);
 
   private readonly _selectedFixture = new BehaviorSubject<AdditionalFixture | null>( null );

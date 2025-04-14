@@ -5,13 +5,12 @@ import { environment } from 'environments/environment';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
 import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
-import { provideFirestore, getFirestore, connectFirestoreEmulator } from '@angular/fire/firestore';
 import { provideStorage, getStorage, connectStorageEmulator } from '@angular/fire/storage';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideRouter, withPreloading, PreloadAllModules, withComponentInputBinding, withDebugTracing } from '@angular/router';
+import { provideRouter, withPreloading, PreloadAllModules, withComponentInputBinding } from '@angular/router';
 import { APP_ROUTES } from './app.routes';
 
    export const appConfig = { providers: [
@@ -23,14 +22,6 @@ import { APP_ROUTES } from './app.routes';
             connectAuthEmulator(auth, 'http://localhost:9099');
          }
          return auth;
-      }),
-      provideFirestore(() => {
-         const firestore = getFirestore();
-         if (environment.useEmulator) {
-            console.log('Firestore emulator configured');
-            connectFirestoreEmulator(firestore, 'http://localhost', 8080);
-         }
-         return firestore;
       }),
       provideStorage(() => {
          const storage = getStorage();

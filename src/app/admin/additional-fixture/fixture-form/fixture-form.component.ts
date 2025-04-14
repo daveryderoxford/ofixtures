@@ -1,5 +1,5 @@
 
-import { Component, effect, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {  MatOptionModule } from '@angular/material/core';
@@ -28,6 +28,7 @@ import { enGB } from 'date-fns/locale';
     { provide: MAT_DATE_FORMATS, useValue: MAT_DATE_FNS_FORMATS },
     provideDateFnsAdapter(),
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FixtureFormComponent {
 
