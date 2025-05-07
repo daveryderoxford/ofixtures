@@ -1,0 +1,15 @@
+
+.searchVisible {
+   transition: all 0.7s ease;
+   width: 240px;
+}
+
+.searchHidden {
+   transition: all 0.7s ease;
+   width: 50px;
+}
+
+.iconOnly {
+   padding-left: 15px;
+   padding-right: 5px;
+}

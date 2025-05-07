@@ -22,10 +22,10 @@ import { ToolbarComponent } from '../../shared/components/toolbar.component';
 import { FixturesGridComponent } from '../fixtures-grid/fixtures-grid.component';
 import { FixturesMapComponent } from '../fixtures-map/fixtures-map.component';
 import { FixturesOptionsComponent } from '../fixtures-options/fixtures-options.component';
-import { FixtureSearchComponent } from '../fixtures-search/fixture-search.component';
 import { FixturesService } from '../fixtures.service';
 import { PostcodeComponent } from '../postcode/postcode.component';
 import { ControlPanelComponent } from './control-panel.component';
+import { FixtureSearchComponent } from '../fixtures-search/fixture-search.component';
 
 type MobileView = 'map' | 'grid';
 

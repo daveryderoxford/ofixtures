@@ -37,7 +37,7 @@ export class PinchZoomComponent implements OnDestroy {
     _autoZoomOut!: boolean;
     _limitZoom!: number | 'original image size';
 
-    @Input() properties : ComponentProperties;
+    @Input() properties : ComponentProperties | undefined;
 
     // transitionDuration
     @Input('transition-duration') set transitionDurationBackwardCompatibility(value: number) {

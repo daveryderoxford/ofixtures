@@ -1,6 +1,6 @@
 
 @if (styledFixtures().length === 0) {
-    <span class="loading">Loading fixtures</span>
+    <span class="loading"><mat-spinner diameter="15" /> Loading fixtures</span>
 } @else {
 
   <cdk-virtual-scroll-viewport fxFill [itemSize]="itemsize()" minBufferPx="380" maxBufferPx="380">

@@ -1,0 +1,23 @@
+
+<mat-form-field appearance="outline" subscriptSizing="dynamic"
+   [class.searchVisible]="searchVisible()"
+   [class.searchHidden]="!searchVisible()">
+
+   <input #input matInput type="text" 
+     placeholder="Name, Club, Area, Location"
+    [(ngModel)]="value" 
+    (blur)="onBlurring(input.value)" 
+    (keyup)="onKeyup(input.value)"/>
+
+    @if (searchVisible()) {
+      <button mat-icon-button matSuffix (click)="close()">
+         <mat-icon>close</mat-icon>
+      </button>
+   } @else {
+      <button mat-icon-button matPrefix (click)="searchVisible.set(true)" class="iconOnly">
+         <mat-icon>search</mat-icon>
+      </button>
+   }
+
+</mat-form-field>
+

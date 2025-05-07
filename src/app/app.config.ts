@@ -9,7 +9,6 @@ import { provideStorage, getStorage, connectStorageEmulator } from '@angular/fir
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withPreloading, PreloadAllModules, withComponentInputBinding } from '@angular/router';
 import { APP_ROUTES } from './app.routes';
 
@@ -36,7 +35,6 @@ import { APP_ROUTES } from './app.routes';
       ScreenTrackingService,
       UserTrackingService,
 
-      provideAnimations(),
       provideHttpClient(withInterceptorsFromDi()),
       importProvidersFrom(
          MatDialogModule,

@@ -54,7 +54,7 @@ export class FixtureFormComponent {
     webpage: new FormControl('', { validators: [Validators.pattern(this.urlReg)] }),
     area: new FormControl(''),
     nearestTown: new FormControl(''),
-    association: new FormControl('', { validators: [Validators.required] }),
+    association: new FormControl(''),
   });
 
   types = eventTypes;

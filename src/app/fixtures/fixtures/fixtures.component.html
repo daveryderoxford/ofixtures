@@ -14,7 +14,7 @@
       @if (!fixtureGroup()) {
       <app-fixtures-options class="top-right mat-elevation-z2" [filter]="filter()"
         (filterChanged)="filterChanged($event)" />
-      <app-fixture-search #search class="search-position mat-elevation-z" />
+      <app-fixture-search class="search-position mat-elevation-z" />
       }
       <app-fixtures-map 
          [fixtures]="fixtures()" 
