@@ -34,7 +34,7 @@ export class LeagueService {
     defaultValue: [],
   });
 
- leagues= this.leagueResource.asReadonly();
+ leagues = this.leagueResource.asReadonly();
 
   findById(id: string | undefined): League | undefined {
     if (!id) return undefined;

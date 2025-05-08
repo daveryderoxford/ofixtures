@@ -58,3 +58,12 @@ body {
   z-index: 10000;
   padding: 18x;
 }
+
+.loading {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: var(--mat-sys-title-medium);
+  color: gray;
+}

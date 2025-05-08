@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute } from '@angular/router';
@@ -22,10 +23,10 @@ import { ToolbarComponent } from '../../shared/components/toolbar.component';
 import { FixturesGridComponent } from '../fixtures-grid/fixtures-grid.component';
 import { FixturesMapComponent } from '../fixtures-map/fixtures-map.component';
 import { FixturesOptionsComponent } from '../fixtures-options/fixtures-options.component';
+import { FixtureSearchComponent } from '../fixtures-search/fixture-search.component';
 import { FixturesService } from '../fixtures.service';
 import { PostcodeComponent } from '../postcode/postcode.component';
 import { ControlPanelComponent } from './control-panel.component';
-import { FixtureSearchComponent } from '../fixtures-search/fixture-search.component';
 
 type MobileView = 'map' | 'grid';
 
@@ -34,7 +35,10 @@ type MobileView = 'map' | 'grid';
    templateUrl: './fixtures.component.html',
    styleUrls: ['./fixtures.component.scss'],
    changeDetection: ChangeDetectionStrategy.OnPush,
-   imports: [FixtureSearchComponent, SidenavButtonComponent, PostcodeComponent, FixturesOptionsComponent, AngularSplitModule, FixturesMapComponent, LeagueHeaderComponent, FixturesGridComponent, FlexModule, ToolbarComponent, MatButtonModule, MatIconModule, MatDividerModule, ControlPanelComponent, MatTooltipModule]
+   imports: [FixtureSearchComponent, SidenavButtonComponent, PostcodeComponent, FixturesOptionsComponent, 
+      AngularSplitModule, FixturesMapComponent, LeagueHeaderComponent, FixturesGridComponent, FlexModule, 
+      ToolbarComponent, MatButtonModule, MatIconModule, MatDividerModule, ControlPanelComponent, 
+      MatTooltipModule, MatProgressSpinnerModule]
 })
 
 export class FixturesComponent implements OnInit {
@@ -83,6 +87,8 @@ export class FixturesComponent implements OnInit {
          return this.filteredFixtures();
       }
    });
+
+   loading = computed(() => this.fs.loading() || this.ls.leagues.isLoading() );
 
    displayedSelection = computed(() => {
       const f = this.fixtures().find(fix => fix.id === this.selectedFixture()?.id);

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, effect, inject } from '@angular/core';
+import { Injectable, effect, inject, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { Storage, ref } from "@angular/fire/storage";
 import { UserData } from 'app/model';
@@ -48,10 +48,13 @@ export class FixturesService {
    private _search$ = new BehaviorSubject<string>('');
    readonly search$ = this._search$.asObservable;
 
+   readonly loading = signal(true);
+
    private _fileContents$: Observable<Fixture[]> = getDownloadURL( ref( this.storage, "fixtures/uk" ) ).pipe(
       switchMap( url => this.http.get<Fixture[]>( url ) ),
       map( fixtures => futureFixtures( fixtures ) ),
       startWith( [] ),
+      tap( () => this.loading.set(false) ),
       shareReplay( 1 ),
       catchError( this.handleError<Fixture[]>( 'Fixture download', [] ) )
    );
@@ -75,7 +78,6 @@ export class FixturesService {
          this._homeLocation$.next( location.latlng );
       }
 
-      
       /* When user changes - set filters to reflect user details and unset liked only */
       effect( () => {
           const user = this.usd.userdata();

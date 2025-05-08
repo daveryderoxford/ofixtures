@@ -25,6 +25,9 @@
     </as-split-area>
     <!-- Large table -->
     <as-split-area>
+      @if (loading()) {
+          <span class="loading"><mat-spinner diameter="15" />Loading</span>
+      } @else {
       <app-fixtures-grid 
           [fixtures]="fixtures()" 
           [entries]="entries()" 
@@ -34,6 +37,7 @@
           [handset]='false'
           [loggedIn]='auth.loggedIn()' 
           (fixtureSelected)="gridFixtureSelected($event)" />
+      }
     </as-split-area>
   </as-split>
 </div>
@@ -66,44 +70,48 @@
   </app-toolbar>
   <!-- Mobile filter -->
   @if (showMobleFilter()) {
-  <div fxLayout="column" class="mat-elevation-z2 mobile-filter">
-    <app-postcode [postcode]="postcode()" (postcodeChanged)="postcodeChanged($event)" />
-    @if (!fixtureGroup()) {
-    <app-fixtures-options [filter]="filter()" (filterChanged)="filterChanged($event)" />
-    }
-  </div>
-  <mat-divider/>
+    <div fxLayout="column" class="mat-elevation-z2 mobile-filter">
+      <app-postcode [postcode]="postcode()" (postcodeChanged)="postcodeChanged($event)" />
+      @if (!fixtureGroup()) {
+        <app-fixtures-options [filter]="filter()" (filterChanged)="filterChanged($event)" />
+      }
+    </div>
+    <mat-divider/>
   }
-  @if (mobileView() === 'grid') {
-  <!-- Mobile List view -->
-  <app-fixtures-grid fxFlex 
-      [fixtures]="fixtures()" 
-      [homeLocation]="homeLocation()"
-      [selectedFixture]="displayedSelection()"
-      [handset]='true' 
-      (fixtureSelected)="gridFixtureSelected($event)" />
+  @if (loading()) {
+    <span class="loading"><mat-spinner diameter="15" />Loading</span>
   } @else {
-  <!-- Mobile map view-->
-  <div fxFlex fxLayout="column">
-    <mat-divider />
-    @if (selectedFixture()) {
-    <app-fixtures-grid fxFlex="96px" 
-        [fixtures]="[selectedFixture()!]" 
+    @if (mobileView() === 'grid') {
+    <!-- Mobile List view -->
+    <app-fixtures-grid fxFlex 
+        [fixtures]="fixtures()" 
         [homeLocation]="homeLocation()"
-        [selectedFixture]="selectedFixture()" 
+        [selectedFixture]="displayedSelection()"
         [handset]='true' 
         (fixtureSelected)="gridFixtureSelected($event)" />
     } @else {
-    <div fxFlex="30px" fxLayoutAlign="center center">
-      Select fixture to display its details
+    <!-- Mobile map view-->
+    <div fxFlex fxLayout="column">
+      <mat-divider />
+      @if (selectedFixture()) {
+      <app-fixtures-grid fxFlex="96px" 
+          [fixtures]="[selectedFixture()!]" 
+          [homeLocation]="homeLocation()"
+          [selectedFixture]="selectedFixture()" 
+          [handset]='true' 
+          (fixtureSelected)="gridFixtureSelected($event)" />
+      } @else {
+      <div fxFlex="30px" fxLayoutAlign="center center">
+        Select fixture to display its details
+      </div>
+      }
+      <app-fixtures-map fxFlex 
+        [fixtures]="fixtures()" 
+        [homeLocation]="homeLocation()"
+        [selectedFixture]="selectedFixture()" 
+        (fixtureSelected)="mapFixtureSelected($event)" />
     </div>
     }
-    <app-fixtures-map fxFlex 
-       [fixtures]="fixtures()" 
-       [homeLocation]="homeLocation()"
-       [selectedFixture]="selectedFixture()" 
-       (fixtureSelected)="mapFixtureSelected($event)" />
-  </div>
   }
 </div>
 }

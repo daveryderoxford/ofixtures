@@ -25,7 +25,6 @@ import { EnterButtonComponent } from '../enter-button/enter-button.component';
 import { FixtureActionsComponent } from '../fixture-actions/fixture-actions.component';
 import { MapMenuItemsComponent } from '../fixture-actions/map-menu-items.component';
 import { FixtureDatePipe, FixtureDistanceColorPipe, FixtureDistancePipe, GradeIconNamePipe, LocationPipe } from '../fixture-pipes';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 interface StyledFixture extends Fixture {
    shaded?: boolean;
@@ -37,8 +36,7 @@ interface StyledFixture extends Fixture {
    styleUrls: ['./fixtures-grid.component.scss'],
    changeDetection: ChangeDetectionStrategy.OnPush,
    imports: [ScrollingModule, FlexModule, NgClass, ExtendedModule, MatButtonModule, MatTooltipModule, MatIconModule, ExternalLinkIconComponent, MatMenuModule, MapMenuItemsComponent, FixtureActionsComponent, MatListModule, MatLineModule, MatDividerModule, EllipsisPipe, LocationPipe, 
-      FixtureDatePipe, FixtureDistancePipe, FixtureDistanceColorPipe, GradeIconNamePipe, EnterButtonComponent,
-      MatProgressSpinnerModule]
+      FixtureDatePipe, FixtureDistancePipe, FixtureDistanceColorPipe, GradeIconNamePipe, EnterButtonComponent]
 })
 export class FixturesGridComponent {
    private usd = inject(UserDataService);
