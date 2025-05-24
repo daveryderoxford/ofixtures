@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { League } from 'app/model/league';
-import { LeagueService } from '../league-service';
+import { League } from 'app/league/@store/league';
+import { LeagueService } from '../@store/league-service';
 import { input } from "@angular/core";
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
-import { Club } from 'app/model/club';
+import { Club } from 'app/club/@store/club';
 import { Router } from '@angular/router';
 
 @Component({

@@ -2,7 +2,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Location } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { RGData } from 'app/model/fixture';
+import { RGData } from 'app/fixtures/@store/fixture';
 import { AngularImageViewerComponent } from './angular-image_viewer/angular-image-viewer.component';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { MatIconModule } from '@angular/material/icon';

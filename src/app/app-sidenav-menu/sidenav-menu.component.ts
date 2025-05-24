@@ -8,7 +8,7 @@ import { RouteState } from 'app/app.route-state';
 import { AuthService } from 'app/auth/auth.service';
 import { SelectClubComponent } from 'app/club/select-club.component';
 import { LeagueMenuComponent } from 'app/league/league-menu/league-menu.component';
-import { League } from 'app/model/league';
+import { League } from 'app/league/@store/league';
 import { BreakpointService } from 'app/shared/services/breakpoint.service';
 import { LoginSnackbarService } from 'app/shared/services/login-snackbar.service';
 

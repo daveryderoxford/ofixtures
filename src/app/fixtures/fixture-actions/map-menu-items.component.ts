@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Fixture } from 'app/model';
-import { LatLong } from 'app/model/fixture';
+import { Fixture, LatLong } from 'app/fixtures/@store/fixture';
 import { GoogleURLPipe, GoogleDirectionsURLPipe, BingURLPipe, StreetmapURLPipe } from '../fixture-pipes';
 import { ExternalLinkIconComponent } from '../../shared/components/external-link-icon.component';
 import { MatMenuModule } from '@angular/material/menu';

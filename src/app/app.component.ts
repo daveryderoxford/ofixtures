@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterOutlet } from "@angular/router";
 import { filter, first, map } from 'rxjs/operators';
 import { SidenavMenuComponent } from './app-sidenav-menu/sidenav-menu.component';
-import { FixturesService } from './fixtures/fixtures.service';
+import { FixturesService } from './fixtures/@store/fixtures.service';
 import { PostcodeDialogComponent } from './fixtures/postcode/dialog/postcode-dialog/postcode-dialog.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { SidenavService } from './shared/services/sidenav.service';
@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
 
       this.sidebarService.setSidenav(this.sidenav());
       this.cookieConsent();
-      this.postcodeWarning();
+   //   this.postcodeWarning();
    }
 
    closeSidenav() {
@@ -59,19 +59,19 @@ export class AppComponent implements OnInit {
    /* Display a warining on mobile if the posttcode is set to the default */
    private postcodeWarning() {
       const PostcodeCookie = "PostcodeCookie";
-      this.fixtureService.postcode$.pipe(first()
-      ).subscribe((pc) => {
-         if (!existsInLocalStorage('postCodeWarning') && pc === FixturesService.DEFAULT_POSTCODE && this.firstWarning) {
-            const dialogRef = this.dialog.open(PostcodeDialogComponent, {
-               panelClass: 'sb-highzorder-dialog'
-            });
+      if ( !existsInLocalStorage('postCodeWarning') && 
+            this.fixtureService.postcode() === FixturesService.DEFAULT_POSTCODE && 
+            this.firstWarning) {
+         const dialogRef = this.dialog.open(PostcodeDialogComponent, {
+            panelClass: 'sb-highzorder-dialog'
+         });
 
-            dialogRef.afterClosed().subscribe(() => {
-               saveToLocalStorage('postCodeWarning', true);
-               this.firstWarning = false;
-            });
-         }
-      });
+         dialogRef.afterClosed().subscribe(() => {
+            saveToLocalStorage('postCodeWarning', true);
+            this.firstWarning = false;
+         });
+      }
+
    }
 }
 

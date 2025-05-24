@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { EntryCourse } from 'app/model/entry';
+import { EntryCourse } from 'app/entry/@store/entry';
 
 @Component({
   selector: 'app-course-dialog',

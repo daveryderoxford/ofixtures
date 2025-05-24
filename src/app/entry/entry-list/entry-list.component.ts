@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { EntryService } from 'app/entry/entry.service';
-import { Entry, EntryCourse, FixtureDetailsAndEntries } from 'app/model/entry';
+import { EntryService } from 'app/entry/@store/entry.service';
+import { Entry, EntryCourse, FixtureDetailsAndEntries } from 'app/entry/@store/entry';
 import { filter, map, switchMap } from 'rxjs/operators';
 import { SpinnerComponent } from '../../shared/components/spinner/spinner.component';
 import { MatTableModule } from '@angular/material/table';

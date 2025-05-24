@@ -4,8 +4,6 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatSelectionList, MatSelectionListChange, MatListModule } from '@angular/material/list';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { FixturesService } from 'app/fixtures/fixtures.service';
-import { Fixture } from 'app/model';
 import { Observable, combineLatest } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { EllipsisPipe } from '../../shared/pipes/ellipsis-pipe';
@@ -18,6 +16,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { FixturesService } from 'app/fixtures/@store/fixtures.service';
+import { Fixture } from 'app/fixtures/@store/fixture';
 
 @UntilDestroy( {} )
 @Component({
@@ -46,7 +47,9 @@ import { FlexModule } from '@ngbracket/ngx-layout/flex';
 })
 export class FixtureSelectComponent implements OnInit {
   fs = inject(FixturesService);
+
   dialogRef = inject<MatDialogRef<FixtureSelectComponent, Fixture[]>>(MatDialogRef);
+
   data = inject<{
     multiselect: boolean;
     initialFilter: string;
@@ -73,8 +76,11 @@ export class FixtureSelectComponent implements OnInit {
 
     this.selection = new SelectionModel( this.multiselect );
 
+    // TODO convert all to signals at some point
+    const allFixtures$ = toObservable(this.fs.fixtures);
+
     if ( this.data.selectedIds ) {
-      this.fs.allFixtues().subscribe( fixtures => {
+      allFixtures$.subscribe( fixtures => {
         const selected = fixtures.filter( fix => this.data.selectedIds.includes( fix.id ) );
         this.selection.setSelection( ...selected );
       } );
@@ -86,7 +92,7 @@ export class FixtureSelectComponent implements OnInit {
     this.selectedOnlyControl = new FormControl( this.selectedOnly );
     this.selectedOnly$ = this.selectedOnlyControl.valueChanges.pipe( startWith( this.selectedOnly ) );
 
-    this.fixtures$ = combineLatest( [this.fs.allFixtues(), this.filter$, this.selectedOnly$] ).pipe(
+    this.fixtures$ = combineLatest( [allFixtures$, this.filter$, this.selectedOnly$] ).pipe(
       map( ( [fixtures, filter, selectedOnly] ) => this._filterFixtures( fixtures, filter, selectedOnly ) )
     );
   }

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject, input, viewChild } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
-import { Fixture } from 'app/model/fixture';
-import { AdditionalFixtureService } from './additional-fixture.service';
+import { Fixture } from 'app/fixtures/@store/fixture';
+import { AdditionalFixtureService } from './@store/additional-fixture.service';
 import { FixtureFormComponent } from './fixture-form/fixture-form.component';
 
 @Component({

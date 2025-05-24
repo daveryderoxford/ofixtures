@@ -1,7 +1,7 @@
 import { Component, viewChild, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { LeagueService } from 'app/league/league-service';
-import { League } from 'app/model/league';
+import { LeagueService } from 'app/league/@store/league-service';
+import { League } from 'app/league/@store/league';
 import { LeagueFormComponent } from './league-form/league-form.component';
 
 @Component({

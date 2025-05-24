@@ -5,8 +5,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { eventGrades } from 'app/model';
-import { GradeFilter } from 'app/model/fixture-filter';
+import { GradeFilter } from 'app/fixtures/@store/fixture-filter';
+import { eventGrades } from 'app/oevent/oevent';
 
 @Component({
    selector: 'app-filter',

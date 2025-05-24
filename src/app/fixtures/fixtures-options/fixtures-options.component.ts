@@ -10,7 +10,7 @@ import { ExtendedModule } from '@ngbracket/ngx-layout/extended';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { AuthService } from 'app/auth/auth.service';
-import { FixtureFilter, FixtureTimeFilter } from 'app/model/fixture-filter';
+import { FixtureFilter, FixtureTimeFilter } from 'app/fixtures/@store/fixture-filter';
 import { LoginSnackbarService } from 'app/shared/services/login-snackbar.service';
 import { GradeFilterDialog } from '../grade-filter-dialog/grade-filter-dialog.component';
 import { FixtureWeekFilterComponent } from './fixture-week-filter.component';

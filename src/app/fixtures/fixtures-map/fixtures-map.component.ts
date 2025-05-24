@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit, ViewEncapsulation, effect, input, output, inject } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { Fixture, LatLong } from 'app/model/fixture';
+import { Fixture, LatLong } from 'app/fixtures/@store/fixture';
 import { Canvas, Circle, CircleMarker, FeatureGroup, Map, TileLayer, Util, circle, control, tileLayer } from "leaflet/dist/leaflet-src.esm";
 import { FixtureKeyComponent } from './fixture-key.component';
 
@@ -41,7 +41,7 @@ export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
       }
    });
 
-   selectedFixture = input.required<Fixture | null>();
+   selectedFixture = input.required<Fixture | undefined>();
    selectedFixtureEffect = effect(() => {
       this.selectFixture(this.selectedFixture());
    });

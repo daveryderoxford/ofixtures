@@ -1,7 +1,6 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { FixturesService } from 'app/fixtures/fixtures.service';
-import { Club } from 'app/model/club';
+import { FixturesService } from 'app/fixtures/@store/fixtures.service';
+import { Club } from 'app/club/@store/club';
 
 @Injectable({
    providedIn: 'root'
@@ -9,12 +8,10 @@ import { Club } from 'app/model/club';
 export class ClubService {
    fixtureService = inject(FixturesService);
 
-   private allFixtures = toSignal(this.fixtureService.allFixtues(), { initialValue: [] });
-
    selected = signal<string | null>(null);
 
    clubs = computed(() => {
-      const allClubs = this.allFixtures()
+      const allClubs = this.fixtureService.fixtures()
       .filter( (fix => fix.club && fix.club.trim() !== ''))
       .map(fix => {
          return {
@@ -25,7 +22,7 @@ export class ClubService {
       return uniqueNames(allClubs).sort((a, b) => a.name.localeCompare(b.name));
    });
 
-   fixtures = computed(() => this.allFixtures().filter(fix => fix.name === this.selected()));
+   fixtures = computed(() => this.fixtureService.fixtures().filter(fix => fix.name === this.selected()));
 
    find(name: string | undefined): Club | undefined {
       if (!name) return undefined;

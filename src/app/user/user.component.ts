@@ -1,7 +1,7 @@
 
 import { NgStyle } from "@angular/common";
 import { Component, effect, inject } from "@angular/core";
-import { FormArray, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, UntypedFormArray, Validators } from "@angular/forms";
+import { FormArray, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatOptionModule } from "@angular/material/core";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -13,11 +13,11 @@ import { Router } from "@angular/router";
 import { ExtendedModule } from "@ngbracket/ngx-layout/extended";
 import { FlexModule } from "@ngbracket/ngx-layout/flex";
 import { AuthService } from 'app/auth/auth.service';
-import { FixturesService } from "app/fixtures/fixtures.service";
-import { controlCardTypes } from "app/model";
+import { FixturesService } from "app/fixtures/@store/fixtures.service";
 import { FormContainerComponent } from "../shared/components/form-container/form-container.component";
 import { ToolbarComponent } from "../shared/components/toolbar.component";
-import { UserDataService } from "./user-data.service";
+import { controlCardTypes } from './@store/user';
+import { UserDataService } from "./@store/user-data.service";
 
 @Component({
   selector: "app-user",

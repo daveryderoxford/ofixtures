@@ -11,11 +11,10 @@ import { ActivatedRoute } from '@angular/router';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { AngularSplitModule } from 'angular-split';
 import { AuthService } from 'app/auth/auth.service';
-import { ClubService } from 'app/club/club-service';
-import { EntryService } from 'app/entry/entry.service';
-import { LeagueService } from 'app/league/league-service';
-import { Fixture } from 'app/model';
-import { FixtureFilter } from 'app/model/fixture-filter';
+import { ClubService } from 'app/club/@store/club-service';
+import { EntryService } from 'app/entry/@store/entry.service';
+import { LeagueService } from 'app/league/@store/league-service';
+import { FixtureFilter } from 'app/fixtures/@store/fixture-filter';
 import { BreakpointService } from 'app/shared/services/breakpoint.service';
 import { LeagueHeaderComponent } from '../../league/league-header/league-header.component';
 import { SidenavButtonComponent } from '../../shared/components/sidenav-button.component';
@@ -24,9 +23,12 @@ import { FixturesGridComponent } from '../fixtures-grid/fixtures-grid.component'
 import { FixturesMapComponent } from '../fixtures-map/fixtures-map.component';
 import { FixturesOptionsComponent } from '../fixtures-options/fixtures-options.component';
 import { FixtureSearchComponent } from '../fixtures-search/fixture-search.component';
-import { FixturesService } from '../fixtures.service';
+import { FixturesService } from '../@store/fixtures.service';
 import { PostcodeComponent } from '../postcode/postcode.component';
 import { ControlPanelComponent } from './control-panel.component';
+import { FilteredFixtures } from '../@store/filtered-fixtures';
+import { SelectedFixture } from '../@store/selected-fixture';
+import { Fixture } from '../@store/fixture';
 
 type MobileView = 'map' | 'grid';
 
@@ -45,6 +47,8 @@ export class FixturesComponent implements OnInit {
 
    protected auth = inject(AuthService);
    public fs = inject(FixturesService);
+   public filtered = inject(FilteredFixtures);
+   public selection = inject(SelectedFixture);
    public ls = inject(LeagueService);
    public cs = inject(ClubService);
    private es = inject(EntryService);
@@ -53,17 +57,16 @@ export class FixturesComponent implements OnInit {
    public snackbar = inject(MatSnackBar);
    public route = inject(ActivatedRoute);
 
-   homeLocation = toSignal(this.fs.homeLocation$, { requireSync: true });
-   postcode = toSignal(this.fs.postcode$, { requireSync: true });
-   filter = toSignal(this.fs.filter$, { requireSync: true });
+   homeLocation = this.fs.homeLocation;
+   postcode = this.fs.postcode;
+   filter = this.filtered.filter;
 
-   selectedFixture = toSignal(this.fs.selectedFixture$, { initialValue: null });
+   selectedFixture = this.selection.selectedFixture;
 
    entries = toSignal(this.es.fixtureEntryDetails$, { initialValue: [] });
    userEntries = toSignal(this.es.userEntries$, { initialValue: [] });
 
-   allFixtures = toSignal(this.fs.allFixtues(), { initialValue: [] });
-   filteredFixtures = toSignal(this.fs.getFixtures(), { initialValue: [] });
+   filteredFixtures = this.filtered.fixtures;
 
    clubName = input<string | undefined>(undefined, {alias: 'club'}) // route parameter
    leagueId = input<string | undefined>(undefined, {alias: 'league' }) // route parameter
@@ -80,9 +83,9 @@ export class FixturesComponent implements OnInit {
 
    fixtures = computed(() => {
       if (this.league()) {
-         return this.allFixtures().filter(fix => this.league()?.fixtureIds.includes(fix.id));
+         return this.fs.fixtures().filter(fix => this.league()?.fixtureIds.includes(fix.id));
       } else if (this.club()) {
-         return this.allFixtures().filter(fix => fix.club === this.club()?.name);
+         return this.fs.fixtures().filter(fix => fix.club === this.club()?.name);
       } else {
          return this.filteredFixtures();
       }
@@ -92,7 +95,7 @@ export class FixturesComponent implements OnInit {
 
    displayedSelection = computed(() => {
       const f = this.fixtures().find(fix => fix.id === this.selectedFixture()?.id);
-      return f === undefined ? null : f;
+      return f;
    });
 
    zoomBounds = computed(() => this.league() !== undefined || this.club() !== undefined);
@@ -119,11 +122,11 @@ export class FixturesComponent implements OnInit {
    }
 
    gridFixtureSelected(fixture: Fixture) {
-      this.fs.setSelectedFixture(fixture);
+      this.selection.setSelectedFixture(fixture);
    }
 
    mapFixtureSelected(fixture: Fixture) {
-      this.fs.setSelectedFixture(fixture);
+      this.selection.setSelectedFixture(fixture);
       this.grid().scrollToFixture(fixture);
    }
 
@@ -136,7 +139,7 @@ export class FixturesComponent implements OnInit {
    }
 
    filterChanged(f: FixtureFilter) {
-      this.fs.setFilter(f);
+      this.filtered.setFilter(f);
    }
 
    mobileGridView() {

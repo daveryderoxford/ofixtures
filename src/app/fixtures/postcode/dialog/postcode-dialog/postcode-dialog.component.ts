@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FixturesService } from 'app/fixtures/fixtures.service';
+import { FixturesService } from 'app/fixtures/@store/fixtures.service';
 
 @Component({
   selector: 'app-postcode-dialog',

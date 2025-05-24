@@ -7,11 +7,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { AuthService } from 'app/auth/auth.service';
-import { EntryService } from 'app/entry/entry.service';
-import { FixtureEntryDetails } from 'app/model/entry';
-import { Fixture, LatLong } from 'app/model/fixture';
+import { FixtureEntryDetails } from 'app/entry/@store/entry';
+import { EntryService } from 'app/entry/@store/entry.service';
+import { Fixture, LatLong } from 'app/fixtures/@store/fixture';
 import { LoginSnackbarService } from 'app/shared/services/login-snackbar.service';
-import { UserDataService } from 'app/user/user-data.service';
+import { UserDataService } from 'app/user/@store/user-data.service';
 import { ExternalLinkIconComponent } from '../../shared/components/external-link-icon.component';
 import { AddToGoogleCalendarButtonComponent } from './google-cal-button';
 import { MapMenuItemsComponent } from './map-menu-items.component';
@@ -57,7 +57,7 @@ export class FixtureActionsComponent implements AfterViewInit {
 
    ngAfterViewInit() {
       // dismiss menu on scroll to fix ios issue where menu scrolls incorrectly.
-     // window.addEventListener( 'scroll', () => this.menu().closeMenu(), true );
+      window.addEventListener( 'scroll', () => this.menu().closeMenu(), true );
    }
 
    /** Open the menu from an external source */

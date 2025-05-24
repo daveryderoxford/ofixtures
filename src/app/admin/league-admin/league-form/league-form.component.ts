@@ -10,11 +10,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { FixtureSelectComponent } from 'app/admin/fixture-select/fixture-select.component';
-import { Fixture } from 'app/model';
-import { League, LeagueLevel, LeagueType, leagueLevels, leagueTypes } from 'app/model/league';
+import { League, LeagueLevel, LeagueType, leagueLevels, leagueTypes } from 'app/league/@store/league';
 import { Observable } from 'rxjs';
 import { FormContainerComponent } from "../../../shared/components/form-container/form-container.component";
 import { ToolbarComponent } from '../../../shared/components/toolbar.component';
+import { Fixture } from 'app/fixtures/@store/fixture';
 
 @UntilDestroy( { checkProperties: true } )
 @Component({

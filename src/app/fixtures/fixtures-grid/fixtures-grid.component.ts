@@ -13,11 +13,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ExtendedModule } from '@ngbracket/ngx-layout/extended';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
-import { Fixture } from 'app/model';
-import { Entry, FixtureEntryDetails } from 'app/model/entry';
-import { LatLong, RGData } from 'app/model/fixture';
+import { Entry, FixtureEntryDetails } from 'app/entry/@store/entry';
+import { Fixture, LatLong, RGData } from 'app/fixtures/@store/fixture';
 import { LoginSnackbarService } from 'app/shared/services/login-snackbar.service';
-import { UserDataService } from 'app/user/user-data.service';
+import { UserDataService } from 'app/user/@store/user-data.service';
 import { isSameDay } from "date-fns";
 import { ExternalLinkIconComponent } from '../../shared/components/external-link-icon.component';
 import { EllipsisPipe } from '../../shared/pipes/ellipsis-pipe';
@@ -47,7 +46,7 @@ export class FixturesGridComponent {
    fixtures = input.required<Fixture[]>();
    entries = input<FixtureEntryDetails[]>([]);    // not used in mobile view so not required
    userEntries = input<Entry[]>([]);              // not used in mobile view so not required
-   selectedFixture = input.required<Fixture | null>();
+   selectedFixture = input.required<Fixture | undefined>();
    homeLocation = input.required<LatLong>();
    handset = input.required<boolean>();
    loggedIn = input<boolean>(false);              // not used in mobile view so not required

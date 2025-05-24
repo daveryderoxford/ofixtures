@@ -10,8 +10,8 @@ import { MatListModule } from '@angular/material/list';
 import { Router, RouterLink } from '@angular/router';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { AuthService } from 'app/auth/auth.service';
-import { LeagueService } from 'app/league/league-service';
-import { League } from 'app/model/league';
+import { LeagueService } from 'app/league/@store/league-service';
+import { League } from 'app/league/@store/league';
 import { DialogsService } from 'app/shared';
 
 @Component({

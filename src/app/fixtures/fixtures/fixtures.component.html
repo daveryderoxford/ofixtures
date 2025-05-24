@@ -26,7 +26,9 @@
     <!-- Large table -->
     <as-split-area>
       @if (loading()) {
-          <span class="loading"><mat-spinner diameter="15" />Loading</span>
+        <span class="loading"><mat-spinner diameter="15"/>Loading</span>
+      } @else if(fs.error()) {
+        <span class="loading">Error loading fixtures<br>Refresh page to retry</span>
       } @else {
       <app-fixtures-grid 
           [fixtures]="fixtures()" 
@@ -80,6 +82,8 @@
   }
   @if (loading()) {
     <span class="loading"><mat-spinner diameter="15" />Loading</span>
+  } @else if(fs.error()) {
+    <span class="loading">Error loading fixtures<br>Refresh page to retry</span>
   } @else {
     @if (mobileView() === 'grid') {
     <!-- Mobile List view -->

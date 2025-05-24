@@ -3,12 +3,11 @@ import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators, R
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { UserData } from 'app/model';
-import { Entry, EntryCourse, FixtureEntryDetails } from 'app/model/entry';
-import { UserDataService } from 'app/user/user-data.service';
+import { Entry, EntryCourse, FixtureEntryDetails } from 'app/entry/@store/entry';
+import { UserDataService } from 'app/user/@store/user-data.service';
 import { forkJoin } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { EntryService } from '../entry.service';
+import { EntryService } from '../@store/entry.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
@@ -18,6 +17,7 @@ import { MatCardModule } from '@angular/material/card';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { ToolbarComponent } from '../../shared/components/toolbar.component';
 import { FormContainerComponent } from "../../shared/components/form-container/form-container.component";
+import { UserData } from 'app/user/@store/user';
 
 interface FormData {
    firstname?: string;

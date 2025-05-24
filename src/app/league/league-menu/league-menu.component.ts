@@ -4,8 +4,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 import { Router } from '@angular/router';
-import { League } from 'app/model/league';
-import { LeagueService } from '../league-service';
+import { League } from 'app/league/@store/league';
+import { LeagueService } from '../@store/league-service';
 
 @Component({
     selector: 'app-league-menu',

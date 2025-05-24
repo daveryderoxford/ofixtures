@@ -4,7 +4,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { FixturesService } from 'app/fixtures/fixtures.service';
+import { FixturesService } from 'app/fixtures/@store/fixtures.service';
+import { FilteredFixtures } from '../@store/filtered-fixtures';
 
 @Component({
   selector: 'app-fixture-search',
@@ -14,7 +15,7 @@ import { FixturesService } from 'app/fixtures/fixtures.service';
 })
 export class FixtureSearchComponent {
 
-  private fs = inject(FixturesService);
+  private fs = inject(FilteredFixtures);
 
   searchVisible = signal(false);
   value = '';

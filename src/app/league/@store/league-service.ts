@@ -1,12 +1,10 @@
-import { Injectable, inject, signal } from '@angular/core';
-import { rxResource, toSignal } from '@angular/core/rxjs-interop';
+import { Injectable, inject } from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { CollectionReference, collection, collectionData, deleteDoc, doc, setDoc } from '@angular/fire/firestore';
 import { AuthService } from 'app/auth/auth.service';
-import { League } from 'app/model/league';
+import { League } from 'app/league/@store/league';
 import { FirestoreProvider } from 'app/shared/services/firestore-provider';
-import { LazyInject } from 'app/shared/services/lazy-injector';
 import { isAfter } from 'date-fns';
-import { Observable, of } from 'rxjs';
 import { map, shareReplay, tap } from 'rxjs/operators';
 
 @Injectable({

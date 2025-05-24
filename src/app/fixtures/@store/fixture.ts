@@ -1,5 +1,4 @@
-import { ISODateString } from './date';
-import { EventDiscipline, EventGrade, EventType } from './oevent';
+import { EventDiscipline, EventGrade, EventType } from '../../oevent/oevent';
 
 export interface LatLong {
    lat: number;
@@ -22,7 +21,7 @@ export type EntryStatus = 'Future' | 'Open' | 'Closed' | 'EOD' | 'Full' | 'NotEv
 
 export interface Fixture {
      id: string;
-     date: ISODateString;
+     date: string;
      name: string;
      club: string;
      clubURL: string;

@@ -1,5 +1,5 @@
 import { LocationPipe, GoogleDirectionsURLPipe, GoogleURLPipe, BingURLPipe, StreetmapURLPipe, FixtureDatePipe, FixtureDistancePipe, FixtureDistanceColorPipe, LikedPipe, GradeIconNamePipe } from './fixture-pipes';
-import { Fixture, LatLong } from 'app/model/fixture';
+import { Fixture, LatLong } from 'app/fixtures/@store/fixture';
 
 describe('FixturePipes', () => {
 

@@ -1,7 +1,7 @@
 import { Component, viewChild, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Fixture } from 'app/model/fixture';
-import { AdditionalFixtureService } from './additional-fixture.service';
+import { Fixture } from 'app/fixtures/@store/fixture';
+import { AdditionalFixtureService } from './@store/additional-fixture.service';
 import { FixtureFormComponent } from './fixture-form/fixture-form.component';
 
 @Component({

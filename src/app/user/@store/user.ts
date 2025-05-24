@@ -1,8 +1,10 @@
 
 /** data associated with a user */
-import { ControlCardType } from "./oevent";
-import { ISODateString } from "./date";
-import { GradeFilter } from "./fixture-filter";
+import { DocumentSnapshot } from '@angular/fire/firestore';
+import { GradeFilter } from "../../fixtures/@store/fixture-filter";
+
+export const controlCardTypes = ["SI", "Emit", "Other"] as const;
+export type ControlCardType = typeof controlCardTypes[number];
 
 export interface ECard {
     id: string;
@@ -38,3 +40,20 @@ export interface UserReservation extends UserFixture {
     course: string;
     waitinglist?: number;
 }
+
+// Firestore data converters
+// 1. Firebase only supports null while undefined is perferred in project
+// 2. Firebase stores dates as Timestamps rather than Javascript dates.  
+export const userConverter = {
+    toFirestore: (user: UserData) => {
+        return {
+            ...user,
+        };
+    },
+    fromFirestore: (snapshot: DocumentSnapshot<any>, options: any): UserData => {
+        const data = snapshot.data()!;
+        return {
+            ...data,
+        } as UserData;
+    }
+};

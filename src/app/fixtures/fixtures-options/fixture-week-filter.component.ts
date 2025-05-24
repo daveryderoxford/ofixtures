@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, output } from '@angular/core';
-import { FixtureTimeFilter, FixtureTimeFilterKey } from 'app/model/fixture-filter';
+import { FixtureTimeFilter, FixtureTimeFilterKey } from 'app/fixtures/@store/fixture-filter';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { input } from "@angular/core";
 

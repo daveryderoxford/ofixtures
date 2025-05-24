@@ -13,7 +13,7 @@ export class EventGrades {
         for (let i = gradeIndex; i < grades.length; i++) {
             ret[grades[i]] = true;
         }
-        return ret;
+        return ret; 
     }
 }
 

@@ -8,14 +8,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
-import { EventDiscipline, EventGrade, EventType, eventDisciplines, eventGrades, eventTypes } from 'app/model';
-import { AdditionalFixture, Fixture } from 'app/model/fixture';
+import { AdditionalFixture, Fixture } from 'app/fixtures/@store/fixture';
 import { formatISO } from 'date-fns';
 import { FormContainerComponent } from "../../../shared/components/form-container/form-container.component";
 import { ToolbarComponent } from '../../../shared/components/toolbar.component';
 import { DateFnsAdapter, MAT_DATE_FNS_FORMATS, provideDateFnsAdapter } from '@angular/material-date-fns-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { enGB } from 'date-fns/locale';
+import { EventDiscipline, eventDisciplines, EventGrade, eventGrades, EventType, eventTypes } from 'app/oevent/oevent';
 
 @Component({
   selector: 'app-fixture-form',

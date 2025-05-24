@@ -1,11 +1,11 @@
 import { Injectable, inject } from '@angular/core';
 import { CollectionReference, collection, collectionData, deleteDoc, doc, query, setDoc, where } from '@angular/fire/firestore';
 import { AuthService } from 'app/auth/auth.service';
-import { AdditionalFixture } from 'app/model/fixture';
+import { AdditionalFixture } from 'app/fixtures/@store/fixture';
 import { startOfDay, subDays } from 'date-fns';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { FirestoreProvider } from '../../shared/services/firestore-provider';
+import { FirestoreProvider } from '../../../shared/services/firestore-provider';
 
 @Injectable( {
   providedIn: 'root'

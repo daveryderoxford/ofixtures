@@ -2,7 +2,7 @@ import { Component, computed, effect, inject, input, output } from '@angular/cor
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { ClubService } from './club-service';
+import { ClubService } from './@store/club-service';
 
 @Component({
   selector: 'app-select-club',

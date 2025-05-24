@@ -19,15 +19,15 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ExtendedModule } from '@ngbracket/ngx-layout/extended';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { Fixture } from 'app/model';
-import { EntryCourse, FixtureEntryDetails } from 'app/model/entry';
+import { EntryCourse, FixtureEntryDetails } from 'app/entry/@store/entry';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { EntryService } from '../../../entry/entry.service';
+import { EntryService } from '../../../entry/@store/entry.service';
 import { ToolbarComponent } from '../../../shared/components/toolbar.component';
 import { EllipsisPipe } from '../../../shared/pipes/ellipsis-pipe';
 import { FixtureSelectComponent } from '../../fixture-select/fixture-select.component';
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
+import { Fixture } from 'app/fixtures/@store/fixture';
 
 @UntilDestroy({ checkProperties: true })
 @Component({
