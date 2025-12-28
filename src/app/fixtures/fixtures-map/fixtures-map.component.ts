@@ -26,9 +26,8 @@ export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
    private _homeMarkers = new FeatureGroup<Circle>();
 
    fixtures = input.required<Fixture[]>();
-
    fixturesEffect = effect(() => {
-      this.setFixtures(this.fixtures());
+      this.renderFixtures(this.fixtures());
       if (this.zoomBounds()) {
          this._fitToBounds();
       }
@@ -48,7 +47,7 @@ export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
 
    homeLocation = input.required<LatLong>();
    homeLocationEffect = effect(() => {
-      this.setHomeLocation(this.homeLocation());
+      this.renderHomeLayer(this.homeLocation());
    });
 
    fixtureSelected = output<Fixture>();
@@ -85,8 +84,8 @@ export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this._homeMarkers.addTo(this.map);
 
-      this.setHomeLocation(this._homeLocation);
-      this.setFixtures(this.fixtures());
+      this.renderHomeLayer(this._homeLocation);
+      this.renderFixtures(this.fixtures());
 
    }
 
@@ -118,7 +117,7 @@ export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
       setTimeout(() => this._doResize(), 20);
    }
 
-   setHomeLocation(latLng: LatLong) {
+   renderHomeLayer(latLng: LatLong) {
 
       this._homeLocation = latLng;
 
@@ -151,7 +150,7 @@ export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
       this.map.panTo(latLng);
    }
 
-   setFixtures(fixtures: Fixture[]) {
+   renderFixtures(fixtures: Fixture[]) {
 
       if (!this.map) {
          return;
@@ -167,6 +166,7 @@ export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
 
       const fixturesToDraw = fixtures.filter(fix => fix.latLong);
 
+      // Draw in reverse order so that the earliest fixtures are on top
       for (const fixture of fixturesToDraw.reverse()) {
 
          const weeks = this.weeksAhead(fixture.date);
@@ -199,7 +199,7 @@ export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
                const fixtureMarker: FixtureMarker = evt.target;
 
                if (fixtureMarker !== this._selectedFixtureMarker) {
-                  this.selectFeature(fixtureMarker);
+                  this.renderSelectedFixture(fixtureMarker);
                   this.fixtureSelected.emit(fixtureMarker.fixture);
 
                }
@@ -223,7 +223,7 @@ export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
 
    }
 
-   selectFeature(fixtureMarker: FixtureMarker) {
+   renderSelectedFixture(fixtureMarker: FixtureMarker) {
       if (this._selectedFixtureMarker) {
          this._selectedFixtureMarker.setStyle({ weight: 0 });
       }
@@ -269,7 +269,7 @@ export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
       const found = layers.find(fixtureMarker => fixture && fixtureMarker.fixture.id === fixture.id);
 
       if (found && found !== this._selectedFixtureMarker) {
-         this.selectFeature(found);
+         this.renderSelectedFixture(found);
          this.map.panTo(found.fixture.latLong);
       }
    };

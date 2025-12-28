@@ -24,6 +24,7 @@ import { EnterButtonComponent } from '../enter-button/enter-button.component';
 import { FixtureActionsComponent } from '../fixture-actions/fixture-actions.component';
 import { MapMenuItemsComponent } from '../fixture-actions/map-menu-items.component';
 import { FixtureDatePipe, FixtureDistanceColorPipe, FixtureDistancePipe, GradeIconNamePipe, LocationPipe } from '../fixture-pipes';
+import { LikedIcon } from './liked-icon';
 
 interface StyledFixture extends Fixture {
    shaded?: boolean;
@@ -35,21 +36,20 @@ interface StyledFixture extends Fixture {
    styleUrls: ['./fixtures-grid.component.scss'],
    changeDetection: ChangeDetectionStrategy.OnPush,
    imports: [ScrollingModule, FlexModule, NgClass, ExtendedModule, MatButtonModule, MatTooltipModule, MatIconModule, ExternalLinkIconComponent, MatMenuModule, MapMenuItemsComponent, FixtureActionsComponent, MatListModule, MatLineModule, MatDividerModule, EllipsisPipe, LocationPipe, 
-      FixtureDatePipe, FixtureDistancePipe, FixtureDistanceColorPipe, GradeIconNamePipe, EnterButtonComponent]
+      FixtureDatePipe, FixtureDistancePipe, FixtureDistanceColorPipe, GradeIconNamePipe, EnterButtonComponent, LikedIcon]
 })
 export class FixturesGridComponent {
-   private usd = inject(UserDataService);
    private router = inject(Router);
    private loginSnackBar = inject(LoginSnackbarService);
    private snackBar = inject(MatSnackBar);
 
    fixtures = input.required<Fixture[]>();
-   entries = input<FixtureEntryDetails[]>([]);    // not used in mobile view so not required
-   userEntries = input<Entry[]>([]);              // not used in mobile view so not required
+   entries = input<FixtureEntryDetails[]>([]);    // Not required as not used in mobile view so not required
+   userEntries = input<Entry[]>([]);              // Not required as not used in mobile view so not required
    selectedFixture = input.required<Fixture | undefined>();
    homeLocation = input.required<LatLong>();
    handset = input.required<boolean>();
-   loggedIn = input<boolean>(false);              // not used in mobile view so not required
+   loggedIn = input<boolean>(false);              // Not required as not used in mobile view so not required
    fixtureSelected = output<Fixture>();
 
    itemsize = computed(() => (this.handset()) ? 88 : 38);
@@ -68,8 +68,6 @@ export class FixturesGridComponent {
       }
       return styled;
    });
-
-   likedEvents = computed(() => this.usd.userdata() ? this.usd.userdata()!.reminders : []);
 
    readonly viewPort = viewChild.required(CdkVirtualScrollViewport);
 
@@ -134,10 +132,6 @@ export class FixturesGridComponent {
       );
    }
 
-   protected isLiked(fixture: Fixture): boolean {
-      return this.likedEvents().includes(fixture.id);
-   }
-
    protected mapView(rg: RGData) {
       this.router.navigate(["/mapviewer"], { queryParams: { rgdata: JSON.stringify(rg) } });
    }
@@ -149,25 +143,6 @@ export class FixturesGridComponent {
       }
       const index = this.entries().findIndex(entry => fixture.id === entry.fixtureId);
       return index !== -1;
-   }
-
-   protected async toggleReminder(fixture: Fixture) {
-      if (!this.loggedIn()) {
-         this.loginSnackBar.open('Must be logged in to like fixture');
-      } else {
-         try {
-            if (this.isLiked(fixture)) {
-               await this.usd.removeFixtureReminder(fixture.id);
-               this.snackBar.open('Event Unliked', '', { duration: 2000 });
-            } else {
-               await this.usd.addFixtureReminder(fixture.id);
-               this.snackBar.open('Event Liked', '', { duration: 2000 });
-            }
-         } catch (e: any) {
-            this.snackBar.open('Error encountered liking event', '', { duration: 2000 });
-            console.log("FixtureActions: Error liking/unliking event  " + e.message);
-         }
-      }
    }
 
    protected async enter(fixture: Fixture) {

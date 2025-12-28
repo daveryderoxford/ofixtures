@@ -205,7 +205,7 @@ export class RaceSignup {
    }
 
    /** Get club name from club image url */
-   private getClub(el: cheerio.Element): string | null {
+   private getClub(el: cheerio.Element): string | undefined {
       const img = this.$("img", el);
       const clubURL = img.prop("src");
       let filename = clubURL.substring(clubURL.lastIndexOf('/') + 1);  // get file name from url
@@ -215,7 +215,7 @@ export class RaceSignup {
       if (!club) {
          this.clubsNotFound = this.clubsNotFound + '  ' + filename;
          //  console.log('   Club not found: ' + filename);
-         return null;
+         return undefined;
       } else {
          return club.shortName.toUpperCase();
       }
@@ -228,6 +228,7 @@ export class RaceSignup {
       switch (statusStr) {
          case 'OPEN':
          case 'BUY':
+         case 'PRE-ENTRY AND EOD':
          case 'YHOA SUPERLEAGUE':
             return 'Open';
          case 'CLOSED':

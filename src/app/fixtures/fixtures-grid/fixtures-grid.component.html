@@ -27,9 +27,7 @@
           [ngClass]="rowClass(fixture)">
           <td class="actions">
             @defer {
-              <button mat-icon-button matTooltip="Like/Unlike fixture" (click)="toggleReminder(fixture)">
-                <mat-icon [class.red]="isLiked(fixture)">favorite</mat-icon>
-              </button>
+              <app-liked-icon [fixture]="fixture" [loggedIn]="loggedIn()"/>
             }
             @if (fixture.entryURL) {
             <app-enter-button [url]="fixture.entryURL" [status]="fixture.entryStatus"></app-enter-button>
@@ -122,9 +120,7 @@
           <mat-icon class="black handset-icon-size">person</mat-icon>
           }
           @defer {
-            @if (isLiked(fixture)) {
-            <mat-icon class="red handset-icon-size">favorite</mat-icon>
-            }
+            <app-liked-icon [fixture]="fixture" [loggedIn]="loggedIn()" [handset]="true"/>
           }
           <mat-icon [svgIcon]="fixture.grade | gradeIconName" class="handset-icon-size"></mat-icon>
         </div>

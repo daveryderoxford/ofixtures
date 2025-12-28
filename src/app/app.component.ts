@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterOutlet } from "@angular/router";
-import { filter, first, map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { SidenavMenuComponent } from './app-sidenav-menu/sidenav-menu.component';
 import { FixturesService } from './fixtures/@store/fixtures.service';
 import { PostcodeDialogComponent } from './fixtures/postcode/dialog/postcode-dialog/postcode-dialog.component';
@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
 
       this.sidebarService.setSidenav(this.sidenav());
       this.cookieConsent();
-   //   this.postcodeWarning();
+      this.postcodeWarning();
    }
 
    closeSidenav() {

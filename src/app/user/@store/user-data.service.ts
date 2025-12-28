@@ -1,8 +1,8 @@
 import { Injectable, inject } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { Auth, authState } from "@angular/fire/auth";
-import { DocumentReference, arrayRemove, arrayUnion, doc, docData, updateDoc } from "@angular/fire/firestore";
-import { FirestoreProviderAsync } from 'app/shared/services/firestore-provider-async';
+import type { DocumentReference } from "@angular/fire/firestore";
+import { FirestoreProviderAsync, fsModule } from 'app/shared/services/firestore-provider-async';
 import { Observable, of } from 'rxjs';
 import { shareReplay, startWith, switchMap } from 'rxjs/operators';
 import { UserData, userConverter } from './user';
@@ -19,7 +19,7 @@ export class UserDataService {
     switchMap( doc => {
       if (doc) {
         console.log(`UserData: monitoring uid: ${doc.id}`);
-        return docData(doc);
+        return fsModule!.docData(doc);
       } else {
         console.log("UserData: Firebase user null.  Stop monitoring user date  ");
         return of(undefined);
@@ -34,7 +34,7 @@ export class UserDataService {
   /** Load firestore asychrsanously  */
   private async ref(id: string): Promise<DocumentReference<UserData>> {
     const fs = await this.firestore.getFirestore();
-    return doc(fs, 'users', id).withConverter(userConverter);
+    return fsModule!.doc(fs, 'users', id).withConverter(userConverter);
   }
 
   /** Update the user info.  Returning the modified user details */
@@ -42,7 +42,7 @@ export class UserDataService {
     if (this.userdata()) {
       console.log('UserDataService: Saving user' + this.userdata()!!.key);
       const doc = await this.ref(this.userdata()!.key);
-      return updateDoc(doc, details);
+      return fsModule!.updateDoc(doc, details);
     } else {
       console.log('UserDataService: Saving user: Unexectly null');
       throw Error('UserDataService: Saving user: Unexectly null');
@@ -52,15 +52,15 @@ export class UserDataService {
   /** Reserve a map for the user */
   async addFixtureReminder(eventId: string): Promise<void> {
     const doc = await this.ref(this.userdata()!.key);
-    await updateDoc(doc, {
-      reminders: arrayUnion(eventId) as any
+    await fsModule!.updateDoc(doc, {
+      reminders: fsModule!.arrayUnion(eventId) as any
     });
   }
 
   async removeFixtureReminder(eventId: string): Promise<void> {
     const doc = await this.ref(this.userdata()!.key);
-    await updateDoc(doc, {
-      reminders: arrayRemove(eventId) as any
+    await fsModule!.updateDoc(doc, {
+      reminders: fsModule!.arrayRemove(eventId) as any
     });
   }
 }

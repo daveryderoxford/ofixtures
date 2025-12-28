@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, input } from '@angular/core';
-import { SidenavButtonComponent } from './sidenav-button.component';
+import { Component, input } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { SidenavButtonComponent } from './sidenav-button.component';
 
 @Component({
     selector: 'app-toolbar',

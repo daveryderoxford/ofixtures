@@ -5,7 +5,7 @@ import { AuthService } from 'app/auth/auth.service';
 import { League } from 'app/league/@store/league';
 import { FirestoreProvider } from 'app/shared/services/firestore-provider';
 import { isAfter } from 'date-fns';
-import { map, shareReplay, tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,6 @@ export class LeagueService {
     loader: () => {
       console.log('Leagueservice: Load Leagues');
       return collectionData<League>(this.leagueCollection).pipe(
-        shareReplay(1),
         map(leagues =>
           leagues.filter(league => isAfter(new Date(league.endDate), Date.now()) && league.fixtureIds.length > 0).sort((a, b) => a.startDate.localeCompare(b.startDate))
         ),
@@ -59,5 +58,4 @@ export class LeagueService {
     const d = doc(this.fs, 'leagues', id);
     await deleteDoc(d);
   }
-
 }

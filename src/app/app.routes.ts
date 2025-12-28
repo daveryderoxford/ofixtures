@@ -10,4 +10,8 @@ export const APP_ROUTES: Routes = [
    { path: "entry", loadChildren: () => import('./entry/entry.routes').then(r => r.ENTRY_ROUTES) },
    { path: 'mapviewer', title: 'Map viewer', loadComponent: () => import('./mapviewer/mapviewer.component').then(c => c.MapviewerComponent) }, 
    { path: 'admin', loadChildren: () => import('./admin/admin.routes').then(r => r.ADMIN_ROUTES) },
+   { path: 'sys-admin', loadChildren: () => import('./sys-admin/sys-admin.routes').then(r => r.SYS_ADMIN_ROUTES) },
 ];
+
+
+;

@@ -10,6 +10,10 @@ export const raceSignupClubs: RaceSignupClub[] = [
         racesignup: 'airienteers2'
     },
     {
+        shortName: 'badoharenoborder',
+        racesignup: 'bado'
+    },
+    {
         shortName: 'baoc',
         racesignup: 'mls'
     },
@@ -58,6 +62,10 @@ export const raceSignupClubs: RaceSignupClub[] = [
         racesignup: 'epocmoving'
     },
     {
+        shortName: 'esoc',
+        racesignup: 'esoc'
+    },
+    {
         shortName: 'euoc',
         racesignup: 'euoc'
     },
@@ -68,6 +76,10 @@ export const raceSignupClubs: RaceSignupClub[] = [
     {
         shortName: 'kerno',
         racesignup: 'kerno'
+    },
+    {
+        shortName: 'kfo',
+        racesignup: 'kfo'
     },
     {
         shortName: 'sos',
@@ -116,6 +128,10 @@ export const raceSignupClubs: RaceSignupClub[] = [
     {
         shortName: 'suffoc',
         racesignup: 'suffoc'
+    },
+    {
+        shortName: 'tvoc',
+        racesignup: 'tvoc'
     },
     {
         shortName: 'wsx',

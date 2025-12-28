@@ -3,7 +3,7 @@ import { FirebaseApp } from '@angular/fire/app';
 import { connectFirestoreEmulator, Firestore, getFirestore } from '@angular/fire/firestore';
 import { environment } from 'environments/environment';
 
-let firestore: any;
+let firestore: Firestore;
 
 /** Get Firestore sychrsanoudsly.  */
 @Injectable({
