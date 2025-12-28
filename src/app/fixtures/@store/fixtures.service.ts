@@ -33,7 +33,7 @@ export class FixturesService {
    );
 
    rawFixtures = rxResource<Fixture[], boolean>({
-      loader: () => this._fileContents$,
+      stream: () => this._fileContents$,
       defaultValue: [],
    });
 

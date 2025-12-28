@@ -18,7 +18,7 @@ export class LeagueService {
   private leagueCollection = collection(this.fs, 'leagues') as CollectionReference<League>;
 
   private leagueResource = rxResource<League[], boolean>({
-    loader: () => {
+    stream: () => {
       console.log('Leagueservice: Load Leagues');
       return collectionData<League>(this.leagueCollection).pipe(
         map(leagues =>
