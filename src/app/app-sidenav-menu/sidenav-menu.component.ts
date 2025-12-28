@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
@@ -15,7 +15,7 @@ import { LoginSnackbarService } from 'app/shared/services/login-snackbar.service
 @Component({
   selector: 'app-sidenav-menu',
   standalone: true,
-  imports: [CommonModule, MatListModule, MatDividerModule, LeagueMenuComponent, SelectClubComponent, RouterModule, MatButtonModule],
+  imports: [MatListModule, MatDividerModule, LeagueMenuComponent, SelectClubComponent, RouterModule, MatButtonModule],
   templateUrl: './sidenav-menu.component.html',
   styleUrl: './sidenav-menu.component.scss'
 })
