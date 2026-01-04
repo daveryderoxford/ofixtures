@@ -85,7 +85,8 @@ describe('FixturePipes', () => {
         let nextWeek = new Date();
         nextWeek.setDate(nextWeek.getDate() + 3);
         const nextWeekStr = nextWeek.getFullYear() + '-' + (nextWeek.getMonth() + 1).toString().padStart(2, '0') + '-' + nextWeek.getDate().toString().padStart(2, '0');
-        expect(pipe.transform(nextWeekStr + 'T10:00:00')).toContain('Tue'); // Check day of week
+        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        expect(pipe.transform(nextWeekStr + 'T10:00:00')).toContain(days[nextWeek.getDay()]); // Check day of week
 
         // Future
         const future = new Date(2025, 2, 1);

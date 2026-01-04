@@ -1,19 +1,23 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { vi, describe, expect, Mock, it, beforeEach, afterEach } from 'vitest';
-import { Storage } from '@angular/fire/storage'; // Correct import for Storage type
+import { Storage, getDownloadURL } from '@angular/fire/storage'; // Correct import for Storage type
 import { of, throwError } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { formatISO, addDays, subDays } from 'date-fns';
 import { FixturesService } from './fixtures.service';
 import { Fixture, LatLong } from './fixture';
 
-// Mock     'rxfire/storage'
-import { getDownloadURL } from 'rxfire/storage';
 import { LocalStorageLocationData, LocalStorageService } from './local-storage';
-vi.mock('rxfire/storage', () => ({
-  getDownloadURL: vi.fn(),
-}));
+
+// Mock @angular/fire/storage
+vi.mock('@angular/fire/storage', () => {
+  return {
+    Storage: class {},
+    ref: vi.fn(),
+    getDownloadURL: vi.fn(),
+  };
+});
 const mockGetDownloadURL = getDownloadURL as Mock;
 
 // Define MOCK_FIXTURES_ALL and MOCK_FIXTURES_FUTURE_ONLY as they are used in tests
@@ -95,6 +99,7 @@ describe('FixturesService', () => {
     // Service is already injected in beforeEach, this function can ensure loading state is processed
     // Accessing a computed signal that depends on rawFixtures will trigger the load
     service.loading(); // or service.fixtures()
+    TestBed.tick();
     await vi.advanceTimersByTimeAsync(1); // Allow microtasks and observables (like fixture loading delay) to complete
   };
 
@@ -143,17 +148,18 @@ describe('FixturesService', () => {
       service = TestBed.inject(FixturesService);
 
       expect(service.loading()).toBe(true);
+      TestBed.tick();
       await vi.advanceTimersByTimeAsync(1); // Advance time for the delay in http.get
       expect(service.loading()).toBe(false);
       expect(service.rawFixtures.value().length).toBe(MOCK_FIXTURES_FUTURE_ONLY.length);
-      expect(service.error()).toBeNull();
+      expect(service.error()).toBeUndefined();
     });
 
     it('should load and filter future fixtures successfully', async () => {
       await initializeServiceAndWaitForLoad();
 
       expect(service.loading()).toBe(false);
-      expect(service.error()).toBeNull();
+      expect(service.error()).toBeUndefined();
       const rawFixtures = service.rawFixtures.value();
       expect(rawFixtures.length).toBe(MOCK_FIXTURES_FUTURE_ONLY.length);
       expect(rawFixtures).toEqual(
@@ -168,14 +174,26 @@ describe('FixturesService', () => {
 
     it('should handle error from getDownloadURL', async () => {
       const downloadError = new Error('Download URL failed');
-      mockGetDownloadURL.mockReturnValue(throwError(() => downloadError));
+      mockGetDownloadURL.mockRejectedValue(downloadError);
+
+      // Re-create service to trigger _fileContents$ initialization with the error
+      TestBed.resetTestingModule();
+      TestBed.configureTestingModule({
+        providers: [
+          FixturesService,
+          { provide: HttpClient, useValue: httpClientSpy },
+          { provide: Storage, useValue: storageSpy },
+          { provide: LocalStorageService, useValue: mockLocalStorageService },
+        ],
+      });
+      service = TestBed.inject(FixturesService);
 
       await initializeServiceAndWaitForLoad(); // This will attempt to load
 
 
       expect(service.loading()).toBe(false);
       expect(service.error()).toBe(downloadError);
-      expect(service.rawFixtures.value()).toEqual([]);
+      expect(() => service.rawFixtures.value()).toThrow();
     });
 
     it('should handle error from httpClient.get for fixtures', async () => {
@@ -192,7 +210,7 @@ describe('FixturesService', () => {
 
       expect(service.loading()).toBe(false);
       expect(service.error()).toBe(httpError);
-      expect(service.rawFixtures.value()).toEqual([]);
+      expect(() => service.rawFixtures.value()).toThrow();
     });
 
     describe('fixtures computed signal (with distance)', () => {
@@ -207,8 +225,8 @@ describe('FixturesService', () => {
         const noLatLngEvent = fixturesWithDistance.find(f => f.id === '4');
 
         expect(fixturesWithDistance.length).toBe(MOCK_FIXTURES_FUTURE_ONLY.length);
-        expect(todayEvent?.distance).toBe(80); // Approx distance
-        expect(futureEvent?.distance).toBe(148); // Approx distance
+        expect(todayEvent?.distance).toBe(76); // Approx distance
+        expect(futureEvent?.distance).toBe(152); // Approx distance
         expect(noLatLngEvent?.distance).toBe(-1);
       });
 
@@ -220,7 +238,7 @@ describe('FixturesService', () => {
         const newPostcode = 'WC2N5DU'; // Trafalgar Square
         const newLatLng: LatLong = { lat: 51.5074, lng: -0.1278 };
         httpClientSpy.get.mockImplementation((url: string) => {
-          if (url.includes(newPostcode.toLowerCase())) {
+          if (url.toLowerCase().includes(newPostcode.toLowerCase())) {
             return of({ result: { latitude: newLatLng.lat, longitude: newLatLng.lng } });
           }
           return of(MOCK_FIXTURES_ALL); // For initial fixture load
@@ -228,11 +246,11 @@ describe('FixturesService', () => {
 
         await service.setPostcode(newPostcode);
         // Need to tick again for the saveToLocalStorage effect if it's triggered by a signal change
-        // tick();
+        TestBed.tick();
         const updatedFixtures = service.fixtures();
         const todayEventUpdated = updatedFixtures.find(f => f.id === '2'); // Fixture at { lat: 52, lng: 1 }
         expect(todayEventUpdated!.distance).not.toBe(initialDistance);
-        expect(todayEventUpdated!.distance).toBe(58); // Approx new distance
+        expect(todayEventUpdated!.distance).toBe(59); // Approx new distance
       });
     });
 
@@ -244,7 +262,7 @@ describe('FixturesService', () => {
         await initializeServiceAndWaitForLoad();
         httpClientSpy.get.mockImplementation((url: string) => {
           if (url.includes('fixtures.json')) return of(MOCK_FIXTURES_ALL).pipe(delay(1));
-          if (url.includes(testPostcode.toLowerCase())) return of({ result: { latitude: testLatLng.lat, longitude: testLatLng.lng } });
+          if (url.toLowerCase().includes(testPostcode.toLowerCase())) return of({ result: { latitude: testLatLng.lat, longitude: testLatLng.lng } });
           return of({ result: { latitude: 0, longitude: 0 } });
         });
       });

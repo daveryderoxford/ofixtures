@@ -1,11 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { Storage, ref } from "@angular/fire/storage";
+import { Storage, ref, getDownloadURL } from "@angular/fire/storage";
 import { Fixture, LatLong } from 'app/fixtures/@store/fixture';
 import { isFuture, isToday } from 'date-fns';
-import { getDownloadURL } from 'rxfire/storage';
-import { Observable, firstValueFrom, of } from 'rxjs';
+import { Observable, firstValueFrom, of, from } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { LocalStorageLocationData, LocalStorageService } from './local-storage';
 
@@ -26,10 +25,9 @@ export class FixturesService {
    private _homeLocation = signal<LatLong>(FixturesService.DEFAULT_LATLNG);
    readonly homeLocation = this._homeLocation.asReadonly();
 
-   private _fileContents$: Observable<Fixture[]> = getDownloadURL(ref(this.storage, "fixtures/uk")).pipe(
+   private _fileContents$: Observable<Fixture[]> = from(getDownloadURL(ref(this.storage, "fixtures/uk"))).pipe(
       switchMap(url => this.http.get<Fixture[]>(url)),
       map(fixtures => futureFixtures(fixtures)),
-      catchError(this.handleError<Fixture[]>('Fixture download', []))
    );
 
    rawFixtures = rxResource<Fixture[], boolean>({
@@ -78,7 +76,7 @@ export class FixturesService {
       const obs = this.http.get<any>("https://api.postcodes.io/postcodes/" + postcode).pipe(
          catchError(this.handleError<LatLong>('FixturesService: Postcode location failed')),
          map(obj => {
-            if (obj === null || obj.result === null || obj.result.latitude === null) {
+            if (!obj || obj.result === null || obj.result.latitude === null) {
                return null;
             }
             const loc: LatLong = {

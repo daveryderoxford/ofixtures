@@ -114,5 +114,5 @@ export function makeDefaultGrades(): GradeFilter[] {
 export function anyWordStartsWith(str: string, search: string): boolean {
    if (!str) return false;
    const words = str.toLocaleLowerCase().split(' ');
-   return words.some(word => word.startsWith(search));
+   return words.some(word => word.startsWith(search.toLocaleLowerCase()));
 }

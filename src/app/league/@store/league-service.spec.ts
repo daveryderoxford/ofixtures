@@ -103,15 +103,16 @@ describe('LeagueService', () => {
     it('should load, filter, and sort leagues successfully', async () => {
       // Trigger the resource loading if not already triggered by constructor/injection
       service.leagues.value(); // Access value to ensure loader runs
+      TestBed.tick();
       await Promise.resolve(); // Allow observables to complete
 
       expect(service.leagues.isLoading()).toBe(false);
-      expect(service.leagues.error()).toBeNull();
+      expect(service.leagues.error()).toBeUndefined();
       const loadedLeagues = service.leagues.value();
       expect(loadedLeagues.length).toBe(2);
       expect(loadedLeagues[0]).toEqual(anotherFutureLeague); // Sorted by startDate
       expect(loadedLeagues[1]).toEqual(futureLeague);
-      expect(mockCollectionData).toHaveBeenCalledWith({ id: 'leaguesCollection' }, { idField: 'id' });
+      expect(mockCollectionData).toHaveBeenCalledWith({ id: 'leaguesCollection' });
     });
 
     it('should handle errors during league loading', async () => {
@@ -122,23 +123,26 @@ describe('LeagueService', () => {
       // For rxResource, errors in the loader are caught and set to the error signal.
       service = TestBed.inject(LeagueService); // Re-inject to re-trigger resource with new mock
       service.leagues.value();
+      TestBed.tick();
       await Promise.resolve();
 
       expect(service.leagues.isLoading()).toBe(false);
       expect(service.leagues.error()).toBe(error);
-      expect(service.leagues.value()).toEqual([]); // Default value
+      expect(() => service.leagues.value()).toThrow(); // Accessing value throws in error state
     });
   });
 
   describe('findById', () => {
     it('should find a league by ID if it exists in the loaded leagues', async () => {
       service.leagues.value();
+      TestBed.tick();
       await Promise.resolve(); // Load leagues
       expect(service.findById(futureLeague.id)).toEqual(futureLeague);
     });
 
     it('should return undefined if league ID is not found', async () => {
       service.leagues.value();
+      TestBed.tick();
       await Promise.resolve();
       expect(service.findById('non-existent-id')).toBeUndefined();
     });

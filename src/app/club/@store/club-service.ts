@@ -22,7 +22,7 @@ export class ClubService {
       return uniqueNames(allClubs).sort((a, b) => a.name.localeCompare(b.name));
    });
 
-   fixtures = computed(() => this.fixtureService.fixtures().filter(fix => fix.name === this.selected()));
+   fixtures = computed(() => this.fixtureService.fixtures().filter(fix => fix.club?.trim() === this.selected()));
 
    find(name: string | undefined): Club | undefined {
       if (!name) return undefined;
