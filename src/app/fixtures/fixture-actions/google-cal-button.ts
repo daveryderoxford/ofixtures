@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { addDays, format } from 'date-fns'
 import { MatMenuModule } from '@angular/material/menu';
 import { input } from "@angular/core";
@@ -6,7 +6,8 @@ import { input } from "@angular/core";
 @Component({
     selector: 'app-add-to-calendar',
     template: '<button (click) = "addToCalendar()" mat-menu-item>Add To Google Calender</button>',
-    imports: [MatMenuModule]
+    imports: [MatMenuModule],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddToGoogleCalendarButtonComponent  {
 

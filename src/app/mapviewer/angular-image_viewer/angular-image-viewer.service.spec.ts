@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { describe, expect, it, beforeEach} from 'vitest';
 
 import { AngularImageViewerService } from './angular-image-viewer.service';
 

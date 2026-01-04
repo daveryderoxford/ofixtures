@@ -4,18 +4,18 @@
 <div fxLayout="row" fxLayoutAlign="center space-around">
 
   <mat-card>
-    @if (form) {
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    @if (form()) {
+      <form [formGroup]="form()!" (ngSubmit)="onSubmit()">
         <mat-card-header>
           <mat-card-title>Map Reservation</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <div fxLayout="column" fxLayoutAlign="space-around" fxLayoutGap=20px>
             <mat-divider></mat-divider>
-            @if (fixture) {
+            @if (fixture()) {
               <p>
-                <b>{{ fixture.club}} - {{fixture.date | date:'mediumDate' }} </b>
-                <br> {{ fixture.name | ellipsis: 40 }}
+                <b>{{ fixture()!.club}} - {{fixture()!.date | date:'mediumDate' }} </b>
+                <br> {{ fixture()!.name | ellipsis: 40 }}
                 </p>
               }
               <button mat-flat-button type=button (click)="selectFixture()">Select Fixture</button>
@@ -35,7 +35,7 @@
                 </button>
               </div>
               <mat-chip-listbox #chipList class="mat-chip-list-stacked">
-                @for (course of courses; track course; let i = $index) {
+                @for (course of courses(); track course; let i = $index) {
                   <mat-chip-option selected="true" selectable="true"
                     removable="true" class="accent" (removed)="removeCourse(course)" (click)="editCourse(course, i)">
                     {{course.name}}
@@ -48,7 +48,7 @@
           </mat-card-content>
           <mat-card-actions>
             <div fxLayout="row" fxLayoutAlign="space-between center">
-              <button [disabled]="form.invalid || (!form.dirty && !coursesChanged()) || busy" mat-flat-button
+              <button [disabled]="form()!.invalid || (!form()!.dirty && !coursesChanged()) || busy()" mat-flat-button
               type="submit">Save</button>
             </div>
           </mat-card-actions>

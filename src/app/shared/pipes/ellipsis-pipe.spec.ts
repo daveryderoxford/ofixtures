@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { EllipsisPipe } from './ellipsis-pipe';
-import { } from "jasmine";
-import 'jasmine-expect';
+import { describe, expect, it, beforeEach } from 'vitest';
 
 describe( 'LoggingService', () => {
    beforeEach( () => TestBed.configureTestingModule( {} ) );

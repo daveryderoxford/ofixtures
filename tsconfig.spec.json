@@ -7,7 +7,6 @@
       "stripe-v3",
       "stripe-checkout",
       "node",
-      "jasmine",
     ]
   },
   "include": [

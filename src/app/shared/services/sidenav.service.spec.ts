@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-
 import { SidenavService } from './sidenav.service';
+import { describe, expect, it, beforeEach } from 'vitest';
 
 describe('SidebarService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

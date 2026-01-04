@@ -1,6 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Location } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { RGData } from 'app/fixtures/@store/fixture';
 import { AngularImageViewerComponent } from './angular-image_viewer/angular-image-viewer.component';
@@ -13,7 +13,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     selector: 'app-mapviewer',
     templateUrl: './mapviewer.component.html',
     styleUrls: ['./mapviewer.component.scss'],
-    imports: [MatToolbarModule, MatButtonModule, MatIconModule, FlexModule, AngularImageViewerComponent]
+    imports: [MatToolbarModule, MatButtonModule, MatIconModule, FlexModule, AngularImageViewerComponent],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MapviewerComponent implements OnInit {
     location = inject(Location);

@@ -49,8 +49,11 @@ export class FilteredFixtures {
 
    }
 
-   fixtures = computed(() => this.fs.fixtures()
-      .filter(fix => isFixtureShown(fix, this.usd.userdata(), this.filter(), this.search())));
+   fixtures = computed(() => {
+      const s = this.search();
+      const searchStr = s.length < 2 ? '' : s;
+      return this.fs.fixtures().filter(fix => isFixtureShown(fix, this.usd.userdata(), this.filter(), searchStr));
+   });
 
 
    setFilter(f: FixtureFilter) {

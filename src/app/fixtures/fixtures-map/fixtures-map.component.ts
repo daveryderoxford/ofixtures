@@ -1,11 +1,9 @@
 // @ts-nocheck
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit, ViewEncapsulation, effect, input, output, inject } from '@angular/core';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation, effect, inject, input, output } from '@angular/core';
 import { Fixture, LatLong } from 'app/fixtures/@store/fixture';
 import { Canvas, Circle, CircleMarker, FeatureGroup, Map, TileLayer, Util, circle, control, tileLayer } from "leaflet/dist/leaflet-src.esm";
 import { FixtureKeyComponent } from './fixture-key.component';
 
-@UntilDestroy({ checkProperties: true })
 @Component({
    selector: 'app-fixtures-map',
    templateUrl: './fixtures-map.component.html',
@@ -17,7 +15,6 @@ import { FixtureKeyComponent } from './fixture-key.component';
 /** Map of fixtures */
 export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
    private ref = inject(ChangeDetectorRef);
-   private zone = inject(NgZone);
 
    private _selectedFixtureMarker: FixtureMarker = null;
    private _homeLocation: LatLong = { "lat": 51.43116, "lng": -0.508227, };
@@ -67,9 +64,7 @@ export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
    private _loadMap() {
 
       // Create the map outside of angular so the various map events don't trigger change detection
-      this.zone.runOutsideAngular(() => {
-         this.map = new Map('map', { preferCanvas: true, zoomControl: false }).setView(this._homeLocation, 9);
-      });
+      this.map = new Map('map', { preferCanvas: true, zoomControl: false }).setView(this._homeLocation, 9);
 
       control.scale({ position: 'bottomleft' }).addTo(this.map);
       control.zoom({ position: 'bottomright' }).addTo(this.map);
@@ -99,15 +94,10 @@ export class FixturesMapComponent implements OnInit, AfterViewInit, OnDestroy {
     * Resize the map to fit it's parent container
     */
    private _doResize() {
-
-      // Run this outside of angular so the map events stay outside of angular
-      this.zone.runOutsideAngular(() => {
-
-         // Invalidate the map size to trigger it to update itself
-         if (this.map) {
-            this.map.invalidateSize();
-         }
-      });
+      // Invalidate the map size to trigger it to update itself
+      if (this.map) {
+         this.map.invalidateSize();
+      }
    }
 
    /**

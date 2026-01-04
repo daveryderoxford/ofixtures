@@ -1,11 +1,8 @@
-import { SelectionModel } from '@angular/cdk/collections';
-import { ChangeDetectionStrategy, Component, OnInit, viewChild, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, viewChild, inject, signal, computed } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatSelectionList, MatSelectionListChange, MatListModule } from '@angular/material/list';
-import { UntilDestroy } from '@ngneat/until-destroy';
-import { Observable, combineLatest } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { startWith } from 'rxjs/operators';
 import { EllipsisPipe } from '../../shared/pipes/ellipsis-pipe';
 import { MatButtonModule } from '@angular/material/button';
 import { MatLineModule } from '@angular/material/core';
@@ -14,13 +11,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { AsyncPipe, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FixturesService } from 'app/fixtures/@store/fixtures.service';
 import { Fixture } from 'app/fixtures/@store/fixture';
 
-@UntilDestroy( {} )
 @Component({
     selector: 'app-fixture-select',
     templateUrl: './fixture-select.component.html',
@@ -40,7 +36,6 @@ import { Fixture } from 'app/fixtures/@store/fixture';
         CdkVirtualForOf,
         MatLineModule,
         MatButtonModule,
-        AsyncPipe,
         DatePipe,
         EllipsisPipe
     ]
@@ -56,55 +51,40 @@ export class FixtureSelectComponent implements OnInit {
     selectedIds: string[];
 }>(MAT_DIALOG_DATA);
 
-  fixtures$!: Observable<Fixture[]>;
-  filter!: FormControl;
-  filter$!: Observable<string>;
+  selection = signal<Fixture[]>([]);
 
-  multiselect = false;
-  selectedOnly = false;
-  initialFilter = "";
+  filterControl = new FormControl(this.data.initialFilter || '', { nonNullable: true });
+  filter = toSignal(this.filterControl.valueChanges.pipe(startWith(this.data.initialFilter || '')), { requireSync: true });
 
-  selection!: SelectionModel<Fixture>;
+  selectedOnlyControl = new FormControl(false, { nonNullable: true });
+  selectedOnly = toSignal(this.selectedOnlyControl.valueChanges.pipe(startWith(false)), { requireSync: true });
 
-  selectedOnlyControl!: FormControl;
-  selectedOnly$!: Observable<boolean>;
+  filteredFixtures = computed(() => {
+    const fixtures = this.fs.fixtures();
+    const filter = this.filter();
+    const selectedOnly = this.selectedOnly();
+    const currentSelection = this.selection();
+
+    return this._filterFixtures(fixtures, filter, selectedOnly, currentSelection);
+  });
 
   readonly list = viewChild.required(MatSelectionList);
 
   ngOnInit(): void {
-    this.multiselect = this.data.multiselect;
-
-    this.selection = new SelectionModel( this.multiselect );
-
-    // TODO convert all to signals at some point
-    const allFixtures$ = toObservable(this.fs.fixtures);
-
-    if ( this.data.selectedIds ) {
-      allFixtures$.subscribe( fixtures => {
-        const selected = fixtures.filter( fix => this.data.selectedIds.includes( fix.id ) );
-        this.selection.setSelection( ...selected );
-      } );
+    if (this.data.selectedIds && this.data.selectedIds.length > 0) {
+      const initial = this.fs.fixtures().filter(f => this.data.selectedIds.includes(f.id));
+      this.selection.set(initial);
     }
-
-    this.filter = new FormControl( this.data.initialFilter );
-    this.filter$ = this.filter.valueChanges.pipe( startWith( this.data.initialFilter ) );
-
-    this.selectedOnlyControl = new FormControl( this.selectedOnly );
-    this.selectedOnly$ = this.selectedOnlyControl.valueChanges.pipe( startWith( this.selectedOnly ) );
-
-    this.fixtures$ = combineLatest( [allFixtures$, this.filter$, this.selectedOnly$] ).pipe(
-      map( ( [fixtures, filter, selectedOnly] ) => this._filterFixtures( fixtures, filter, selectedOnly ) )
-    );
   }
 
-  private _filterFixtures( fixtures: Fixture[], filter: string, selectedOnly: boolean ): Fixture[] {
+  private _filterFixtures( fixtures: Fixture[], filter: string, selectedOnly: boolean, selection: Fixture[] ): Fixture[] {
     const str = filter.trim().toLowerCase();
-    return fixtures.filter( fixture => this._stringFilter( str, fixture ) && this._selectionFilter( selectedOnly, fixture ) );
+    return fixtures.filter( fixture => this._stringFilter( str, fixture ) && (!selectedOnly || selection.includes(fixture)) );
   }
 
   private _stringFilter( filterStr: string, fixture: Fixture ): boolean {
     if ( filterStr === "" ) {
-      return true
+      return true;
     } else {
       return fixture.club?.toLowerCase().includes( filterStr ) ||
         fixture.name.toLowerCase().includes( filterStr ) ||
@@ -113,24 +93,26 @@ export class FixtureSelectComponent implements OnInit {
     }
   }
 
-  private _selectionFilter( selectedOnly: boolean, fixture: Fixture ): boolean {
-    if ( selectedOnly ) {
-      return this.selection.selected.includes( fixture );
-    } else {
-      return true;
-    }
+  isSelected(fixture: Fixture): boolean {
+    return this.selection().includes(fixture);
   }
 
   onSelectionChange( selection: MatSelectionListChange ) {
-    selection.options.forEach( option => {
-      option.selected
-        ? this.selection.select( option.value )
-        : this.selection.deselect( option.value );
-    } );
-
+    this.selection.update(selected => {
+      const newSelected = [...selected];
+      selection.options.forEach(option => {
+        if (option.selected) {
+          if (!newSelected.includes(option.value)) newSelected.push(option.value);
+        } else {
+          const idx = newSelected.indexOf(option.value);
+          if (idx > -1) newSelected.splice(idx, 1);
+        }
+      });
+      return newSelected;
+    });
   }
 
   onSubmit() {
-    this.dialogRef.close( this.selection.selected );
+    this.dialogRef.close( this.selection() );
   }
 }

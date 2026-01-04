@@ -8,7 +8,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
-import { UntilDestroy } from '@ngneat/until-destroy';
 import { FixtureSelectComponent } from 'app/admin/fixture-select/fixture-select.component';
 import { League, LeagueLevel, LeagueType, leagueLevels, leagueTypes } from 'app/league/@store/league';
 import { Observable } from 'rxjs';
@@ -16,7 +15,6 @@ import { FormContainerComponent } from "../../../shared/components/form-containe
 import { ToolbarComponent } from '../../../shared/components/toolbar.component';
 import { Fixture } from 'app/fixtures/@store/fixture';
 
-@UntilDestroy( { checkProperties: true } )
 @Component({
     selector: 'app-league-form',
     templateUrl: './league-form.component.html',
@@ -70,6 +68,7 @@ export class LeagueFormComponent implements OnChanges {
   }
 
   selectFixtures() {
+    // No need to unsubscribe as observable completes
     this._displayFixtureSelectDialog().subscribe( fixtures => {
       if ( fixtures ) {
         this.eventsEdited = true;

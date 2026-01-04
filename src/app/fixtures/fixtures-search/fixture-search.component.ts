@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,18 +11,17 @@ import { FilteredFixtures } from '../@store/filtered-fixtures';
   selector: 'app-fixture-search',
   imports: [MatFormFieldModule, MatIconModule, MatInputModule, MatButtonModule, FormsModule],
   templateUrl: './fixture-search.component.html',
-  styleUrl: './fixture-search.component.scss'
+  styleUrl: './fixture-search.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FixtureSearchComponent {
 
-  private fs = inject(FilteredFixtures);
+  protected fs = inject(FilteredFixtures);
 
   searchVisible = signal(false);
-  value = '';
 
   updateSearch(str: string) {
-    const s = str.length < 2 ? '' : str;
-    this.fs.setSearch(s);
+    this.fs.setSearch(str);
   }
 
   // Close on focus loss if no search text specified
@@ -32,15 +31,9 @@ export class FixtureSearchComponent {
     }
   }
 
-  onKeyup(searchValue: string) {
-    this.updateSearch(searchValue);
-  }
-
   close() {
     this.searchVisible.set(false);
-    this.value = '';
     this.updateSearch('');
-
   }
 
 }

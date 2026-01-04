@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, viewChild } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
@@ -15,7 +15,8 @@ import { SidenavService } from './shared/services/sidenav.service';
    selector: 'app-root',
    templateUrl: './app.component.html',
    styleUrls: ['app.component.scss'],
-   imports: [SpinnerComponent, MatSidenavModule, RouterOutlet, SidenavMenuComponent]
+   imports: [SpinnerComponent, MatSidenavModule, RouterOutlet, SidenavMenuComponent],
+   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
    private router = inject(Router);

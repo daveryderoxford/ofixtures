@@ -1,5 +1,5 @@
 
-import { Component, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { EntryStatus } from 'app/fixtures/@store/fixture';
@@ -9,7 +9,8 @@ import { input } from "@angular/core";
     selector: 'app-enter-button',
     imports: [MatButtonModule, MatIconModule],
     templateUrl: './enter-button.component.html',
-    styleUrls: ['./enter-button.component.scss']
+    styleUrls: ['./enter-button.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class EnterButtonComponent {

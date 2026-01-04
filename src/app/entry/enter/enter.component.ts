@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { untilDestroyed } from '@ngneat/until-destroy';
 import { Entry, EntryCourse, FixtureEntryDetails } from 'app/entry/@store/entry';
 import { UserDataService } from 'app/user/@store/user-data.service';
 import { forkJoin } from 'rxjs';
@@ -26,7 +26,6 @@ interface FormData {
    course?: string;
 }
 
-@UntilDestroy()
 @Component({
    selector: 'app-enter',
    templateUrl: './enter.component.html',

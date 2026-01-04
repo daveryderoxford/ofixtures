@@ -1,4 +1,5 @@
 import { EventGrades } from './oevent';
+import { describe, expect, it } from 'vitest';
 
 describe('OEvent model object', () => {
 

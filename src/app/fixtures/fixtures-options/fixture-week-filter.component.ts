@@ -1,11 +1,10 @@
-import { Component, OnInit, Input, output } from '@angular/core';
-import { FixtureTimeFilter, FixtureTimeFilterKey } from 'app/fixtures/@store/fixture-filter';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { input } from "@angular/core";
+import { FixtureTimeFilter, FixtureTimeFilterKey } from 'app/fixtures/@store/fixture-filter';
 
 @Component({
-    selector: 'app-fixture-week-filter',
-    template: `
+  selector: 'app-fixture-week-filter',
+  template: `
  <div>
     <mat-button-toggle-group hideMultipleSelectionIndicator multiple="true">
 
@@ -25,17 +24,19 @@ import { input } from "@angular/core";
     </mat-button-toggle-group>
   </div>
   `,
-    imports: [MatButtonToggleModule]
+  imports: [MatButtonToggleModule],
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class FixtureWeekFilterComponent {
 
-   timeFilter = input.required<FixtureTimeFilter>();
-   filterChanged = output<FixtureTimeFilter>();
+  timeFilter = input.required<FixtureTimeFilter>();
+  filterChanged = output<FixtureTimeFilter>();
 
-   constructor () { }
+  constructor() { }
 
-  timeFilterClicked(key: FixtureTimeFilterKey ) {
-      this.timeFilter()[ key ] = !this.timeFilter()[ key ];
-      this.filterChanged.emit( this.timeFilter());
-   }
+  timeFilterClicked(key: FixtureTimeFilterKey) {
+    this.timeFilter()[key] = !this.timeFilter()[key];
+    this.filterChanged.emit(this.timeFilter());
+  }
 }

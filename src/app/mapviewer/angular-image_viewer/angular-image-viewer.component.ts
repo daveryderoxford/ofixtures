@@ -1,5 +1,5 @@
 import { NgStyle } from '@angular/common';
-import { Component, HostListener, OnChanges, SimpleChanges, computed, inject, input, linkedSignal, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnChanges, SimpleChanges, computed, inject, input, linkedSignal, output } from '@angular/core';
 import { FullScreenDirective } from './directives/full-screen.directive';
 import { CustomImageEvent } from './models/custom-image-event-model';
 import { ImageViewerConfig } from './models/image-viewer-config.model';
@@ -63,7 +63,8 @@ const DEFAULT_CONFIG: ImageViewerConfig = {
   selector: 'angular-image-viewer',
   templateUrl: './angular-image-viewer.component.html',
   styleUrls: ['./angular-image-viewer.component.scss'],
-  imports: [FullScreenDirective, NgStyle]
+  imports: [FullScreenDirective, NgStyle],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AngularImageViewerComponent implements OnChanges {
   public moduleConfig = inject<Partial<ImageViewerConfig>>('config' as any, { optional: true });

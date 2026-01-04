@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorHandler, Injectable, Injector, NgZone, inject } from '@angular/core';
+import { ErrorHandler, Injectable, Injector, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogsService } from './shared';
 
@@ -8,8 +8,6 @@ import { DialogsService } from './shared';
 export class GlobalErrorHandler implements ErrorHandler {
    private injector = inject(Injector);
 
-
-   private zone: NgZone = this.injector.get( NgZone );
    private ds: DialogsService = this.injector.get( DialogsService );
    private snackBar: MatSnackBar = this.injector.get( MatSnackBar );
 
@@ -33,7 +31,6 @@ export class GlobalErrorHandler implements ErrorHandler {
 
    private _showError( error: Error ) {
       if (this.ds) {
-         this.zone.run( () =>
             this.ds.message(
                error?.name,
                `Message ${error?.message || 'Undefined client error'} \n ${error?.stack}` ));

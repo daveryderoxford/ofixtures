@@ -1,5 +1,6 @@
 import { LocationPipe, GoogleDirectionsURLPipe, GoogleURLPipe, BingURLPipe, StreetmapURLPipe, FixtureDatePipe, FixtureDistancePipe, FixtureDistanceColorPipe, LikedPipe, GradeIconNamePipe } from './fixture-pipes';
 import { Fixture, LatLong } from 'app/fixtures/@store/fixture';
+import { describe, expect, it } from 'vitest';
 
 describe('FixturePipes', () => {
 
@@ -24,9 +25,11 @@ describe('FixturePipes', () => {
     });
 
     it('LocationPipe should truncate town if location is long', () => {
+        const longAreaName = 'Area123456789012345678901234567890';  // 34 chaacters
+        const longTownName = 'Town1234567890'; // 14 characters
         const pipe = new LocationPipe();
-        const longFixture = { ...dummyFixture, area: 'VeryLongAreaName', nearestTown: 'VeryLongTownName' };
-        expect(pipe.transform(longFixture)).toBe('VeryLongAreaName,&nbsp;&nbsp;&nbsp;<b>Postcode</b>');
+        const longFixture = { ...dummyFixture, area: longAreaName, nearestTown: longTownName };
+        expect(pipe.transform(longFixture)).toBe(`${longAreaName},&nbsp;&nbsp;&nbsp;<b>Postcode</b>`);
     });
 
     it('GoogleDirectionsURLPipe should create correct URL', () => {
@@ -122,9 +125,9 @@ describe('FixturePipes', () => {
     it('GradeIconNamePipe should return correct icon name', () => {
         const pipe = new GradeIconNamePipe();
 
-        expect(pipe.transform('IOF')).toBe('grade-a');
-        expect(pipe.transform('International')).toBe('grade-b');
-        expect(pipe.transform('Regional')).toBe('grade-c');
+        expect(pipe.transform('IOF')).toBe('grade-iof');
+        expect(pipe.transform('International')).toBe('grade-international');
+        expect(pipe.transform('Regional')).toBe('grade-regional');
 
     });
 

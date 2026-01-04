@@ -2,7 +2,7 @@
 
 <div mat-dialog-content fxLayout="column" fxLayoutAlign="space-between">
 
-  @if (multiselect) {
+  @if (data.multiselect) {
     <div fxLayoutAlign="center">
       <mat-slide-toggle [formControl]="selectedOnlyControl">Selected only</mat-slide-toggle>
       <mat-divider></mat-divider>
@@ -11,15 +11,15 @@
 
   <mat-form-field>
     <mat-label>Filter</mat-label>
-    <input matInput [formControl]="filter" placeholder="Filter">
+    <input matInput [formControl]="filterControl" placeholder="Filter">
     <mat-hint>Name, Club, Date</mat-hint>
   </mat-form-field>
 
-  @if (fixtures$ | async; as fixtures) {
-    <mat-selection-list class="viewport" [multiple]="multiselect" (selectionChange)="onSelectionChange($event)">
+  @if (filteredFixtures(); as fixtures) {
+    <mat-selection-list class="viewport" [multiple]="data.multiselect" (selectionChange)="onSelectionChange($event)">
       <cdk-virtual-scroll-viewport class="viewport" itemSize="30" minBufferPx="600" maxBufferPx="600">
         <mat-list-option *cdkVirtualFor="let fixture of fixtures" [value]="fixture"
-          [selected]="selection.isSelected(fixture)" checkboxPosition="before">
+          [selected]="isSelected(fixture)" checkboxPosition="before">
           <div matListItemLine>
             <span fxFlex=50%>{{fixture.date | date:'mediumDate' }}</span>
             <span fxFlex=30%> {{fixture.club}}</span>

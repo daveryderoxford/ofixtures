@@ -3,7 +3,7 @@
  *  Uses EntryService to create FixtureEntryDetails for the fixture of they do not already exist
 */
 import { DatePipe, NgStyle } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, signal, WritableSignal } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -18,7 +18,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ExtendedModule } from '@ngbracket/ngx-layout/extended';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
-import { UntilDestroy } from '@ngneat/until-destroy';
 import { EntryCourse, FixtureEntryDetails } from 'app/entry/@store/entry';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -29,7 +28,6 @@ import { FixtureSelectComponent } from '../../fixture-select/fixture-select.comp
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
 import { Fixture } from 'app/fixtures/@store/fixture';
 
-@UntilDestroy({ checkProperties: true })
 @Component({
    selector: 'app-map-registration-admin',
    templateUrl: './map-registration-admin.component.html',
@@ -60,36 +58,37 @@ export class MapRegistrationAdminComponent implements OnInit {
    private dialog = inject(MatDialog);
    private snackbar = inject(MatSnackBar);
    private es = inject(EntryService);
-   form!: UntypedFormGroup;
+   form = signal<UntypedFormGroup | undefined>(undefined);
    coursesChanged = signal(false);
    readonly minDate = new Date();
 
    // Edit date
-   courses!: EntryCourse[];
+   courses = signal<EntryCourse[]>([]);
    id!: string;
    new = false;
-   fixture?: Fixture;
-   busy = false;
+   fixture = signal<Fixture | undefined>(undefined);
+   busy = signal(false);
 
    ngOnInit() {
 
+      // No need to unsubscribe from activated roite
       this.route.paramMap.subscribe((params: ParamMap) => {
          this.id = params.get('id')!;
          this.new = params.has('new')!;
 
          if (params.has('fixture')) {
-            this.fixture = JSON.parse(params.get('fixture')!);
+            this.fixture.set(JSON.parse(params.get('fixture')!));
          }
 
          if (this.new) {
             this._createForm({ closingDate: new Date().toISOString() });
-            this.courses = [];
+            this.courses.set([]);
          } else {
             this.es.getEntryDetails(this.id).pipe(take(1))
                .subscribe(details => {
                   if (details) {
                      this._createForm(details);
-                     this.courses = JSON.parse(JSON.stringify(details.courses));
+                     this.courses.set(JSON.parse(JSON.stringify(details.courses)));
                   }
                });
          }
@@ -97,14 +96,14 @@ export class MapRegistrationAdminComponent implements OnInit {
    }
 
    private _createForm(data: any) {
-      this.form = this.formBuilder.group({
+      this.form.set(this.formBuilder.group({
          closingDate: [data.closingDate, [Validators.required]],
-      });
+      }));
    }
 
    selectFixture() {
       this._displayFixtureSelectDialog().subscribe(f => {
-         this.fixture = f[0];
+         this.fixture.set(f[0]);
       });
    }
 
@@ -130,25 +129,31 @@ export class MapRegistrationAdminComponent implements OnInit {
 
       this._displayCourseDialog(course).subscribe(c => {
          if (c) {
-            this.courses.push(c);
+            this.courses.update(courses => [...courses, c]);
             this.coursesChanged.set(true);
          }
       });
    }
 
    removeCourse(course: EntryCourse) {
-      const index = this.courses.indexOf(course);
-
-      if (index >= 0) {
-         this.courses.splice(index, 1);
+      this.courses.update(courses => {
+         const index = courses.indexOf(course);
+         if (index < 0) return courses;
+         const newCourses = [...courses];
+         newCourses.splice(index, 1);
          this.coursesChanged.set(true);
-      }
+         return newCourses;
+      });
    }
 
    editCourse(course: EntryCourse, index: number) {
       this._displayCourseDialog(course).subscribe(c => {
          if (c) {
-            this.courses[index] = c;
+            this.courses.update(courses => {
+               const newCourses = [...courses];
+               newCourses[index] = c;
+               return newCourses;
+            });
             this.coursesChanged.set(true);
          }
       });
@@ -175,34 +180,34 @@ export class MapRegistrationAdminComponent implements OnInit {
 
    async onSubmit() {
 
-      if (this.courses.length === 0) {
+      if (this.courses().length === 0) {
          this.snackbar.open("Error - At least one course must be defined", "", { duration: 2000 });
          return;
       }
 
-      if (this._duplicateCourseNames(this.courses).length !== 0) {
+      if (this._duplicateCourseNames(this.courses()).length !== 0) {
          this.snackbar.open("Error - Course names must be unique", "", { duration: 2000 });
          return;
       }
 
       // TODO Make the control return an ISO string
       // Temp workaround
-      const closingDate = new Date(this.form.get('closingDate')!.value).toISOString();
+      const closingDate = new Date(this.form()!.get('closingDate')!.value).toISOString();
 
-      this.busy = true;
+      this.busy.set(true);
 
       try {
 
-         if (this.new && this.fixture) {
+         if (this.new && this.fixture()) {
             // Create new instance and save it
-            const details = this.es.createNewEntryDetails(this.fixture.id, this.fixture);
+            const details = this.es.createNewEntryDetails(this.fixture()!.id, this.fixture()!);
             details.closingDate = closingDate;
-            details.courses = this.courses;
+            details.courses = this.courses();
             await this.es.saveNewEntryDetails(details);
          } else {
             const update: Partial<FixtureEntryDetails> = {
                closingDate: closingDate,
-               courses: this.courses
+               courses: this.courses()
             };
             await this.es.updateEntryDetails(this.id, update);
          }
@@ -213,11 +218,11 @@ export class MapRegistrationAdminComponent implements OnInit {
       } catch (err) {
          this.snackbar.open("Error enabling map registration", "", { duration: 2000 });
       } finally {
-         this.busy = false;
+         this.busy.set(false);
       }
    }
 
    canDeactivate(): boolean {
-      return !this.form.dirty;
+      return !this.form()?.dirty;
    }
 }

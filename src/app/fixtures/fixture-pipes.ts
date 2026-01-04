@@ -7,7 +7,7 @@ import { differenceInCalendarDays, format } from 'date-fns';
 /**
  * Pipes to display fixture fields used for both
  */
-const MAX_LOCATION_LENGTH = 50;
+const MAX_LOCATION_LENGTH = 40;
 
 /** Returns HTML string for the complete location genertaed from 
  *  area, nearest twon and postcode.  Should be used in template as 
@@ -25,17 +25,18 @@ const MAX_LOCATION_LENGTH = 50;
 export class LocationPipe implements PipeTransform {
    transform( fix: Fixture ): string {
       const area = fix.area;
-      // if town and area are the same ommit the town
+      // if town and area are the same omit the town
       const town = ( fix.nearestTown === area ) ? null : fix.nearestTown;
       const post = fix.postcode;
 
       let str = area;
-      str = ( town ) ? str + ",&nbsp;&nbsp;&nbsp;" + town : str;
-      str = ( post ) ? str + ",&nbsp;&nbsp;&nbsp;<b>" + post + "</b>": str;
 
-      if ( (area+town+post).length > MAX_LOCATION_LENGTH ) {
-         str = ( post ) ? area + ",&nbsp;&nbsp;&nbsp;<b>" + post + "</b>" : str;
+      // Only include the town if the totoal lenght is not too long
+      if ((area + town + post).length < MAX_LOCATION_LENGTH) {
+          str = ( town ) ? str + ",&nbsp;&nbsp;&nbsp;" + town : str;
       }
+
+      str = ( post ) ? str + ",&nbsp;&nbsp;&nbsp;<b>" + post + "</b>": str;
 
       return str;
    }

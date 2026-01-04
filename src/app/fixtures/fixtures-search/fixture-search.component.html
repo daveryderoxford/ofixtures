@@ -5,9 +5,10 @@
 
    <input #input matInput type="text" 
      placeholder="Name, Club, Area, Location"
-    [(ngModel)]="value" 
+    [ngModel]="fs.search()"
+    (ngModelChange)="updateSearch($event)"
     (blur)="onBlurring(input.value)" 
-    (keyup)="onKeyup(input.value)"/>
+    />
 
     @if (searchVisible()) {
       <button mat-icon-button matSuffix (click)="close()">
@@ -20,4 +21,3 @@
    }
 
 </mat-form-field>
-

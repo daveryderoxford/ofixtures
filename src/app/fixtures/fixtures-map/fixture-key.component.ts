@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
 
 /** button for fixture key */
@@ -29,6 +29,7 @@ import { MatMenuModule } from '@angular/material/menu';
         ' .container { padding:8px; color: gray; }',
         ' .small { font-size: 10px; }'
     ],
-    imports: [MatMenuModule]
+    imports: [MatMenuModule],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FixtureKeyComponent  {}
