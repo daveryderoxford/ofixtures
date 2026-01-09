@@ -1,27 +1,3040 @@
 export const realRacesignupFileV2 = `
-<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
-   data-search="aire otley aire" data-latlong="53.907219,-1.693039">
-   <div
-      class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
-      style="background-color: #41393C;">
-      <p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href=' /aire-otley'
-            title='Entries are open! (Car Sharing available)'>Wed 7 Jan</a></p>
-   </div>
-   <div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
-      <img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/airienteers2.jpg"
-         alt="Entries are open!" />
-   </div>
-   <div
-      class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
-      style="background-color: #E62222;">
-      <p class="my-auto">
-         AIRE Otley <span class="distance-tag d-none"></span>
-         <i class='fa-solid fa-car' style='float:right;'></i>
-      </p>
-   </div>
-   <div
-      class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
-      <p class="my-auto">OPEN</p>
-   </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head profile="http://www.w3.org/2005/10/profile">
+	<title>Racesignup - flexible, feature-rich, great value online entry system</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="keywords"
+		content="Online entries, Sports Event Online Entry System, Online Entry, online entries for orienteering, online entries for running, online entries for triathlon">
+	<meta name="author" content="Racesignup Ltd">
+	<meta name="description"
+		content="Racesignup is a UK based online entry system for running, swimming, triathlon, orienteering and other sports. Event organizers enjoy its ease of use and great value. Competitors can quickly and easily enter their chosen event." />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content="@racesignupUK" />
+	<meta name="twitter:creator" content="@racesignupUK" />
+	<meta property="og:url" content="https://racesignup.co.uk" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Your gateway to great races" />
+	<meta property="og:description"
+		content="Racesignup is a UK based online entry system for running, swimming, triathlon, orienteering and other sports. Event organizers enjoy its ease of use and great value. Competitors can quickly and easily enter their chosen event." />
+	<meta property="og:image" content="https://racesignup.co.uk/site/lib/images/racesignupsquare.jpg" />
+	<link rel="icon" type="image/png" href="/favicon.png" />
+	<link rel="canonical" href="https://www.racesignup.co.uk/index.php" />
+	<!-- Bootstrap v5 core CSS -->
+	<link href="/site/css/bootstrap5united.min.css" rel="stylesheet">
+	<!-- Font awesome CSS -->
+	<link href="/site/vendor/fontawesome6/css/fontawesome.css" rel="stylesheet">
+	<link href="/site/vendor/fontawesome6/css/brands.css" rel="stylesheet">
+	<link href="/site/vendor/fontawesome6/css/solid.css" rel="stylesheet">
+	<!-- Custom styles for whole site -->
+	<link href="/site/css/site.css?v=1766927216" rel="stylesheet">
+	<!-- Custom styles for this page -->
+	<link href="/site/css/index.css?v=1766927129" rel="stylesheet">
+</head>
+
+<body>
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark my-2 px-3" style="background-color: #772953;">
+			<a class="navbar-brand" href="/"><img src="https://racesignup.co.uk/site/lib/images/rsufornavbar5.png"
+					height=32 alt="sign up to your next race"></a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+				aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-link active" aria-current="page" href="/" title="Enter your next event">Events</a>
+					<a class="nav-link" href="/site/faq.php" title="Racesignup - your questions answered">FAQ</a>
+					<a class="nav-link" href="/site/about.php" title="Racesignup - feature rich event entry system">About</a>
+					<a class="nav-link" href="/site/organiser.php" title="Info for Event organisers and Race Directors">Add
+						Event</a>
+					<a class="nav-link" href="/site/legal.php" title="Our Ts and Cs for organisers and entrants">Terms</a>
+					<a class="nav-link" href="/entry"
+						title="Create or manage your Racesignup account, your entries and any credit balances">Your
+						Account</a>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class="container">
+		<img class="img-fluid w-100 mb-2" src="//racesignup.co.uk/lib/images/mainbanner5.jpg"
+			alt="Racesignup is a UK based online entry system for running, swimming, triathlon, orienteering and other sports. Event organizers enjoy its ease of use and great value. Competitors can quickly and easily enter their chosen event.">
+		<!-- Search and filter card -->
+		<div class="card border-dark rounded-0 mb-1 shadow-none">
+			<div class="card-header bg-dark p-2 border-0 rounded-0">
+				<!-- Search bar -->
+				<div class="row mb-2">
+					<div class="col-12">
+						<div class="d-flex align-items-center gap-2">
+							<div class="input-group flex-grow-1 position-relative">
+								<input type="text" id="eventSearch"
+									class="form-control rounded-0 border-secondary bg-dark text-white pe-5"
+									placeholder="Search events...">
+
+								<span id="clearSearch" class="position-absolute text-secondary"
+									style="right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; z-index: 5; font-size: 1.2rem;">
+									&times;
+								</span>
+							</div>
+
+							<button id="clear-all-filters" class="btn btn-sm btn-dark rounded-0 text-nowrap py-2 px-2">
+								<i class="fa-solid fa-filter-circle-xmark"></i>
+								<span class="d-none d-md-inline ms-1">Show all events</span>
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<!-- Filter description (Showing n d events within x miles of loc) -->
+					<div class="d-flex align-items-center gap-2 text-white">
+						<span class="flex-grow-1 small text-white">
+							<span id="filter-status">
+								Loading events...
+							</span>
+							<span id="location-context" class="d-none">
+								<span id="distance-label">&nbsp;distances&nbsp;from:&nbsp;
+								</span>
+								<span id="location-name-text"></span>
+							</span>
+						</span>
+						<!-- Help and open filter panel button -->
+						<a href="#" id="open-help" class="text-white me-2 text-nowrap small" style="text-decoration:none;"><i
+								class="fa-regular fa-circle-question"></i><span class="d-none d-md-inline ms-1">Filter
+								help</span>
+						</a>
+						<span class="open-privacy-settings" style="cursor: pointer; user-select: none;">
+							<i id="toggle-icon" class="fa-solid fa-gear"></i><span
+								class="d-none d-md-inline ms-1 small">Privacy settings</span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div id="filter-panel" class="filter-panel bg-light border-0">
+				<div class="card-body p-3 position-relative">
+
+
+					<div class="d-flex flex-column flex-xl-row align-items-start align-items-xl-center flex-wrap gap-3">
+
+						<div class="d-flex flex-wrap align-items-center gap-2 border-xl-end pe-xl-3">
+							<div class="custom-control custom-radio">
+								<input type="radio" id="typeAll" name="eventType" value="All" class="custom-control-input"
+									checked>
+								<label class="custom-control-label small" for="typeAll">All</label>
+							</div>
+							<div class="custom-control custom-radio">
+								<input type="radio" id="typeAthletics" name="eventType" value="Athletics"
+									class="custom-control-input">
+								<label class="custom-control-label small" for="typeAthletics">Athletics</label>
+							</div>
+							<div class="custom-control custom-radio">
+								<input type="radio" id="typeOrienteering" name="eventType" value="Orienteering"
+									class="custom-control-input">
+								<label class="custom-control-label small" for="typeOrienteering">Orienteering</label>
+							</div>
+							<div class="custom-control custom-radio">
+								<input type="radio" id="typeRunning" name="eventType" value="Running"
+									class="custom-control-input">
+								<label class="custom-control-label small" for="typeRunning">Running</label>
+							</div>
+							<div class="custom-control custom-radio">
+								<input type="radio" id="typeSkiing" name="eventType" value="Skiing"
+									class="custom-control-input">
+								<label class="custom-control-label small" for="typeSkiing">Skiing</label>
+							</div>
+							<div class="custom-control custom-radio">
+								<input type="radio" id="typeSwimming" name="eventType" value="Swimming"
+									class="custom-control-input">
+								<label class="custom-control-label small" for="typeSwimming">Swimming</label>
+							</div>
+							<div class="custom-control custom-radio">
+								<input type="radio" id="typeTriathlon" name="eventType" value="Triathlon"
+									class="custom-control-input">
+								<label class="custom-control-label small" for="typeTriathlon">Triathlon</label>
+							</div>
+						</div>
+
+						<div class="d-flex flex-grow-1 flex-wrap align-items-center gap-3 justify-content-between">
+
+							<div class="d-flex align-items-center gap-1">
+								<i class="text-primary fa-solid fa-location-dot"></i>&nbsp;
+								<select id="distanceLimit"
+									class="form-select form-select-sm rounded-0 shadow-none border-secondary"
+									style="width: auto;">
+									<option value="all">Any miles</option>
+									<option value="10">10 miles</option>
+									<option value="25">25 miles</option>
+									<option value="50">50 miles</option>
+									<option value="100">100 miles</option>
+									<option value="150">150 miles</option>
+								</select>
+								from
+
+								<div class="input-group input-group-sm" style="width: 80px;">
+									<input type="text" id="postcode-search" name="postcode"
+										class="form-control rounded-0 shadow-none border-secondary  text-uppercase"
+										placeholder="Postcode">
+								</div>
+							</div>
+
+							<div class="d-flex gap-2 ms-auto">
+								<button id="set-default-filters"
+									class="btn btn-sm btn-outline-primary rounded-0 py-1 px-2 small text-nowrap">
+									<i class="fa-solid fa-heart"></i>
+									<span class="d-none d-md-inline">&nbsp; Save as my search</span>
+								</button>
+								<button id="reset-to-defaults"
+									class="btn btn-sm btn-outline-primary rounded-0 py-1 px-2 small text-nowrap">
+									<i class="fa-solid fa-arrow-rotate-left"></i>
+									<span class="d-none d-md-inline">&nbsp; Reset to my search</span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+		<!-- End of search and filter card -->
+		<div id="filter-status" class="mb-1 font-weight-bold"></div>
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="aire otley aire" data-latlong="53.907219,-1.693039">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href=' /aire-otley'
+						title='Entries are open! (Car Sharing available)'>Wed 7 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/airienteers2.jpg"
+					alt="Entries are open!" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					AIRE Otley <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="essex winter midweek series 2025/26 no.6 - pitsea havoc" data-latlong="51.580482,0.4977261">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/essex-winter-midweek-series-2025-26-no-6-pitsea' title='Entries are open!'>Wed 7 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/havoc.jpg" alt="Entries are open!" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Essex Winter Midweek Series 2025/26 No.6 - Pitsea <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="mls hankley mls" data-latlong="51.16236415591199,-0.7320960689523651">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/mls-hankley' title='Entries close 6th Jan (Car Sharing available)'>Wed 7 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/mls.jpg"
+					alt="Entries close 6th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					MLS Hankley <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="silva night cup - golden ticket  wcoc" data-latlong="54.59082512967075, -3.385982102348045">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/silva-night-cup-golden-ticket' title='Buy your Golden Ticket'>Jan - Feb 2026</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/wcoc_banner.jpg"
+					alt="Buy your Golden Ticket" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Silva Night Cup - Golden Ticket <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">BUY</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="2026 street series 1 - north petherton qo" data-latlong="51.0822,-3.0159">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/2026-street-series-1-north-petherton' title='Entries close 7th Jan'>Thu 8 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/quantock.jpg"
+					alt="Entries close 7th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					2026 Street Series 1 - North Petherton <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="silva night cup 8 - fangs brow wcoc" data-latlong="54.59082512967075, -3.385982102348045">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/silva-night-cup-8-fangs-brow' title='Entries close 6th Jan'>Thu 8 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/wcoc_banner.jpg"
+					alt="Entries close 6th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Silva Night Cup 8 - Fangs Brow <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="tilgate knc so" data-latlong="51.09769,-0.17275">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/tilgate-knc' title='Entries are open!'>Thu 8 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/southdowns.png"
+					alt="Entries are open!" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Tilgate KNC <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="claro maprunplus - ripon claro" data-latlong="54.133499325699546,-1.5295799545500262">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/claro-maprunplus-ripon' title='Entries are open!'>Sat 10 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/claro.png" alt="Entries are open!" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Claro MapRunPlus - Ripon <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="clok dusk/night event romanby golf course clok" data-latlong="54.33899,-1.46681">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/clok-dusk-night-event-romanby-golf-course' title='Entries close 8th Jan'>Sat 10 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/clok.jpg"
+					alt="Entries close 8th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					CLOK dusk/night event Romanby Golf Course <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="eggringe, kol5 saxons" data-latlong="51.2145,1.001">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/eggringe-kol5' title='Entries are open! (Car Sharing available)'>Sat 10 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/saxons.png"
+					alt="Entries are open!" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Eggringe, KOL5 <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="jog 6 - vivary park  qo" data-latlong="51.0096,-3.105">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/jog-6-vivary-park' title='Entries close 6th Jan'>Sat 10 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/quantock.jpg"
+					alt="Entries close 6th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					JOG 6 - Vivary Park <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="mdoc - january social mdoc" data-latlong="53.366941, -2.076931">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/mdoc-january-social' title='Entries close 5th Jan - 8 left'>Sat 10 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/mdoc.jpg"
+					alt="Entries close 5th Jan - 8 left" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					MDOC - January Social <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">8 PLACES LEFT</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="wrnl 9 - durlston country  park wsx" data-latlong="50.595790,-1.956256">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/wrnl-9-durlston-country-park' title='Entries are open!'>Sat 10 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/wsx.jpg" alt="Entries are open!" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					WRNL 9 - Durlston Country Park <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="beverley westwood halo" data-latlong="53.8419,-0.4518">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/beverley-westwood' title='Entries close 6th Jan (Car Sharing available)'>Sun 11 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/halo.jpg"
+					alt="Entries close 6th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #BF0B0B;">
+				<p class="my-auto">
+					Beverley Westwood [R] <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="go/mv training activity january 2026 go" data-latlong="51.271077711699824, -0.27387296051789534">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/go-mv-training-activity-january-2026' title='Entries are open!'>Sun 11 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/guildfordo.png"
+					alt="Entries are open!" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					GO/MV Training activity January 2026 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="kings garn gutter soc" data-latlong="50.9068103,-1.6466614">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/kings-garn-gutter' title='Entries close 8th Jan (Car Sharing available)'>Sun 11 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/SOCfull.png"
+					alt="Entries close 8th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #BF0B0B;">
+				<p class="my-auto">
+					Kings Garn Gutter [R] <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="stubbington 10k 2026 stubbington" data-latlong="50.8234799,-1.2141297">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/stubbington' title='Entries close 5th Jan (Event is full) (Car Sharing available)'>Sun 11 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/stubbington.png"
+					alt="Entries close 5th Jan (Event is full)" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					Stubbington 10K 2026 <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-danger text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">FULL</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="the full mactuff new year 2026 mactuff events"
+			data-latlong="56.13018400399412,-3.5062391845963274">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/the-full-mactuff-new-year-2026' title='Entries close 10th Jan'>Sun 11 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/mactuff.jpg"
+					alt="Entries close 10th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					The Full MacTuff New Year 2026 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="waiting list for stubbington 2026 stubbington" data-latlong="">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/waiting-list-for-stubbington-2026' title='Entries are closed!'>Sun 11 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/stubbington.png"
+					alt="Entries are closed!" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					Waiting List for Stubbington 2026 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-secondary text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">CLOSED</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="wcoc club chase sale fell wcoc" data-latlong="54.660374160888395, -3.2548537288362636">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/wcoc-club-chase-sale-fell' title='Entries close 9th Jan'>Sun 11 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/wcoc_banner.jpg"
+					alt="Entries close 9th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					WCOC Club Chase Sale Fell <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="west woods - swoa league regional event nwo" data-latlong="51.398569,-1.768391">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/west-woods-swoa-league-regional-event' title='Entries close 8th Jan (Car Sharing available)'>Sun 11
+						Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/nwo.jpg"
+					alt="Entries close 8th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #BF0B0B;">
+				<p class="my-auto">
+					West Woods - SWOA League Regional Event [R] <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="claro winter evening street series - golden ticket claro"
+			data-latlong="53.992258105211754,-1.5384345081689654">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/claro-winter-evening-street-series-golden-ticket' title='Buy your Golden Ticket'>Tue 13 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/claro.png"
+					alt="Buy your Golden Ticket" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Claro Winter Evening Street Series - Golden Ticket <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">BUY</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="claro winter evening street series - event 1 claro" data-latlong="">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/claro-winter-evening-street-series-event-1' title='Entries are open!'>Wed 14 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/claro.png" alt="Entries are open!" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Claro Winter Evening Street Series - Event 1 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="mls slufters inclosure, new forest mls" data-latlong="50.907003108146256,-1.6419999130445628">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/mls-slufters-inclosure-new-forest' title='Entries close 13th Jan (Car Sharing available)'>Wed 14
+						Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/mls.jpg"
+					alt="Entries close 13th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					MLS Slufters Inclosure, New Forest <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="buchan country park night score mv" data-latlong="51.098880,-0.222420">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/buchan-country-park-night-score' title='Entries are open! (Car Sharing available)'>Thu 15 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/mvoc_banner.png"
+					alt="Entries are open!" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Buchan Country Park Night Score <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="mdoc : night street league series14 - event 5 mdoc"
+			data-latlong="53.37865299004428,-2.197980479037836">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/mdoc-night-street-league-series14-event-5' title='Entries are open!'>Thu 15 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/mdoc.jpg" alt="Entries are open!" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					MDOC : Night Street League Series14 - Event 5 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="silva night cup 9 - low rigg wcoc" data-latlong="54.60594394463938, -3.0824169721658805">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/silva-night-cup-9-low-rigg' title='Entries close 13th Jan'>Thu 15 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/wcoc_banner.jpg"
+					alt="Entries close 13th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Silva Night Cup 9 - Low Rigg <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="chailey common south so" data-latlong="50.97216,-0.02892">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/chailey-common-south' title='Entries close 16th Jan'>Sat 17 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/southdowns.png"
+					alt="Entries close 16th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Chailey Common South <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="esoc: cammo estate esoc" data-latlong="55.9594,-3.319">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/esoc-cammo-estate' title='Entries close 16th Jan'>Sat 17 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/esoc.png"
+					alt="Entries close 16th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					ESOC: Cammo Estate <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="sn saturday series #4: wellington college prep school sn" data-latlong="51.35608,-0.80007">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/sn-saturday-series-4-wellington-college-prep-school'
+						title='Entries are open! (Car Sharing available)'>Sat 17 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/sn.png" alt="Entries are open!" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					SN Saturday Series #4: Wellington College Prep School <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="yhoa night league - bishop wood ebor" data-latlong="53.80683364308321, -1.1657858013909856">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/yhoa-night-league-bishop-wood' title='Entries close 15th Jan'>Sat 17 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/eborienteers.jpg"
+					alt="Entries close 15th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #BF0B0B;">
+				<p class="my-auto">
+					YHOA Night League - Bishop Wood [R] <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="hardhead kerno" data-latlong="50.50248395544463,-4.604126373238945">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href=' /hardhead'
+						title='Entries close 11th Jan'>Sun 18 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/kerno.jpg"
+					alt="Entries close 11th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #BF0B0B;">
+				<p class="my-auto">
+					Hardhead [R] <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="micheldever forest scoa league bado" data-latlong="51.122, -1.244">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/Micheldever' title='Entries close 12th Jan'>Sun 18 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/badoharenoborder.png"
+					alt="Entries close 12th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #BF0B0B;">
+				<p class="my-auto">
+					Micheldever Forest SCOA League [R] <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="south ashdown national & se league dfok" data-latlong="51.0537, 0.0492">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/south-ashdown-national-se-league' title='Entries close 17th Jan (Car Sharing available)'>Sun 18
+						Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/dfoklong.png"
+					alt="Entries close 17th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #A00000;">
+				<p class="my-auto">
+					South Ashdown National & SE League [N] <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="tunstall forest (n) east anglian league suffoc" data-latlong="52.1290, 1.4911">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/tunstall-forest-N' title='Entries close 16th Jan (Car Sharing available)'>Sun 18 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/suffoc.jpg"
+					alt="Entries close 16th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #BF0B0B;">
+				<p class="my-auto">
+					Tunstall Forest (N) East Anglian League [R] <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Skiing"
+			data-search="welsh alpine championships 2026 snowsport cymru wales" data-latlong="46.1596633,6.8089164">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/welsh-alpine-championships-2026' title='Entries close 9th Jan'>19-23 Jan 2026</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/skiwales.jpg"
+					alt="Entries close 9th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					Welsh Alpine Championships 2026 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="wessex night league - amesbury sarum" data-latlong="51.17249032826936,-1.7812150145742616">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/wessex-night-league-amesbury' title='Entries close 15th Jan'>Mon 19 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/sarum.png"
+					alt="Entries close 15th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Wessex Night League - Amesbury <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="esher street o mv" data-latlong="51.37161678146243, -0.3665630926373645">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/esher-street-o' title='Entries are open!'>Wed 21 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/mvoc_banner.png"
+					alt="Entries are open!" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Esher Street O <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="essex winter midweek series no7 chelmsford sos" data-latlong="51.723,0.461">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/essex-winter-midweek-series-no7-chelmsford' title='Entries close 20th Jan'>Wed 21 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/essexstragglers.jpg"
+					alt="Entries close 20th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Essex Winter Midweek Series No7 Chelmsford <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="2026 street series 2 - bishops lydeard qo" data-latlong="51.0546,-3.1927">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/2026-street-series-2-bishops-lydeard' title='Entries close 21st Jan'>Thu 22 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/quantock.jpg"
+					alt="Entries close 21st Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					2026 Street Series 2 - Bishops Lydeard <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="knc 14 -  orpington urban saxons" data-latlong="51.3663,0.0766">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/knc-14-orpington-urban' title='Entries open 8th Jan'>Thu 22 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/saxons.png"
+					alt="Entries open 8th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					KNC 14 - Orpington Urban <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-secondary text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPENS SOON</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="silva night cup 10 - marron leys wcoc" data-latlong="54.56025690572095, -3.444421086508178">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/silva-night-cup-10-marron-leys' title='Entries close 20th Jan'>Thu 22 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/wcoc_banner.jpg"
+					alt="Entries close 20th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Silva Night Cup 10 - Marron Leys <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="wrnl 11 - lymington soc" data-latlong="50.76693080828245, -1.5525798366861578">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/wrnl-11-lymington' title='Entries close 21st Jan (Car Sharing available)'>Thu 22 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/SOCfull.png"
+					alt="Entries close 21st Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					WRNL 11 - Lymington <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="brutal @ bagshot brutal" data-latlong="51.339372,-0.699646">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/brutal-bagshot' title='Entries close 22nd Jan (Car Sharing available)'>Sat 24 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/brutalbanner.png"
+					alt="Entries close 22nd Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					Brutal @ Bagshot <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="concorde chase weekend 2026 incorporating southern champs bko" data-latlong="51.38856,-0.73995">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/concorde-chase-2026' title='Entries close 18th Jan'>24-25 Jan 2026</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/bkolong.png"
+					alt="Entries close 18th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #7B0000;">
+				<p class="my-auto">
+					Concorde Chase Weekend 2026 incorporating Southern Champs [M] <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="north east night championship. clok" data-latlong="">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/north-east-night-championship-' title='Entries close 21st Jan'>24/01/26</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/clok.jpg"
+					alt="Entries close 21st Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #A00000;">
+				<p class="my-auto">
+					North East Night Championship. [N] <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="havoc regional, swell - langdon hills havoc" data-latlong="51.55254, 0.42286">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/havoc-regional-swell-langdon-hills' title='Entries close 24th Jan'>Sun 25 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/havoc.jpg"
+					alt="Entries close 24th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #BF0B0B;">
+				<p class="my-auto">
+					HAVOC Regional, SWELL - Langdon Hills [R] <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="virtuous lady, regional event - devon league 5 devon" data-latlong="50.491,-4.0883">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/virtuous-lady-regional-event-devon-league-5'
+						title='Entries close 18th Jan (Car Sharing available)'>Sun 25 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/devon_banner.png"
+					alt="Entries close 18th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #BF0B0B;">
+				<p class="my-auto">
+					Virtuous Lady, Regional Event - Devon League 5 [R] <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="wilton woods and lazenby bank east clok" data-latlong="54.532077, -0.99277568">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/wilton-woods-and-lazenby-bank-east' title='Entries close 21st Jan (Car Sharing available)'>Sun 25
+						Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/clok.jpg"
+					alt="Entries close 21st Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #BF0B0B;">
+				<p class="my-auto">
+					Wilton Woods and Lazenby Bank East [R] <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="silva night cup 11 - latrigg wcoc" data-latlong="54.60842586514532, -3.132731271242959">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/silva-night-cup-11-latrigg' title='Entries close 27th Jan'>Thu 29 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/wcoc_banner.jpg"
+					alt="Entries close 27th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Silva Night Cup 11 - Latrigg <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="buchan park so" data-latlong="51.09710,-0.22253">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/buchan-park' title='Entries close 30th Jan'>Sat 31 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/southdowns.png"
+					alt="Entries close 30th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Buchan Park <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="burley south and holmsley wsx" data-latlong="50.827544, -1.700156">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/burley-south-and-holmsley' title='Entries close 25th Jan'>Sat 31 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/wsx.jpg"
+					alt="Entries close 25th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #BF0B0B;">
+				<p class="my-auto">
+					Burley South and Holmsley [R] <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="jog 7 - netherclay qo" data-latlong="51.0205,-3.1328">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/jog-7-netherclay' title='Entries close 27th Jan'>Sat 31 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/quantock.jpg"
+					alt="Entries close 27th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					JOG 7 - Netherclay <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="mdoc - north west night league - teggs nose mdoc" data-latlong="53.2565311,-2.0770611">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/mdoc-north-west-night-league-teggs-nose' title='Entries close 29th Jan'>Sat 31 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/mdoc.jpg"
+					alt="Entries close 29th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					MDOC - North West Night League - Teggs Nose <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="oxford town v gown 2026 ouoc" data-latlong="51.762059,-1.262822">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/oxford-town-v-gown-2026' title='Entries close 30th Jan'>Sat 31 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/ouoc.jpg"
+					alt="Entries close 30th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Oxford Town v Gown 2026 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="wrnl 12 - corfe mullen wsx" data-latlong="50.767285, -2.019769">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/wrnl-12-corfe-mullen' title='Entries are open!'>Mon 2 Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/wsx.jpg" alt="Entries are open!" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					WRNL 12 - Corfe Mullen <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="essex winter midweek series 2025/26 no.8 - basildon havoc" data-latlong="">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/essex-winter-midweek-series-2025-26-no-8-basildon' title='Entries are open!'>Wed 4 Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/havoc.jpg" alt="Entries are open!" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Essex Winter Midweek Series 2025/26 No.8 - Basildon <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="2026 street series 3 - glastonbury qo" data-latlong="51.148,-2.7166">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/2026-street-series-3-glastonbury' title='Entries close 4th Feb'>Thu 5 Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/quantock.jpg"
+					alt="Entries close 4th Feb" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					2026 Street Series 3 - Glastonbury <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="knc 16 -  folkestone urban saxons" data-latlong="51.0786,1.1879">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/knc-16-folkestone-urban' title='Entries open 30th Jan'>Thu 5 Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/saxons.png"
+					alt="Entries open 30th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					KNC 16 - Folkestone Urban <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-secondary text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPENS SOON</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="silva night cup 12 - scale hill wcoc" data-latlong="54.581530786721146, -3.3183364606552095">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/silva-night-cup-12-scale-hill' title='Entries close 3rd Feb'>Thu 5 Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/wcoc_banner.jpg"
+					alt="Entries close 3rd Feb" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Silva Night Cup 12 - Scale Hill <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="the brails - four colour local event nwo" data-latlong="51.3552106,-1.596874">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/the-brails-four-colour-local-event' title='Entries open 12th Jan (Car Sharing available)'>Sat 7
+						Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/nwo.jpg"
+					alt="Entries open 12th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					The Brails - Four Colour Local Event <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-secondary text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPENS SOON</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="bramshaw wood soc" data-latlong="50.93993835938384,-1.6180502018942915">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/bramshaw-wood' title='Entries close 1st Feb (Car Sharing available)'>Sun 8 Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/SOCfull.png"
+					alt="Entries close 1st Feb" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Bramshaw Wood <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="lyndhurst fc clubhouse run lyndhurst fc" data-latlong="50.8747956, -1.5736866">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/lyndhurst-fc-clubhouse-run'
+						title='Entries close 31st Jan (Event is full) (Car Sharing available)'>Sun 8 Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/lyndhurstfc.jpg"
+					alt="Entries close 31st Jan (Event is full)" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					Lyndhurst FC Clubhouse Run <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-danger text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">FULL</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="silva night cup 13 - keswick golf course wcoc"
+			data-latlong="54.61957147080409, -3.0348204639320517">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/silva-night-cup-13-keswick-golf-course' title='Entries close 10th Feb'>Thu 12 Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/wcoc_banner.jpg"
+					alt="Entries close 10th Feb" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Silva Night Cup 13 - Keswick Golf Course <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="purbeck hill challenge 2026 wsx" data-latlong="50.651401, -1.955438">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/purbeck-hills-challenge' title='Entries close 13th Feb'>Sat 14 Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/wsx.jpg"
+					alt="Entries close 13th Feb" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Purbeck Hill Challenge 2026 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="harcombe, regional event - devon league 6 devon" data-latlong="50.6372,-3.5626">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/harcombe-regional-event-devon-league-6' title='Entries close 8th Feb (Car Sharing available)'>Sun 15
+						Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/devon_banner.png"
+					alt="Entries close 8th Feb" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #BF0B0B;">
+				<p class="my-auto">
+					Harcombe, Regional Event - Devon League 6 [R] <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="white downs & south ranmore se league event mv" data-latlong="51.250719, -0.401148">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/white-downs-south-ranmore-se-league-event' title='Entries close 13th Feb (Car Sharing available)'>Sun
+						15 Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/mvoc_banner.png"
+					alt="Entries close 13th Feb" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #A00000;">
+				<p class="my-auto">
+					White Downs & South Ranmore SE League Event [N] <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="essex winter midweek series no9 chelmer village sos" data-latlong="51.7309,0.4963">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/essex-winter-midweek-series-no9-chelmer-village' title='Entries close 17th Feb'>Wed 18 Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/essexstragglers.jpg"
+					alt="Entries close 17th Feb" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Essex Winter Midweek Series No9 Chelmer Village <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="inter services cross country championships 2026 army athletics" data-latlong="">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/inter-services-cross-country-championships-2026' title='Entries close 16th Feb'>Wed 18 Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://imagizer.imageshack.com/img924/4890/TLiLK8.jpg"
+					alt="Entries close 16th Feb" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					Inter Services Cross Country Championships 2026 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="2026 street series 4 - killams taunton qo" data-latlong="50.999,-3.0926">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/2026-street-series-4-killams-taunton' title='Entries close 18th Feb'>Thu 19 Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/quantock.jpg"
+					alt="Entries close 18th Feb" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					2026 Street Series 4 - Killams Taunton <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="knc 18 - mote park saxons" data-latlong="51.266,0.5566">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/knc-18-mote-park' title='Entries open 6th Feb'>Thu 19 Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/saxons.png"
+					alt="Entries open 6th Feb" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					KNC 18 - Mote Park <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-secondary text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPENS SOON</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="silva night cup 14 - wood house, buttermere wcoc"
+			data-latlong="54.54356354771432, -3.279834832434764">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/silva-night-cup-14-wood-house-buttermere' title='Entries close 17th Feb'>Thu 19 Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/wcoc_banner.jpg"
+					alt="Entries close 17th Feb" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Silva Night Cup 14 - Wood House, Buttermere <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="wcoc csc heat entries wcoc" data-latlong="54.66447249117184, -2.747214953855203">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/wcoc-csc-heat-entries' title='Entries close 1st Feb'>Sun 22 Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/wcoc_banner.jpg"
+					alt="Entries close 1st Feb" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					WCOC CSC Heat Entries <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="inter-corps cross country championships 2026 army athletics" data-latlong="">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/inter-corps-cross-country-championships-2026' title='Entries close 24th Feb'>Wed 25 Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/armyathletics.jpg"
+					alt="Entries close 24th Feb" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					Inter-Corps Cross Country Championships 2026 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="silva night cup 15 - maryport golf course wcoc"
+			data-latlong="54.73165112909367, -3.4778940495308004">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/silva-night-cup-15-maryport-golf-course' title='Entries close 24th Feb'>Thu 26 Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/wcoc_banner.jpg"
+					alt="Entries close 24th Feb" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Silva Night Cup 15 - Maryport Golf Course <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="jog 8 - roughmoor qo" data-latlong="51.0233,-3.1293">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/jog-8-roughmoor' title='Entries close 24th Feb'>Sat 28 Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/quantock.jpg"
+					alt="Entries close 24th Feb" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					JOG 8 - Roughmoor <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="quantock orienteers bulk credit 2025-2026 qo" data-latlong="">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/quantock-orienteers-bulk-credit-2025-2026' title='Top up entry fee credits'>Sat 28 Feb</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/quantock.jpg"
+					alt="Top up entry fee credits" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Quantock Orienteers Bulk Credit 2025-2026 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">BUY</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="essex winter midweek series 2025/26 no.10 - upminster havoc" data-latlong="">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/essex-winter-midweek-series-2025-26-no-10-upminster' title='Entries are open!'>Wed 4 Mar</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/havoc.jpg" alt="Entries are open!" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Essex Winter Midweek Series 2025/26 No.10 - Upminster <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="brutal @ chawton brutal" data-latlong="51.124952,-1.021330">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/brutal-chawton' title='Entries close 5th Mar (Car Sharing available)'>Sat 7 Mar</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/brutalbanner.png"
+					alt="Entries close 5th Mar" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					Brutal @ Chawton <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="solent half marathon hardley runners" data-latlong="50.82411764257175,-1.3663263765252285">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/solent-half-marathon' title='Entries close 7th Mar'>Sun 8 Mar</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/hardleyrunners.jpg"
+					alt="Entries close 7th Mar" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					Solent Half Marathon <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="jog 9 - thurlbear wood qo" data-latlong="50.9842,-3.0479">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/jog-9-thurlbear-wood' title='Entries close 10th Mar'>Sat 14 Mar</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/quantock.jpg"
+					alt="Entries close 10th Mar" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					JOG 9 - Thurlbear Wood <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="eastleigh 10k 2026 running mania" data-latlong="50.9690605,-1.3730301">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/eastleigh-10k-2026' title='Entries close 15th Mar'>Sun 22 Mar</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/runningmania.jpg"
+					alt="Entries close 15th Mar" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					Eastleigh 10K 2026 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="eastleigh fun run 2026   running mania" data-latlong="50.9690605,-1.3730301">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/eastleigh-fun-run-2026' title='Entries close 13th Mar'>Sun 22 Mar</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/runningmania.jpg"
+					alt="Entries close 13th Mar" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					Eastleigh Fun Run 2026 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="jog 10 - broomfield qo" data-latlong="51.0904,-3.1333">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/jog-10-broomfield' title='Entries close 24th Mar'>Sat 28 Mar</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/quantock.jpg"
+					alt="Entries close 24th Mar" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					JOG 10 - Broomfield <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="mactuff really muddy 5k & 10k north west yorkshire april 2026 mactuff events"
+			data-latlong="53.7722661087986, -1.6767754382833107">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/mactuff-really-muddy-5k-10k-north-west-yorkshire-april-2026' title='Entries are closed!'>Sun 19
+						Apr</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/mactuff.jpg"
+					alt="Entries are closed!" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					MacTuff Really Muddy 5k & 10k NORTH WEST YORKSHIRE April 2026 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-secondary text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">CLOSED</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="mactuff really muddy kids england west yorkshire  april 2026 mactuff events"
+			data-latlong="53.7722661087986, -1.6767754382833107">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/mactuff-really-muddy-kids-england-west-yorkshire-april-2026' title='Entries are closed!'>Sun 19
+						Apr</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/mactuff.jpg"
+					alt="Entries are closed!" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					MacTuff Really Muddy Kids ENGLAND WEST YORKSHIRE April 2026 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-secondary text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">CLOSED</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="2026 northants 5k whole race series - golden ticket nsport" data-latlong="">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/2026-northants-5k-whole-race-series-golden-ticket' title='Buy your Golden Ticket'>Apr - Sep</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/banners/nsport5k2023.jpg"
+					alt="Buy your Golden Ticket" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					2026 Northants 5K Whole Race Series - Golden Ticket <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">BUY</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="barry buddon fast half marathon 2026 mactuff events"
+			data-latlong="56.484432356174516,-2.7805877227850835">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/barry-buddon-fast-half-marathon-2026' title='Entries close 25th Apr'>Sun 26 Apr</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/mactuff.jpg"
+					alt="Entries close 25th Apr" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					Barry Buddon FAST Half Marathon 2026 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="hbt fun run hurstbourne5" data-latlong="51.27329778829525,-1.449536225688746">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/hbt-fun-run' title='Entries close 30th Apr (Car Sharing available)'>Sat 2 May</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/hurstbourne5.png"
+					alt="Entries close 30th Apr" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					HBT Fun Run <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="hurstbourne 5 hurstbourne5" data-latlong="51.27329778829525,-1.449536225688746">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href=' /hbt5'
+						title='Entries close 30th Apr (Car Sharing available)'>Sat 2 May</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/hurstbourne5.png"
+					alt="Entries close 30th Apr" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					Hurstbourne 5 <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="mactuff 5k & 10k obstacle course challenge fife, scotland. may 2026 mactuff events"
+			data-latlong="56.13018400399412,-3.5062391845963274">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/mactuff-5k-10k-obstacle-course-challenge-fife-scotland-may-2026' title='Entries close 1st May'>Sat 2
+						May</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/mactuff.jpg"
+					alt="Entries close 1st May" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					MacTuff 5k & 10k Obstacle Course Challenge FIFE, Scotland. May 2026 <span
+						class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="mactuff kids obstacle course challenge. fife scotland may 2026 mactuff events"
+			data-latlong="56.13018400399412,-3.5062391845963274">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href=' /Mactuff
+						Kids FIFE 2026' title='Entries are open!'>2nd 3rd 9th May</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/mactuff.jpg"
+					alt="Entries are open!" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					MacTuff Kids Obstacle Course Challenge. FIFE Scotland May 2026 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="mactuff really muddy 5k & 10k aberdeen may 2026 mactuff events"
+			data-latlong="57.20342885736289, -2.460607573012525">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/mactuff-really-muddy-5k-10k-aberdeen-may-2026' title='Entries close 16th May'>Sun 17 May</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/mactuff.jpg"
+					alt="Entries close 16th May" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					MacTuff Really Muddy 5k & 10k ABERDEEN May 2026 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="mactuff really muddy kids aberdeen may 2026 mactuff events"
+			data-latlong="57.20342885736289, -2.460607573012525">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/mactuff-really-muddy-kids-aberdeen-may-2026' title='Entries close 16th May'>Sun 17 May</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/mactuff.jpg"
+					alt="Entries close 16th May" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					MacTuff Really Muddy Kids ABERDEEN May 2026 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="netley 10k 2026 netley" data-latlong="50.86849344638092,-1.3430731422867828">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href=' /netley-10k'
+						title='Entries close 15th May (Car Sharing available)'>Sun 17 May</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/netley10k.jpg"
+					alt="Entries close 15th May" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					Netley 10K 2026 <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="canterbury city race european tour 2026 saxons" data-latlong="51.2787,1.0908">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/canterbury-city-race-european-tour-2026' title='Entries close 22nd May (Car Sharing available)'>22-24
+						May 2026</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/cret.jpg"
+					alt="Entries close 22nd May" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #A00000;">
+				<p class="my-auto">
+					Canterbury City Race European Tour 2026 [N] <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="thursday series prepayment wcoc" data-latlong="">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/thursday-series-prepayment' title='Top up entry fee credits'>Sun 31 May</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/wcoc_banner.jpg"
+					alt="Top up entry fee credits" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					Thursday Series Prepayment <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">BUY</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="copythorne carnival run 5k/10k stanley's own scout group" data-latlong="50.931250, -1.564477">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/copythorne-carnival-run-5k-10k' title='Entries close 31st Mar (Car Sharing available)'>Mon 8 Jun</a>
+				</p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/copythorne.jpg"
+					alt="Entries close 31st Mar" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					Copythorne Carnival Run 5k/10k <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="solent airport 5k 2026 naomi house & jacksplace" data-latlong="50.8106777,-1.2127284">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/solent-airport-5k-2026' title='Entries close 18th Jun'>Sun 21 Jun</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/naomi-house.jpg"
+					alt="Entries close 18th Jun" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					Solent Airport 5k 2026 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="exbury gardens 10k 2026 running mania" data-latlong="50.80280945275311,-1.399466371511119">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href=' /exbury-10k'
+						title='Entries close 21st Jun'>Sun 28 Jun</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/runningmania.jpg"
+					alt="Entries close 21st Jun" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					Exbury Gardens 10K 2026 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="lordshill 10k 2026 lordshill road runners" data-latlong="50.9411588,-1.4615881">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/lordshill-10k-2026' title='Entries open 12th Jan (Car Sharing available)'>Sun 5 Jul</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/lordshillnew.jpg"
+					alt="Entries open 12th Jan" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					Lordshill 10K 2026 <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-secondary text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPENS SOON</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Triathlon"
+			data-search="winchester pedal paddle pace 2026 winchester ppp"
+			data-latlong="51.05308390945848,-1.3092777452044935">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/winchester-pedal-paddle-pace-2026' title='Entries close 10th Jul'>Sun 12 Jul</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/ppp.png"
+					alt="Entries close 10th Jul" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					Winchester Pedal Paddle Pace 2026 <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+		<!-- Event row -->
+		<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Running"
+			data-search="the tideswell terminator bishop pursglove ce primary school" data-latlong="53.281654,-1.764272">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href='
+						/the-tideswell-terminator' title='Entries close 7th Oct'>Sat 10 Oct</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/bishop-pursglove.jpg"
+					alt="Entries close 7th Oct" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E95420;">
+				<p class="my-auto">
+					The Tideswell Terminator <span class="distance-tag d-none"></span>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div>
+		<!-- End of Event row -->
+	</div>
+	<!-- End of container -->
+	<!-- Help modal for search and filter panel -->
+	<div id="helpModal" class="modal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="helpModalLabel">Filtering the list of events</h5>
+					<button type="button" class="btn-close" id="closeHelp" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="mb-2">
+						<h6><i class="fa-solid fa-magnifying-glass"></i> Finding your events</h6>
+						<p class="small">The event list can be filtered by sport type - tap on the button for Triathlon to
+							show only triathlon events.</p>
+					</div>
+					<div class="mb-2">
+						<h6><i class="fa-solid fa-map-location-dot"></i> Finding events close to you</h6>
+						<p class="small">Enter a postcode to see the distance to each event on the list. Now you can
+							optionally filter the event list to those that are within a specific radius.</p>
+					</div>
+					<div class="mb-2">
+						<h6><i class="fa-solid fa-heart"></i> Save your preferred search</h6>
+						<p class="small"><i>Only available when you've "Accepted all" in <i class="fa-solid fa-gear"></i>
+								Privacy Settings.</i></p>
+						<p class="small">Set your favourite sport, postcode and radius, then click <strong>"Save as my
+								search"</strong>. Next time you visit, we'll show you those events immediately.</p>
+					</div>
+					<div class="mb-2">
+						<h6><i class="fa-solid fa-arrow-rotate-left"></i> Resetting</h6>
+						<p class="small"><strong>"Reset to my search"</strong> jumps back to your saved settings.</p>
+					</div>
+					<div class="mb-0">
+						<h6><i class="fa-solid fa-filter-circle-xmark"></i> Remove all filters</h6>
+						<p class="small"><strong>"Show all events"</strong> wipes your current search</p>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" id="closeHelpBtn">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /site/includes/footer.php -->
+	<div class="container">
+		<footer class="pt-1 my-3 bg-dark text-white d-print-none">
+			<div class="col">
+				<div class="row text-center text-white small">
+					<nav>
+						<a class="" href="/">Events</a> |
+						<a class="" href="/site/faq.php">FAQ</a> |
+						<a class="" href="/site/about.php">About</a> |
+						<a class="" href="/site/organiser.php">Add your event</a> |
+						<a class="" href="/site/legal.php">Terms</a>
+					</nav>
+					<p><a href="#" class="open-privacy-settings" style="text-decoration:none;"><i
+								class="fa-solid fa-shield-halved"></i> Privacy Settings</a><br />
+						&copy; Racesignup Ltd 2020 - 2026</p>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<div id="consent-banner" class="fixed-bottom bg-dark border-top border-secondary text-white p-4 m-2 d-none fade show"
+		style="z-index: 3000;"><button type="button" id="close-consent"
+			class="btn-close btn-close-white position-absolute top-0 end-0 m-3" aria-label="Close"></button>
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-md-8">
+					<h5 class="mb-2">Your Privacy Preferences</h5>
+					<p class="small mb-0 text-white">
+						We use <strong>necessary</strong> cookies to make our site work and
+						<strong>functional</strong> local storage to remember your event preferences and location.
+						You can choose which to allow. See our <a href="/site/policy/cookie.php">Cookie Policy</a> for more
+						information on how we use coookies.
+					</p>
+				</div>
+				<div class="col-md-4 text-md-end mt-3 mt-md-0">
+					<button id="accept-all" class="btn btn-primary btn-sm me-2">Accept All</button>
+					<button id="accept-necessary" class="btn btn-outline-light btn-sm">Necessary Only</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="toast-container position-fixed top-0 start-50 translate-middle-x p-2 mt-2" style="z-index: 4000;">
+		<div id="global-toast"
+			class="toast align-items-center text-white bg-primary border border-light border-opacity-25 shadow-lg"
+			role="alert" aria-live="assertive" aria-atomic="true">
+			<div class="d-flex">
+				<div class="toast-body px-1 py-1">
+					<div class="d-flex align-items-center">
+						<i id="toast-icon" class="fa-solid fa-circle-info me-3 fs-5"></i>
+						<div>
+							<strong id="toast-title" class="d-block">Notification</strong>
+							<span id="toast-message" class="small opacity-75">Update successful.</span>
+						</div>
+					</div>
+				</div>
+				<!-- <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button> -->
+			</div>
+		</div>
+	</div>
+	<!-- site wide script -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+	<script src="/site/js/site.js?v=1766937494" defer></script>
+	<script src="./site/js/index.js?v=1767291672" defer></script>
+</body>
+
+</html>
 `;

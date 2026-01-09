@@ -86,7 +86,7 @@ export class RaceSignupV2 {
       try {
          const link = this.$("a", cells[0]);
          var closingDate = link.prop("title");
-         entry.entruUrl = 'https://racesignup.co.uk' + link.prop("href");
+         entry.entruUrl = 'https://racesignup.co.uk' + (link.attr("href") || "").trim();
          [entry.date, entry.enddate] = this.getDate(cells[0]);
 
          entry.club = this.getClub(cells[1]);
@@ -105,7 +105,7 @@ export class RaceSignupV2 {
    }
 
    private text(el: cheerio.Element): string {
-      return this.$(el).text();
+      return this.$(el).text().trim();
    }
 
    /** convert date of the form Wed 27 Dec to ISO date string 
