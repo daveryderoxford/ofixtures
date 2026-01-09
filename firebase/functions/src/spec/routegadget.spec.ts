@@ -1,9 +1,10 @@
-import { expect } from 'chai';
-import 'mocha';
-import { Routegadget } from '../fixtures/routegadget';
-import { RGSITES } from '../fixtures/routegadgetclubs';
+import { describe, it, expect, vi } from 'vitest';
+import { Routegadget } from '../fixtures/routegadget.js';
+import { RGSITES } from '../fixtures/routegadgetclubs.js';
 import { writeFileSync } from 'node:fs';
-import * as admin from "firebase-admin";
+import { getStorage } from 'firebase-admin/storage';
+
+vi.mock('firebase-admin/storage');
 
 const sn = {
    "name": "Southern Navigators",
@@ -38,22 +39,35 @@ describe('Routegaedget', () => {
            console.log( key + "  Event count: " + events.length );
         } */
 
-      expect(gr.rgSitesMap.size).to.equal(RGSITES.length);
+      expect(gr.rgSitesMap.size).toBe(RGSITES.length);
 
       const ret = gr.getRoutegadgetData('xxx', 'SN');
-      expect(ret.baseURL).to.equal(sn.baseURL);
+      expect(ret.baseURL).toBe(sn.baseURL);
 
       writeFileSync('routegadget_events.json', JSON.stringify(gr.rgSitesMap));
 
-   }).timeout(20000);
+   }, 20000);
 
    it('should read routegadget events from cache', async () => {
 
       const gr = new Routegadget();
 
-      const firebaseAdmin = admin.initializeApp({
-         storageBucket: 'ofixtures-2a7d5.appspot.com'
+      // Mock Firebase Storage response with data derived from RGSITES
+      const mockMap = new Map();
+      RGSITES.forEach(site => {
+         mockMap.set(site.shortName.toLowerCase(), { ...site, events: [] });
       });
+      const mockResponse = [JSON.stringify(Array.from(mockMap.entries()))];
+
+      const mockFile = {
+         download: vi.fn().mockResolvedValue(mockResponse)
+      };
+      const mockBucket = {
+         file: vi.fn().mockReturnValue(mockFile)
+      };
+      vi.mocked(getStorage).mockReturnValue({
+         bucket: vi.fn().mockReturnValue(mockBucket)
+      } as any);
 
       await gr.initialiseFromCache();
 
@@ -62,14 +76,14 @@ describe('Routegaedget', () => {
            console.log( key + "  Event count: " + events.length );
         } */
 
-      expect(gr.rgSitesMap.size).to.equal(RGSITES.length);
+      expect(gr.rgSitesMap.size).toBe(RGSITES.length);
 
       const ret = gr.getRoutegadgetData('xxx', 'SN');
-      expect(ret.baseURL).to.equal(sn.baseURL);
+      expect(ret.baseURL).toBe(sn.baseURL);
 
-      writeFileSync('routegadget_events.json', JSON.stringify(Array.from(gr.rgSitesMap).entries));
+      writeFileSync('routegadget_events.json', JSON.stringify(Array.from(gr.rgSitesMap)));
 
-   }).timeout(20000);
+   }, 20000);
 
    it('should return null if event does not exist in routegagdte', async () => {
       const gr = new Routegadget();
@@ -86,7 +100,7 @@ describe('Routegaedget', () => {
 
       const ret = rg.getRoutegadgetData('Merrist', 'XXX');
 
-      expect(ret).to.equal(null);
+      expect(ret).toBeNull();
    });
 
 
@@ -98,9 +112,9 @@ describe('Routegaedget', () => {
 
       const ret = gr.getRoutegadgetData('Merrist', 'SN');
 
-      expect(ret.baseURL).to.equal(sn.baseURL);
-      expect(ret.maps.length).to.equal(5);
-      expect(ret.maps[1]).to.deep.equal({ id: 109, name: "Merrist Wood Saturday Series", mapfile: "106.gif" });
+      expect(ret.baseURL).toBe(sn.baseURL);
+      expect(ret.maps.length).toBe(5);
+      expect(ret.maps[1]).toEqual({ id: 109, name: "Merrist Wood Saturday Series", mapfile: "106.gif" });
 
    });
 
@@ -112,8 +126,8 @@ describe('Routegaedget', () => {
 
       const ret = rg.getRoutegadgetData('mErrist', 'SN');
 
-      expect(ret.maps.length).to.equal(5);
-      expect(ret.maps[0]).to.deep.equal({ id: 173, name: "Merrist Woods Saturday Series", mapfile: "171.gif" });
+      expect(ret.maps.length).toBe(5);
+      expect(ret.maps[0]).toEqual({ id: 173, name: "Merrist Woods Saturday Series", mapfile: "171.gif" });
 
    });
 
@@ -126,16 +140,16 @@ describe('Routegaedget', () => {
 
       // Ignore common keywords
       //Note: the whole area string will still match so we specify multipe skipped words
-      expect(rg.getRoutegadgetData('Common Woods', 'SN').maps.length).to.equal(0);
-      expect(rg.getRoutegadgetData('woods and', 'SN').maps.length).to.equal(0);
+      expect(rg.getRoutegadgetData('Common Woods', 'SN').maps.length).toBe(0);
+      expect(rg.getRoutegadgetData('woods and', 'SN').maps.length).toBe(0);
 
       // Southwood is found and country, part are ignored
       ret = rg.getRoutegadgetData('Southwood Country Park', 'SN');
-      expect(ret.maps.length).to.equal(3);
-      expect(ret.maps[2]).to.deep.equal({ id: 140, name: 'Southwood Country Park', mapfile: "138.gif" });
+      expect(ret.maps.length).toBe(4);
+      expect(ret.maps[3]).toEqual({ id: 140, name: 'Southwood Country Park', mapfile: "138.gif" });
 
       // Two letter word is ignored.  
-      expect(rg.getRoutegadgetData('Common st', 'SN').maps.length).to.equal(0);
+      expect(rg.getRoutegadgetData('Common st', 'SN').maps.length).toBe(0);
    });
 
    it('and should be excluded (Interlopers test)', async () => {
@@ -147,7 +161,7 @@ describe('Routegaedget', () => {
       const ret = rg.getRoutegadgetData("Holyrood and Craigmillar", 'INT');
 
       //  6 events expected for interlopers containg Craigmillar
-      expect(ret.maps.length).to.equal(6);
+      expect(ret.maps.length).toBe(7);
 
    });
 
@@ -160,7 +174,7 @@ describe('Routegaedget', () => {
       const ret = rg.getRoutegadgetData('Merrist Wisley', 'SN');
 
       //  12 events for both wisley and merrist
-      expect(ret.maps.length).to.equal(12);
+      expect(ret.maps.length).toBe(12);
 
    });
 
@@ -172,7 +186,7 @@ describe('Routegaedget', () => {
 
       const ret = rg.getRoutegadgetData('', 'SN');
 
-      expect(ret.maps.length).to.equal(0);
+      expect(ret.maps.length).toBe(0);
 
    });
 

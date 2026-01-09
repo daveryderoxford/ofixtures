@@ -1,0 +1,27 @@
+export const realRacesignupFileV2 = `
+<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+   data-search="aire otley aire" data-latlong="53.907219,-1.693039">
+   <div
+      class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+      style="background-color: #41393C;">
+      <p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href=' /aire-otley'
+            title='Entries are open! (Car Sharing available)'>Wed 7 Jan</a></p>
+   </div>
+   <div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+      <img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/airienteers2.jpg"
+         alt="Entries are open!" />
+   </div>
+   <div
+      class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+      style="background-color: #E62222;">
+      <p class="my-auto">
+         AIRE Otley <span class="distance-tag d-none"></span>
+         <i class='fa-solid fa-car' style='float:right;'></i>
+      </p>
+   </div>
+   <div
+      class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+      <p class="my-auto">OPEN</p>
+   </div>
+</div>
+`;

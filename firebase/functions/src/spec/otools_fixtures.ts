@@ -1,4 +1,4 @@
-import { AdditionalFixture, Fixture } from 'model/fixture';
+import { Fixture } from 'model/fixture.js';
 
 export const fixtures: Fixture[] = [
    {

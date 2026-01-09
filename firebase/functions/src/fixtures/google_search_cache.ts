@@ -1,5 +1,5 @@
 import * as admin from "firebase-admin";
-import { LatLong } from "model/latlng";
+import { LatLong } from "model/latlng.js";
 
 const CACHE_COLLECTION = 'location_search_cache';
 

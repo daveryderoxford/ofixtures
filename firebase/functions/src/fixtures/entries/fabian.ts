@@ -1,7 +1,7 @@
-import * as cheerio from "cheerio";
+import cheerio from "cheerio";
 import request from "request-promise";
-import { EntryData } from "./entry";
-import { EntryStatus } from "model/fixture";
+import { EntryData } from "./entry.js";
+import { EntryStatus } from "model/fixture.js";
 
 export class Fabian {
 
@@ -131,4 +131,3 @@ export class Fabian {
         }
     }
 }
-

@@ -1,8 +1,8 @@
 import { isAfter, isBefore, isSameDay, startOfDay } from "date-fns";
-import { EntryStatus, Fixture } from "model/fixture";
-import { Fabian } from "./fabian";
-import { RaceSignup } from "./racesignup";
-import { SIEntries } from "./si_entries";
+import { EntryStatus, Fixture } from "model/fixture.js";
+import { Fabian } from "./fabian.js";
+import { RaceSignup } from "./racesignup.js";
+import { SIEntries } from "./si_entries.js";
 
 type EntrySource = 'Racesignup' | 'SIEntries' | 'Fabian';
 

@@ -1,4 +1,4 @@
-import { ClubLocation } from "./club_locations";
+import { ClubLocation } from "./club_locations.js";
 
 export const clubLOcationsDefault: ClubLocation[] = [
     {

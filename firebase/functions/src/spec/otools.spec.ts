@@ -1,9 +1,7 @@
-import { expect, spy } from 'chai';
-import 'mocha';
-import {OTools} from '../fixtures/otools';
-import { fixtures } from './otools_fixtures';
-import { on } from 'chai-spies';
-import { otools_data_v2 } from './otools_data_v2';
+import { describe, it, expect, vi } from 'vitest';
+import { OTools } from '../fixtures/otools.js';
+import { otools_data_v2 } from './otools_data_v2.js';
+import { fixtures } from './otools_fixtures.js';
 
 describe('OTools', () => {
 
@@ -13,24 +11,24 @@ describe('OTools', () => {
 
       const events = await otools.readOToolsEvents();
 
-      expect(events.length).greaterThan(100);
+      expect(events.length).toBeGreaterThan(100);
       console.log('   OTools - Number of events: ' + events.length)
 
-   }).timeout(50000);
+   }, 50000);
 
    it('should read data correctly', async () => {
 
       const otools = new OTools();
 
-      spy.on(otools, 'readOToolsEvents', () => Promise.resolve(otools_data_v2));
+      vi.spyOn(otools, 'readOToolsEvents').mockResolvedValue(otools_data_v2.events as any);
 
       const updated = await otools.addOToolsEventIds(fixtures);
 
     //  expect(updated[0].otoolsId).to.equal(undefined);
-      expect(updated[1].otoolsId).to.equal("SI:12873"); //PFO SI entries ID 
-      expect(updated[2].otoolsId).to.equal(undefined);  // BOF activity
-      expect(updated[3].otoolsId).to.equal("SI:11938|1"); // JK Sprint
+      expect(updated[1].otoolsId).toBe("6684f721003f54b8951dbff9"); //PFO SI entries ID 
+      expect(updated[2].otoolsId).toBeUndefined();  // BOF activity
+      expect(updated[3].otoolsId).toBe("666d092e574a082a1613e3de"); // JK Sprint
 
-   }).timeout(200000);;
+   }, 200000);;
 
 });

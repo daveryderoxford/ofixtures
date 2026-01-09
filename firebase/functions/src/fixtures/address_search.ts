@@ -1,10 +1,10 @@
-import { LatLong } from 'model/latlng';
-import { googleLocationSearch } from './google_search';
-import { findInGoogleSearchCache, saveInGoogleSearchCache } from './google_search_cache';
+import { LatLong } from 'model/latlng.js';
+import { googleLocationSearch } from './google_search.js';
+import { findInGoogleSearchCache, saveInGoogleSearchCache } from './google_search_cache.js';
 
 export type AddressSearchSource = '' | 'googleCache' | 'google';
 
-function makeAddress(area: string, town: string): string {
+export function makeAddress(area: string, town: string): string {
 
    /* Filter out known invalid areas/towns */
    const invalidLocations = ["TBC", "TBA", "VARIOUS", "ON-LINE", "ONLINE", "SOMEWHERE"];

@@ -1,9 +1,11 @@
 /**  */
-import { expect } from 'chai';
-import 'mocha';
-import { RaceSignup } from '../fixtures/entries/racesignup';
-import { realRacesignupFile } from './racesignup_data.spec';
-import { EntryData } from 'fixtures/entries/entry';
+import { describe, it, expect } from 'vitest';
+
+import { RaceSignup } from '../fixtures/entries/racesignup.js';
+import { realRacesignupFile } from './racesignup_data.js';
+import { EntryData } from '../fixtures/entries/entry.js';
+import { RaceSignupV2 } from '../fixtures/entries/racesignup-v2.js';
+import { realRacesignupFileV2 } from './racesignup_data-v2.js';
 
 describe( 'RaceSignup data parser ', () => {
 
@@ -14,9 +16,20 @@ describe( 'RaceSignup data parser ', () => {
 
       console.log(events);
 
-      expect( events.length).to.equal( 69 );
+      expect( events.length).toBe( 69 );
 
    } );
+
+   it.only('Should parse race sigup data in v2 format', () => {
+
+      const rs = new RaceSignupV2();
+      const events: EntryData[] = rs.parse(realRacesignupFileV2);
+
+      console.log(events);
+
+      expect(events.length).toBe(69);
+
+   });
 
    it( 'Should load events from racesignup site', async ()  =>  {
 
@@ -25,8 +38,8 @@ describe( 'RaceSignup data parser ', () => {
 
    //   console.log(events);
 
-      expect(events.length).greaterThan( 0 );
+      expect(events.length).toBeGreaterThan( 0 );
 
-   } ).timeout( 40000 );
+   }, 40000 );
 
 } );

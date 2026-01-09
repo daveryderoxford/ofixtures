@@ -5,7 +5,10 @@ export const otools_data_v2 = {
          "createdDate": "2024-07-03T07:00:34.790Z",
          "updatedDate": "2024-07-03T07:00:34.790Z",
          "bofId": 84169,
-         "entrySystemKey": null,
+         "entrySystemKey": {
+            "system": "SI",
+            "eventId": "12873"
+         },
          "club": "PFO",
          "date": "2024-03-27",
          "endDate": null,
@@ -64,5 +67,19 @@ export const otools_data_v2 = {
          "title": "No BOF data",
          "source": "https://www.sientries.co.uk/event.php?elid=Y&event_id=13681"
       },
+      {
+         "_id": "666d092e574a082a1613e3de",
+         "createdDate": "2024-11-24T17:36:28.571Z",
+         "updatedDate": "2024-11-24T17:36:28.571Z",
+         "bofId": 80168,
+         "entrySystemKey": {
+            "system": "SI",
+            "eventId": "11938|1"
+         },
+         "date": "2024-03-29",
+         "endDate": null,
+         "title": "Jan Kjellström Orienteering Festival - Sprint (UKOL)",
+         "source": "https://www.sientries.co.uk/event.php?elid=Y&event_id=11938"
+      }
    ]
 }

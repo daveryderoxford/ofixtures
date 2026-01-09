@@ -1,8 +1,8 @@
-import * as admin from "firebase-admin";
-import * as functions from "firebase-functions/v1";
-import { Fixture } from "../model/fixture";
-import { LatLong } from "../model/latlng";
-import { clubLOcationsDefault } from "./club_locations_default";
+import functions from "firebase-functions/v1";
+import { Fixture } from "../model/fixture.js";
+import { LatLong } from "../model/latlng.js";
+import { clubLOcationsDefault } from "./club_locations_default.js";
+import { getStorage } from 'firebase-admin/storage'; 
 
 export interface ClubLocation {
    shortName: string;
@@ -83,7 +83,7 @@ export function clubLocationFromFixtures( fixtures: Fixture[] ): ClubLocation[] 
 async function saveToStorage( clubLocations: ClubLocation[] ): Promise<void> {
    const filename = "fixtures/clublocations";
 
-   const storage = admin.storage();
+   const storage = getStorage();
 
    try {
       const file = storage.bucket().file( CLUB_LOCATIONS_FILNAME );
@@ -110,7 +110,7 @@ async function saveToStorage( clubLocations: ClubLocation[] ): Promise<void> {
 async function readFixtures(): Promise<Fixture[]> {
    const filename = "fixtures/uk";
 
-   const storage = admin.storage();
+   const storage = getStorage();
 
    try {
       const file = storage.bucket().file( filename );

@@ -43,7 +43,7 @@
 // tslint:disable:class-name
 // tslint:disable: no-use-before-declare
 
-import { LatLong } from "model/latlng"; 
+import { LatLong } from "model/latlng.js"; 
 
 type GT_status = string;
 

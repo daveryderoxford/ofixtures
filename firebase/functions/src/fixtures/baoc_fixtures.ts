@@ -1,5 +1,5 @@
 import request from "request-promise";
-import { Fixture } from "../model/fixture";
+import { Fixture } from "../model/fixture.js";
 
 /** Reads BAOC fixtures from their website */
 

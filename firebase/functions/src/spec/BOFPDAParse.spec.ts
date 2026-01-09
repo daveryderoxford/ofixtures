@@ -1,8 +1,8 @@
 /**  */
-import { expect } from 'chai';
-import 'mocha';
-import { BOFPDParseData, BOFPDParser } from '../fixtures/bof_pda_parse';
-import { googleLocationBOFFixtures, testBOFPDAFile } from './BOFPDATestData.spec';
+import { describe, it, expect } from 'vitest';
+import { googleLocationBOFFixtures, testBOFPDAFile } from './BOFPDATestData.js';
+import { BOFPDParseData, BOFPDParser } from '../fixtures/bof_pda_parse.js';
+
 
 describe( 'BOF PDA Fixtures fiile parser ', () => {
 
@@ -12,23 +12,23 @@ describe( 'BOF PDA Fixtures fiile parser ', () => {
       const bofFixtures: BOFPDParseData[] = parser.parseBOFPDAFile( testBOFPDAFile );
 
       // Row with grid reference
-      expect( bofFixtures.length ).to.equal( 1267 );
-      expect( bofFixtures[ 0 ].date ).to.equal( '2019-03-24T00:00:00.000Z' );
-      expect( bofFixtures[ 0 ].id ).to.equal( 'bof-72446' );
-      expect( bofFixtures[ 0 ].name ).to.equal( 'SROC Red Rose Classic' );
+      expect( bofFixtures.length ).toEqual( 1267 );
+      expect( bofFixtures[ 0 ].date ).toEqual( '2019-03-24T00:00:00.000Z' );
+      expect( bofFixtures[ 0 ].id ).toEqual( 'bof-72446' );
+      expect( bofFixtures[ 0 ].name ).toEqual( 'SROC Red Rose Classic' );
 
-      expect( bofFixtures[ 0 ].BOFLink ).to.equal( 'index.php?pg=event&amp;event=72446&bpg=' );
+      expect( bofFixtures[ 0 ].BOFLink ).toEqual( 'index.php?pg=event&amp;event=72446&bpg=' );
 
-      expect( bofFixtures[ 0 ].club ).to.equal( 'SROC' );
-      expect( bofFixtures[ 0 ].clubURL ).to.equal( 'http://www.sroc.org' );
+      expect( bofFixtures[ 0 ].club ).toEqual( 'SROC' );
+      expect( bofFixtures[ 0 ].clubURL ).toEqual( 'http://www.sroc.org' );
 
-      expect( bofFixtures[ 0 ].postcode ).to.equal( '' );  // Grid reference in colunm not a postcode
-      expect( bofFixtures[ 0 ].region ).to.equal( 'NWOA' );
-      expect( bofFixtures[ 0 ].grade ).to.equal( 'National' );
+      expect( bofFixtures[ 0 ].postcode ).toEqual( '' );  // Grid reference in colunm not a postcode
+      expect( bofFixtures[ 0 ].region ).toEqual( 'NWOA' );
+      expect( bofFixtures[ 0 ].grade ).toEqual( 'National' );
 
-      expect( bofFixtures[ 0 ].area ).to.equal( 'Hampsfell' );
-      expect( bofFixtures[ 0 ].nearestTown ).to.equal( 'Grange over Sands' );
-      expect( bofFixtures[ 0 ].gridRefStr ).to.equal( 'SD393805' );
+      expect( bofFixtures[ 0 ].area ).toEqual( 'Hampsfell' );
+      expect( bofFixtures[ 0 ].nearestTown ).toEqual( 'Grange over Sands' );
+      expect( bofFixtures[ 0 ].gridRefStr ).toEqual( 'SD393805' );
    } );
 
    it('Should parse records in new format with Google location links rather than streetmap ', () => {
@@ -39,17 +39,17 @@ describe( 'BOF PDA Fixtures fiile parser ', () => {
       // console.log(JSON.stringify(bofFixtures) );
 
       // Row with postcode 
-      expect(bofFixtures[0].postcode).to.equal('GL4 8HG');
-      expect(bofFixtures[0].gridRefStr).to.equal('');
+      expect(bofFixtures[0].postcode).toEqual('GL4 8HG');
+      expect(bofFixtures[0].gridRefStr).toEqual('');
 
       // Row 2 another postcode
-      expect(bofFixtures[1].postcode).to.equal('GL53 9EG');
+      expect(bofFixtures[1].postcode).toEqual('GL53 9EG');
 
       // Row 3 short postcode also treated as missing. - OK are rare
-      expect(bofFixtures[2].postcode).to.equal('');
+      expect(bofFixtures[2].postcode).toEqual('');
 
       // Row 4 no postcode
-      expect(bofFixtures[3].postcode).to.equal('');
+      expect(bofFixtures[3].postcode).toEqual('');
 
    });
 
@@ -59,9 +59,9 @@ describe( 'BOF PDA Fixtures fiile parser ', () => {
       const bofFixtures: BOFPDParseData[] = parser.parseBOFPDAFile( testBOFPDAFile );
 
       // Row without any postcode or grid ref  (Spring series 4, Whitehaven)
-      expect( bofFixtures[ 1 ].name ).to.equal( 'Spring series 4, Whitehaven' );
-      expect( bofFixtures[ 1 ].postcode ).to.equal( '' );
-      expect( bofFixtures[ 1 ].gridRefStr ).to.equal( '' );
+      expect( bofFixtures[ 1 ].name ).toEqual( 'Spring series 4, Whitehaven' );
+      expect( bofFixtures[ 1 ].postcode ).toEqual( '' );
+      expect( bofFixtures[ 1 ].gridRefStr ).toEqual( '' );
 
    } );
 
@@ -71,9 +71,9 @@ describe( 'BOF PDA Fixtures fiile parser ', () => {
       const bofFixtures: BOFPDParseData[] = parser.parseBOFPDAFile( testBOFPDAFile );
 
       // Row with postcode  (Postcode)
-      expect( bofFixtures[ 2 ].name ).to.equal( 'Postcode' );
-      expect( bofFixtures[ 2 ].postcode ).to.equal( 'TA1 2RH' );
-      expect( bofFixtures[ 2 ].gridRefStr ).to.equal( '' );
+      expect( bofFixtures[ 2 ].name ).toEqual( 'Postcode' );
+      expect( bofFixtures[ 2 ].postcode ).toEqual( 'TA1 2RH' );
+      expect( bofFixtures[ 2 ].gridRefStr ).toEqual( '' );
 
    } );
 
@@ -84,9 +84,9 @@ describe( 'BOF PDA Fixtures fiile parser ', () => {
 
       const expectedLength = 1267;
       // Last row (WOC 2022 Public Races)
-      expect( bofFixtures.length ).to.equal( expectedLength );
-      expect( bofFixtures[ expectedLength - 1 ].date ).to.equal( '2022-07-13T00:00:00.000Z' );
-      expect( bofFixtures[ expectedLength - 1 ].name ).to.equal( 'WOC 2022 Public Races' );
+      expect( bofFixtures.length ).toEqual( expectedLength );
+      expect( bofFixtures[ expectedLength - 1 ].date ).toEqual( '2022-07-13T00:00:00.000Z' );
+      expect( bofFixtures[ expectedLength - 1 ].name ).toEqual( 'WOC 2022 Public Races' );
 
    } );
 
@@ -95,8 +95,8 @@ describe( 'BOF PDA Fixtures fiile parser ', () => {
       const parser = new BOFPDParser();
       const bofFixtures: BOFPDParseData[] = parser.parseBOFPDAFile( testBOFPDAFile );
 
-      expect( bofFixtures[ 2 ].name ).to.equal( 'Postcode' );
-      expect( bofFixtures[ 2 ].id ).to.equal( 'bof-activity26377' );
+      expect( bofFixtures[ 2 ].name ).toEqual( 'Postcode' );
+      expect( bofFixtures[ 2 ].id ).toEqual( 'bof-activity26377' );
 
    } );
 

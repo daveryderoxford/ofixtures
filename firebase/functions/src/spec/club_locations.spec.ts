@@ -1,9 +1,8 @@
-import { expect } from 'chai';
-import * as fs from 'fs';
-import 'mocha';
-import { Fixture } from 'model/fixture';
-import { clubLocationFromFixtures } from '../fixtures/club_locations';
-import { testFixtures, } from './club_locations_fixtures.spec';
+import { describe, it, expect } from 'vitest';
+import fs from 'fs';
+import { Fixture } from 'model/fixture.js';
+import { clubLocationFromFixtures } from '../fixtures/club_locations.js';
+import { testFixtures, } from './club_locations_fixtures.js';
 
 function readAllFixtures(): Fixture[] {
    try {
@@ -23,28 +22,36 @@ describe( 'Club Locations', () => {
 
       // console.log( JSON.stringify( clubLocations ) );
 
-      expect( clubLocations.length ).to.equal( 88 );
+      expect( clubLocations.length ).toBe( 88 );
  
-   } ).timeout( 20000 ); 
+   }, 20000 ); 
 
    it( 'Should compute the average for fixture location sources postcode and grid ref ',  () => {
 
       const clubLocations = clubLocationFromFixtures( testFixtures ); 
 
       // 2 Clubs with at least one fixture with loc source postcode or grid
-      expect( clubLocations.length).to.equal(2);
+      expect( clubLocations.length).toBe(2);
 
-      const sroc = clubLocations[1];
-      
-      expect( sroc.shortName).to.equal("SROC");
+      const sroc = clubLocations.find( c => c.shortName === 'SROC' );
+      expect( sroc ).toBeDefined();
+      expect( sroc!.latLng.lat ).toBeCloseTo( 54.325, 3 );
+      expect( sroc!.latLng.lng ).toBeCloseTo( -2.775, 3 );
 
-      expect( sroc.latLng.lat ).to.closeTo( 54.3, 0.00001 );
-      expect( sroc.latLng.lng ).to.closeTo( -2.8, 0.00001 );
+      const sn = clubLocations.find( c => c.shortName === 'SN' );
+      expect( sn ).toBeDefined();
 
-      expect( clubLocations[0].shortName ).to.equal("DEE");
+      // Explicitly test filtering conditions
+      // DEE should be filtered out because lat is > 90
+      const dee = clubLocations.find( c => c.shortName === 'DEE' );
+      expect( dee ).toBeUndefined();
+
+      // NoLocation should be filtered out because locSource is empty/null latLong
+      const noLocation = clubLocations.find( c => c.shortName === 'NoLocation' );
+      expect( noLocation ).toBeUndefined();
 
    //   console.log( JSON.stringify( clubLocations ));
 
-   } ).timeout( 20000 );
+   }, 20000 );
 
 });

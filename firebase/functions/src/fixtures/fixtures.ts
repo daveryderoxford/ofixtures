@@ -1,17 +1,17 @@
 import * as admin from "firebase-admin";
 import request from "request-promise";
-import { Fixture, LocationSource, } from "../model/fixture";
-import { LatLong } from "../model/latlng";
-import { EventGrade } from "../model/oevent";
-import { readAdditionalFixtures } from "./additional_fixtures";
-import { BOFPDParser } from "./bof_pda_parse";
-import { ClubLocation, loadClubLocations } from "./club_locations";
-import { Entries } from "./entries/entry";
-import { GT_OSGB } from "./geo_conversion";
-import { OTools } from './otools';
-import { LatLong as LatLongPIO, PostCodeLookup } from "./postcode";
-import { Routegadget } from "./routegadget";
-import { findAddressLocation } from './address_search';
+import { Fixture, LocationSource, } from "../model/fixture.js";
+import { LatLong } from "../model/latlng.js";
+import { EventGrade } from "../model/oevent.js";
+import { readAdditionalFixtures } from "./additional_fixtures.js";
+import { BOFPDParser } from "./bof_pda_parse.js";
+import { ClubLocation, loadClubLocations } from "./club_locations.js";
+import { Entries } from "./entries/entry.js";
+import { GT_OSGB } from "./geo_conversion.js";
+import { OTools } from './otools.js';
+import { LatLong as LatLongPIO, PostCodeLookup } from "./postcode.js";
+import { Routegadget } from "./routegadget.js";
+import { findAddressLocation } from './address_search.js';
 
 export class Fixtures {
    readonly BOFPDAURL =
@@ -278,7 +278,7 @@ export class Fixtures {
       }
    }
 
-   private async loadBOFPDA(): Promise<string> {
+   public async loadBOFPDA(): Promise<string> {
       let response: string;
       try {
          response = await request(this.BOFPDAURL, { method: "get" });

@@ -1,9 +1,8 @@
 /**  */
-import { expect } from 'chai';
-import { EntryData } from 'fixtures/entries/entry';
-import 'mocha';
-import { Fabian } from '../fixtures/entries/fabian';
-import { fabianFile } from './fabian_data.spec';
+import { describe, it, expect } from 'vitest';
+import { EntryData } from 'fixtures/entries/entry.js';
+import { Fabian } from '../fixtures/entries/fabian.js';
+import { fabianFile } from './fabian_data.js';
 
 describe( 'Fabian data parser ', () => {
 
@@ -14,7 +13,7 @@ describe( 'Fabian data parser ', () => {
 
     //  console.log(events);
 
-      expect( events.length).to.equal( 73 );
+      expect( events.length).toBe( 73 );
 
    } );
 
@@ -25,8 +24,8 @@ describe( 'Fabian data parser ', () => {
 
    //   console.log(events);
 
-      expect( events.length).greaterThan( 0 );
+      expect( events.length).toBeGreaterThan( 0 );
 
-   } ).timeout( 40000 );
+   }, 40000 );
 
 } );

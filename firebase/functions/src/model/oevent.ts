@@ -1,4 +1,4 @@
-import { ISODateString } from "./date";
+import { ISODateString } from "./date.js";
 
 export type EventGrade = "IOF" | "International" | "National" | "Regional"| "Club" | "Local";
 

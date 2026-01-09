@@ -3,11 +3,11 @@
  */
 import * as admin from "firebase-admin";
 import * as functions from 'firebase-functions/v1';
-import * as sysAdmin from "./admin/admin";
-import * as entry from "./entry/entry";
-import { Fixtures } from "./fixtures/fixtures";
-import * as user from "./user/user";
-import * as clubs from "./fixtures/club_locations";
+import * as sysAdmin from "./admin/admin.js";
+import * as entry from "./entry/entry.js";
+import { Fixtures } from "./fixtures/fixtures.js";
+import * as user from "./user/user.js";
+import * as clubs from "./fixtures/club_locations.js";
 
 const firebaseAdmin = admin.initializeApp();
 

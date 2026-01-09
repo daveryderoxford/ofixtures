@@ -1,6 +1,6 @@
 import * as admin from "firebase-admin";
 import * as functions from "firebase-functions/v1";
-import { Entry, FixtureEntryDetails } from "../model/entry";
+import { Entry, FixtureEntryDetails } from "../model/entry.js";
 
 function userFacingMessage(err: Error): string {
    return "An error occurred saving this entry";

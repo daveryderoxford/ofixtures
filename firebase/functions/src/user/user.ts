@@ -1,6 +1,6 @@
 import * as admin from "firebase-admin";
 import * as functions from "firebase-functions/v1";
-import { UserData } from "../model/user";
+import { UserData } from "../model/user.js";
 
 /** Creates new user data and saves it to the database */
 function createUserData(): UserData {

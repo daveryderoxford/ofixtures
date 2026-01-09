@@ -1,9 +1,8 @@
 /**  */
-import { expect } from 'chai';
-import { EntryData } from '../fixtures/entries/entry';
-import { SIEntries } from '../fixtures/entries/si_entries';
-import 'mocha';
-import { siEntriesFile } from './si_entries_data.spec';
+import { describe, it, expect } from 'vitest';
+import { EntryData } from '../fixtures/entries/entry.js';
+import { SIEntries } from '../fixtures/entries/si_entries.js';
+import { siEntriesFile } from './si_entries_data.js';
 
 describe( 'SI Entries data parser ', () => {
 
@@ -14,7 +13,7 @@ describe( 'SI Entries data parser ', () => {
 
  //   console.log(events);
 
-      expect( events.length).to.equal( 31 );
+      expect( events.length).toBe( 31 );
 
    } );
 
@@ -25,8 +24,8 @@ describe( 'SI Entries data parser ', () => {
 
    //   console.log(events);
 
-      expect( events.length).greaterThan( 0 );
+      expect( events.length).toBeGreaterThan( 0 );
 
-   } ).timeout( 40000 );
+   }, 40000 );
 
 } );

@@ -4,7 +4,7 @@ import request from "request-promise";
 import { EntryData } from "./entry.js";
 import { EntryStatus } from "model/fixture.js";
 
-export class RaceSignup {
+export class RaceSignupV2 {
 
    $: cheerio.Root;
    clubsNotFound = '';
@@ -16,7 +16,7 @@ export class RaceSignup {
       let events: EntryData[] = [];
       this.clubsNotFound = '';
 
-      console.log('Procesing Racesignup Entries');
+      console.log('Procesing Racesignup Entries (v2)');
 
       try {
          const str = await request(url, { method: "get" });
@@ -42,7 +42,7 @@ export class RaceSignup {
       this.$ = cheerio.load(text);
 
       // The table contains two rows per event.  
-      const tableRows = this.$("div.my-3").toArray();
+      const tableRows = this.$("div.event-item").toArray();
 
       for (const row of tableRows) {
          const fixture = this.parseRow(row);
@@ -53,24 +53,31 @@ export class RaceSignup {
 
    }
    /**  Parse racesign table row of the form 
-   <div class="row position-relative no-gutters my-3 d-block d-md-none d-flex d-flex-row">
-       <div class="col-12 text-white mb-0 py-2 px-0 d-flex flex-column position-static text-center"
-         style="background-color: #E62222;">
-         <p class="my-auto"><a style="text-decoration: none;" class="text-white stretched-link" data-toggle="modal"
-             data-target="#panel3919" href="/site/event.php?eventid=3919" title="Entries close 26th Dec">North Ashdown
-             Christmas Score</a></p>
-       </div>
-       <div class="col-4 text-white mb-1 py-0 px-0 d-flex flex-column text-center" style="background-color: #41393C;">
-         <p class="my-auto">Wed 27 Dec</p>
-       </div>
-       <div class="col-4 d-flex flex-column mb-1 px-0">
-         <img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/southdowns.png"
-           alt="Entries close 26th Dec" />
-       </div>
-       <div class="col-4 bg-dark text-white mb-1 py-0 px-0 d-flex flex-column text-center">
-         <p class="my-auto">OPEN</p>
-       </div>
-     </div> */
+ 	<div class="row event-item position-relative no-gutters my-0 mx-0 d-flex flex-row" data-type="Orienteering"
+			data-search="aire otley aire" data-latlong="53.907219,-1.693039">
+			<div
+				class="col-4 col-md-2 col-lg-2 col-xl-1 text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-2 order-md-1"
+				style="background-color: #41393C;">
+				<p class="my-auto"><a style='text-decoration: none;' class='text-white stretched-link' ' href=' /aire-otley'
+						title='Entries are open! (Car Sharing available)'>Wed 7 Jan</a></p>
+			</div>
+			<div class="col-4 col-md-3 col-lg-2 d-flex flex-column mb-1 px-1 order-3 order-md-2">
+				<img class="img-fluid my-auto" src="https://racesignup.co.uk/lib/logos/airienteers2.jpg"
+					alt="Entries are open!" />
+			</div>
+			<div
+				class="col-12 col-md-5 col-lg-6 col-xl-7 text-white mb-0 mb-md-1 py-2 py-md-0 px-2 d-flex flex-column order-1 order-md-3 text-center text-md-left"
+				style="background-color: #E62222;">
+				<p class="my-auto">
+					AIRE Otley <span class="distance-tag d-none"></span>
+					<i class='fa-solid fa-car' style='float:right;'></i>
+				</p>
+			</div>
+			<div
+				class="col-4 col-md-2 col-lg-2 bg-dark text-white mb-1 py-2 py-md-0 px-0 d-flex flex-column text-center order-4 order-md-4">
+				<p class="my-auto">OPEN</p>
+			</div>
+		</div> */
    private parseRow(row: cheerio.Element): EntryData {
       const entry: Partial<EntryData> = {};
 
@@ -80,10 +87,12 @@ export class RaceSignup {
          const link = this.$("a", cells[0]);
          var closingDate = link.prop("title");
          entry.entruUrl = 'https://racesignup.co.uk' + link.prop("href");
-         entry.title = link.text();
+         [entry.date, entry.enddate] = this.getDate(cells[0]);
 
-         [entry.date, entry.enddate] = this.getDate(cells[1]);
-         entry.club = this.getClub(cells[2]);
+         entry.club = this.getClub(cells[1]);
+
+         entry.title = this.text(cells[2]);
+
          entry.status = this.getStatus(cells[3]);
          entry.source = 'Racesignup';
 

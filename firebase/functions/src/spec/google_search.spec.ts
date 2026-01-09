@@ -1,14 +1,8 @@
 /**  */
 import { Status } from "@googlemaps/google-maps-services-js";
-import { expect, spy, use } from 'chai';
-import 'mocha';
-import { googleLocationSearch, googleLocationService } from '../fixtures/google_search';
-
-import { LatLong } from 'model/latlng';
-
-const spies = require( 'chai-spies' );
-
-use( spies );
+import { describe, it, expect, vi } from 'vitest';
+import { LatLong } from 'model/latlng.js';
+import { googleLocationSearch, googleLocationService } from '../fixtures/google_search.js';
 
 const brentwoodlocation = { lat: 51.620475, lng: 0.3071749 }
 
@@ -21,15 +15,15 @@ describe( 'Convert place names to geographic coodrinated using Google Maps geoCo
       }
 
       const results = await googleLocationSearch( 'Brentwood',  brentwoodlocation );
-      expect( results.lat ).to.be.closeTo( brentwoodlocation.lat, 0.00001 );
-      expect( results.lng ).to.be.closeTo( brentwoodlocation.lng, 0.00001 );
+      expect( results.lat ).toBeCloseTo( brentwoodlocation.lat, 5 );
+      expect( results.lng ).toBeCloseTo( brentwoodlocation.lng, 5 );
 
-   } ).timeout( 5000 );
+   }, 5000 );
 
    it( 'Return undefined if place is not known ', async () => {
       const results = await googleLocationSearch( 'xxxxxx', null );
-      expect( results ).to.be.null;
-   } ).timeout( 5000 );
+      expect( results ).toBeNull();
+   }, 5000 );
 
    function makeGeocodeResponse( locs: LatLong[] ): any {
       const results = locs.map( loc => {
@@ -54,25 +48,25 @@ describe( 'Convert place names to geographic coodrinated using Google Maps geoCo
 
    it( 'First result within 80km of target location ', async () => {
 
-      const searchSpy = spy.on( googleLocationService, 'geocode', () => Promise.resolve( multipleSearchResults ) );
+      const searchSpy = vi.spyOn( googleLocationService, 'geocode' ).mockResolvedValue( multipleSearchResults as any );
 
       const results = await googleLocationSearch( 'Brentwood', brentwoodlocation );
-      expect( results.lat ).to.be.closeTo( brentwoodlocation.lat, 0.00001 );
-      expect( results.lng ).to.be.closeTo( brentwoodlocation.lng, 0.00001 );
+      expect( results.lat ).toBeCloseTo( brentwoodlocation.lat, 5 );
+      expect( results.lng ).toBeCloseTo( brentwoodlocation.lng, 5 );
 
-      spy.restore( googleLocationService );
+      searchSpy.mockRestore();
 
    } );
 
    it( 'Expect first result to be returned if null target is specified', async () => {
 
-      const searchSpy = spy.on( googleLocationService, 'geocode', () => Promise.resolve( multipleSearchResults ) );
+      const searchSpy = vi.spyOn( googleLocationService, 'geocode' ).mockResolvedValue( multipleSearchResults as any );
 
       const results = await googleLocationSearch( 'Brentwood', null );
-      expect( results.lat ).to.be.closeTo( 30, 0.00001 );
-      expect( results.lng ).to.be.closeTo( 10, 0.00001 );
+      expect( results.lat ).toBeCloseTo( 30, 5 );
+      expect( results.lng ).toBeCloseTo( 10, 5 );
 
-      spy.restore( googleLocationService );
+      searchSpy.mockRestore();
 
    } );
 

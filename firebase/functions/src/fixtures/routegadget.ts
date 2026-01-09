@@ -1,8 +1,8 @@
 import { LatLng } from "@googlemaps/google-maps-services-js";
-import { RGData } from "model/fixture";
+import { RGData } from "model/fixture.js";
 import request from "request-promise";
-import { RGSITES, RGSite } from "./routegadgetclubs";
-import { storage } from 'firebase-admin';
+import { RGSITES, RGSite } from "./routegadgetclubs.js";
+import { getStorage } from 'firebase-admin/storage';
 
 type RGFormat = 'a' | 'b';
 type RGType = 'I' | 'N' | 'R' | 'L' | 'T';
@@ -59,7 +59,7 @@ export class Routegadget {
    async initialiseFromCache() {
       let response: any;
         try {
-          const file = storage().bucket().file(this.CACHE_FILE_PATH );
+          const file = getStorage().bucket().file(this.CACHE_FILE_PATH );
           response = await file.download();
     
        } catch ( e ) {

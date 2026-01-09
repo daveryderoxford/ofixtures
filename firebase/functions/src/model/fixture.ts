@@ -1,6 +1,6 @@
-import { ISODateString } from './date';
-import { EventGrade, EventType, EventDiscipline } from './oevent';
-import { LatLong } from './latlng';
+import { ISODateString } from './date.js';
+import { EventGrade, EventType, EventDiscipline } from './oevent.js';
+import { LatLong } from './latlng.js';
 
 export interface Point {
    east:number;

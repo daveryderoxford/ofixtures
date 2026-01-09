@@ -1,7 +1,7 @@
 
 /** data associated with a user */
-import { GradeFilter } from "./fixture-filter";
-import { ControlCardType } from "./oevent";
+import { GradeFilter } from "./fixture-filter.js";
+import { ControlCardType } from "./oevent.js";
 
 export interface ECard {
     id: string;

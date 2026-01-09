@@ -1,12 +1,11 @@
-
-import * as admin from "firebase-admin";
-import * as functions from 'firebase-functions/v1';
+import functions from "firebase-functions";
+import { getAuth } from 'firebase-admin/auth';
 
 const SUPER_USER = "l8Rex76EDGTME2i44gbpcF7EKOH2";
 
 async function grantModeratorRole( email: string ) {
-   const user = await admin.auth().getUserByEmail( email );
-   await admin.auth().setCustomUserClaims( user.uid, { admin: true } );
+   const user = await getAuth().getUserByEmail( email );
+   await getAuth().setCustomUserClaims( user.uid, { admin: true } );
 }
 
 export const grantAdmin = functions.region( 'europe-west1' ).https.onCall( async ( data, context ) => {

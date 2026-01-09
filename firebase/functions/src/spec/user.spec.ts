@@ -1,8 +1,8 @@
-import { expect } from 'chai';
-import 'mocha';
-import { FixtureEntryDetails } from '../../src/model/entry';
-import { Entry } from '../../src/model/entry';
-import { iofXMLEntryList } from '../../src/entry/entry';
+import { describe, it } from 'vitest';
+import { FixtureEntryDetails } from '../../src/model/entry.js';
+import { Entry } from '../../src/model/entry.js';
+import { iofXMLEntryList } from '../../src/entry/entry.js';
+
 function makeEntry(e: Partial<Entry>): Entry {
     const entry: Entry = {
         id: e.id,

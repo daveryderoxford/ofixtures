@@ -1,6 +1,6 @@
 import { startOfDay, subDays } from 'date-fns';
 import * as admin from "firebase-admin";
-import { AdditionalFixture } from "model/fixture";
+import { AdditionalFixture } from "model/fixture.js";
 
 /** Read additonal fixtures from Firestore database */
 export async function readAdditionalFixtures(): Promise<AdditionalFixture[]> {
