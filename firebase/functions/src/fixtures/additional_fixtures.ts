@@ -1,12 +1,12 @@
 import { startOfDay, subDays } from 'date-fns';
-import * as admin from "firebase-admin";
+import { getFirestore } from 'firebase-admin/firestore';
 import { AdditionalFixture } from "model/fixture.js";
 
 /** Read additonal fixtures from Firestore database */
 export async function readAdditionalFixtures(): Promise<AdditionalFixture[]> {
 
    const queryStart = startOfDay(subDays(new Date(), 1)).toISOString();
-   const collecton = admin.firestore().collection('fixtures').where("date", ">", queryStart);
+   const collecton = getFirestore().collection('fixtures').where("date", ">", queryStart);
    
    const result = await collecton.get();
    return result.docs.map(

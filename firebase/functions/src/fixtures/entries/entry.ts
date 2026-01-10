@@ -1,7 +1,7 @@
 import { isAfter, isBefore, isSameDay, startOfDay } from "date-fns";
 import { EntryStatus, Fixture } from "model/fixture.js";
 import { Fabian } from "./fabian.js";
-import { RaceSignup } from "./racesignup.js";
+import { RaceSignupV2 } from './racesignup-v2.js';
 import { SIEntries } from "./si_entries.js";
 
 type EntrySource = 'Racesignup' | 'SIEntries' | 'Fabian';
@@ -24,7 +24,7 @@ export class Entries {
 
         let events: EntryData[] = [];
 
-        const rs = new RaceSignup();
+        const rs = new RaceSignupV2();
         events = events.concat(await rs.getEvents());
 
         const fabian = new Fabian();

@@ -33,7 +33,7 @@ export const createStripeCharge = functions.firestore
       const val = snap.data();
       try {
          // Look up the Stripe customer id written in createStripeCustomer
-         const snapshot = await admin.firestore().collection( `stripe_customers` ).doc( context.params.userId ).get();
+         const snapshot = await getFirestore().collection( `stripe_customers` ).doc( context.params.userId ).get();
          const snapval = snapshot.data();
          const customer = snapval.customer_id;
 
@@ -59,7 +59,7 @@ export const createStripeCharge = functions.firestore
 // When a user is created, register them with Stripe
 export const createStripeCustomer = functions.auth.user().onCreate( async ( user ) => {
    const customer = await stripe.customers.create( { email: user.email } );
-   return admin.firestore().collection( 'stripe_customers' ).doc( user.uid ).set( { customer_id: customer.id } );
+   return getFirestore().collection( 'stripe_customers' ).doc( user.uid ).set( { customer_id: customer.id } );
 } );
 
 // Add a payment source (card) for a user by writing a stripe payment source token to Cloud Firestore
@@ -74,10 +74,10 @@ export const addPaymentSource = functions.firestore
       }
 
       try {
-         const snapshot = await admin.firestore().collection( 'stripe_customers' ).doc( context.params.userId ).get();
+         const snapshot = await getFirestore().collection( 'stripe_customers' ).doc( context.params.userId ).get();
          const customer = snapshot.data().customer_id;
          const response = await stripe.customers.createSource( customer, { source: token } );
-         return admin.firestore().collection( 'stripe_customers' )
+         return getFirestore().collection( 'stripe_customers' )
                      .doc( context.params.userId )
                      .collection( "sources" )
                      .doc( response.fingerprint )
@@ -94,10 +94,10 @@ export const cleanupUser = functions
             .auth.user()
             .onDelete( async ( user ) => {
 
-   const snapshot = await admin.firestore().collection( 'stripe_customers' ).doc( user.uid ).get();
+   const snapshot = await getFirestore().collection( 'stripe_customers' ).doc( user.uid ).get();
    const customer = snapshot.data();
    await stripe.customers.del( customer.customer_id );
-   return admin.firestore().collection( 'stripe_customers' ).doc( user.uid ).delete();
+   return getFirestore().collection( 'stripe_customers' ).doc( user.uid ).delete();
 } );
 
 // To keep on top of errors, we should raise a verbose error report with Stackdriver rather

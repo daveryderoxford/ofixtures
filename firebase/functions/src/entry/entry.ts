@@ -1,6 +1,6 @@
-import * as admin from "firebase-admin";
 import * as functions from "firebase-functions/v1";
 import { Entry, FixtureEntryDetails } from "../model/entry.js";
+import { getFirestore } from 'firebase-admin/firestore';
 
 function userFacingMessage(err: Error): string {
    return "An error occurred saving this entry";
@@ -15,7 +15,7 @@ export const createEntry = functions.region( 'europe-west1' ).firestore
 0
       try {
          // Get associated fixture details and increment the number of entries and total entries
-         const fixSnapshot = await admin.firestore().collection(`entry`).doc(context.params.fixtureId).get();
+         const fixSnapshot = await getFirestore().collection(`entry`).doc(context.params.fixtureId).get();
          const fixture = fixSnapshot.data() as FixtureEntryDetails;
          const courses = fixture.courses;
 
@@ -47,7 +47,7 @@ export const deleteEntry = functions.region( 'europe-west1' ).firestore
 
       try {
          // Get associated fixture details and increment the number of entries and total entries
-         const fixSnapshot = await admin.firestore().collection(`entry`).doc(context.params.fixtureId).get();
+         const fixSnapshot = await getFirestore().collection(`entry`).doc(context.params.fixtureId).get();
          const fixture = fixSnapshot.data() as FixtureEntryDetails;
          const courses = fixture.courses;
 
@@ -75,7 +75,7 @@ export const changeClass = functions.region( 'europe-west1' ).firestore
 
       try {
          if (oldEntry.course !== newEntry.course) {
-            const fixSnapshot = await admin.firestore().collection(`entry`).doc(context.params.fixtureId).get();
+            const fixSnapshot = await getFirestore().collection(`entry`).doc(context.params.fixtureId).get();
             const fixture = fixSnapshot.data() as FixtureEntryDetails;
             const courses = fixture.courses;
 
@@ -156,7 +156,7 @@ export const exportEntryList = functions.region( 'europe-west1' ).https.onCall(a
    const format = data.format;
 
    // Get the entries details
-   const fixSnapshot = await admin.firestore().collection(`entry`).doc(eventId).get();
+   const fixSnapshot = await getFirestore().collection(`entry`).doc(eventId).get();
    const fixture = fixSnapshot.data() as FixtureEntryDetails;
 
    // Get entries

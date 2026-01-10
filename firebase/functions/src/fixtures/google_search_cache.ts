@@ -1,4 +1,4 @@
-import * as admin from "firebase-admin";
+import {getFirestore} from "firebase-admin/firestore";
 import { LatLong } from "model/latlng.js";
 
 const CACHE_COLLECTION = 'location_search_cache';
@@ -12,7 +12,7 @@ interface AddressLocationLookup {
 /** Read additonal fixtures from Firestore database */
 export async function findInGoogleSearchCache(address: string, club: string): Promise<LatLong | null> {
 
-   const collecton = admin.firestore().collection(CACHE_COLLECTION)
+   const collecton = getFirestore().collection(CACHE_COLLECTION)
       .where("address", "==", address)
       .where("club", "==", club);
 
@@ -33,7 +33,7 @@ export async function findInGoogleSearchCache(address: string, club: string): Pr
 
 export async function saveInGoogleSearchCache(address: string, club: string, latLong: LatLong): Promise<void> {
 
-   const doc = admin.firestore().collection(CACHE_COLLECTION).doc();
+   const doc = getFirestore().collection(CACHE_COLLECTION).doc();
    try {
       await doc.set({
          address: address,

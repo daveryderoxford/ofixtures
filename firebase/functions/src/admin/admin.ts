@@ -1,4 +1,4 @@
-import functions from "firebase-functions";
+import * as functions from "firebase-functions/v1";
 import { getAuth } from 'firebase-admin/auth';
 
 const SUPER_USER = "l8Rex76EDGTME2i44gbpcF7EKOH2";

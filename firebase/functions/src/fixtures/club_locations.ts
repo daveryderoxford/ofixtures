@@ -1,4 +1,4 @@
-import functions from "firebase-functions/v1";
+import * as functions from "firebase-functions/v1";
 import { Fixture } from "../model/fixture.js";
 import { LatLong } from "../model/latlng.js";
 import { clubLOcationsDefault } from "./club_locations_default.js";
