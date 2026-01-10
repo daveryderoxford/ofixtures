@@ -1,4 +1,4 @@
-import * as functions from "firebase-functions/v1";
+import { onRequest } from "firebase-functions/v2/https";
 import { Fixture } from "../model/fixture.js";
 import { LatLong } from "../model/latlng.js";
 import { clubLOcationsDefault } from "./club_locations_default.js";
@@ -40,10 +40,11 @@ export async function loadClubLocations(): Promise<ClubLocation[]> {
 /** Determine the location for a club based on the mean location for all current fixtures for the club
  * The event location is constained ot the in the UK and based on grid ref/postcode/google area search
  */
-export const determineClubLocatons = functions.region( 'europe-west1' ).https.onRequest( async ( req, res ) => {
+export const clubLocations = onRequest( async ( req, res ) => {
    const fixtures = await readFixtures();
    const locations = clubLocationFromFixtures( fixtures );
    await saveToStorage( locations );
+   res.send("Club locations updated");
 } );
 
 const UK_BOUNDING_BOX = { latmin: 48.500, longmin: -13.683, latmax: 64.067, longmax: 3.858 };

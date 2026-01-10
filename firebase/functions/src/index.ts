@@ -1,36 +1,35 @@
 /**
  * OFixtures Google clould functions exports
  */
-import { initializeApp } from "firebase-admin/app";
-import * as functions from 'firebase-functions/v1';
-import * as sysAdmin from "./admin/admin.js";
-import * as entry from "./entry/entry.js";
-import { Fixtures } from "./fixtures/fixtures.js";
-import * as user from "./user/user.js";
-import * as clubs from "./fixtures/club_locations.js";
-import { getStorage } from 'firebase-admin/storage';
+import "./firebase-config.js";
+import { getApps, initializeApp } from "firebase-admin/app";  
 
-const firebaseAdmin = initializeApp();
+// Ensure app is only initialise once 
+// This is required to test functions using the emulator
+if (getApps().length === 0) {
+   const app = initializeApp();
+   console.log(`Initialized Firebase app: ${app.name}`);
+}
 
-/** Run to perfrom maintenance tasks once/day at 16:00 */
-export const maintenance = functions.region( 'europe-west1' ).pubsub.schedule( 'every day 16:00' ).timeZone( 'GB' ).onRun( async ( context ) => {
+export { 
+   grantAdmin 
+} from "./admin/admin.js";
 
-   console.log( "Maintenance task starting");
+export { 
+   changeEntry, 
+   createEntry, 
+   deleteEntry
+} from "./entry/entry.js";
 
-   try {
-      await new Fixtures(getStorage()).processFixtures();
-   } catch ( e ) {
-      console.error( "Maintainance task error:  " + e.toString() );
-   }
-});
+export { 
+   createUser, 
+   deleteUser 
+} from "./user/user.js";
 
-export const grantAdmin = sysAdmin.grantAdmin;
+export { 
+   clubLocations 
+} from "./fixtures/club_locations.js";
 
-export const createEntry = entry.createEntry;
-export const deleteEntry = entry.deleteEntry;
-export const changeEntry = entry.changeClass;
-
-export const createUsder = user.createUser;
-export const deleteUsder = user.deleteUser;
-
-export const clubLocations = clubs.determineClubLocatons;
+export { 
+   maintenance 
+} from "./maintenance-task.js";

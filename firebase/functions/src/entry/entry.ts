@@ -1,4 +1,5 @@
-import * as functions from "firebase-functions/v1";
+import { onDocumentCreated, onDocumentDeleted, onDocumentUpdated } from "firebase-functions/v2/firestore";
+import { onCall, HttpsError } from "firebase-functions/v2/https";
 import { Entry, FixtureEntryDetails } from "../model/entry.js";
 import { getFirestore } from 'firebase-admin/firestore';
 
@@ -6,16 +7,15 @@ function userFacingMessage(err: Error): string {
    return "An error occurred saving this entry";
 }
 
-export const createEntry = functions.region( 'europe-west1' ).firestore
-   .document('entry/{fixtureId}/entries/{id}')
-   .onCreate(async (snap, context) => {
+export const createEntry = onDocumentCreated( 'entry/{fixtureId}/entries/{id}', async ( event ) => {
       // Increment the number of entries by one for the course in the fixture
 
+      const snap = event.data;
+      if ( !snap ) { return; }
       const entry = snap.data() as Entry;
-0
       try {
          // Get associated fixture details and increment the number of entries and total entries
-         const fixSnapshot = await getFirestore().collection(`entry`).doc(context.params.fixtureId).get();
+         const fixSnapshot = await getFirestore().collection(`entry`).doc(event.params.fixtureId).get();
          const fixture = fixSnapshot.data() as FixtureEntryDetails;
          const courses = fixture.courses;
 
@@ -35,19 +35,19 @@ export const createEntry = functions.region( 'europe-west1' ).firestore
 
       } catch (err) {
          await snap.ref.update({ 'error': userFacingMessage(err) });
-         return console.error("Error when creating entry", { fixture: context.params.id, err: JSON.stringify(err) });
+         return console.error("Error when creating entry", { fixture: event.params.id, err: JSON.stringify(err) });
       }
    });
 
 /** When a course entry is deleted free up a map.  Do not decrement the last entry number  */
-export const deleteEntry = functions.region( 'europe-west1' ).firestore
-   .document('entry/{fixtureId}/entries/{id}')
-   .onDelete(async (snap, context) => {
+export const deleteEntry = onDocumentDeleted( 'entry/{fixtureId}/entries/{id}', async ( event ) => {
+      const snap = event.data;
+      if ( !snap ) { return; }
       const entry = snap.data() as Entry;
 
       try {
          // Get associated fixture details and increment the number of entries and total entries
-         const fixSnapshot = await getFirestore().collection(`entry`).doc(context.params.fixtureId).get();
+         const fixSnapshot = await getFirestore().collection(`entry`).doc(event.params.fixtureId).get();
          const fixture = fixSnapshot.data() as FixtureEntryDetails;
          const courses = fixture.courses;
 
@@ -63,19 +63,19 @@ export const deleteEntry = functions.region( 'europe-west1' ).firestore
 
       } catch (err) {
          await snap.ref.update({ 'error': userFacingMessage(err) });
-         return console.error("Error when deteting entry", { fixture: context.params.id, err: JSON.stringify(err) });
+         return console.error("Error when deteting entry", { fixture: event.params.id, err: JSON.stringify(err) });
       }
    });
 
-export const changeClass = functions.region( 'europe-west1' ).firestore
-   .document('entry/{fixtureId}/entries/{id}')
-   .onUpdate(async (change, context) => {
+export const changeEntry = onDocumentUpdated( 'entry/{fixtureId}/entries/{id}', async ( event ) => {
+      const change = event.data;
+      if ( !change ) { return; }
       const oldEntry = change.before.data() as Entry;
       const newEntry = change.after.data() as Entry;
 
       try {
          if (oldEntry.course !== newEntry.course) {
-            const fixSnapshot = await getFirestore().collection(`entry`).doc(context.params.fixtureId).get();
+            const fixSnapshot = await getFirestore().collection(`entry`).doc(event.params.fixtureId).get();
             const fixture = fixSnapshot.data() as FixtureEntryDetails;
             const courses = fixture.courses;
 
@@ -95,7 +95,7 @@ export const changeClass = functions.region( 'europe-west1' ).firestore
 
       } catch (err) {
          await change.after.ref.update({ 'error': userFacingMessage(err) });
-         return console.error("Error when changing entry", { fixture: context.params.id, err: JSON.stringify(err) });
+         return console.error("Error when changing entry", { fixture: event.params.id, err: JSON.stringify(err) });
       }
    });
 
@@ -150,10 +150,10 @@ export function iofXMLEntryList(fix: FixtureEntryDetails, entries: Entry[]): str
 }
 
 /** Returns entry ist for a specific event in a given format */
-export const exportEntryList = functions.region( 'europe-west1' ).https.onCall(async (data, context: functions.https.CallableContext) => {
+export const exportEntryList = onCall( async ( request ) => {
 
-   const eventId = data.eventId;
-   const format = data.format;
+   const eventId = request.data.eventId;
+   const format = request.data.format;
 
    // Get the entries details
    const fixSnapshot = await getFirestore().collection(`entry`).doc(eventId).get();
@@ -168,7 +168,7 @@ export const exportEntryList = functions.region( 'europe-west1' ).https.onCall(a
    if (format === "IOFXML") {
       text = iofXMLEntryList(fixture, entries);
    } else {
-      throw new functions.https.HttpsError('invalid-argument', 'Invalid file format spcifed ');
+      throw new HttpsError('invalid-argument', 'Invalid file format specified ');
    }
 
    return text;
@@ -251,5 +251,3 @@ export const exportEntryList = functions.region( 'europe-west1' ).https.onCall(a
   </PersonEntry>
 </EntryList>
   */
-
-

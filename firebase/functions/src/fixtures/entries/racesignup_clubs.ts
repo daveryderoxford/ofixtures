@@ -22,6 +22,10 @@ export const raceSignupClubs: RaceSignupClub[] = [
         racesignup: 'mln-o' 
     },
     {
+        shortName: 'baoc',
+        racesignup: 'mln-new'
+    },
+    {
         shortName: 'bko',
         racesignup: 'bkolong'
     },  
@@ -86,6 +90,10 @@ export const raceSignupClubs: RaceSignupClub[] = [
         racesignup: 'essexstragglers'
     },
     {
+        shortName: 'halo',
+        racesignup: 'halo'
+    },
+    {
         shortName: 'havoc',
         racesignup: 'havoc'
     },
@@ -100,6 +108,10 @@ export const raceSignupClubs: RaceSignupClub[] = [
     {
         shortName: 'nwo',
         racesignup: 'nwo'
+    },
+    {
+        shortName: 'ouoc',
+        racesignup: 'ouoc'
     },
     {
         shortName: 'qo',

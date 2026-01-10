@@ -1,8 +1,11 @@
 /*  Uses Googe geoocation API to convert ;pcations to
 */
 import { Client, Status } from "@googlemaps/google-maps-services-js";
-import { LatLong } from "model/latlng.js";
+import { defineString } from "firebase-functions/params";
+import { LatLong } from "../model/latlng.js";
 import { getDistanceFromLatLngInKm } from "./geo_conversion.js";
+
+const googleMapsApiKey = defineString("GOOGLE_MAPS_API_KEY");
 
 export const googleLocationService = new Client({});
 
@@ -21,7 +24,7 @@ export async function googleLocationSearch(address: string, targetLocation: LatL
          params: {
             address: address,
             region: 'uk',
-            key: process.env.GOOGLE_MAPS_API_KEY,
+            key: googleMapsApiKey.value(),
          },
          timeout: 1000, // milliseconds
       });
