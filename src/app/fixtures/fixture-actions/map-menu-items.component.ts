@@ -1,33 +1,29 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Fixture, LatLong } from 'app/fixtures/@store/fixture';
-import { GoogleURLPipe, GoogleDirectionsURLPipe, BingURLPipe, StreetmapURLPipe } from '../fixture-pipes';
+import { GoogleURLPipe, BingURLPipe, OSMapURLPipe } from '../fixture-pipes';
 import { ExternalLinkIconComponent } from '../../shared/components/external-link-icon.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { input } from "@angular/core";
 
 @Component({
-    selector: 'app-map-menu-items',
-    template: `
+  selector: 'app-map-menu-items',
+  template: `
       <!-- Exclude maps for fixtures where the location is just obtained from the club --> 
       @if (fixture().latLong && fixture().locSource !== 'club') {
 
-      <!-- For OS maps, use streetmap for moble and bing for desktop -->
-      @if (handset()) {
-        <a  mat-menu-item href="{{fixture() | streetmapURL}}" target="_blank">
+        <a  mat-menu-item href="{{fixture() | osMapURL}}" target="_blank">
           OS map
           <app-external-link-icon></app-external-link-icon>
         </a>
-      }  @else {
-
-        <a  mat-menu-item href="{{fixture() | bingURL}}" target="_blank">
-          OS map
-          <app-external-link-icon/>
-        </a>
-        }
 
         <a mat-menu-item href="{{fixture() | googleURL}}" target="_blank">
           Google map
           <app-external-link-icon></app-external-link-icon>
+        </a>
+
+        <a  mat-menu-item href="{{fixture() | bingURL}}" target="_blank">
+          Bing map
+          <app-external-link-icon/>
         </a>
         
       }
@@ -39,9 +35,9 @@ import { input } from "@angular/core";
       </a>
       }
   `,
-    styles: [],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatMenuModule, ExternalLinkIconComponent, GoogleURLPipe, BingURLPipe, StreetmapURLPipe]
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [MatMenuModule, ExternalLinkIconComponent, GoogleURLPipe, BingURLPipe, OSMapURLPipe]
 })
 export class MapMenuItemsComponent {
 

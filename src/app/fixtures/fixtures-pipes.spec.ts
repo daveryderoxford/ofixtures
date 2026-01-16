@@ -55,18 +55,6 @@ describe('FixturePipes', () => {
         expect(url).toBe('https://www.bing.com/maps/?cp=10~20&lvl=15&style=s&sp=10_20_Area');
     });
 
-
-    it('StreetmapURLPipe should create correct URL', () => {
-        const pipe = new StreetmapURLPipe();
-        const url = pipe.transform(dummyFixture);
-
-        expect(url).toBe('https://streetmap.co.uk/loc/N10,E20');
-
-        const negLongFixture = { ...dummyFixture, latLong: { lat: 10, lng: -20 } };
-
-        expect(pipe.transform(negLongFixture)).toBe('https://streetmap.co.uk/loc/N10,W20');
-    });
-
     it('FixtureDatePipe should transform date correctly', () => {
         const pipe = new FixtureDatePipe();
         // Today

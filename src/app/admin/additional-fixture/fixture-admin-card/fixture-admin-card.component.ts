@@ -13,7 +13,6 @@ import { AdditionalFixture } from 'app/fixtures/@store/fixture';
 import { DialogsService } from 'app/shared';
 import { AdditionalFixtureService } from '../@store/additional-fixture.service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { AuthService } from 'app/auth/auth.service';
 
 @Component({
     selector: 'app-fixture-admin-card',
@@ -24,7 +23,6 @@ import { AuthService } from 'app/auth/auth.service';
 })
 export class FixtureAdminCardComponent  {
   protected fs = inject(AdditionalFixtureService);
-  private auth = inject(AuthService);
   private router = inject(Router);
   private ds = inject(DialogsService);
 
