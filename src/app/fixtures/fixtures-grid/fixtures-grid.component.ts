@@ -23,7 +23,7 @@ import { EllipsisPipe } from '../../shared/pipes/ellipsis-pipe';
 import { EnterButtonComponent } from '../enter-button/enter-button.component';
 import { FixtureActionsComponent } from '../fixture-actions/fixture-actions.component';
 import { MapMenuItemsComponent } from '../fixture-actions/map-menu-items.component';
-import { FixtureDatePipe, FixtureDistanceColorPipe, FixtureDistancePipe, GradeIconNamePipe, LocationPipe } from '../fixture-pipes';
+import { FixtureDatePipe, FixtureDistanceColorPipe, FixtureDistancePipe, GradeIconNamePipe, LocationPipe } from './fixtures-grid-pipes';
 import { LikedIcon } from './liked-icon';
 
 interface StyledFixture extends Fixture {

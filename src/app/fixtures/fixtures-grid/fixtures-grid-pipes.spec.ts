@@ -1,6 +1,6 @@
-import { LocationPipe, GoogleDirectionsURLPipe, GoogleURLPipe, BingURLPipe, StreetmapURLPipe, FixtureDatePipe, FixtureDistancePipe, FixtureDistanceColorPipe, LikedPipe, GradeIconNamePipe } from './fixture-pipes';
 import { Fixture, LatLong } from 'app/fixtures/@store/fixture';
 import { describe, expect, it } from 'vitest';
+import { FixtureDatePipe, FixtureDistanceColorPipe, FixtureDistancePipe, GradeIconNamePipe, LikedPipe, LocationPipe } from './fixtures-grid-pipes';
 
 describe('FixturePipes', () => {
 
@@ -32,28 +32,6 @@ describe('FixturePipes', () => {
         expect(pipe.transform(longFixture)).toBe(`${longAreaName},&nbsp;&nbsp;&nbsp;<b>Postcode</b>`);
     });
 
-    it('GoogleDirectionsURLPipe should create correct URL', () => {
-        const pipe = new GoogleDirectionsURLPipe();
-        const homeLocation: LatLong = { lat: 1, lng: 2 };
-        const url = pipe.transform(dummyFixture, homeLocation);
-        expect(url).toBe('https://www.google.com/maps/dir/?api=1&origin=1,2&destination= 10,20');
-    });
-
-
-    it('GoogleURLPipe should create correct URL', () => {
-        const pipe = new GoogleURLPipe();
-        const url = pipe.transform(dummyFixture);
-
-        expect(url).toBe('https://www.google.com/maps/search/?api=1&query=10,20&query_place_id=Area&zoom=11');
-    });
-
-
-    it('BingURLPipe should create correct URL', () => {
-        const pipe = new BingURLPipe();
-        const url = pipe.transform(dummyFixture);
-
-        expect(url).toBe('https://www.bing.com/maps/?cp=10~20&lvl=15&style=s&sp=10_20_Area');
-    });
 
     it('FixtureDatePipe should transform date correctly', () => {
         const pipe = new FixtureDatePipe();
