@@ -1,0 +1,48 @@
+
+:host {
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+}
+
+.handset {
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+}
+
+.loading {
+   padding: 20px;
+}
+
+.spacer {
+   flex: 1 1 auto;
+}
+
+.mobile-filter {
+   margin: 15px 15px 4px 15px;
+   display: flex;
+   flex-direction: column;
+   padding: 8px;
+}
+
+.mobile-map-container {
+   display: flex;
+   flex-direction: column;
+   flex: 1;
+}
+
+.selected-fixture-grid {
+   flex: 0 0 96px;
+}
+
+.select-fixture-placeholder {
+   height: 30px;
+   text-align: center;
+   color: rgba(0,0,0,0.54);
+   background-color: white;
+}
+
+.flex-1 {
+  flex: 1;
+}

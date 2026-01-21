@@ -1,12 +1,8 @@
-
 @if (styledFixtures().length === 0) {
     <span class="loading">No fixtures to display</span>
 } @else {
 
-  <cdk-virtual-scroll-viewport fxFill [itemSize]="itemsize()" minBufferPx="380" maxBufferPx="380">
-
-    <!-- Large Screen -->
-    @if (!handset()) {
+  <cdk-virtual-scroll-viewport fxFill [itemSize]="itemsize" minBufferPx="380" maxBufferPx="380">
     <table class="table">
       <thead>
         <tr class="white">
@@ -63,20 +59,20 @@
             <mat-icon [svgIcon]="fixture.grade | gradeIconName" class="handset-icon-size"></mat-icon>
           </td>
           <td class="location text-cell">
-            <!-- to allow multipe spaces -->
+            <!-- to allow multiple spaces -->
             <span [innerHTML]="fixture | location"></span>
           </td>
           <td class="maps">
             @if (fixture.latLong && fixture.locSource !== 'club') {
-            <a mat-button iconPositionEnd color=link [matMenuTriggerFor]="mapMenu">Maps
-              <mat-icon iconPositionEnd class=mat-link>arrow_drop_down</mat-icon>
-            </a>
-            <mat-menu #mapMenu="matMenu">
-              <ng-template matMenuContent>
-                <app-map-menu-items [fixture]="fixture" [homeLocation]="homeLocation()"
-                  [handset]="handset()"></app-map-menu-items>
-              </ng-template>
-            </mat-menu>
+              <a mat-button iconPositionEnd color=link [matMenuTriggerFor]="mapMenu">Maps
+                <mat-icon iconPositionEnd class=mat-link>arrow_drop_down</mat-icon>
+              </a>
+              <mat-menu #mapMenu="matMenu">
+                <ng-template matMenuContent>
+                  <app-map-menu-items [fixture]="fixture" [homeLocation]="homeLocation()"
+                    [handset]="false"></app-map-menu-items>
+                </ng-template>
+              </mat-menu>
             }
           </td>
           <td class="omaps center">
@@ -86,53 +82,12 @@
           </td>
           <td class="menu">
             @defer {
-            <app-fixture-actions [fixture]="fixture" [handset]="handset()"
+            <app-fixture-actions [fixture]="fixture" [handset]="false"
               [homeLocation]="homeLocation()"></app-fixture-actions>
             }
           </td>
         </tr>
       </tbody>
     </table>
-    }
-
-    <!-- Handset -->
-     @defer {
-    @if (handset()) {
-    <mat-list fxFill class="white">
-      <mat-list-item (click)="actions.openMenu()" *cdkVirtualFor="let fixture of styledFixtures()"
-        [class.shaded]="fixture?.shaded">
-        <div matListItemLine>
-          <span fxFlex=50>{{fixture.date | fixturedate }}</span>
-          <span fxFlex=30> {{fixture.club}}</span>
-          @if (fixture.distance !== -1;) {
-          <span fxFlex [style.color]="fixture.distance | distancecolor">
-            {{fixture.distance}}miles
-          </span>
-          }
-        </div>
-        <div matListItemLine>
-          {{fixture.name | ellipsis:35}}
-        </div>
-        <div matListItemLine>
-          {{fixture.area | ellipsis: 30}}
-          <span fxFlex></span>
-          @if (fixture.entryURL) {
-          <mat-icon class="black handset-icon-size">person</mat-icon>
-          }
-          @defer {
-            <app-liked-icon [fixture]="fixture" [loggedIn]="loggedIn()" [handset]="true"/>
-          }
-          <mat-icon [svgIcon]="fixture.grade | gradeIconName" class="handset-icon-size"></mat-icon>
-        </div>
-        <div matListItemMeta>
-          <app-fixture-actions #actions [handset]="handset()" [fixture]="fixture" [homeLocation]="homeLocation()">
-          </app-fixture-actions>
-        </div>
-        <mat-divider />
-      </mat-list-item>
-    </mat-list>
-    }
-  }
-
   </cdk-virtual-scroll-viewport>
 }

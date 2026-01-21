@@ -1,0 +1,54 @@
+  @if (fixtureGroup()) {
+    @defer (on immediate) {
+      <app-league-header [league]="fixtureGroup()!" />
+    } @placeholder {
+      <app-toolbar title=""/>
+    }
+  }
+  <as-split direction="vertical">
+    <!-- Fixture map with controls - loading defered -->
+    <as-split-area class="relative">
+      @defer (on immediate) {
+        <app-sidenav-button class="top-left" />
+        <app-control-panel class="top-left-2">
+          <app-postcode [postcode]="postcode()" (postcodeChanged)="postcodeChanged($event)" />
+        </app-control-panel>
+
+        @if (!fixtureGroup()) {
+          <app-fixtures-options class="top-right mat-elevation-z2" [filter]="filter()"
+            (filterChanged)="filterChanged($event)" />
+          <app-fixture-search class="search-position mat-elevation-z" />
+        }
+
+        <app-fixtures-map 
+           [fixtures]="fixtures()" 
+           [homeLocation]="homeLocation()" 
+           [selectedFixture]="selectedFixture()"
+           [zoomBounds]="zoomBounds()" 
+           (fixtureSelected)="mapFixtureSelected($event)" />
+
+      } @placeholder {
+        <app-loading-centered />
+      }
+    </as-split-area>
+
+    <!-- Large table with data loading spinner -->
+    <as-split-area>
+
+      @if (loading()) {
+        <app-loading-centered message="Loading" />
+      } @else if (fs.error()) {
+        <span class="loading">Error loading fixtures<br>Refresh page to retry</span>
+      } @else {
+
+        <app-fixtures-table 
+          [fixtures]="fixtures()" 
+          [entries]="entries()" 
+          [userEntries]="userEntries()"
+          [homeLocation]="homeLocation()" 
+          [selectedFixture]="selectedFixture()"
+          [loggedIn]='auth.loggedIn()' 
+          (fixtureSelected)="gridFixtureSelected($event)" />
+      }
+    </as-split-area>
+  </as-split>

@@ -1,13 +1,11 @@
-<app-spinner [loading]="loading()" />
-
 <mat-sidenav-container class="fullscreen">
 
-  <mat-sidenav>
-    @defer {
+  <mat-sidenav #sidenav>
+    @defer (when sidenav.opened) {
       <app-sidenav-menu (close)="closeSidenav()"/>
-  } @placeholder {
-      Loading...
-  }
+    } @placeholder {
+      <div style="padding: 20px">Loading...</div>
+    }
 
   </mat-sidenav>
   

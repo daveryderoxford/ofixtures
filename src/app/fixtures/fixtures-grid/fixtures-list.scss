@@ -1,0 +1,25 @@
+.loading {
+   padding: 20px;
+   display: flex;
+   justify-content: center;
+}
+
+.shaded {
+   background-color: rgb(235, 235, 235);
+}
+
+.white {
+   background-color: rgb(255, 255, 255);
+}
+
+.handset-icon-size {
+   transform: scale(0.8);
+}
+
+.black {
+   color: black;
+}
+
+mat-icon {
+   color: rgb(180, 180, 180);
+}

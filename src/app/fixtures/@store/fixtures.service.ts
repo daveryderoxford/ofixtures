@@ -3,8 +3,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { Storage, ref, getDownloadURL } from "@angular/fire/storage";
 import { Fixture, LatLong } from 'app/fixtures/@store/fixture';
-import { isFuture, isToday } from 'date-fns';
-import { Observable, firstValueFrom, of, from } from 'rxjs';
+import { Observable, firstValueFrom, of, from, concat, EMPTY } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { LocalStorageLocationData, LocalStorageService } from './local-storage';
 
@@ -25,10 +24,19 @@ export class FixturesService {
    private _homeLocation = signal<LatLong>(FixturesService.DEFAULT_LATLNG);
    readonly homeLocation = this._homeLocation.asReadonly();
 
-   private _fileContents$: Observable<Fixture[]> = from(getDownloadURL(ref(this.storage, "fixtures/uk"))).pipe(
+   private _recent$ = from(getDownloadURL(ref(this.storage, "fixtures/uk-recent"))).pipe(
+      switchMap(url => this.http.get<Fixture[]>(url)),
+      map(fixtures => futureFixtures(fixtures)),
+      catchError(() => EMPTY) // If recent file missing, skip to full load
+   );
+
+   private _full$ = from(getDownloadURL(ref(this.storage, "fixtures/uk"))).pipe(
       switchMap(url => this.http.get<Fixture[]>(url)),
       map(fixtures => futureFixtures(fixtures)),
    );
+
+   // Load recent first, then replace with full list when available
+   private _fileContents$: Observable<Fixture[]> = concat(this._recent$, this._full$);
 
    rawFixtures = rxResource<Fixture[], boolean>({
       stream: () => this._fileContents$,
@@ -138,8 +146,10 @@ function distanceFromHome(fix: Fixture, home: LatLong): number {
 }
 
 function futureFixtures(fixtures: Fixture[]): Fixture[] {
+   const today = new Date();
+   today.setHours(0, 0, 0, 0);
    return fixtures.filter(fix => {
       const d = new Date(fix.date);
-      return isToday(d) || isFuture(d);
+      return d >= today;
    });
 }

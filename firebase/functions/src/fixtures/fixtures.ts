@@ -13,6 +13,8 @@ import { LatLong as LatLongPIO, PostCodeLookup } from "./postcode.js";
 import { Routegadget } from "./routegadget.js";
 import { findAddressLocation } from './address_search.js';
 
+const NUM_RECENT_FIXTURES = 100;
+
 export class Fixtures {
    readonly BOFPDAURL =
       "https://www.britishorienteering.org.uk/event_diary_pda.php";
@@ -252,30 +254,35 @@ export class Fixtures {
       await entry.addEntries(fixtures);
    }
 
+   private async saveFile(filename: string, fileData: Fixture[]) {
 
-   /** Save fixtures JSON file to Google Storage */
-   private async saveToStorage(fixtures: Fixture[]): Promise<void> {
-      const filename = "fixtures/uk";
+      const bucket = this.storage.bucket();
 
       try {
-         const file = this.storage.bucket().file(filename);
-         // console.log( "Saving fixture file.  Bucket: " + file.bucket.name + "   File name: " +  file.name);
-
-         const data = JSON.stringify(fixtures);
-         // console.log( "Saving data file:" + data);
+         const file = bucket.file(filename);
+         const json = JSON.stringify(fileData);
 
          const options = {
             gzip: true,
             contentType: "application/json",
-            metadata: { cacheControl: "public, max-age=86400, no-transform" }
+            metadata: { cacheControl: "public, max-age=300, stale-while-revalidate=86400" }
          };
 
-         await file.save(data, options);
-
+         await file.save(json, options);
       } catch (e) {
-         console.error("Fixtures: Error saving fixtures to clould storage: " + e);
+         console.error(`Fixtures: Error saving ${filename} to cloud storage: ` + e);
          throw e;
       }
+   };
+
+
+   /** Save fixtures JSON file to Google Storage */
+   private async saveToStorage(fixtures: Fixture[]): Promise<void> {
+
+      await this.saveFile("fixtures/uk", fixtures);
+      
+      const recent = fixtures.slice(0, NUM_RECENT_FIXTURES);
+      await this.saveFile("fixtures/uk-recent", recent);
    }
 
    public async loadBOFPDA(): Promise<string> {

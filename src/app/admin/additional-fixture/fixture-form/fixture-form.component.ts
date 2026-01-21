@@ -14,7 +14,7 @@ import { FormContainerComponent } from "../../../shared/components/form-containe
 import { ToolbarComponent } from '../../../shared/components/toolbar.component';
 import { DateFnsAdapter, MAT_DATE_FNS_FORMATS, provideDateFnsAdapter } from '@angular/material-date-fns-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { enGB } from 'date-fns/locale';
+import enGB from 'date-fns/locale/en-GB';
 import { EventDiscipline, eventDisciplines, EventGrade, eventGrades, EventType, eventTypes } from 'app/oevent/oevent';
 
 @Component({
@@ -81,4 +81,3 @@ export class FixtureFormComponent {
     return !this.form.dirty;
   }
 }
-

@@ -1,0 +1,70 @@
+<div class="handset">
+  @if (fixtureGroup()) {
+      @defer (on viewport) {
+        <app-league-header [league]="fixtureGroup()!" />
+      } @placeholder {
+        <app-toolbar title=""/>
+      }
+  }
+  <!-- Mobile Toolbar -->
+  <app-toolbar title="">
+    <span class="spacer"></span>
+    <button mat-icon-button matTooltip="List View" (click)="mobileView.set('list')">
+      <mat-icon>list</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="Map View" (click)="mobileView.set('map')">
+      <mat-icon>map</mat-icon>
+    </button>
+    <button mat-button (click)="toggleMobileFilter()">
+      FILTER
+      @if (showMobleFilter()) {
+        <mat-icon>arrow_drop_up</mat-icon>
+      } @else {
+        <mat-icon>arrow_drop_down</mat-icon>
+      }
+    </button>
+  </app-toolbar>
+  
+  <!-- Mobile filter -->
+  @if (showMobleFilter()) {
+    @defer (on idle) {
+      <div class="mat-elevation-z2 mobile-filter">
+         <app-postcode [postcode]="postcode()" (postcodeChanged)="postcodeChanged($event)" />
+         @if (!fixtureGroup()) {
+         <app-fixtures-options [filter]="filter()" (filterChanged)="filterChanged($event)" />
+         }
+      </div>
+   }
+    <mat-divider />
+  }
+  @if (loading()) {
+    <app-loading-centered message="Loading" />
+  } @else if(fs.error()) {
+    <span class="loading">Error loading fixtures<br>Refresh page to retry</span>
+  } @else {
+  @if (mobileView() === 'list') {
+  <!-- Mobile List view -->
+    <app-fixtures-list class="flex-1" [fixtures]="fixtures()" [homeLocation]="homeLocation()"
+      [selectedFixture]="displayedSelection()" (fixtureSelected)="gridFixtureSelected($event)" />
+  } @else {
+  <!-- Mobile map view-->
+  <div class="mobile-map-container">
+    <mat-divider />
+   @defer (on idle) {
+      @if (selectedFixture()) {
+         <app-fixtures-list class="selected-fixture-grid" [fixtures]="[selectedFixture()!]" [homeLocation]="homeLocation()"
+            [selectedFixture]="selectedFixture()" (fixtureSelected)="gridFixtureSelected($event)" />
+      } @else {
+         <div class="select-fixture-placeholder">
+            Select fixture to display its details
+         </div>
+      }
+      <app-fixtures-map class="flex-1" [fixtures]="fixtures()" [homeLocation]="homeLocation()"
+        [selectedFixture]="selectedFixture()" (fixtureSelected)="mapFixtureSelected($event)" />
+    } @placeholder {
+      <app-loading-centered />
+    }
+  </div>
+  }
+  }
+</div>

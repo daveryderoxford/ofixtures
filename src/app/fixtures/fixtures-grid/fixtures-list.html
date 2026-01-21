@@ -1,0 +1,39 @@
+@if (styledFixtures().length === 0) {
+   <span class="loading">No fixtures to display</span>
+} @else {
+<cdk-virtual-scroll-viewport fxFill [itemSize]="itemsize" minBufferPx="380" maxBufferPx="380">
+   <mat-list fxFill class="white">
+      <mat-list-item (click)="actions.openMenu()" *cdkVirtualFor="let fixture of styledFixtures()"
+         [class.shaded]="fixture?.shaded">
+         <div matListItemLine>
+            <span fxFlex=50>{{fixture.date | fixturedate }}</span>
+            <span fxFlex=30> {{fixture.club}}</span>
+            @if (fixture.distance !== -1;) {
+            <span fxFlex [style.color]="fixture.distance | distancecolor">
+               {{fixture.distance}}miles
+            </span>
+            }
+         </div>
+         <div matListItemLine>
+            {{fixture.name | ellipsis:35}}
+         </div>
+         <div matListItemLine>
+            {{fixture.area | ellipsis: 30}}
+            <span fxFlex></span>
+            @if (fixture.entryURL) {
+              <mat-icon class="black handset-icon-size">person</mat-icon>
+            }
+            @defer (on idle) { 
+              <app-liked-icon [fixture]="fixture" [loggedIn]="loggedIn()" [handset]="true" />
+            }
+            <mat-icon [svgIcon]="fixture.grade | gradeIconName" class="handset-icon-size"></mat-icon>
+         </div>
+         <div matListItemMeta>
+            <app-fixture-actions #actions [handset]="true" [fixture]="fixture" [homeLocation]="homeLocation()">
+            </app-fixture-actions>
+         </div>
+         <mat-divider />
+      </mat-list-item>
+   </mat-list>
+</cdk-virtual-scroll-viewport>
+}

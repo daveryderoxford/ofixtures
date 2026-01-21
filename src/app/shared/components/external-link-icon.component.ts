@@ -8,8 +8,4 @@ import { MatIconModule } from '@angular/material/icon';
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [MatIconModule]
 })
-export class ExternalLinkIconComponent implements OnInit {
-  ngOnInit(): void {
-  }
-
-}
+export class ExternalLinkIconComponent{}
