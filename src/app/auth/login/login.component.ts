@@ -11,7 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
-import { ToolbarComponent } from 'app/shared/components/toolbar.component';
+import { AppToolbar } from 'app/shared/components/app-toolbar';
 
 export type AuthType = "EmailAndPassword" | "Google" | "Facebook";
 
@@ -27,7 +27,7 @@ const isInStandaloneMode = () =>
    selector: 'app-login',
    templateUrl: './login.component.html',
    styleUrls: ['./login.component.scss'],
-   imports: [MatCardModule, ToolbarComponent, FlexModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterLink]
+   imports: [MatCardModule, AppToolbar, FlexModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterLink]
 })
 export class LoginComponent implements OnInit {
    private route = inject(ActivatedRoute);

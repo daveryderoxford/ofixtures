@@ -3,10 +3,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Fixture } from 'app/fixtures/@store/fixture';
-import { UserDataService } from 'app/user/@store/user-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginSnackbarService } from 'app/shared/services/login-snackbar.service';
 import { AuthService } from 'app/auth/auth.service';
+import { UserDataService } from 'app/user/@store/user-data.service';
 
 @Component({
   selector: 'app-liked-icon',

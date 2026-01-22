@@ -1,0 +1,26 @@
+<div  fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="7px" class="container">
+  <div>
+    @defer {
+    <mat-button-toggle #likedToggle disableRipple [checked]="this.outputFilter.likedOnly"
+      (change)="likeClicked($event)">
+         <mat-icon [class]="likedToggle.checked ? 'red': 'gray' ">favorite</mat-icon>
+      Liked only
+    </mat-button-toggle>
+  } @placeholder {
+        <mat-button-toggle disableRipple>
+          <mat-icon class='gray'>favorite</mat-icon>
+          Liked only
+        </mat-button-toggle>
+  }
+  </div>
+
+  <app-fixture-week-filter [timeFilter]="outputFilter.time" (filterChanged)="timeFilterChanged($event)"/>
+
+  <div>
+
+    <button mat-stroked-button class="grades-button" (click)="displayGrades()">Event Grade Filter</button>&nbsp;&nbsp;
+    <mat-checkbox labelPosition=before [formControl]="gradesEnabledControl">on/off</mat-checkbox>
+
+  </div>
+
+</div>

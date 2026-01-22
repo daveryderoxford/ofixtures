@@ -1,20 +1,20 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from 'app/auth/guards/auth-guard';
 import { PendingChangesGuard } from 'app/shared/services/pending-changes-guard-service.guard';
-import { FixtureAddComponent } from './additional-fixture/fixture-add.component';
-import { FixtureEditComponent } from './additional-fixture/fixture-edit.component';
-import { AdminComponent } from './admin-page/admin.component';
-import { MapRegistrationAdminComponent } from './entry-admin/map-registration-admin/map-registration-admin.component';
-import { LeagueAddComponent } from './league-admin/league-add.component';
-import { LeagueEditComponent } from './league-admin/league-edit.component';
+import { FixtureAddPage } from './additional-fixture/fixture-add.page';
+import { FixtureEditPage } from './additional-fixture/fixture-edit.page';
+import { AdminPage } from './admin-page/admin-page';
+import { MapRegistrationAdminPage } from './entry-admin/map-registration-admin-page/map-registration-admin-page';
+import { LeagueAddPage } from './league-admin/league-add-page';
+import { LeagueEditPage } from './league-admin/league-edit-page';
 
 export const ADMIN_ROUTES: Routes = [
-  { path: '', component: AdminComponent },
-  { path: 'league/add', component: LeagueAddComponent, canDeactivate: [PendingChangesGuard], canActivate: [AuthGuard] },
-  { path: 'league/edit/:id', component: LeagueEditComponent, canDeactivate: [PendingChangesGuard], canActivate: [AuthGuard] },
-  { path: 'fixture/add', component: FixtureAddComponent, canDeactivate: [PendingChangesGuard], canActivate: [AuthGuard] },
-  { path: 'fixture/edit/:id', component: FixtureEditComponent, canDeactivate: [PendingChangesGuard], canActivate: [AuthGuard] },
-  { path: "mapregistration", component: MapRegistrationAdminComponent, canDeactivate: [PendingChangesGuard], canActivate: [AuthGuard] },
-  { path: "mapregistration/:id", component: MapRegistrationAdminComponent, canDeactivate: [PendingChangesGuard], canActivate: [AuthGuard] },
+  { path: '', component: AdminPage },
+  { path: 'league/add', component: LeagueAddPage, canDeactivate: [PendingChangesGuard], canActivate: [AuthGuard] },
+  { path: 'league/edit/:id', component: LeagueEditPage, canDeactivate: [PendingChangesGuard], canActivate: [AuthGuard] },
+  { path: 'fixture/add', component: FixtureAddPage, canDeactivate: [PendingChangesGuard], canActivate: [AuthGuard] },
+  { path: 'fixture/edit/:id', component: FixtureEditPage, canDeactivate: [PendingChangesGuard], canActivate: [AuthGuard] },
+  { path: "mapregistration", component: MapRegistrationAdminPage, canDeactivate: [PendingChangesGuard], canActivate: [AuthGuard] },
+  { path: "mapregistration/:id", component: MapRegistrationAdminPage, canDeactivate: [PendingChangesGuard], canActivate: [AuthGuard] },
 ];
  

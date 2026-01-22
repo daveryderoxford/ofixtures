@@ -3,11 +3,11 @@ import { FirebaseApp } from '@angular/fire/app';
 import { getFunctions, httpsCallable } from '@angular/fire/functions';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
-import { ToolbarComponent } from 'app/shared/components/toolbar.component';
+import { AppToolbar } from 'app/shared/components/app-toolbar';
 
 @Component({
   selector: 'app-sys-admin-switchboard',
-  imports: [MatButtonModule, ToolbarComponent, RouterLink],
+  imports: [MatButtonModule, AppToolbar, RouterLink],
   template: `
     <app-toolbar title="System admin"/>
     <div class=container>

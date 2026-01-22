@@ -11,7 +11,7 @@
       @defer (on immediate) {
         <app-sidenav-button class="top-left" />
         <app-control-panel class="top-left-2">
-          <app-postcode [postcode]="postcode()" (postcodeChanged)="postcodeChanged($event)" />
+          <app-postcode-input [postcode]="postcode()" (postcodeChanged)="postcodeChanged($event)" />
         </app-control-panel>
 
         @if (!fixtureGroup()) {

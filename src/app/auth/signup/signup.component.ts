@@ -6,14 +6,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
-import { FormContainerComponent } from '../../shared/components/form-container/form-container.component';
-import { ToolbarComponent } from "../../shared/components/toolbar.component";
+import { FormContainer } from '../../shared/components/form-container/form-container';
+import { AppToolbar } from "../../shared/components/app-toolbar";
 
 @Component({
     selector: 'app-signup',
     templateUrl: './signup.component.html',
     styleUrls: ['./signup.component.scss'],
-    imports: [FormContainerComponent,  FlexModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterLink, ToolbarComponent]
+    imports: [FormContainer,  FlexModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterLink, AppToolbar]
 })
 export class SignupComponent {
     private router = inject(Router);

@@ -12,6 +12,10 @@
    background-color: rgb(255, 255, 255);
 }
 
+.selected {
+   background-color: #d5e8f8;
+}
+
 .handset-icon-size {
    transform: scale(0.8);
 }
@@ -23,3 +27,4 @@
 mat-icon {
    color: rgb(180, 180, 180);
 }
+

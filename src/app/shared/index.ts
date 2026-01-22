@@ -1,5 +1,5 @@
 export {DialogsService } from './dialogs/dialogs.service';
-export { ConfirmDialogComponent } from './dialogs/confirm-dialog.component';
-export { MessageDialogComponent } from './dialogs/message-dialog.component';
-export {SpinnerComponent} from './components/spinner/spinner.component';
+export { ConfirmDialog } from './dialogs/confirm-dialog';
+export { MessageDialog } from './dialogs/message-dialog';
+export {Spinner} from './components/spinner/spinner';
 

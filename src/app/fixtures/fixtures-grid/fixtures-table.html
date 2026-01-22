@@ -20,7 +20,7 @@
       </thead>
       <tbody>
         <tr *cdkVirtualFor="let fixture of styledFixtures(); ;trackBy: trackBy" (click)=eventClicked(fixture)
-          [ngClass]="rowClass(fixture)">
+          [class]="rowClass(fixture)">
           <td class="actions">
             @defer {
               <app-liked-icon [fixture]="fixture" [loggedIn]="loggedIn()"/>
@@ -82,8 +82,8 @@
           </td>
           <td class="menu">
             @defer {
-            <app-fixture-actions [fixture]="fixture" [handset]="false"
-              [homeLocation]="homeLocation()"></app-fixture-actions>
+            <app-fixture-actions-menu [fixture]="fixture" [handset]="false"
+              [homeLocation]="homeLocation()"></app-fixture-actions-menu>
             }
           </td>
         </tr>

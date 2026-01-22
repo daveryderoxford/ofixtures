@@ -3,8 +3,8 @@
 } @else {
 <cdk-virtual-scroll-viewport fxFill [itemSize]="itemsize" minBufferPx="380" maxBufferPx="380">
    <mat-list fxFill class="white">
-      <mat-list-item (click)="actions.openMenu()" *cdkVirtualFor="let fixture of styledFixtures()"
-         [class.shaded]="fixture?.shaded">
+      <mat-list-item (click)="eventClicked(fixture)" *cdkVirtualFor="let fixture of styledFixtures()"
+         [class]="rowClass(fixture)">
          <div matListItemLine>
             <span fxFlex=50>{{fixture.date | fixturedate }}</span>
             <span fxFlex=30> {{fixture.club}}</span>
@@ -29,8 +29,8 @@
             <mat-icon [svgIcon]="fixture.grade | gradeIconName" class="handset-icon-size"></mat-icon>
          </div>
          <div matListItemMeta>
-            <app-fixture-actions #actions [handset]="true" [fixture]="fixture" [homeLocation]="homeLocation()">
-            </app-fixture-actions>
+            <app-fixture-actions-menu [handset]="true" [fixture]="fixture" [homeLocation]="homeLocation()">
+            (click)="openMenu()"</app-fixture-actions-menu>
          </div>
          <mat-divider />
       </mat-list-item>

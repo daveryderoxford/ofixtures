@@ -1,14 +1,14 @@
-import { ChangeDetectionStrategy, Component, effect, signal, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, signal, untracked, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { LeagueHeaderComponent } from '../../league/league-header/league-header.component';
-import { ToolbarComponent } from '../../shared/components/toolbar.component';
-import { LoadingCenteredComponent } from '../../shared/components/loading-centered.component';
-import { FixturesMapComponent } from '../fixtures-map/fixtures-map.component';
-import { FixturesOptionsComponent } from '../fixtures-options/fixtures-options.component';
-import { PostcodeComponent } from '../postcode/postcode.component';
+import { LeagueHeader } from '../../league/league-header/league-header';
+import { AppToolbar } from '../../shared/components/app-toolbar';
+import { LoadingCentered } from '../../shared/components/loading-centered';
+import { FixturesMap } from '../fixtures-map/fixtures-map';
+import { FixturesOptions } from '../fixtures-options/fixtures-options';
+import { PostcodeInput } from '../postcode/postcode-input/postcode-input';
 import { FixturesBaseComponent } from './fixtures.base';
 import { FixturesList } from "../fixtures-grid/fixtures-list";
 
@@ -20,8 +20,8 @@ type MobileView = 'map' | 'list';
   styleUrls: ['./fixtures-mobile.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    PostcodeComponent, FixturesOptionsComponent, FixturesMapComponent, LeagueHeaderComponent, ToolbarComponent, MatButtonModule, MatIconModule, MatDividerModule,
-    MatTooltipModule, LoadingCenteredComponent,
+    PostcodeInput, FixturesOptions, FixturesMap, LeagueHeader, AppToolbar, MatButtonModule, MatIconModule, MatDividerModule,
+    MatTooltipModule, LoadingCentered,
     FixturesList
 ]
 })
@@ -30,13 +30,13 @@ export class FixturesMobile extends FixturesBaseComponent {
   mobileView = signal<MobileView>('list');
   showMobleFilter = signal(false);
 
-  list = viewChild(FixturesList);
+  list = viewChild('fixturesList', { read: FixturesList });
 
   scrollEffect = effect( () => {
     const view = this.mobileView();
-    const fix = this.selectedFixture();
+    const fix = untracked(() => this.selectedFixture());
     const list = this.list();
-    if (fix && list) {
+    if (fix && list && view === 'list') {
       list.scrollToFixture(fix);
     }
   });

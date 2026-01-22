@@ -1,12 +1,12 @@
 import { computed, effect, inject, Injectable, linkedSignal, signal } from '@angular/core';
 import { AuthService } from 'app/auth/auth.service';
 import { FixtureFilter, GradeFilter } from 'app/fixtures/@store/fixture-filter';
-import { UserData } from 'app/user/@store/user';
 import { differenceInMonths, isSaturday, isSunday, isWeekend } from 'date-fns';
 import { Fixture } from './fixture';
 import { FixturesService } from './fixtures.service';
-import { UserDataService } from 'app/user/@store/user-data.service';
 import { LocalStorageService } from './local-storage';
+import { UserDataService } from 'app/user/@store/user-data.service';
+import { UserData } from 'app/user/@store/user';
 
 @Injectable({
    providedIn: 'root'

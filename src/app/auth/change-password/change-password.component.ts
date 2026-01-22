@@ -7,14 +7,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
-import { FormContainerComponent } from '../../shared/components/form-container/form-container.component';
-import { ToolbarComponent } from '../../shared/components/toolbar.component';
+import { FormContainer } from '../../shared/components/form-container/form-container';
+import { AppToolbar } from '../../shared/components/app-toolbar';
 
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.scss'],
-  imports: [FormContainerComponent, ToolbarComponent, FlexModule, MatCardModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule]
+  imports: [FormContainer, AppToolbar, FlexModule, MatCardModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule]
 })
 export class ChangePasswordComponent {
   private router = inject(Router);

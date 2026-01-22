@@ -29,7 +29,7 @@
   @if (showMobleFilter()) {
     @defer (on idle) {
       <div class="mat-elevation-z2 mobile-filter">
-         <app-postcode [postcode]="postcode()" (postcodeChanged)="postcodeChanged($event)" />
+         <app-postcode-input [postcode]="postcode()" (postcodeChanged)="postcodeChanged($event)" />
          @if (!fixtureGroup()) {
          <app-fixtures-options [filter]="filter()" (filterChanged)="filterChanged($event)" />
          }
@@ -44,7 +44,7 @@
   } @else {
   @if (mobileView() === 'list') {
   <!-- Mobile List view -->
-    <app-fixtures-list class="flex-1" [fixtures]="fixtures()" [homeLocation]="homeLocation()"
+    <app-fixtures-list #fixturesList class="flex-1" [fixtures]="fixtures()" [homeLocation]="homeLocation()"
       [selectedFixture]="displayedSelection()" (fixtureSelected)="gridFixtureSelected($event)" />
   } @else {
   <!-- Mobile map view-->
@@ -53,7 +53,7 @@
    @defer (on idle) {
       @if (selectedFixture()) {
          <app-fixtures-list class="selected-fixture-grid" [fixtures]="[selectedFixture()!]" [homeLocation]="homeLocation()"
-            [selectedFixture]="selectedFixture()" (fixtureSelected)="gridFixtureSelected($event)" />
+            [selectedFixture]="selectedFixture()" [highlightSelected]="false" />
       } @else {
          <div class="select-fixture-placeholder">
             Select fixture to display its details

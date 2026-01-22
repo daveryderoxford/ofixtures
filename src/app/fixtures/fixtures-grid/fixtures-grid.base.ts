@@ -1,7 +1,6 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { Directive, computed, inject, input, output, viewChild } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Entry, FixtureEntryDetails } from 'app/entry/@store/entry';
@@ -22,6 +21,7 @@ export abstract class FixturesGridBaseComponent {
   entries = input<FixtureEntryDetails[]>([]);
   userEntries = input<Entry[]>([]);
   selectedFixture = input.required<Fixture | undefined>();
+  highlightSelected = input(true);
   homeLocation = input.required<LatLong>();
   loggedIn = input<boolean>(false);
   fixtureSelected = output<Fixture>();
@@ -50,10 +50,10 @@ export abstract class FixturesGridBaseComponent {
   }
 
   public scrollToFixture(fixture: Fixture) {
-    const index = this.fixtures().findIndex(f => f === fixture);
+    const index = this.fixtures().findIndex(f => f.id === fixture.id);
 
     if (index !== -1) {
-      this.viewPort().scrollToIndex(index);
+      setTimeout(() => this.viewPort().scrollToIndex(index));
     }
   }
 
@@ -70,7 +70,7 @@ export abstract class FixturesGridBaseComponent {
   }
 
   protected rowClass(fixture: StyledFixture): string {
-    if (this.isSelected(fixture)) {
+    if (this.highlightSelected() && this.isSelected(fixture)) {
       return 'selected';
     } else {
       return fixture.shaded ? 'shaded' : 'white';

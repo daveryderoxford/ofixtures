@@ -8,14 +8,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, RouterLink } from '@angular/router';
 import { FlexModule } from '@ngbracket/ngx-layout/flex';
-import { FormContainerComponent } from "../../shared/components/form-container/form-container.component";
-import { ToolbarComponent } from "../../shared/components/toolbar.component";
+import { FormContainer } from "../../shared/components/form-container/form-container";
+import { AppToolbar } from "../../shared/components/app-toolbar";
 
 @Component({
   selector: 'app-recover',
   templateUrl: './recover.component.html',
   styleUrls: ['./recover.component.scss'],
-  imports: [FlexModule, ReactiveFormsModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterLink, FormContainerComponent, ToolbarComponent]
+  imports: [FlexModule, ReactiveFormsModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, RouterLink, FormContainer, AppToolbar]
 })
 export class RecoverComponent {
   private router = inject(Router);

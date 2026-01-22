@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { BreakpointService } from 'app/shared/services/breakpoint.service';
-import { LoadingCenteredComponent } from '../../shared/components/loading-centered.component';
+import { LoadingCentered } from '../../shared/components/loading-centered';
 import { FixturesDesktop } from './fixtures-desktop';
 import { FixturesMobile } from './fixtures-mobile';
 
@@ -23,7 +23,7 @@ import { FixturesMobile } from './fixtures-mobile';
    `,
    styleUrls: ['./fixtures-page.scss'],
    changeDetection: ChangeDetectionStrategy.OnPush,
-   imports: [FixturesDesktop, FixturesMobile, LoadingCenteredComponent]
+   imports: [FixturesDesktop, FixturesMobile, LoadingCentered]
 })
 export class FixturesPage {
    private breakpointObserver = inject(BreakpointService);

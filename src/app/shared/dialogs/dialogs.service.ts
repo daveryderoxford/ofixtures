@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
-import { ConfirmDialogComponent } from './confirm-dialog.component';
-import { MessageDialogComponent } from "./message-dialog.component";
+import { ConfirmDialog } from './confirm-dialog';
+import { MessageDialog } from "./message-dialog";
 import { firstValueFrom } from 'rxjs';
 
 @Injectable({
@@ -13,9 +13,9 @@ export class DialogsService {
 
   public async confirm(title: string, message: string): Promise<boolean> {
 
-    let dialogRef: MatDialogRef<ConfirmDialogComponent>;
+    let dialogRef: MatDialogRef<ConfirmDialog>;
 
-    dialogRef = this.dialog.open(ConfirmDialogComponent);
+    dialogRef = this.dialog.open(ConfirmDialog);
 
     dialogRef.componentInstance.title = title;
     dialogRef.componentInstance.message = message;
@@ -25,9 +25,9 @@ export class DialogsService {
 
   public async message(title: string, message: string): Promise<boolean> {
 
-    let dialogRef: MatDialogRef<MessageDialogComponent>;
+    let dialogRef: MatDialogRef<MessageDialog>;
 
-    dialogRef = this.dialog.open(MessageDialogComponent);
+    dialogRef = this.dialog.open(MessageDialog);
 
     dialogRef.componentInstance.title = title;
     dialogRef.componentInstance.message = message;
